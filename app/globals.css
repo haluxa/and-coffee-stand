@@ -1,15 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+  --background: #FFFCF8;
+  --foreground: #453D34;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +17,239 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-hina), serif;
+  font-size: medium;
 }
+
+.header {
+  padding: 0 20px;
+  position: relative;
+}
+
+/* ここから下がハンバーガーメニューに関するCSS */
+  
+/* チェックボックスを非表示にする */
+.drawer_hidden {
+  display: none;
+}
+
+/* ハンバーガーアイコンの設置スペース */
+.drawer_open {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  z-index: 100;
+  cursor: pointer;
+    /* アイコンのサイズを調整 */ 
+  display: inline-flex;       /* or block */
+  width: 60px;                 /* お好みの幅 */
+  height: 60px;                /* お好みの高さ */
+  align-items: center;         /* span を中央寄せ */
+  justify-content: center;
+}
+
+/* ハンバーガーメニューのアイコン */
+.drawer_open span,
+.drawer_open span:before,
+.drawer_open span:after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 25px;
+  border-radius: 3px;
+  background: #333;
+  transition: 0.5s;
+  position: absolute;
+}
+
+/* 三本線の一番上の棒の位置調整 */
+.drawer_open span:before {
+  bottom: 8px;
+}
+
+/* 三本線の一番下の棒の位置調整 */
+.drawer_open span:after {
+  top: 8px;
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer_input:checked ~ .drawer_open span {
+  background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+#drawer_input:checked ~ .drawer_open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#drawer_input:checked ~ .drawer_open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* メニューのデザイン*/
+.nav_content {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 100%; /* メニューを画面の外に飛ばす */
+  z-index: 99;
+  background: #fff;
+  transition: .5s;
+  padding-left: 48px;
+  padding-top: 80px;
+}
+
+/* メニュー黒ポチを消す */
+.nav_list {
+  list-style: none;
+  font-size: 32px;
+  line-height: 2;
+}
+
+/* アイコンがクリックされたらメニューを表示 */
+#drawer_input:checked ~ .nav_content {
+  left: 0;/* メニューを画面に入れる */
+}
+
+main{
+  width: 100%;
+  margin: 0 auto;
+  
+}
+
+main .top-movie-wrapper{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 80px;
+
+}
+.top-movie-wrapper video {
+  width: 80%;
+  height: auto;
+}
+
+.shop-info{
+  margin: 44px 16px;
+}
+.shop-info span{
+  font-size: 24px;
+}
+.shop-info h1{
+  font-size: 56px;
+}
+
+.shop-info .info{
+  margin-top: 24px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.asterisk{
+  font-family: notosans-jp, sans-serif;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.info_link_map{
+  font-size: 16px;
+  text-decoration: underline;
+  text-decoration-color: var(--foreground);      /* 下線の色 */
+  text-decoration-thickness: 1px; /* 太さ */
+  text-underline-offset: 2px;  /* 下線と文字の間隔 */
+} 
+
+.about-wrapper{
+  margin: 80px 0
+}
+
+.about-wrapper h2{
+  font-family: notosans-jp, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 14px;
+  
+}
+
+.about-wrapper p{
+  font-size: 16px;
+  margin-top: 16px;
+  margin-left: 16px;
+  line-height: 1.6;
+}
+
+.about-wrapper button{
+  margin: 24px 16px;
+  padding: 8px 16px;
+  border: 2px solid var(--foreground);
+  background: transparent;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.marquee { overflow: hidden; }
+
+.track {
+  display: flex;
+  gap: 10px;                 /* liのpaddingよりgapの方がズレにくい */
+  margin: 0;
+  padding: 0;
+  width: max-content;        /* 中身の合計幅に自動で広がる */
+  list-style: none;
+  animation: scroll 45s linear infinite; /* 速度は好みで */
+  will-change: transform;
+}
+
+.track img {
+  display: block;
+  height: 240px;
+  width: auto;
+  border-radius: 8px;
+  flex-shrink: 0;            /* 縮ませない */
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* 2周ぶん中の“1周ぶん”だけ動かす */
+}
+
+/* お好みで端のフェード（継ぎ目の違和感をさらに隠す） */
+.marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+
+/* 動きを苦手とする環境配慮 */
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; transform: none; }
+}
+
+.footer-link{
+  margin: 80px 16px;
+  font-size: 16px;
+  line-height: 2;
+  
+}
+
+
+footer{
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  
+}
+.footer-image{
+  padding-bottom: 24px;
+}
+footer a{
+  margin-left: 16px;
+  line-height: 2;
+}
+small{
+  margin: auto 0 8px 0; /* 一番下へ押し下げ */
+  text-align: center;
+}
+
+
