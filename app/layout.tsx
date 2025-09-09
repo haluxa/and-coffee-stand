@@ -25,18 +25,7 @@ export default function RootLayout({
         className={hina.variable}
       >
       <div className="bgVideo">
-        {/* 背景動画レイヤ */}
-        <video
-          className="bgVideo__media"
-          src="/bg-video.mov"       
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-        />
-        {/* ティント（可読性確保・馴染ませ） */}
-        <div className="bgVideo__tint" />
+      
         <header>
          <div className="nav">
             <input id="drawer_input" className="drawer_hidden" type="checkbox" />
