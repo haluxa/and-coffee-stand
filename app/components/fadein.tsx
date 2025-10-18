@@ -5,7 +5,7 @@ import type { PropsWithChildren } from "react";
 type FadeInProps = PropsWithChildren<{
   threshold?: number;
   delayStep?: number; // ミリ秒単位。バッチ内での要素間の待ち時間
-  group?: string;     // 同グループ内の要素だけで順番をリセット
+  group?: string; // 同グループ内の要素だけで順番をリセット
 }>;
 
 type ElementMeta = {
