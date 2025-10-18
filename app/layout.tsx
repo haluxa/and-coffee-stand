@@ -42,6 +42,14 @@ export default function RootLayout({
             <source src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <video id="bg-video-5" autoPlay loop muted playsInline>
+            <source src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video id="bg-video-6" autoPlay loop muted playsInline>
+            <source src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div> 
 
