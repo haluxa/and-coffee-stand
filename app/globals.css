@@ -31,7 +31,9 @@ body {
   font-family: var(--font-hina), serif;
   font-size: medium;
 }
-
+h1, h2, h3, h4, h5, h6, span, p, li, a, button {
+  font-weight: 400;
+}
 /* ===== 背景動画：縦方向に継ぎ目なくスクロール（動画を縦にスタック） ===== */
 #bg-video-stack {
   position: fixed;
@@ -255,10 +257,11 @@ main .top-movie-wrapper{
   margin: 44px 16px;
 }
 .shop-info span{
-  font-size: 24px;
+  font-size: 16px;
 }
 .shop-info h1{
-  font-size: 56px;
+  font-size: 48px;
+
 }
 
 .shop-info .info{
@@ -286,9 +289,9 @@ main .top-movie-wrapper{
 }
 
 .about-wrapper h2{
-  font-family: notosans-jp, sans-serif;
+  font-family: var(--font-noto-sans-jp),sans-serif;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
   margin-left: 14px;
   
 }
@@ -298,16 +301,20 @@ main .top-movie-wrapper{
   margin-top: 16px;
   margin-left: 16px;
   line-height: 1.6;
+  font-family: var(--font-klee), serif;
 }
 
 .about-wrapper button{
-  margin: 24px 16px;
-  padding: 8px 16px;
-  border: 2px solid var(--foreground);
-  background: transparent;
-  font-size: 16px;
-  border-radius: 30px;
+  margin: 80px 16px;
+  padding: 8px 32px;
+  background: var(--foreground);
+  font-size: 24px;
+  border-radius: 16px;
   cursor: pointer;
+  font-family: var(--font-fredericka), serif;
+  color: var(--background);
+  -webkit-font-smoothing: antialiased; /* 細く見えやすい */
+
 }
 .marquee { overflow: hidden; }
 
@@ -372,4 +379,9 @@ small{
   text-align: center;
 }
 
-
+.about-3 h2{
+  margin-top: 80px;
+}
+.about-5 h2{
+  margin-top: 80px;
+}

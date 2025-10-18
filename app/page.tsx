@@ -43,7 +43,7 @@ export default function Home() {
       </div>
       </section>
       <section>
-        <div className="about-wrapper">
+        <div className="about-wrapper about-1">
           <Image src="/img/home_image_main_1.png" alt="" width={3000} height={2400} />
           <h2>“スペシャルなひと時を”</h2>
           <p>
@@ -59,7 +59,7 @@ export default function Home() {
           </p>
           <button>MENU</button>
         </div>
-        <div className="about-wrapper">
+        <div className="about-wrapper about-2">
           <Image src="/img/home_image_main_2.png" alt="" width={2400} height={3400} />
           <h2>“誰かのパワースポットに”</h2>
             <p>
@@ -76,7 +76,7 @@ export default function Home() {
             </p>
             <button>shop view</button>
         </div>
-        <div className="about-wrapper">
+        <div className="about-wrapper about-3">
           <Image src="/img/home_image_main_3.png" alt="" width={3200} height={2400} />
           <h2>“身体が喜ぶもの”</h2>
             <p>
@@ -93,7 +93,7 @@ export default function Home() {
             </p>
             <button>event memory</button>
         </div>
-        <div className="about-wrapper">
+        <div className="about-wrapper about-4">
           <Image src="/img/home_image_main_4.png" alt="" width={3000} height={2400} />
           <h2>“まるで紅茶な珈琲豆”</h2>
             <p>
@@ -112,7 +112,7 @@ export default function Home() {
             </p>
             <button>secret</button>
         </div>
-        <div className="about-wrapper">
+        <div className="about-wrapper about-5">
           <Image src="/img/home_image_main_5.png" alt="" width={3000} height={2400} />
           <h2>“こだわりのセレクト”</h2>
             <p>

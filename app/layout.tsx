@@ -1,18 +1,39 @@
-import { Hina_Mincho } from "next/font/google";
+import { Hina_Mincho, Klee_One, Noto_Sans_JP ,Fredericka_the_Great} from "next/font/google";
 import { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
 
+// Hina Mincho の設定
 const hina = Hina_Mincho({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-hina",
 });
 
+// Klee One の設定
+const klee = Klee_One({
+  weight: ["400", "600"], // 利用できるウェイト（太さ）
+  subsets: ["latin"],     // 使用する文字セット
+  variable: "--font-klee", // CSS変数として登録
+});
+
+//Noto Sans Japanese の設定
+const notoSansJP = Noto_Sans_JP({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto-sans-jp",
+});
 export const metadata: Metadata = {
   title: "And Coffee Stand",
   description: "カフェの公式サイト",
 };
+
+//Fredericka the Great の設定（未使用）
+const fredericka = Fredericka_the_Great({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-fredericka",
+});
 
 export default function RootLayout({
   children, 
@@ -22,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={hina.variable}
+        className={`${hina.variable} ${klee.variable} ${notoSansJP.variable} ${fredericka.variable}`}
       >
       <div id="bg-video-stack" aria-hidden="true">
         <div className="bg-video-track">
