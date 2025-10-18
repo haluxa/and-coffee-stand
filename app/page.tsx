@@ -8,7 +8,7 @@ export default function Home() {
       <div className="top-movie-wrapper">
         <video
           className="top-movie"
-          src="/sample1.mp4"
+          src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/sample1.mp4"
           autoPlay
           muted
           loop
