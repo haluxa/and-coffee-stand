@@ -24,7 +24,31 @@ export default function RootLayout({
       <body
         className={hina.variable}
       >
-      <div className="bgVideo">
+      <div id="bg-video-stack" aria-hidden="true">
+        <div className="bg-video-track">
+          <video id="bg-video-1" autoPlay loop muted playsInline>
+            <source src="/bg-leaves-shadow.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video id="bg-video-2" autoPlay loop muted playsInline>
+            <source src="/bg-leaves-shadow.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video id="bg-video-3" autoPlay loop muted playsInline>
+            <source src="/bg-leaves-shadow.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video id="bg-video-4" autoPlay loop muted playsInline>
+            <source src="/bg-leaves-shadow.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div> 
+
+{/* オーバーレイは動画の直後に1つだけ */}
+<div className="bg-video-overlay" aria-hidden="true" />
+      <div className="bg-video-overlay" aria-hidden="true" />
+      <div>
       
         <header>
          <div className="nav">
