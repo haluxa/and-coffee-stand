@@ -254,7 +254,7 @@ main .top-movie-wrapper{
 }
 
 .shop-info{
-  margin: 44px 16px;
+  margin: 44px 40px;
 }
 .shop-info span{
   font-size: 16px;
@@ -290,16 +290,15 @@ main .top-movie-wrapper{
 
 .about-wrapper h2{
   font-family: var(--font-noto-sans-jp),sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
-  margin-left: 14px;
+  margin-left: 40px;
   
 }
 
 .about-wrapper p{
-  font-size: 12px;
-  margin-top: 16px;
-  margin-left: 16px;
+  font-size: 14px;
+  margin: 16px 48px;
   line-height: 1.6;
   font-family: var(--font-klee), serif;
 }
@@ -318,11 +317,11 @@ main .top-movie-wrapper{
   height: 12px;
 }
 .about-wrapper .icon-button{
-  margin: 40px 16px;
-  padding: 8px 16px;
+  margin: 40px 48px;
+  padding: 8px 24px;
   background: var(--foreground);
   font-size: 16px;
-  border-radius: 16px;
+  border-radius: 32px;
   cursor: pointer;
   font-family: var(--font-fredericka), serif;
   color: var(--background);
