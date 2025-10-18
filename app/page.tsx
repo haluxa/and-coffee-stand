@@ -85,7 +85,7 @@ export default function Home() {
             />
           </FadeInEffect>
           <FadeInEffect>
-            <h2>“スペシャルなひと時を”</h2>
+            <h2>スペシャルなひと時を</h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>
@@ -121,7 +121,7 @@ export default function Home() {
             />
           </FadeInEffect>
           <FadeInEffect>
-            <h2>“誰かのパワースポットに”</h2>
+            <h2>誰かのパワースポットに</h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>
@@ -158,7 +158,7 @@ export default function Home() {
             />
           </FadeInEffect>
           <FadeInEffect>
-            <h2>“身体が喜ぶもの”</h2>
+            <h2>身体が喜ぶもの</h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>
@@ -195,7 +195,7 @@ export default function Home() {
             />
           </FadeInEffect>
           <FadeInEffect>
-            <h2>“まるで紅茶な珈琲豆”</h2>
+            <h2>まるで紅茶な珈琲豆</h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>
@@ -236,7 +236,7 @@ export default function Home() {
             />
           </FadeInEffect>
           <FadeInEffect>
-            <h2>“こだわりのセレクト”</h2>
+            <h2>こだわりのセレクト</h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>

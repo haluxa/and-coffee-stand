@@ -8,6 +8,7 @@ import { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
 import FadeInEffect from "@/components/fadein";
+import ScrollIndicator from "@/components/ScrollIndicator";
 
 // Hina Mincho の設定
 const hina = Hina_Mincho({
@@ -161,6 +162,7 @@ export default function RootLayout({
             </footer>
           </FadeInEffect>
         </div>
+        <ScrollIndicator />
       </body>
     </html>
   );
