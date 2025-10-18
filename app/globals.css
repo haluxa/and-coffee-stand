@@ -44,7 +44,7 @@ a,
 button {
   font-weight: 400;
 }
-/* ===== 背景動画：縦方向に継ぎ目なくスクロール（動画を縦にスタック） ===== */
+/* ===== 背景動画：固定配置 ===== */
 #bg-video-stack {
   position: fixed;
   inset: 0;
@@ -55,7 +55,6 @@ button {
   pointer-events: none; /* クリックを邪魔しない */
 }
 
-/* 複数の動画を縦に並べ、“ひとつの帯”として上方向にスクロールさせるトラック */
 .bg-video-track {
   position: absolute;
   top: 0;
@@ -63,10 +62,9 @@ button {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0; /* 動画同士の隙間をなくす */
-  line-height: 0; /* インライン要素のベースラインによる隙間を防ぐ */
-  animation: bgScrollY 60s linear infinite;
-  will-change: transform;
+  gap: 0;
+  line-height: 0;
+  overflow: hidden;
 }
 
 /* ===== 動画の継ぎ目を柔らかく隠すための薄いグラデーション（※現在はオフ） ===== */
@@ -89,23 +87,16 @@ button {
 
 #bg-video-stack video {
   width: 100%;
-  height: auto; /* 元のアスペクト比を維持 */
-  object-fit: contain; /* トリミング（はみ出し）を避ける */
-  display: block; /* インライン由来の隙間を避ける */
-  flex: 0 0 auto; /* Flexの伸縮を無効化（高さが揺れないように） */
+  height: auto;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 auto;
   opacity: var(--bg-video-opacity);
-  filter: contrast(1.08) brightness(1.07); /* コントラストと明るさを微調整 */
+  filter: contrast(1.08) brightness(1.07);
 }
 
-/* 2本目以降の動画を上に引き上げ、一定ピクセル分だけ重ねる */
 #bg-video-stack video + video {
-  margin-top: calc(
-    var(--bg-overlap-px) * -1
-  ); /* pull upward to overlap previous */
-}
-
-/* 1本目を除く各動画の上端を透明→不透明へフェードさせ、下にある前の動画を透けさせて自然に繋ぐ */
-#bg-video-stack video + video {
+  margin-top: calc(var(--bg-overlap-px) * -1);
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0,
@@ -118,16 +109,6 @@ button {
     rgba(0, 0, 0, 1) var(--bg-fade-px),
     rgba(0, 0, 0, 1) 100%
   );
-}
-
-/* 4本分積んだトラック全体を、ちょうど1本ぶん（= 25%）だけ上に移動させてループ */
-@keyframes bgScrollY {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-25%);
-  }
 }
 
 /* ===== 背景動画の上に重ねる薄い幕（色味＋ぼかし） ===== */
@@ -320,7 +301,7 @@ main .top-movie-wrapper {
 
 .about-wrapper h2 {
   font-family: var(--font-noto-sans-jp), sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   margin-left: 48px;
 }
@@ -346,7 +327,7 @@ main .top-movie-wrapper {
   height: 12px;
 }
 .about-wrapper .icon-button {
-  margin: 40px 48px;
+  margin: 10px 48px;
   padding: 8px 24px;
   background: var(--foreground);
   font-size: 16px;

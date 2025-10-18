@@ -89,13 +89,6 @@ export default function RootLayout({
               />
               Your browser does not support the video tag.
             </video>
-            <video id="bg-video-6" autoPlay loop muted playsInline>
-              <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow-1280.webm"
-                type="video/webm"
-              />
-              Your browser does not support the video tag.
-            </video>
           </div>
         </div>
 
