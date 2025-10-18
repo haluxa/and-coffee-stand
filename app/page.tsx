@@ -1,5 +1,7 @@
+
 import Image from "next/image";
 import Link from "next/link";
+import BeansIcon from "@/components/ui/BeansIcon";
 
 export default function Home() {
   return (
@@ -57,7 +59,9 @@ export default function Home() {
             当店は”あなたに寄り添える場所づくり”を<br />
             目指しています。
           </p>
-          <button>MENU</button>
+          <BeansIcon label="menu" href="/menu" />
+          
+          
         </div>
         <div className="about-wrapper about-2">
           <Image src="/img/home_image_main_2.png" alt="" width={2400} height={3400} />
@@ -74,7 +78,7 @@ export default function Home() {
               そんなパワースポットで<br />
               ありたいと思っています。
             </p>
-            <button>shop view</button>
+            <BeansIcon label="shop view" href="/view" />
         </div>
         <div className="about-wrapper about-3">
           <Image src="/img/home_image_main_3.png" alt="" width={3200} height={2400} />
@@ -91,7 +95,7 @@ export default function Home() {
               珈琲とのペアリングも考えたスイーツを<br />
               ぜひご賞味ください。
             </p>
-            <button>event memory</button>
+            <BeansIcon label="event memory" href="/memory" />
         </div>
         <div className="about-wrapper about-4">
           <Image src="/img/home_image_main_4.png" alt="" width={3000} height={2400} />
@@ -110,7 +114,7 @@ export default function Home() {
               定期的に変わるセレクトした珈琲豆を<br />
               一杯、一杯丁寧に豆から挽きお淹れします。
             </p>
-            <button>secret</button>
+            <BeansIcon label="secret" href="/secret" />
         </div>
         <div className="about-wrapper about-5">
           <Image src="/img/home_image_main_5.png" alt="" width={3000} height={2400} />
@@ -123,7 +127,7 @@ export default function Home() {
               セレクトしたものは<br />
               多くの女性の方に喜んでいただいてます。
             </p>
-            <button>original goods</button>
+            <BeansIcon label="goods" href="/goods" />
         </div>
       </section>
       <section className="marquee">

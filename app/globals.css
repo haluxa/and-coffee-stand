@@ -290,31 +290,43 @@ main .top-movie-wrapper{
 
 .about-wrapper h2{
   font-family: var(--font-noto-sans-jp),sans-serif;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
   margin-left: 14px;
   
 }
 
 .about-wrapper p{
-  font-size: 16px;
+  font-size: 12px;
   margin-top: 16px;
   margin-left: 16px;
   line-height: 1.6;
   font-family: var(--font-klee), serif;
 }
+/* アイコン付きボタン：画像と文字を横並びに */
+.icon-button {
+  display: inline-flex;          /* ボタン内を横並び */
+  align-items: center;           /* 縦位置を中央に */
+  gap: 8px;                      /* 画像と文字の間隔 */
+  white-space: nowrap;           /* 折り返さない（任意） */
+}
 
-.about-wrapper button{
-  margin: 80px 16px;
-  padding: 8px 32px;
+/* Next/Image が block 化していても横並びを維持するための調整 */
+.icon-button :where(img){
+  display: block;                /* ベースラインの隙間を消す */
+  width: 13px;                   /* 明示サイズ（必要に応じて変更） */
+  height: 12px;
+}
+.about-wrapper .icon-button{
+  margin: 40px 16px;
+  padding: 8px 16px;
   background: var(--foreground);
-  font-size: 24px;
+  font-size: 16px;
   border-radius: 16px;
   cursor: pointer;
   font-family: var(--font-fredericka), serif;
   color: var(--background);
   -webkit-font-smoothing: antialiased; /* 細く見えやすい */
-
 }
 .marquee { overflow: hidden; }
 
