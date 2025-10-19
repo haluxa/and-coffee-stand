@@ -26,7 +26,7 @@ export default function Map({ height = 400 }: Props) {
     {
       elementType: "labels.text.stroke",
       stylers: [
-        { color: "#4f4f4fff" },
+        { color: "#3b3b3bff" },
         { saturation: -100 },
         { lightness: -100 },
       ],
@@ -35,7 +35,11 @@ export default function Map({ height = 400 }: Props) {
     {
       featureType: "road",
       elementType: "geometry",
-      stylers: [{ color: "#dcdcdc" }, { saturation: 100 }, { lightness: 100 }],
+      stylers: [
+        { color: "#a8a8a8ff" },
+        { saturation: 100 },
+        { lightness: 100 },
+      ],
     },
     {
       featureType: "road.arterial",
