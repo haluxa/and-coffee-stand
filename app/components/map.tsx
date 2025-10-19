@@ -13,64 +13,163 @@ export default function Map({ height = 400 }: Props) {
 
   // 白黒スタイル
   const grayscaleStyle: google.maps.MapTypeStyle[] = [
-    // 背景（地面全体）
     {
       elementType: "geometry",
       stylers: [
-        { color: "#e7e7e7ff" }, // ← ベージュ系（コーヒーショップに合う）
-        { saturation: 100 },
-        { lightness: 100 },
+        {
+          color: "#f5f5f5",
+        },
       ],
     },
-
-    // ラベル類
-    { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+    {
+      elementType: "labels.icon",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
     {
       elementType: "labels.text.fill",
       stylers: [
-        { color: "#d9d9d9ff" },
-        { saturation: 100 },
-        { lightness: 100 },
+        {
+          color: "#616161",
+        },
       ],
     },
     {
       elementType: "labels.text.stroke",
       stylers: [
-        { color: "#383838ff" },
-        { saturation: -100 },
-        { lightness: -100 },
-      ], // 文字の縁を黒に
+        {
+          color: "#f5f5f5",
+        },
+      ],
     },
-
-    // ポイント（お店など）を非表示
-    { featureType: "poi", stylers: [{ visibility: "off" }] },
-
-    // 道路の色（グレー）
+    {
+      featureType: "administrative.land_parcel",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#bdbdbd",
+        },
+      ],
+    },
+    {
+      featureType: "poi",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#eeeeee",
+        },
+      ],
+    },
+    {
+      featureType: "poi",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#757575",
+        },
+      ],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#e5e5e5",
+        },
+      ],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#9e9e9e",
+        },
+      ],
+    },
     {
       featureType: "road",
       elementType: "geometry",
       stylers: [
-        { color: "#181818ff" },
-        { saturation: -100 },
-        { lightness: -100 },
-      ], // ← 道路の灰色
+        {
+          color: "#ffffff",
+        },
+      ],
     },
     {
       featureType: "road.arterial",
-      elementType: "geometry",
-      stylers: [{ color: "#666666" }], // 幹線道路（少し濃いグレー）
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#757575",
+        },
+      ],
     },
     {
       featureType: "road.highway",
       elementType: "geometry",
-      stylers: [{ color: "#999999" }], // 高速道路（少し明るいグレー）
+      stylers: [
+        {
+          color: "#dadada",
+        },
+      ],
     },
-
-    // 水の色
+    {
+      featureType: "road.highway",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#616161",
+        },
+      ],
+    },
+    {
+      featureType: "road.local",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#9e9e9e",
+        },
+      ],
+    },
+    {
+      featureType: "transit.line",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#e5e5e5",
+        },
+      ],
+    },
+    {
+      featureType: "transit.station",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#eeeeee",
+        },
+      ],
+    },
     {
       featureType: "water",
       elementType: "geometry",
-      stylers: [{ color: "#1a1a1a" }], // 黒背景に馴染むよう暗め
+      stylers: [
+        {
+          color: "#c9c9c9",
+        },
+      ],
+    },
+    {
+      featureType: "water",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#9e9e9e",
+        },
+      ],
     },
   ];
   const center = { lat: 33.8727700236595, lng: 130.85770975415534 };
@@ -81,7 +180,7 @@ export default function Map({ height = 400 }: Props) {
       if (!mapRef.current) return;
       const map = new google.maps.Map(mapRef.current, {
         center,
-        zoom: 18,
+        zoom: 15,
         styles: grayscaleStyle,
         disableDefaultUI: true,
       });

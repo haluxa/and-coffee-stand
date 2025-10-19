@@ -30,6 +30,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-hina), serif;
   font-size: medium;
+  overflow-x: hidden;
 }
 h1,
 h2,
@@ -171,7 +172,7 @@ button {
 
 /* ハンバーガーアイコンの設置スペース */
 .drawer_open {
-  position: absolute;
+  position: fixed;
   right: 16px;
   top: 16px;
   z-index: 100;
@@ -282,7 +283,7 @@ main .top-movie-wrapper {
 }
 
 .asterisk {
-  font-family: notosans-jp, sans-serif;
+  font-family: var(--font-noto-sans-jp), sans-serif;
   font-size: 12px;
   margin-top: 8px;
 }
@@ -413,19 +414,20 @@ footer {
   flex-direction: column;
 }
 .footer-image {
-  padding-bottom: 24px;
   width: 240px;
-  margin-left: 48px;
+  margin-left: 16px;
+  margin-top: 160px;
+  margin-bottom: 16px;
 }
 footer a,
 footer p,
 footer .info_link_map {
-  margin-left: 48px;
+  margin-left: 16px;
   line-height: 2;
   font-size: 12px;
 }
 small {
-  margin: 16px 0; /* 一番下へ押し下げ */
+  padding: 16px 0; /* 一番下へ押し下げ */
   text-align: center;
 }
 
@@ -436,8 +438,13 @@ small {
   margin-top: 80px;
 }
 .map {
-  margin: 40px 0px 0px 0px;
+  width: 90%;
+  margin: 0 auto;
+  height: 320px;
+  margin: 24px;
+  border-radius: 32px;
 }
+
 .fade-in {
   opacity: 0;
   transform: translateY(16px);
@@ -521,4 +528,47 @@ small {
     transform: translateY(200%);
     opacity: 0;
   }
+}
+
+/* menu */
+.menu {
+  font-family: var(--font-noto-sans-jp), sans-serif;
+}
+.menu_page h1 {
+  font-size: 32px;
+  font-family: var(--font-fredericka), serif;
+  -webkit-font-smoothing: antialiased; /* 細く見えやすい */
+  position: fixed;
+  margin: 24px;
+}
+
+.menu h2 {
+  padding-top: 24px;
+  font-size: 32px;
+  font-weight: 700;
+}
+.menu p {
+  font-size: 16px;
+  margin: 0 40px;
+}
+.menu nav {
+  line-height: 1.6;
+  padding: 160px 48px;
+}
+.menu nav a {
+  font-size: 12px;
+}
+.menu-drink {
+  margin: 0 48px;
+}
+.menu p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.menu h3 {
+  margin-top: 16px;
+}
+.menu h4 {
+  margin-top: 8px;
 }

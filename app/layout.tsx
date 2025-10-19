@@ -128,6 +128,8 @@ export default function RootLayout({
           <main>{children}</main>
           <FadeInEffect>
             <footer>
+              <h2 className="sr-only">Access</h2>
+              <Map height={320} />
               <Image
                 src="/img/shop-exterior.jpg"
                 className="footer-image"
@@ -153,8 +155,6 @@ export default function RootLayout({
                   <span className="info_link_insta">@and_coffee_stand</span>
                 </a>
               </div>
-              <h2 className="sr-only">Access</h2>
-              <Map height={240} />
               <small>©︎and coffee stand ALL Rights Reserved.</small>
             </footer>
           </FadeInEffect>
