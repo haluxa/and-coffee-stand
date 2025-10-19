@@ -82,6 +82,8 @@ export default function Home() {
               alt=""
               width={3000}
               height={2400}
+              quality={80}
+              sizes="100vw"
             />
           </FadeInEffect>
           <FadeInEffect>
@@ -118,6 +120,8 @@ export default function Home() {
               alt=""
               width={2400}
               height={3400}
+              quality={80}
+              sizes="100vw"
             />
           </FadeInEffect>
           <FadeInEffect>
@@ -155,6 +159,8 @@ export default function Home() {
               alt=""
               width={3200}
               height={2400}
+              quality={80}
+              sizes="100vw"
             />
           </FadeInEffect>
           <FadeInEffect>
@@ -192,6 +198,8 @@ export default function Home() {
               alt=""
               width={3000}
               height={2400}
+              quality={80}
+              sizes="100vw"
             />
           </FadeInEffect>
           <FadeInEffect>
@@ -233,6 +241,8 @@ export default function Home() {
               alt=""
               width={3000}
               height={2400}
+              quality={80}
+              sizes="100vw"
             />
           </FadeInEffect>
           <FadeInEffect>
@@ -268,6 +278,8 @@ export default function Home() {
               alt=""
               width={1504}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -276,6 +288,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -284,6 +298,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -292,6 +308,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -300,6 +318,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -308,6 +328,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -316,6 +338,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -324,6 +348,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -332,6 +358,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -340,6 +368,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -348,6 +378,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -356,6 +388,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -364,6 +398,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -372,6 +408,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -380,6 +418,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -388,6 +428,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -396,6 +438,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -404,6 +448,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -412,6 +458,8 @@ export default function Home() {
               alt=""
               width={6240}
               height={4160}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -420,6 +468,8 @@ export default function Home() {
               alt=""
               width={1519}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -428,6 +478,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -436,6 +488,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1504}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -444,6 +498,8 @@ export default function Home() {
               alt=""
               width={1519}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -452,6 +508,8 @@ export default function Home() {
               alt=""
               width={1504}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -460,6 +518,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -468,6 +528,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -476,6 +538,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -484,6 +548,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -492,6 +558,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -500,6 +568,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -508,6 +578,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -516,6 +588,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -524,6 +598,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -532,6 +608,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -540,6 +618,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -548,6 +628,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -556,6 +638,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -564,6 +648,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -572,6 +658,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -580,6 +668,8 @@ export default function Home() {
               alt=""
               width={1500}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -588,6 +678,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -596,6 +688,8 @@ export default function Home() {
               alt=""
               width={6240}
               height={4160}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -604,6 +698,8 @@ export default function Home() {
               alt=""
               width={1519}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
           <li>
@@ -612,6 +708,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1500}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -620,6 +718,8 @@ export default function Home() {
               alt=""
               width={1000}
               height={1504}
+              quality={70}
+              sizes="160px"
             />
           </li>
           <li>
@@ -628,6 +728,8 @@ export default function Home() {
               alt=""
               width={1519}
               height={1000}
+              quality={70}
+              sizes="360px"
             />
           </li>
         </ul>
