@@ -154,7 +154,7 @@ export default function RootLayout({
                 </a>
               </div>
               <h2 className="sr-only">Access</h2>
-              <Map height={160} />
+              <Map height={240} />
               <small>©︎and coffee stand ALL Rights Reserved.</small>
             </footer>
           </FadeInEffect>
