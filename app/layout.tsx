@@ -134,6 +134,8 @@ export default function RootLayout({
                 alt=""
                 width={2048}
                 height={1367}
+                quality={70}
+                sizes=""
               />
               <div>
                 <p>住所：福岡県北九州市小倉北区清水4-3-30</p>
@@ -152,7 +154,7 @@ export default function RootLayout({
                 </a>
               </div>
               <h2 className="sr-only">Access</h2>
-              <Map height={420} />
+              <Map height={320} />
               <small>©︎and coffee stand ALL Rights Reserved.</small>
             </footer>
           </FadeInEffect>

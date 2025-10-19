@@ -354,7 +354,7 @@ main .top-movie-wrapper {
   padding: 0;
   width: max-content; /* 中身の合計幅に自動で広がる */
   list-style: none;
-  animation: scroll 45s linear infinite; /* 速度は好みで */
+  animation: scroll 80s linear infinite; /* 速度は好みで */
   will-change: transform;
 }
 
@@ -408,20 +408,24 @@ main .top-movie-wrapper {
 }
 
 footer {
-  height: 800px;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
 .footer-image {
   padding-bottom: 24px;
+  width: 240px;
+  margin-left: 48px;
 }
 footer a,
-footer p {
-  margin-left: 24px;
+footer p,
+footer .info_link_map {
+  margin-left: 48px;
   line-height: 2;
+  font-size: 12px;
 }
 small {
-  margin: auto 0 8px 0; /* 一番下へ押し下げ */
+  margin: 16px 0; /* 一番下へ押し下げ */
   text-align: center;
 }
 
@@ -430,6 +434,9 @@ small {
 }
 .about-5 h2 {
   margin-top: 80px;
+}
+.map {
+  margin: 40px 0px 0px 0px;
 }
 .fade-in {
   opacity: 0;

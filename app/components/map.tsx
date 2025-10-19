@@ -40,7 +40,7 @@ export default function Map({ height = 400 }: Props) {
     },
   ];
 
-  const center = { lat: 33.872605, lng: 130.855113 };
+  const center = { lat: 33.8727700236595, lng: 130.85770975415534 };
 
   useEffect(() => {
     // 明示的に型を付けた上でコールバックを設定
@@ -48,11 +48,15 @@ export default function Map({ height = 400 }: Props) {
       if (!mapRef.current) return;
       const map = new google.maps.Map(mapRef.current, {
         center,
-        zoom: 15,
+        zoom: 18,
         styles: grayscaleStyle,
         disableDefaultUI: true,
       });
-      new google.maps.Marker({ position: center, map });
+      new google.maps.Marker({
+        position: center,
+        map,
+        title: "and coffee stand",
+      });
     };
 
     const script = document.createElement("script");
@@ -71,5 +75,5 @@ export default function Map({ height = 400 }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div ref={mapRef} style={{ height }} />;
+  return <div ref={mapRef} className="map" style={{ height }} />;
 }
