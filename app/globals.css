@@ -294,6 +294,12 @@ main .top-movie-wrapper {
   text-decoration-thickness: 1px; /* 太さ */
   text-underline-offset: 2px; /* 下線と文字の間隔 */
 }
+.info_link_insta {
+  text-decoration: underline;
+  text-decoration-color: var(--foreground); /* 下線の色 */
+  text-decoration-thickness: 1px; /* 太さ */
+  text-underline-offset: 2px; /* 下線と文字の間隔 */
+}
 
 .about-wrapper {
   margin: 80px 0;
@@ -396,7 +402,7 @@ main .top-movie-wrapper {
 }
 
 .footer-link {
-  margin: 80px 16px;
+  margin: 80px 48px;
   font-size: 16px;
   line-height: 2;
 }
@@ -409,8 +415,9 @@ footer {
 .footer-image {
   padding-bottom: 24px;
 }
-footer a {
-  margin-left: 16px;
+footer a,
+footer p {
+  margin-left: 24px;
   line-height: 2;
 }
 small {

@@ -61,7 +61,8 @@ export default function Home() {
             <div>
               <FadeInEffect>
                 <a href="https://www.instagram.com/and_coffee_stand">
-                  insta @and_coffee_stand
+                  insta{" "}
+                  <span className="info_link_insta">@and_coffee_stand</span>
                 </a>
               </FadeInEffect>
               <FadeInEffect>
