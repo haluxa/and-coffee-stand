@@ -13,51 +13,66 @@ export default function Map({ height = 400 }: Props) {
 
   // 白黒スタイル
   const grayscaleStyle: google.maps.MapTypeStyle[] = [
+    // 背景（地面全体）
     {
       elementType: "geometry",
       stylers: [
-        { color: "#000000ff" },
-        { saturation: -100 },
-        { lightness: -100 },
+        { color: "#e7e7e7ff" }, // ← ベージュ系（コーヒーショップに合う）
+        { saturation: 100 },
+        { lightness: 100 },
       ],
     },
+
+    // ラベル類
     { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
-    { elementType: "labels.text.fill", stylers: [{ color: "#ffffffff" }] },
     {
-      elementType: "labels.text.stroke",
+      elementType: "labels.text.fill",
       stylers: [
-        { color: "#3b3b3bff" },
-        { saturation: -100 },
-        { lightness: -100 },
-      ],
-    },
-    { featureType: "poi", stylers: [{ visibility: "off" }] },
-    {
-      featureType: "road",
-      elementType: "geometry",
-      stylers: [
-        { color: "#a8a8a8ff" },
+        { color: "#d9d9d9ff" },
         { saturation: 100 },
         { lightness: 100 },
       ],
     },
     {
+      elementType: "labels.text.stroke",
+      stylers: [
+        { color: "#383838ff" },
+        { saturation: -100 },
+        { lightness: -100 },
+      ], // 文字の縁を黒に
+    },
+
+    // ポイント（お店など）を非表示
+    { featureType: "poi", stylers: [{ visibility: "off" }] },
+
+    // 道路の色（グレー）
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [
+        { color: "#181818ff" },
+        { saturation: -100 },
+        { lightness: -100 },
+      ], // ← 道路の灰色
+    },
+    {
       featureType: "road.arterial",
       elementType: "geometry",
-      stylers: [{ color: "#dcdcdc" }],
+      stylers: [{ color: "#666666" }], // 幹線道路（少し濃いグレー）
     },
     {
       featureType: "road.highway",
       elementType: "geometry",
-      stylers: [{ color: "#dadada" }],
+      stylers: [{ color: "#999999" }], // 高速道路（少し明るいグレー）
     },
+
+    // 水の色
     {
       featureType: "water",
       elementType: "geometry",
-      stylers: [{ color: "#e9e9e9" }],
+      stylers: [{ color: "#1a1a1a" }], // 黒背景に馴染むよう暗め
     },
   ];
-
   const center = { lat: 33.8727700236595, lng: 130.85770975415534 };
 
   useEffect(() => {
