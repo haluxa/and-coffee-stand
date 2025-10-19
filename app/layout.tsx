@@ -56,35 +56,28 @@ export default function RootLayout({
           <div className="bg-video-track">
             <video id="bg-video-1" autoPlay loop muted playsInline>
               <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow-1280.webm"
+                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.webm"
                 type="video/webm"
               />
               Your browser does not support the video tag.
             </video>
             <video id="bg-video-2" autoPlay loop muted playsInline>
               <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow-1280.webm"
+                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.webm"
                 type="video/webm"
               />
               Your browser does not support the video tag.
             </video>
             <video id="bg-video-3" autoPlay loop muted playsInline>
               <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow-1280.webm"
+                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.webm"
                 type="video/webm"
               />
               Your browser does not support the video tag.
             </video>
             <video id="bg-video-4" autoPlay loop muted playsInline>
               <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow-1280.webm"
-                type="video/webm"
-              />
-              Your browser does not support the video tag.
-            </video>
-            <video id="bg-video-5" autoPlay loop muted playsInline>
-              <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow-1280.webm"
+                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.webm"
                 type="video/webm"
               />
               Your browser does not support the video tag.
