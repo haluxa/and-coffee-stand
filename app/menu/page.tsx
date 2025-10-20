@@ -224,7 +224,7 @@ export default function GoodsPage() {
               <h4>ブルーベリーとクリチのマフィン</h4>
             </article>
             <article id="Matcha-Muffin">
-              <h4>抹茶マフィン</h4>
+              <h4>抹茶マフィン・</h4>
             </article>
           </article>
         </section>
