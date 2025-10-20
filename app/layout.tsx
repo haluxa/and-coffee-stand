@@ -88,8 +88,7 @@ export default function RootLayout({
 
         {/* オーバーレイは動画の直後に1つだけ */}
         <div className="bg-video-overlay" aria-hidden="true" />
-        <div className="bg-video-overlay" aria-hidden="true" />
-        <div>
+        <div className="site-shell">
           <header>
             <div className="nav">
               <input

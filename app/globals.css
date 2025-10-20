@@ -52,7 +52,7 @@ button {
   width: 100vw;
   height: 100vh;
   overflow: hidden; /* はみ出しを隠す */
-  z-index: -1; /* すべてのコンテンツの背面 */
+  z-index: -40; /* すべてのコンテンツの背面 */
   pointer-events: none; /* クリックを邪魔しない */
 }
 
@@ -116,7 +116,7 @@ button {
 .bg-video-overlay {
   position: fixed;
   inset: 0;
-  z-index: -1; /* DOM上では動画の後に描画されるため同じ層（-1）。前景コンテンツより背面に固定 */
+  z-index: -30; /* 背景動画より前、前景コンテンツより背面に固定 */
   pointer-events: none;
   /* 半透明の色幕。ライト時は白ベースで文字の可読性を確保 */
   background: rgba(
@@ -134,7 +134,7 @@ button {
 .bg-video-vignette {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -20;
   pointer-events: none;
   background: radial-gradient(
     120% 120% at 50% 20%,
@@ -145,6 +145,16 @@ button {
 }
 
 /* すばやく調整するためのユーティリティクラス */
+.site-shell {
+  position: relative;
+  z-index: 0; /* 背景レイヤーの前面に固定 */
+}
+
+.site-shell > * {
+  position: relative;
+  z-index: 1; /* 薄い幕よりさらに前面に配置 */
+}
+
 .bgvo-soft {
   --bg-overlay-opacity: 0.18;
   --bg-overlay-blur: 6px;
