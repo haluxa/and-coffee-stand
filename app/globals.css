@@ -11,6 +11,11 @@
   --bg-overlap: 2%; /* 次の動画をどれだけ上側に重ねるか（1〜3%推奨） */
   --bg-overlap-px: 48px; /* 連続する動画同士の縦方向の重なり量（px） */
   --bg-fade-px: 48px; /* 重なり部分の上端にかけるフェードの長さ（px） */
+  --layer-bg-video: -400;
+  --layer-overlay: -320;
+  --layer-vignette: -300;
+  --layer-content: 0;
+  --layer-floating: 320;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -52,7 +57,7 @@ button {
   width: 100vw;
   height: 100vh;
   overflow: hidden; /* はみ出しを隠す */
-  z-index: -40; /* すべてのコンテンツの背面 */
+  z-index: var(--layer-bg-video); /* すべてのコンテンツの背面 */
   pointer-events: none; /* クリックを邪魔しない */
 }
 
@@ -116,7 +121,9 @@ button {
 .bg-video-overlay {
   position: fixed;
   inset: 0;
-  z-index: -30; /* 背景動画より前、前景コンテンツより背面に固定 */
+  z-index: var(
+    --layer-overlay
+  ); /* 背景動画より前、前景コンテンツより背面に固定 */
   pointer-events: none;
   /* 半透明の色幕。ライト時は白ベースで文字の可読性を確保 */
   background: rgba(
@@ -134,7 +141,7 @@ button {
 .bg-video-vignette {
   position: fixed;
   inset: 0;
-  z-index: -20;
+  z-index: var(--layer-vignette);
   pointer-events: none;
   background: radial-gradient(
     120% 120% at 50% 20%,
@@ -147,12 +154,8 @@ button {
 /* すばやく調整するためのユーティリティクラス */
 .site-shell {
   position: relative;
-  z-index: 0; /* 背景レイヤーの前面に固定 */
-}
-
-.site-shell > * {
-  position: relative;
-  z-index: 1; /* 薄い幕よりさらに前面に配置 */
+  z-index: var(--layer-content); /* 背景レイヤーの前面に固定 */
+  isolation: isolate; /* 背景レイヤーとの混在を防ぐ */
 }
 
 .bgvo-soft {
@@ -176,7 +179,7 @@ button {
   position: fixed;
   top: 32px;
   left: 16px;
-  z-index: 100;
+  z-index: var(--layer-floating);
   mix-blend-mode: difference;
   width: 92px;
   height: auto;
@@ -193,7 +196,7 @@ button {
   position: fixed;
   right: 16px;
   top: 16px;
-  z-index: 100;
+  z-index: var(--layer-floating);
   cursor: pointer;
   /* アイコンのサイズを調整 */
   display: inline-flex; /* or block */
@@ -252,7 +255,7 @@ button {
   position: fixed;
   top: 0;
   left: 100%; /* メニューを画面の外に飛ばす */
-  z-index: 99;
+  z-index: var(--layer-floating);
   background: #fff;
   transition: 0.5s;
   padding-left: 48px;
@@ -494,7 +497,7 @@ small {
   align-items: center;
   gap: 12px;
   pointer-events: none;
-  z-index: 5;
+  z-index: var(--layer-floating);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -562,6 +565,7 @@ small {
   color: var(--background);
   mix-blend-mode: difference; /* 背景動画に応じて文字色が変わる */
   margin: 24px;
+  z-index: var(--layer-floating);
 }
 
 .menu h2 {
