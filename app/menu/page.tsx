@@ -54,42 +54,44 @@ export default function GoodsPage() {
             <li>
               <a href="#Seasonal-Sweets">気まぐれスイーツ</a>
             </li>
-            <li>
-              <a href="#Zenzai-Affogato">ぜんざいアフォガード（gf）</a>
-            </li>
-            <li>
-              <a href="#Chocolate-Mousse-Cake">チョコムースケーキ（gf）</a>
-            </li>
-            <li>
-              <a href="#Baked-Sweet-Potato-Brulee-Basque">
-                焼き芋ブリュレバスク（gf）
-              </a>
-            </li>
-            <li>
-              <a href="#Pumpkin-Basque">カボチャのバスク（gf）</a>
-            </li>
-            <li>
-              <a href="#Lemon-Basque">檸檬バスク</a>
-            </li>
-            <li>
-              <a href="#Lemon-Jelly">檸檬ゼリー</a>
-            </li>
-            <li>
-              <a href="#Tea-Basque">紅茶のバスク</a>
-            </li>
-            <li>
-              <a href="#Tiramisu-style-Basque">ティラミス風バスク</a>
-            </li>
-            <li>
-              <a href="#Blueberry-and-Rice-Flour-Crumble-Cheesecake">
-                ブルーベリーと米粉のクランブルチーズケーキ（gf）
-              </a>
-            </li>
-            <li>
-              <a href="#Brown-Sugar-Brulee-Baked-Cheesecake">
-                黒糖ブリュレベイクドチーズケーキ（gf）
-              </a>
-            </li>
+            <ul>
+              <li>
+                <a href="#Zenzai-Affogato">ぜんざいアフォガード（gf）</a>
+              </li>
+              <li>
+                <a href="#Chocolate-Mousse-Cake">チョコムースケーキ（gf）</a>
+              </li>
+              <li>
+                <a href="#Baked-Sweet-Potato-Brulee-Basque">
+                  焼き芋ブリュレバスク（gf）
+                </a>
+              </li>
+              <li>
+                <a href="#Pumpkin-Basque">カボチャのバスク（gf）</a>
+              </li>
+              <li>
+                <a href="#Lemon-Basque">檸檬バスク</a>
+              </li>
+              <li>
+                <a href="#Lemon-Jelly">檸檬ゼリー</a>
+              </li>
+              <li>
+                <a href="#Tea-Basque">紅茶のバスク</a>
+              </li>
+              <li>
+                <a href="#Tiramisu-style-Basque">ティラミス風バスク</a>
+              </li>
+              <li>
+                <a href="#Blueberry-and-Rice-Flour-Crumble-Cheesecake">
+                  ブルーベリーと米粉のクランブルチーズケーキ（gf）
+                </a>
+              </li>
+              <li>
+                <a href="#Brown-Sugar-Brulee-Baked-Cheesecake">
+                  黒糖ブリュレベイクドチーズケーキ（gf）
+                </a>
+              </li>
+            </ul>
             <li>
               <a href="#Rice-Flour-Muffin">米粉マフィン（gf）</a>
             </li>
@@ -169,7 +171,7 @@ export default function GoodsPage() {
             </article>
           </article>
         </section>
-        <section>
+        <section className="menu-sweets">
           <h2>Sweets</h2>
           <article id="Burnt-Basque-Cheesecake">
             <h3>バスクチーズケーキ（gf）</h3>
