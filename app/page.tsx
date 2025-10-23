@@ -8,12 +8,14 @@ export default function Home() {
   return (
     <main>
       <div className="header_logo">
-        <Image
-          src="/img/header_logo.png"
-          alt="and coffee stand ロゴ"
-          width={1134}
-          height={482}
-        />
+        <a href="../">
+          <Image
+            src="/img/header_logo.png"
+            alt="and coffee stand ロゴ"
+            width={1134}
+            height={482}
+          />
+        </a>
       </div>
       <section>
         <FadeInEffect>
@@ -747,9 +749,6 @@ export default function Home() {
         <ul>
           <li>
             <Link href="/menu">menu</Link>
-          </li>
-          <li>
-            <Link href="/goods">original goods</Link>
           </li>
           <li>
             <Link href="/memory">event memory</Link>

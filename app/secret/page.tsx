@@ -1,9 +1,10 @@
-"use client"; 
-export default function GoodsPage() {
+"use client";
+export default function SecretPage() {
   return (
-    <main>
-      <h1>original goods</h1>
-      <p>準備中です。</p>
+    <main className="menu_page">
+      <a href="/menu">
+        <h1>Secret</h1>
+      </a>
     </main>
   );
 }

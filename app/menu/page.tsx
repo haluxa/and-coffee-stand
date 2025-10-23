@@ -1,8 +1,10 @@
 "use client";
-export default function GoodsPage() {
+export default function MenuPage() {
   return (
     <main className="menu_page">
-      <h1>MENU</h1>
+      <a href="/menu">
+        <h1>MENU</h1>
+      </a>
       <div className="menu">
         <nav>
           <h2>Drink</h2>

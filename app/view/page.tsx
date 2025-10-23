@@ -1,9 +1,10 @@
-"use client"; 
-export default function GoodsPage() {
+"use client";
+export default function ShopViewPage() {
   return (
-    <main>
-      <h1>original goods</h1>
-      <p>準備中です。</p>
+    <main className="shop_view_page">
+      <a href="/view">
+        <h1>SHOP VIEW</h1>
+      </a>
     </main>
   );
 }

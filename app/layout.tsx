@@ -102,22 +102,19 @@ export default function RootLayout({
               <nav className="nav_content">
                 <ul className="nav_list">
                   <li className="nav_item">
-                    <a href="">home</a>
+                    <a href="../">home</a>
                   </li>
                   <li className="nav_item">
-                    <a href="">menu</a>
+                    <a href="/menu">menu</a>
                   </li>
                   <li className="nav_item">
-                    <a href="">original goods</a>
+                    <a href="/memory">event memory</a>
                   </li>
                   <li className="nav_item">
-                    <a href="">event memory</a>
+                    <a href="/view">shop view</a>
                   </li>
                   <li className="nav_item">
-                    <a href="">shop view</a>
-                  </li>
-                  <li className="nav_item">
-                    <a href="">secret</a>
+                    <a href="/secret">secret</a>
                   </li>
                 </ul>
               </nav>

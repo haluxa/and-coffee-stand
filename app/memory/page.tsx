@@ -1,9 +1,10 @@
-"use client"; 
-export default function GoodsPage() {
+"use client";
+export default function EventMemoryPage() {
   return (
-    <main>
-      <h1>original goods</h1>
-      <p>準備中です。</p>
+    <main className="menu_page">
+      <a href="/menu">
+        <h1>Event Memory</h1>
+      </a>
     </main>
   );
 }
