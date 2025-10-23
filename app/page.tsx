@@ -22,7 +22,7 @@ export default function Home() {
           <div className="top-movie-wrapper">
             <video
               className="top-movie"
-              src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/sample1.mp4"
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/sample1.mp4?alt=media&token=778be982-7114-404b-a809-7bb5e578e27b"
               autoPlay
               muted
               loop

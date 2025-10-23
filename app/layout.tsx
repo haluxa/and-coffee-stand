@@ -57,28 +57,28 @@ export default function RootLayout({
           <div className="bg-video-track">
             <video id="bg-video-1" autoPlay loop muted playsInline>
               <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.mp4"
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
             </video>
             <video id="bg-video-2" autoPlay loop muted playsInline>
               <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.mp4"
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
             </video>
             <video id="bg-video-3" autoPlay loop muted playsInline>
               <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.mp4"
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
             </video>
             <video id="bg-video-4" autoPlay loop muted playsInline>
               <source
-                src="https://dgkahiuzqbuivdrg.public.blob.vercel-storage.com/video/bg-leaves-shadow.webm"
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
