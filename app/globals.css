@@ -572,20 +572,15 @@ small {
 }
 .menu-drink,
 .menu-sweets {
-  margin: 0 48px;
+  margin: 0;
 }
 .menu p {
-  margin: 0;
+  margin: 0 auto 0 40px;
   font-size: 14px;
   line-height: 2;
 }
 .menu h3 {
-  margin-top: 160px;
   font-size: 14px;
-  color: var(--background);
-  background-color: var(--foreground);
-  padding-right: 8px;
-  line-height: 1.6;
 }
 .menu h4 {
   margin-top: 8px;
@@ -595,20 +590,24 @@ small {
   margin-top: 0.3rem;
 }
 /*見出し画像*/
-.coffee_ice_img,
-.latte_hot_img,
-.espresso-tonic_img,
-.chai_hot_img,
-.dark-mocha_img {
+.coffee_ice_wrap,
+.latte_hot_wrap,
+.latte_ice_wrap {
+  margin: 40px 0;
   width: 70%;
-  margin: 40px auto 40px 0;
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start; /* 画像の上端基準にする */
+  gap: 0;
 }
-.latte_ice_img,
-.chai_ice_img {
-  width: 50%;
-  margin: 40px 0 40px auto;
-}
-.maple-latte_img {
-  width: 60%;
-  margin: 40px auto 40px 0;
+.coffee_ice_wrap h3,
+.latte_hot_wrap h3,
+.latte_ice_wrap h3 {
+  display: inline-block;
+  white-space: nowrap; /* 改行防止 */
+  margin: 0 0 0 2px;
+  text-underline-offset: 4px;
+  transform-origin: top left; /* 左上を支点に */
+  transform: rotate(90deg) translateY(-100%);
+  /* 必要に応じて translateX/Y を数pxずつ調整 */
 }

@@ -124,14 +124,14 @@ export default function MenuPage() {
         <section className="menu-drink">
           <h2>Drink</h2>
           <article id="coffee">
-            <h3>コーヒー(ice/hot)</h3>
-            <div className="coffee_ice_img">
+            <div className="coffee_ice_wrap">
               <Image
                 src="/img/menu_image_coffee(ice).jpg"
                 alt="アイスコーヒーの写真"
                 width={6240}
                 height={4160}
               />
+              <h3>コーヒー(ice/hot)</h3>
             </div>
             <p>
               珈琲豆はグレードの最も高いと言われる
@@ -151,14 +151,14 @@ export default function MenuPage() {
             </p>
           </article>
           <article id="latte">
-            <h3>ラテ(ice/hot)</h3>
-            <div className="latte_hot_img">
+            <div className="latte_hot_wrap">
               <Image
                 src="/img/menu_image_latte(hot).jpg"
                 alt="ホットコーヒーの写真"
                 width={6240}
                 height={4160}
               />
+              <h3>ラテ(hot)</h3>
             </div>
             <p>
               濃厚なエスプレッソとミルクが溶け合うラテは
@@ -169,13 +169,14 @@ export default function MenuPage() {
               お砂糖を入れなくても飲みやすく女性に好評です。
               <br />
             </p>
-            <div className="latte_ice_img">
+            <div className="latte_ice_wrap">
               <Image
                 src="/img/menu_image_latte(ice).jpg"
                 alt="アイスラテの写真"
                 width={6240}
                 height={4160}
               />
+              <h3>ラテ(ice)</h3>
             </div>
           </article>
           <article id="maple-latte">
