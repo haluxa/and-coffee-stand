@@ -102,10 +102,10 @@ export default function MenuPage() {
             </li>
             <ul>
               <li>
-                <a href="#Ginger">ジンジャー</a>
+                <a href="#Ginger">米粉のジンジャーナッツマフィン</a>
               </li>
               <li>
-                <a href="#Kinkan">金柑</a>
+                <a href="#Kinkan">米粉金柑とクリチのマフィン</a>
               </li>
               <li>
                 <a href="#Choco-Banana-Muffin">チョコバナナマフィン</a>
@@ -116,7 +116,7 @@ export default function MenuPage() {
                 </a>
               </li>
               <li>
-                <a href="#Matcha-Muffin">抹茶マフィン</a>
+                <a href="#Matcha-Muffin">こし餡とクリチの抹茶マフィン</a>
               </li>
             </ul>
           </ul>
@@ -129,8 +129,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_coffee(ice).jpg"
                 alt="アイスコーヒーの写真"
-                width={2000}
-                height={1600}
+                width={6240}
+                height={4160}
               />
             </div>
             <p>
@@ -156,8 +156,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_latte(hot).jpg"
                 alt="ホットコーヒーの写真"
-                width={2000}
-                height={1600}
+                width={6240}
+                height={4160}
               />
             </div>
             <p>
@@ -173,8 +173,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_latte(ice).jpg"
                 alt="アイスラテの写真"
-                width={2000}
-                height={1600}
+                width={6240}
+                height={4160}
               />
             </div>
           </article>
@@ -184,8 +184,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_maple-latte.jpg"
                 alt="メープルラテの写真"
-                width={2000}
-                height={1600}
+                width={4160}
+                height={6240}
               />
             </div>
             <p>
@@ -201,8 +201,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_espresso-tonic.jpg"
                 alt="エスプレッソトニックの写真"
-                width={2000}
-                height={1600}
+                width={6240}
+                height={4160}
               />
             </div>
             <p>
@@ -219,8 +219,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_chai(hot).jpg"
                 alt="チャイ(hot)の写真"
-                width={2000}
-                height={1600}
+                width={6240}
+                height={4160}
               />
             </div>
             <span>カフェインが気になる日の冒険</span>
@@ -238,8 +238,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_chai(ice).jpg"
                 alt="チャイ(ice)の写真"
-                width={2000}
-                height={1600}
+                width={6240}
+                height={4160}
               />
             </div>
             <p>
@@ -256,8 +256,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_dark-mocha.jpg"
                 alt="ダークモカの写真"
-                width={2000}
-                height={1600}
+                width={4000}
+                height={6016}
               />
             </div>
             <p>
@@ -281,8 +281,8 @@ export default function MenuPage() {
                 <Image
                   src="/img/menu_image_shiso-soda.jpg"
                   alt="紫蘇ソーダの写真"
-                  width={2000}
-                  height={1600}
+                  width={4160}
+                  height={6240}
                 />
               </div>
               <h4>紫蘇ソーダ</h4>
@@ -292,8 +292,8 @@ export default function MenuPage() {
                 <Image
                   src="/img/menu_image_coffee-lemon-soda.jpg"
                   alt="コーヒー檸檬ソーダの写真"
-                  width={2000}
-                  height={1600}
+                  width={6240}
+                  height={4160}
                 />
               </div>
               <h4>コーヒー檸檬ソーダ</h4>
@@ -303,30 +303,30 @@ export default function MenuPage() {
                 <Image
                   src="/img/menu_image_matcha-drink.jpg"
                   alt="抹茶ドリンクの写真"
-                  width={2000}
-                  height={1600}
+                  width={4160}
+                  height={6240}
                 />
               </div>
               <h4>抹茶ドリンク</h4>
             </article>
             <article id="hojicha-latte">
-              <div className="matcha-drink_img">
+              <div className="hojicha-latte_img">
                 <Image
                   src="/img/menu_image_hojicha-latte.jpg"
                   alt="ほうじ茶ラテの写真"
-                  width={2000}
-                  height={1600}
+                  width={4160}
+                  height={6240}
                 />
               </div>
               <h4>ほうじ茶ラテ</h4>
             </article>
             <article id="panna-cotta">
-              <div className="matcha-drink_img">
+              <div className="panna-cotta_img">
                 <Image
                   src="/img/menu_image_panna-cotta.jpg"
                   alt="桃とジュレジャムのパンナコッタの写真"
-                  width={2000}
-                  height={1600}
+                  width={4160}
+                  height={6240}
                 />
               </div>
               <h4>桃とジュレジャムのパンナコッタ</h4>
@@ -341,8 +341,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_Burnt-Basque-Cheesecake.jpg"
                 alt="バスクチーズケーキ（gf）の写真"
-                width={2000}
-                height={1600}
+                width={6016}
+                height={4000}
               />
             </div>
             <p>
@@ -381,12 +381,12 @@ export default function MenuPage() {
             </p>
           </article>
           <article id="Zenzai-Affogato">
-            <div className="enzai-Affogato_img">
+            <div className="Zenzai-Affogato_img">
               <Image
-                src="/img/menu_image_enzai-Affogato.jpg"
+                src="/img/menu_image_Zenzai-Affogato.jpg"
                 alt="ぜんざいアフォガード（gf）の写真"
-                width={2000}
-                height={1600}
+                width={770}
+                height={506}
               />
             </div>
             <h3>ぜんざいアフォガード（gf）</h3>
@@ -396,8 +396,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_Chocolate-Mousse-Cake.jpg"
                 alt="チョコムースケーキ（gf）の写真"
-                width={2000}
-                height={1600}
+                width={6240}
+                height={4160}
               />
             </div>
             <h3>チョコムースケーキ（gf）</h3>
@@ -407,8 +407,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_Baked-Sweet-Potato-Brulee-Basque.jpg"
                 alt="焼き芋ブリュレバスク（gf）の写真"
-                width={2000}
-                height={1600}
+                width={6016}
+                height={4000}
               />
             </div>
             <h3>焼き芋ブリュレバスク（gf）</h3>
@@ -418,8 +418,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_Pumpkin-Basque.jpg"
                 alt="カボチャのバスク（gf）の写真"
-                width={2000}
-                height={1600}
+                width={6016}
+                height={4000}
               />
             </div>
             <h3>カボチャのバスク（gf）</h3>
@@ -429,8 +429,8 @@ export default function MenuPage() {
               <Image
                 src="/img/menu_image_Lemon-Basque.jpg"
                 alt="檸檬バスクの写真"
-                width={2000}
-                height={1600}
+                width={6240}
+                height={4160}
               />
             </div>
             <h3>檸檬バスク</h3>
@@ -439,53 +439,53 @@ export default function MenuPage() {
             <div className="Lemon-Jelly_img">
               <Image
                 src="/img/menu_image_Lemon-Jelly.jpg"
-                alt="エスプレッソトニックの写真"
-                width={2000}
-                height={1600}
+                alt="檸檬ゼリーの写真"
+                width={6240}
+                height={4160}
               />
             </div>
             <h3>檸檬ゼリー</h3>
           </article>
           <article id="Tea-Basque">
-            <div className="matcha-drink_img">
+            <div className="Tea-Basque_img">
               <Image
-                src="/img/menu_image_panna-cotta.jpg"
-                alt="エスプレッソトニックの写真"
-                width={2000}
-                height={1600}
+                src="/img/menu_image_Tea-Basque.jpg"
+                alt="紅茶のバスクの写真"
+                width={6240}
+                height={4160}
               />
             </div>
             <h3>紅茶のバスク</h3>
           </article>
           <article id="Tiramisu-style-Basque">
-            <div className="matcha-drink_img">
+            <div className="Tiramisu-style-Basque_img">
               <Image
-                src="/img/menu_image_panna-cotta.jpg"
-                alt="エスプレッソトニックの写真"
-                width={2000}
-                height={1600}
+                src="/img/menu_image_Tiramisu-style-Basque.jpg"
+                alt="ティラミス風バスクの写真"
+                width={1170}
+                height={1751}
               />
             </div>
             <h3>ティラミス風バスク</h3>
           </article>
           <article id="Blueberry-and-Rice-Flour-Crumble-Cheesecake">
-            <div className="matcha-drink_img">
+            <div className="Blueberry-and-Rice-Flour-Crumble-Cheesecake_img">
               <Image
-                src="/img/menu_image_panna-cotta.jpg"
-                alt="エスプレッソトニックの写真"
-                width={2000}
-                height={1600}
+                src="/img/menu_image_Blueberry-and-Rice-Flour-Crumble-Cheesecake.jpg"
+                alt="ブルーベリーと米粉のクランブルチーズケーキ（gf）の写真"
+                width={4160}
+                height={6240}
               />
             </div>
             <h3>ブルーベリーと米粉のクランブルチーズケーキ（gf）</h3>
           </article>
           <article id="Brown-Sugar-Brulee-Baked-Cheesecake">
-            <div className="matcha-drink_img">
+            <div className="Brown-Sugar-Brulee-Baked-Cheesecake_img">
               <Image
-                src="/img/menu_image_panna-cotta.jpg"
-                alt="エスプレッソトニックの写真"
-                width={2000}
-                height={1600}
+                src="/img/menu_image_Brown-Sugar-Brulee-Baked-Cheesecake.jpg"
+                alt="黒糖ブリュレベイクドチーズケーキ（gf）の写真"
+                width={6240}
+                height={4160}
               />
             </div>
             <h3>黒糖ブリュレベイクドチーズケーキ（gf）</h3>
@@ -510,59 +510,59 @@ export default function MenuPage() {
               気まぐれで登場するので出逢えたらぜひ！
             </p>
             <article id="Ginger">
-              <div className="matcha-drink_img">
+              <div className="Ginger_img">
                 <Image
-                  src="/img/menu_image_panna-cotta.jpg"
-                  alt="エスプレッソトニックの写真"
-                  width={2000}
-                  height={1600}
+                  src="/img/menu_image_Ginger.jpg"
+                  alt="米粉のジンジャーナッツマフィンの写真"
+                  width={4160}
+                  height={6240}
                 />
               </div>
-              <h4>ジンジャー</h4>
+              <h4>米粉のジンジャーナッツマフィン</h4>
             </article>
             <article id="Kinkan">
-              <div className="matcha-drink_img">
+              <div className="Kinkan_img">
                 <Image
-                  src="/img/menu_image_panna-cotta.jpg"
-                  alt="エスプレッソトニックの写真"
-                  width={2000}
-                  height={1600}
+                  src="/img/menu_image_Kinkan.jpg"
+                  alt="米粉金柑とクリチのマフィンの写真"
+                  width={4160}
+                  height={6240}
                 />
               </div>
-              <h4>金柑</h4>
+              <h4>米粉金柑とクリチのマフィン</h4>
             </article>
             <article id="Choco-Banana-Muffin">
-              <div className="matcha-drink_img">
+              <div className="Choco-Banana-Muffin_img">
                 <Image
-                  src="/img/menu_image_panna-cotta.jpg"
-                  alt="エスプレッソトニックの写真"
-                  width={2000}
-                  height={1600}
+                  src="/img/menu_image_Choco-Banana-Muffin.jpg"
+                  alt="チョコバナナマフィンの写真"
+                  width={4160}
+                  height={6240}
                 />
               </div>
               <h4>チョコバナナマフィン</h4>
             </article>
             <article id="Blueberry-and-Cream-Cheese-Muffin">
-              <div className="matcha-drink_img">
+              <div className="Blueberry-and-Cream-Cheese-Muffin_img">
                 <Image
-                  src="/img/menu_image_panna-cotta.jpg"
-                  alt="エスプレッソトニックの写真"
-                  width={2000}
-                  height={1600}
+                  src="/img/menu_image_Blueberry-and-Cream-Cheese-Muffin.jpg"
+                  alt="ブルーベリーとクリチのマフィンの写真"
+                  width={6240}
+                  height={4160}
                 />
               </div>
               <h4>ブルーベリーとクリチのマフィン</h4>
             </article>
             <article id="Matcha-Muffin">
-              <div className="matcha-drink_img">
+              <div className="Matcha-Muffin_img">
                 <Image
-                  src="/img/menu_image_panna-cotta.jpg"
-                  alt="エスプレッソトニックの写真"
-                  width={2000}
-                  height={1600}
+                  src="/img/menu_image_Matcha-Muffin.jpg"
+                  alt="こし餡とクリチの抹茶マフィンの写真"
+                  width={6240}
+                  height={4160}
                 />
               </div>
-              <h4>抹茶マフィン</h4>
+              <h4>こし餡とクリチの抹茶マフィン</h4>
             </article>
           </article>
         </section>
