@@ -592,9 +592,35 @@ small {
 /*見出し画像*/
 .coffee_ice_wrap,
 .latte_hot_wrap,
-.latte_ice_wrap {
+.latte_ice_wrap,
+.maple-latte_wrap,
+.espresso-tonic_wrap,
+.chai_hot_wrap,
+.chai_ice_wrap,
+.dark-mocha_wrap,
+.shiso-soda_wrap,
+.coffee-lemon-soda_wrap,
+.matcha-drink_wrap,
+.hojicha-latte_wrap,
+.panna-cotta_wrap,
+.Burnt-Basque-Cheesecake_wrap,
+.Zenzai-Affogato_wrap,
+.Chocolate-Mousse-Cake_wrap,
+.Baked-Sweet-Potato-Brulee-Basque_wrap,
+.Pumpkin-Basque_wrap,
+.Lemon-Basque_wrap,
+.Lemon-Jelly_wrap,
+.Tea-Basque_wrap,
+.Tiramisu-style-Basque_wrap,
+.Blueberry-and-Rice-Flour-Crumble-Cheesecake_wrap,
+.Brown-Sugar-Brulee-Baked-Cheesecake_wrap,
+.Ginger_wrap,
+.Kinkan_wrap,
+.Choco-Banana-Muffin_wrap,
+.Blueberry-and-Cream-Cheese-Muffin_wrap,
+.Matcha-Muffin_wrap {
   margin: 40px 0;
-  width: 70%;
+  width: 90%;
   position: relative;
   display: inline-flex;
   align-items: flex-start; /* 画像の上端基準にする */
@@ -602,7 +628,33 @@ small {
 }
 .coffee_ice_wrap h3,
 .latte_hot_wrap h3,
-.latte_ice_wrap h3 {
+.latte_ice_wrap h3,
+.maple-latte_wrap h3,
+.espresso-tonic_wrap h3,
+.chai_hot_wrap h3,
+.chai_ice_wrap h3,
+.dark-mocha_wrap h3,
+.shiso-soda_wrap h4,
+.coffee-lemon-soda_wrap h4,
+.matcha-drink_wrap h4,
+.hojicha-latte_wrap h4,
+.panna-cotta_wrap h4,
+.Burnt-Basque-Cheesecake_wrap h3,
+.Zenzai-Affogato_wrap h3,
+.Chocolate-Mousse-Cake_wrap h3,
+.Baked-Sweet-Potato-Brulee-Basque_wrap h3,
+.Pumpkin-Basque_wrap h3,
+.Lemon-Basque_wrap h3,
+.Lemon-Jelly_wrap h3,
+.Tea-Basque_wrap h3,
+.Tiramisu-style-Basque_wrap h3,
+.Blueberry-and-Rice-Flour-Crumble-Cheesecake_wrap h3,
+.Brown-Sugar-Brulee-Baked-Cheesecake_wrap h3,
+.Ginger_wrap h4,
+.Kinkan_wrap h4,
+.Choco-Banana-Muffin_wrap h4,
+.Blueberry-and-Cream-Cheese-Muffin_wrap h4,
+.Matcha-Muffin_wrap h4 {
   display: inline-block;
   white-space: nowrap; /* 改行防止 */
   margin: 0 0 0 2px;
@@ -610,4 +662,8 @@ small {
   transform-origin: top left; /* 左上を支点に */
   transform: rotate(90deg) translateY(-100%);
   /* 必要に応じて translateX/Y を数pxずつ調整 */
+}
+.mask {
+  -webkit-clip-path: url(#svgPath);
+  clip-path: url(#svgPath);
 }
