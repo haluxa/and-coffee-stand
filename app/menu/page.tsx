@@ -5,9 +5,16 @@ import Image from "next/image";
 export default function MenuPage() {
   return (
     <main className="menu_page">
-      <a href="/menu">
-        <h1>MENU</h1>
-      </a>
+      <div className="header_logo">
+        <a href="../">
+          <Image
+            src="/img/header_logo.png"
+            alt="and coffee stand ロゴ"
+            width={1134}
+            height={482}
+          />
+        </a>
+      </div>
       <div className="menu">
         <nav>
           <h2>Drink</h2>
@@ -126,14 +133,13 @@ export default function MenuPage() {
           <article id="coffee">
             <div className="coffee_ice_wrap">
               <svg
-                className="coffee-mask"
                 viewBox="0 0 186 143"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 style={{ width: "100%", height: "auto", display: "block" }}
               >
                 <defs>
-                  <clipPath id="coffeeBlob">
+                  <clipPath id="coffee_ice_Blob">
                     <path d="M15.6616 113.915C-0.29516 151.518 53.6089 142.695 74.5654 138.538C93.5124 134.78 133.497 146.135 148.999 121.021C168.376 89.6296 164.07 105.541 180.433 75.4389C196.797 45.3371 170.099 19.5356 148.999 5.34475C127.899 -8.84607 105.938 12.6551 86.5608 12.6551C32.9084 12.6551 7.3319 24.6959 2.74317 38.6604C-10.758 79.7477 42.2076 51.3574 15.6616 113.915Z" />
                   </clipPath>
                 </defs>
@@ -142,38 +148,40 @@ export default function MenuPage() {
                   width="186"
                   height="143"
                   preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#coffeeBlob)"
+                  clipPath="url(#coffee_ice_Blob)"
                 />
               </svg>
-              <h3>コーヒー(ice/hot)</h3>
             </div>
+            <h3>コーヒー(ice/hot)</h3>
             <p>
               珈琲豆はグレードの最も高いと言われる
               <br />
               “スペシャルティーコーヒー”を使用しております。
             </p>
-            <p>
-              その特徴は透明感があること
-              <br />
-              そして冷めても美味しい珈琲であること
-              <br />
-              そしてどれを飲んでも全く違う味がすること
-              <br />
-              珈琲はどれも一緒と思っていたわたしですが
-              <br />
-              今は選ぶのが楽しいひと時になってます。
-            </p>
           </article>
           <article id="latte">
             <div className="latte_hot_wrap">
-              <Image
-                src="/img/menu_image_latte(hot).jpg"
-                alt="ホットコーヒーの写真"
-                width={6240}
-                height={4160}
-              />
-              <h3>ラテ(hot)</h3>
+              <svg
+                viewBox="0 0 264 185"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              >
+                <defs>
+                  <clipPath id="latte_hot_Blob">
+                    <path d="M106.275 2.62795C47.6276 -4.00376 29.0244 18.4177 27.0537 30.4574C-18.4691 30.4574 5.77029 94.4061 12.2735 134.67C18.7768 174.934 77.3061 185 129.923 185C182.541 185 210.919 154.21 228.063 157.763C245.208 161.315 261.171 117.499 263.536 84.3401C265.901 51.1815 259.989 11.5097 228.063 2.62795C196.138 -6.25377 179.585 10.9176 106.275 2.62795Z" />
+                  </clipPath>
+                </defs>
+                <image
+                  href="/img/menu_image_latte(hot).jpg"
+                  width="264"
+                  height="185"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#latte_hot_Blob)"
+                />
+              </svg>
             </div>
+            <h3>ラテ(hot)</h3>
             <p>
               濃厚なエスプレッソとミルクが溶け合うラテは
               <br />
@@ -190,21 +198,32 @@ export default function MenuPage() {
                 width={6240}
                 height={4160}
               />
-              <h3>ラテ(ice)</h3>
             </div>
+            <h3 className="h3_right">ラテ(ice)</h3>
           </article>
           <article id="maple-latte">
             <div className="maple-latte_wrap">
-              <h3>メープルラテ</h3>
-              <div className="maple-latte_img">
-                <Image
-                  src="/img/menu_image_maple-latte.jpg"
-                  alt="メープルラテの写真"
-                  width={4160}
-                  height={6240}
+              <svg
+                viewBox="0 0 212 300"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              >
+                <defs>
+                  <clipPath id="maple-latte_Blob">
+                    <path d="M22.1456 65.8761C-45.1962 187.565 68.3999 256.246 7.18038 274.603C77.9231 333.754 228.25 274.374 210.566 249.447C174.514 198.63 199.002 209.643 199.002 159.01C199.002 137.253 156.148 127.096 190.839 104.805C238.454 74.2096 160.229 58.5718 156.148 47.6936C184.037 36.6291 122.137 -25.9208 45.2727 12.1529C18.064 12.1529 -9.82506 47.6936 22.1456 65.8761Z" />
+                  </clipPath>
+                </defs>
+                <image
+                  href="/img/menu_image_maple-latte.jpg"
+                  width="212"
+                  height="300"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#maple-latte_Blob)"
                 />
-              </div>
+              </svg>
             </div>
+            <h3>メープルラテ</h3>
             <p>
               生キャラメルの様なリッチな味わいのメープルラテ
               <br />
@@ -213,17 +232,28 @@ export default function MenuPage() {
           </article>
           <article id="espresso-tonic">
             <div className="espresso-tonic_wrap">
-              <h3>エスプレッソトニック</h3>
-              <span>※春夏限定</span>
-              <div className="espresso-tonic_img">
-                <Image
-                  src="/img/menu_image_espresso-tonic.jpg"
-                  alt="エスプレッソトニックの写真"
-                  width={6240}
-                  height={4160}
+              <svg
+                viewBox="0 0 200 140"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              >
+                <defs>
+                  <clipPath id="espresso-tonic_Blob">
+                    <path d="M191.757 106.363C172.633 147.991 95.0741 150.64 57.534 116.203C13.336 140.423 6.53627 114.436 8.66117 98.4158C-6.44928 69.7806 -12.5171 10.2395 84.0954 1.157C204.861 -10.1962 210.881 64.7348 191.757 106.363Z" />
+                  </clipPath>
+                </defs>
+                <image
+                  href="/img/menu_image_espresso-tonic.jpg"
+                  width="200"
+                  height="140"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#espresso-tonic_Blob)"
                 />
-              </div>
+              </svg>
             </div>
+            <h3>エスプレッソトニック</h3>
+            <span>※春夏限定</span>
             <p>
               エスプレッソとトニックウォーターを割った
               <br />
@@ -234,7 +264,6 @@ export default function MenuPage() {
           </article>
           <article id="chai">
             <div className="chai_hot_wrap">
-              <h3>チャイ(hot)</h3>
               <div className="chai_hot_img">
                 <Image
                   src="/img/menu_image_chai(hot).jpg"
@@ -244,6 +273,7 @@ export default function MenuPage() {
                 />
               </div>
             </div>
+            <h3>チャイ(hot)</h3>
             <span>カフェインが気になる日の冒険</span>
             <p>
               チャイはスパイスを使用したインド式のミルクティー
@@ -257,7 +287,6 @@ export default function MenuPage() {
             </p>
             <div className="chai_ice_wrap">
               <div className="chai_ice_img">
-                <h3>チャイ(ice)</h3>
                 <Image
                   src="/img/menu_image_chai(ice).jpg"
                   alt="チャイ(ice)の写真"
@@ -266,6 +295,7 @@ export default function MenuPage() {
                 />
               </div>
             </div>
+            <h3>チャイ(ice)</h3>
             <p>
               当店のチャイはデカフェなので90%以上カフェインが
               <br />
@@ -276,7 +306,6 @@ export default function MenuPage() {
           </article>
           <article id="dark-mocha">
             <div className="dark-mocha_wrap">
-              <h3>ダークモカ</h3>
               <div className="dark-mocha_img">
                 <Image
                   src="/img/menu_image_dark-mocha.jpg"
@@ -286,6 +315,7 @@ export default function MenuPage() {
                 />
               </div>
             </div>
+            <h3>ダークモカ</h3>
             <p>
               ダークチョコレートのほろ苦さとミルク、
               <br />
@@ -312,8 +342,8 @@ export default function MenuPage() {
                     height={6240}
                   />
                 </div>
-                <h4>紫蘇ソーダ</h4>
               </div>
+              <h4>紫蘇ソーダ</h4>
             </article>
             <article id="coffee-lemon soda">
               <div className="coffee-lemon-soda_wrap">
@@ -325,8 +355,8 @@ export default function MenuPage() {
                     height={4160}
                   />
                 </div>
-                <h4>コーヒー檸檬ソーダ</h4>
               </div>
+              <h4>コーヒー檸檬ソーダ</h4>
             </article>
             <article id="matcha-drink">
               <div className="matcha-drink_wrap">
@@ -338,8 +368,8 @@ export default function MenuPage() {
                     height={6240}
                   />
                 </div>
-                <h4>抹茶ドリンク</h4>
               </div>
+              <h4>抹茶ドリンク</h4>
             </article>
             <article id="hojicha-latte">
               <div className="hojicha-latte_wrap">
@@ -351,8 +381,8 @@ export default function MenuPage() {
                     height={6240}
                   />
                 </div>
-                <h4>ほうじ茶ラテ</h4>
               </div>
+              <h4>ほうじ茶ラテ</h4>
             </article>
             <article id="panna-cotta">
               <div className="panna-cotta_wrap">
@@ -364,8 +394,8 @@ export default function MenuPage() {
                     height={6240}
                   />
                 </div>
-                <h4>桃とジュレジャムのパンナコッタ</h4>
               </div>
+              <h4>桃とジュレジャムのパンナコッタ</h4>
             </article>
           </article>
         </section>
@@ -373,7 +403,6 @@ export default function MenuPage() {
           <h2>Sweets</h2>
           <article id="Burnt-Basque-Cheesecake">
             <div className="Burnt-Basque-Cheesecake_wrap">
-              <h3>バスクチーズケーキ（gf）</h3>
               <div className="Burnt-Basque-Cheesecake_img">
                 <Image
                   src="/img/menu_image_Burnt-Basque-Cheesecake.jpg"
@@ -383,6 +412,7 @@ export default function MenuPage() {
                 />
               </div>
             </div>
+            <h3>バスクチーズケーキ（gf）</h3>
             <p>
               定番のバスクは何度でも食べたくなる
               <br />
@@ -428,8 +458,8 @@ export default function MenuPage() {
                   height={506}
                 />
               </div>
-              <h3>ぜんざいアフォガード（gf）</h3>
             </div>
+            <h3>ぜんざいアフォガード（gf）</h3>
           </article>
           <article id="Chocolate-Mousse-Cake">
             <div className="Chocolate-Mousse-Cake_wrap">
@@ -441,8 +471,8 @@ export default function MenuPage() {
                   height={4160}
                 />
               </div>
-              <h3>チョコムースケーキ（gf）</h3>
             </div>
+            <h3>チョコムースケーキ（gf）</h3>
           </article>
           <article id="Baked-Sweet-Potato-Brulee-Basque">
             <div className="Baked-Sweet-Potato-Brulee-Basque_wrap">
@@ -454,8 +484,8 @@ export default function MenuPage() {
                   height={4000}
                 />
               </div>
-              <h3>焼き芋ブリュレバスク（gf）</h3>
             </div>
+            <h3>焼き芋ブリュレバスク（gf）</h3>
           </article>
           <article id="Pumpkin-Basque">
             <div className="Pumpkin-Basque_wrap">
@@ -467,8 +497,8 @@ export default function MenuPage() {
                   height={4000}
                 />
               </div>
-              <h3>カボチャのバスク（gf）</h3>
             </div>
+            <h3>カボチャのバスク（gf）</h3>
           </article>
           <article id="Lemon-Basque">
             <div className="Lemon-Basque_wrap">
@@ -480,8 +510,8 @@ export default function MenuPage() {
                   height={4160}
                 />
               </div>
-              <h3>檸檬バスク</h3>
             </div>
+            <h3>檸檬バスク</h3>
           </article>
           <article id="Lemon-Jelly">
             <div className="Lemon-Jelly_wrap">
@@ -493,8 +523,8 @@ export default function MenuPage() {
                   height={4160}
                 />
               </div>
-              <h3>檸檬ゼリー</h3>
             </div>
+            <h3>檸檬ゼリー</h3>
           </article>
           <article id="Tea-Basque">
             <div className="Tea-Basque_wrap">
@@ -506,8 +536,8 @@ export default function MenuPage() {
                   height={4160}
                 />
               </div>
-              <h3>紅茶のバスク</h3>
             </div>
+            <h3>紅茶のバスク</h3>
           </article>
           <article id="Tiramisu-style-Basque">
             <div className="Tiramisu-style-Basque_wrap">
@@ -519,8 +549,8 @@ export default function MenuPage() {
                   height={1751}
                 />
               </div>
-              <h3>ティラミス風バスク</h3>
             </div>
+            <h3>ティラミス風バスク</h3>
           </article>
           <article id="Blueberry-and-Rice-Flour-Crumble-Cheesecake">
             <div className="Blueberry-and-Rice-Flour-Crumble-Cheesecake_wrap">
@@ -532,8 +562,8 @@ export default function MenuPage() {
                   height={6240}
                 />
               </div>
-              <h3>ブルーベリーと米粉のクランブルチーズケーキ（gf）</h3>
             </div>
+            <h3>ブルーベリーと米粉のクランブルチーズケーキ（gf）</h3>
           </article>
           <article id="Brown-Sugar-Brulee-Baked-Cheesecake">
             <div className="Brown-Sugar-Brulee-Baked-Cheesecake_wrap">
@@ -545,8 +575,8 @@ export default function MenuPage() {
                   height={4160}
                 />
               </div>
-              <h3>黒糖ブリュレベイクドチーズケーキ（gf）</h3>
             </div>
+            <h3>黒糖ブリュレベイクドチーズケーキ（gf）</h3>
           </article>
           <article id="Rice-Flour-Muffin">
             <h3>米粉マフィン（gf）</h3>
@@ -577,8 +607,8 @@ export default function MenuPage() {
                     height={6240}
                   />
                 </div>
-                <h4>米粉のジンジャーナッツマフィン</h4>
               </div>
+              <h4>米粉のジンジャーナッツマフィン</h4>
             </article>
             <article id="Kinkan">
               <div className="Kinkan_wrap">
@@ -590,8 +620,8 @@ export default function MenuPage() {
                     height={6240}
                   />
                 </div>
-                <h4>米粉金柑とクリチのマフィン</h4>
               </div>
+              <h4>米粉金柑とクリチのマフィン</h4>
             </article>
             <article id="Choco-Banana-Muffin">
               <div className="Choco-Banana-Muffin_wrap">
@@ -603,8 +633,8 @@ export default function MenuPage() {
                     height={6240}
                   />
                 </div>
-                <h4>チョコバナナマフィン</h4>
               </div>
+              <h4>チョコバナナマフィン</h4>
             </article>
             <article id="Blueberry-and-Cream-Cheese-Muffin">
               <div className="Blueberry-and-Cream-Cheese-Muffin_wrap">
@@ -616,8 +646,8 @@ export default function MenuPage() {
                     height={4160}
                   />
                 </div>
-                <h4>ブルーベリーとクリチのマフィン</h4>
               </div>
+              <h4>ブルーベリーとクリチのマフィン</h4>
             </article>
             <article id="Matcha-Muffin">
               <div className="Matcha-Muffin_wrap">
@@ -629,8 +659,8 @@ export default function MenuPage() {
                     height={4160}
                   />
                 </div>
-                <h4>こし餡とクリチの抹茶マフィン</h4>
               </div>
+              <h4>こし餡とクリチの抹茶マフィン</h4>
             </article>
           </article>
         </section>

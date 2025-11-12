@@ -558,6 +558,7 @@ small {
   padding-top: 24px;
   font-size: 32px;
   font-weight: 700;
+  margin-left: 24px;
 }
 .menu p {
   font-size: 16px;
@@ -565,35 +566,63 @@ small {
 }
 .menu nav {
   line-height: 1.6;
-  padding: 160px 48px;
+  padding: 160px 0px;
 }
 .menu nav a {
   font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  line-height: 3;
+  margin-left: 24px;
 }
 .menu-drink,
 .menu-sweets {
   margin: 0;
 }
 .menu p {
-  margin: 0 auto 0 40px;
+  margin: 0 0 16px 24px;
   font-size: 14px;
   line-height: 2;
 }
-.menu h3 {
-  font-size: 14px;
-}
+.menu h3,
 .menu h4 {
-  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-left: 24px;
+  margin-top: 20px;
 }
+
 .menu nav ul ul {
   padding-left: 0.6rem; /* 子リストはさらにインデント */
   margin-top: 0.3rem;
 }
 /*見出し画像*/
-.coffee_ice_wrap,
-.latte_hot_wrap,
-.latte_ice_wrap,
-.maple-latte_wrap,
+.latte_ice_wrap {
+  width: 180px;
+  height: auto;
+  margin: 40px 0 0 auto;
+}
+.menu .h3_right {
+  text-align: right;
+  margin: 0 8px 0 0;
+}
+.maple-latte_wrap {
+  width: 300px;
+  height: auto;
+  margin: 100px auto 0 8px;
+}
+.coffee_ice_wrap {
+  width: 380px;
+  height: auto;
+  margin: 40px auto 0 8px;
+}
+/* SVGのスタイル */
+
+.latte_hot_wrap {
+  width: 380px;
+  height: auto;
+  margin: 100px auto 0 8px;
+}
 .espresso-tonic_wrap,
 .chai_hot_wrap,
 .chai_ice_wrap,
@@ -619,50 +648,11 @@ small {
 .Choco-Banana-Muffin_wrap,
 .Blueberry-and-Cream-Cheese-Muffin_wrap,
 .Matcha-Muffin_wrap {
-  margin: 40px 0;
-  width: 90%;
-  position: relative;
-  display: inline-flex;
-  align-items: flex-start; /* 画像の上端基準にする */
-  gap: 0;
+  width: 350px;
+  height: auto;
+  margin: 100px auto 0 auto;
 }
-.coffee_ice_wrap h3,
-.latte_hot_wrap h3,
-.latte_ice_wrap h3,
-.maple-latte_wrap h3,
-.espresso-tonic_wrap h3,
-.chai_hot_wrap h3,
-.chai_ice_wrap h3,
-.dark-mocha_wrap h3,
-.shiso-soda_wrap h4,
-.coffee-lemon-soda_wrap h4,
-.matcha-drink_wrap h4,
-.hojicha-latte_wrap h4,
-.panna-cotta_wrap h4,
-.Burnt-Basque-Cheesecake_wrap h3,
-.Zenzai-Affogato_wrap h3,
-.Chocolate-Mousse-Cake_wrap h3,
-.Baked-Sweet-Potato-Brulee-Basque_wrap h3,
-.Pumpkin-Basque_wrap h3,
-.Lemon-Basque_wrap h3,
-.Lemon-Jelly_wrap h3,
-.Tea-Basque_wrap h3,
-.Tiramisu-style-Basque_wrap h3,
-.Blueberry-and-Rice-Flour-Crumble-Cheesecake_wrap h3,
-.Brown-Sugar-Brulee-Baked-Cheesecake_wrap h3,
-.Ginger_wrap h4,
-.Kinkan_wrap h4,
-.Choco-Banana-Muffin_wrap h4,
-.Blueberry-and-Cream-Cheese-Muffin_wrap h4,
-.Matcha-Muffin_wrap h4 {
-  display: inline-block;
-  white-space: nowrap; /* 改行防止 */
-  margin: 0 0 0 2px;
-  text-underline-offset: 4px;
-  transform-origin: top left; /* 左上を支点に */
-  transform: rotate(90deg) translateY(-100%);
-  /* 必要に応じて translateX/Y を数pxずつ調整 */
-}
+
 .mask {
   -webkit-clip-path: url(#svgPath);
   clip-path: url(#svgPath);
