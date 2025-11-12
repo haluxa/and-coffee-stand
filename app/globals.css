@@ -583,6 +583,7 @@ small {
   margin: 0 0 16px 24px;
   font-size: 14px;
   line-height: 2;
+  font-family: var(--font-klee), serif;
 }
 .menu h3,
 .menu h4 {
