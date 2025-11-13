@@ -116,11 +116,24 @@ export default function RootLayout({
                   <li className="nav_item">
                     <a href="/secret">secret</a>
                   </li>
+                  <li className="nav_item">
+                    <a href="/test">test</a>
+                  </li>
                 </ul>
               </nav>
             </div>
           </header>
           {/* ページごとの中身 */}
+          <div className="header_logo">
+            <a href="../">
+              <Image
+                src="/img/header_logo.png"
+                alt="and coffee stand ロゴ"
+                width={1134}
+                height={482}
+              />
+            </a>
+          </div>
           <main>{children}</main>
           <FadeInEffect>
             <footer>

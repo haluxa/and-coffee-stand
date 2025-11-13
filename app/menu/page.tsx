@@ -5,17 +5,8 @@ import Image from "next/image";
 export default function MenuPage() {
   return (
     <main className="menu_page">
-      <div className="header_logo">
-        <a href="../">
-          <Image
-            src="/img/header_logo.png"
-            alt="and coffee stand ロゴ"
-            width={1134}
-            height={482}
-          />
-        </a>
-      </div>
       <div className="menu">
+        <h1>Menu</h1>
         <nav>
           <h2>Drink</h2>
           <ul>

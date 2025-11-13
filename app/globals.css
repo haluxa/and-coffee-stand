@@ -548,16 +548,13 @@ small {
   font-size: 32px;
   font-family: var(--font-fredericka), serif;
   -webkit-font-smoothing: antialiased; /* 細く見えやすい */
-  position: fixed;
-  color: var(--background);
-  mix-blend-mode: difference; /* 背景動画に応じて文字色が変わる */
-  margin: 24px;
+  margin-top: 80px;
+  text-align: center;
 }
 
 .menu h2 {
-  padding-top: 24px;
-  font-size: 32px;
-  font-weight: 700;
+  padding-top: 16px;
+  font-size: 16px;
   margin-left: 24px;
 }
 .menu p {
@@ -566,7 +563,7 @@ small {
 }
 .menu nav {
   line-height: 1.6;
-  padding: 160px 0px;
+  padding: 24px 0px;
 }
 .menu nav a {
   font-size: 12px;
@@ -657,4 +654,50 @@ small {
 .mask {
   -webkit-clip-path: url(#svgPath);
   clip-path: url(#svgPath);
+}
+
+.story-wrapper {
+  position: relative;
+  width: 100vw; /* 画面幅ぴったり */
+  height: 100vh; /* 画面高さいっぱい */
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ストーリー中身（テキストや画像など） */
+.story-content {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  text-align: center;
+  max-width: 600px;
+}
+
+/* タップ領域（透明ボタン） */
+.story-hit-area {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50vw;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* 左右の配置 */
+.story-hit-area.left {
+  left: 0;
+}
+
+.story-hit-area.right {
+  right: 0;
+}
+
+/* タップしたときのうっすらフィードバック */
+.story-hit-area:active {
+  background: rgba(255, 255, 255, 0.05);
 }

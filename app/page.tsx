@@ -7,16 +7,6 @@ import React from "react";
 export default function Home() {
   return (
     <main>
-      <div className="header_logo">
-        <a href="../">
-          <Image
-            src="/img/header_logo.png"
-            alt="and coffee stand ロゴ"
-            width={1134}
-            height={482}
-          />
-        </a>
-      </div>
       <section>
         <FadeInEffect>
           <div className="top-movie-wrapper">
