@@ -331,7 +331,61 @@ const stories = [
 
 export default function StoryViewer() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  // --- ① ここに ナビ用の state と関数を追加 ---
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuType, setMenuType] = useState<"drink" | "sweet" | null>(null);
 
+  const openMenu = (type: "drink" | "sweet") => {
+    setMenuType(type);
+    setMenuOpen(true);
+  };
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setMenuType(null);
+  };
+  // DRINK / SWEET それぞれの目次用リスト（id とタイトルだけ）
+  const drinkNav = [
+    { id: 1, title: "コーヒー(ice)" },
+    { id: 2, title: "コーヒー(hot)" },
+    { id: 3, title: "ラテ(hot)" },
+    { id: 4, title: "ラテ(ice)" },
+    { id: 5, title: "メープルラテ" },
+    { id: 6, title: "エスプレッソトニック" },
+    { id: 7, title: "チャイ(hot)" },
+    { id: 8, title: "チャイ(ice)" },
+    { id: 9, title: "ダークモカ" },
+    { id: 10, title: "紫蘇ソーダ" },
+    { id: 11, title: "コーヒー檸檬ソーダ" },
+    { id: 12, title: "抹茶ドリンク" },
+    { id: 13, title: "ほうじ茶ラテ" },
+    { id: 14, title: "桃とジュレジャムのパンナコッタ" },
+  ];
+
+  const sweetNav = [
+    { id: 101, title: "バスクチーズケーキ（gf）" },
+    { id: 102, title: "ぜんざいアフォガード（gf）" },
+    { id: 103, title: "チョコムースケーキ（gf）" },
+    { id: 104, title: "焼き芋ブリュレバスク（gf）" },
+    { id: 105, title: "カボチャのバスク（gf）" },
+    { id: 106, title: "檸檬バスク" },
+    { id: 107, title: "檸檬ゼリー" },
+    { id: 108, title: "紅茶のバスク" },
+    { id: 109, title: "ティラミス風バスク" },
+    { id: 110, title: "ブルーベリーと米粉のクランブルチーズケーキ（gf）" },
+    { id: 111, title: "黒糖ブリュレベイクドチーズケーキ（gf）" },
+    { id: 112, title: "米粉のジンジャーナッツマフィン" },
+    { id: 113, title: "米粉金柑とクリチのマフィン" },
+    { id: 115, title: "チョコバナナマフィン" },
+    { id: 116, title: "ブルーベリーとクリチのマフィン" },
+    { id: 117, title: "こし餡とクリチの抹茶マフィン" },
+  ];
+  // 該当 id のストーリーにジャンプする関数
+  const jumpToStory = (id: number) => {
+    const index = stories.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      setCurrentIndex(index);
+    }
+  };
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1 < stories.length ? prev + 1 : prev));
   }, []);
@@ -343,18 +397,46 @@ export default function StoryViewer() {
   const story = stories[currentIndex];
 
   return (
-    <div
-      className="story-wrapper"
-      style={{
-        backgroundImage: `url(${story.bg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="story-content">{story.content}</div>
+    <>
+      <div className="fixed-nav">
+        <button onClick={() => openMenu("drink")}>DRINK</button>
+        <button onClick={() => openMenu("sweet")}>SWEET</button>
+      </div>
 
-      <button className="story-hit-area left" onClick={goPrev} />
-      <button className="story-hit-area right" onClick={goNext} />
-    </div>
+      {menuOpen && (
+        <div className="menu-overlay" onClick={closeMenu}>
+          <div className="menu-panel" onClick={(e) => e.stopPropagation()}>
+            <h3>{menuType === "drink" ? "ドリンク" : "スイーツ"}</h3>
+            <ul>
+              {(menuType === "drink" ? drinkNav : sweetNav).map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => {
+                      jumpToStory(item.id);
+                      closeMenu();
+                    }}
+                  >
+                    {item.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+      <div
+        className="story-wrapper"
+        style={{
+          backgroundImage: `url(${story.bg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="story-content">{story.content}</div>
+
+        <button className="story-hit-area left" onClick={goPrev} />
+        <button className="story-hit-area right" onClick={goNext} />
+      </div>
+    </>
   );
 }

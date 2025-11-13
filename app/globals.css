@@ -702,3 +702,68 @@ small {
 .story-hit-area:active {
   background: rgba(255, 255, 255, 0.05);
 }
+.fixed-nav {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.fixed-nav button {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+/* オーバーレイ */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* パネル */
+.menu-panel {
+  background: #fff;
+  padding: 24px 28px;
+  width: 80%;
+  max-width: 360px;
+  max-height: 70vh;
+  overflow-y: auto;
+  border-radius: 12px;
+}
+
+.menu-panel h3 {
+  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.menu-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-panel li button {
+  width: 100%;
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
