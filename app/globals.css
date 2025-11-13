@@ -665,6 +665,7 @@ small {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
 /* ストーリー中身（テキストや画像など） */
