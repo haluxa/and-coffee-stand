@@ -166,7 +166,7 @@ button {
   position: fixed;
   top: 32px;
   left: 16px;
-  z-index: 100;
+  z-index: 70;
   mix-blend-mode: difference;
   width: 92px;
   height: auto;
@@ -721,7 +721,7 @@ small {
   flex-direction: column;
   align-items: flex-end; /* 右揃え */
   gap: 48px;
-  z-index: 1000;
+  z-index: 88;
   mix-blend-mode: difference;
 }
 
@@ -794,4 +794,8 @@ small {
   border: none;
   font-size: 15px;
   cursor: pointer;
+}
+
+.menu-page {
+  background-color: #000;
 }
