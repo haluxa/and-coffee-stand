@@ -8,7 +8,8 @@ const stories = [
     id: 1,
     content: (
       <div>
-        <h3>コーヒー(ice)</h3>
+        <h3>Iced Coffee</h3>
+        <span>アイスコーヒー</span>
         <p>
           珈琲豆はグレードの最も高いと言われる
           <br />
@@ -16,22 +17,24 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu_image_coffee_ice.jpg",
+    bg: "/img/menu/101_1.jpg",
   },
   {
     id: 2,
     content: (
       <div>
-        <h3>コーヒー(hot)</h3>
+        <h3>Hot Coffee</h3>
+        <span>ホットコーヒー</span>
       </div>
     ),
-    bg: "/img/menu_image_coffee_hot.jpg",
+    bg: "/img/menu/101_2.jpg",
   },
   {
     id: 3,
     content: (
       <div>
-        <h3>ラテ(hot)</h3>
+        <h3>Iced Latte</h3>
+        <span>アイスラテ</span>
         <p>
           濃厚なエスプレッソとミルクが溶け合うラテは
           <br />
@@ -43,32 +46,34 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu_image_latte_hot.jpg",
+    bg: "/img/menu/102_1.jpg",
   },
   {
     id: 4,
     content: (
       <div>
-        <h3>ラテ(ice)</h3>
+        <h3>Hot Latte</h3>
+        <span>ホットラテ</span>
       </div>
     ),
-    bg: "/img/menu_image_latte_ice.jpg",
+    bg: "/img/menu/102_2.jpg",
   },
   {
     id: 5,
     content: (
       <div>
-        <h3>メープルラテ</h3>
+        <h3>Maple Latte</h3>
+        <span>メープルラテ</span>
       </div>
     ),
-    bg: "/img/menu_image_maple-latte.jpg",
+    bg: "/img/menu/103.jpg",
   },
   {
     id: 6,
     content: (
       <div>
-        <h3>エスプレッソトニック</h3>
-        <span>※春夏限定</span>
+        <h3>Espresso Tonic</h3>
+        <span>エスプレッソトニック ※春夏限定</span>
         <p>
           エスプレッソとトニックウォーターを割った
           <br />
@@ -78,14 +83,14 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu_image_espresso-tonic.jpg",
+    bg: "/img/menu/104.jpg",
   },
   {
     id: 7,
     content: (
       <div>
-        <h3>チャイ(hot)</h3>
-        <span>カフェインが気になる日の冒険</span>
+        <h3>Chai</h3>
+        <span>チャイ カフェインが気になる日の冒険</span>
         <p>
           チャイはスパイスを使用したインド式のミルクティー
           <br />
@@ -98,22 +103,14 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu_image_chai_hot.jpg",
+    bg: "/img/menu/105.jpg",
   },
   {
     id: 8,
     content: (
       <div>
-        <h3>チャイ(ice)</h3>
-      </div>
-    ),
-    bg: "/img/menu_image_chai_ice.jpg",
-  },
-  {
-    id: 9,
-    content: (
-      <div>
-        <h3>ダークモカ</h3>
+        <h3>Dark Mocha</h3>
+        <span>ダークモカ</span>
         <p>
           ダークチョコレートのほろ苦さとミルク、
           <br />
@@ -121,58 +118,77 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu_image_dark-mocha.jpg",
+    bg: "/img/menu/106_1.jpg",
   },
   {
     id: 10,
     content: (
       <div>
-        <h4>紫蘇ソーダ</h4>
+        <h4>Shiso Soda</h4>
+        <span>紫蘇ソーダ</span>
       </div>
     ),
-    bg: "/img/menu_image_shiso-soda.jpg",
+    bg: "/img/menu/107.jpg",
   },
   {
     id: 11,
     content: (
       <div>
-        <h4>コーヒー檸檬ソーダ</h4>
+        <h4>Coffee Lemon Soda</h4>
+        <span>コーヒー檸檬ソーダ</span>
       </div>
     ),
-    bg: "/img/menu_image_coffee-lemon-soda.jpg",
+    bg: "/img/menu/108_2.jpg",
   },
   {
     id: 12,
     content: (
       <div>
-        <h4>抹茶ドリンク</h4>
+        <h4>Matcha Drink</h4>
+        <span>抹茶ドリンク</span>
       </div>
     ),
-    bg: "/img/menu_image_matcha-drink.jpg",
+    bg: "/img/menu/109_1.jpg",
   },
   {
     id: 13,
     content: (
       <div>
-        <h4>ほうじ茶ラテ</h4>
+        <h4></h4>
       </div>
     ),
-    bg: "/img/menu_image_hojicha-latte.jpg",
+    bg: "/img/menu/109_2.jpg",
   },
   {
     id: 14,
     content: (
       <div>
-        <h4>桃とジュレジャムのパンナコッタ</h4>
+        <h4>Hojicha Latte</h4>
+        <span>ほうじ茶ラテ</span>
       </div>
     ),
-    bg: "/img/menu_image_panna-cotta.jpg",
+    bg: "/img/menu/110.jpg",
   },
+  {
+    id: 15,
+    content: (
+      <div>
+        <h4>Panna Cotta with Peach & Jelly Jam</h4>
+        <span>桃とジュレジャムのパンナコッタ</span>
+      </div>
+    ),
+    bg: "/img/menu/111.jpg",
+  },
+
+  //--------------------------------------------
+  // SWEETS
+  //--------------------------------------------
   {
     id: 101,
     content: (
       <div>
-        <h3>バスクチーズケーキ（gf）</h3>
+        <h3>Basque Cheesecake</h3>
+        <span>バスクチーズケーキ（gf）</span>
         <p>
           定番のバスクは何度でも食べたくなる
           <br />
@@ -190,142 +206,176 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu_image_Burnt-Basque-Cheesecake.jpg",
+    bg: "/img/menu/201_1.jpg",
   },
   {
     id: 102,
+    bg: "/img/menu/201_3.jpg",
     content: (
       <div>
-        <h3>ぜんざいアフォガード（gf）</h3>
+        <h3>choco-basque</h3>
+        <span>チョコバスク</span>
       </div>
     ),
-    bg: "/img/menu_image_Zenzai-Affogato.jpg",
   },
   {
     id: 103,
     content: (
       <div>
-        <h3>チョコムースケーキ（gf）</h3>
+        <h3>Zenzai Affogato</h3>
+        <span>ぜんざいアフォガード（gf）</span>
       </div>
     ),
-    bg: "/img/menu_image_Chocolate-Mousse-Cake.jpg",
+    bg: "/img/menu/201_2.jpg",
   },
   {
     id: 104,
     content: (
       <div>
-        <h3>焼き芋ブリュレバスク（gf）</h3>
+        <h3>Chocolate Mousse Cake</h3>
+        <span>チョコムースケーキ（gf）</span>
       </div>
     ),
-    bg: "/img/menu_image_Baked-Sweet-Potato-Brulee-Basque.jpg",
+    bg: "/img/menu/202.jpg",
   },
   {
     id: 105,
     content: (
       <div>
-        <h3>カボチャのバスク（gf）</h3>
+        <h3>Roasted Sweet Potato Brûlée Basque</h3>
+        <span>焼き芋ブリュレバスク（gf）</span>
       </div>
     ),
-    bg: "/img/menu_image_Pumpkin-Basque.jpg",
+    bg: "/img/menu/203.jpg",
   },
   {
     id: 106,
     content: (
       <div>
-        <h3>檸檬バスク</h3>
+        <h3>Pumpkin Basque</h3>
+        <span>カボチャのバスク（gf）</span>
       </div>
     ),
-    bg: "/img/menu_image_Lemon-Basque.jpg",
+    bg: "/img/menu/204.jpg",
   },
   {
     id: 107,
     content: (
       <div>
-        <h3>檸檬ゼリー</h3>
+        <h3>Lemon Basque</h3>
+        <span>檸檬バスク</span>
       </div>
     ),
-    bg: "/img/menu_image_Lemon-Jelly.jpg",
+    bg: "/img/menu/205.jpg",
   },
   {
     id: 108,
     content: (
       <div>
-        <h3>紅茶のバスク</h3>
+        <h3>Lemon Jelly</h3>
+        <span>檸檬ゼリー</span>
       </div>
     ),
-    bg: "/img/menu_image_Tea-Basque.jpg",
+    bg: "/img/menu/206.jpg",
   },
   {
     id: 109,
     content: (
       <div>
-        <h3>ティラミス風バスク</h3>
+        <h3>Black Tea Basque</h3>
+        <span>紅茶のバスク</span>
       </div>
     ),
-    bg: "/img/menu_image_Tiramisu-style-Basque.jpg",
+    bg: "/img/menu/207.jpg",
   },
   {
     id: 110,
     content: (
       <div>
-        <h3>ブルーベリーと米粉のクランブルチーズケーキ（gf）</h3>
+        <h3>Tiramisu-style Basque</h3>
+        <span>ティラミス風バスク</span>
       </div>
     ),
-    bg: "/img/menu_image_Blueberry-and-Rice-Flour-Crumble-Cheesecake.jpg",
+    bg: "/img/menu/208.jpg",
   },
   {
     id: 111,
     content: (
       <div>
-        <h3>黒糖ブリュレベイクドチーズケーキ（gf）</h3>
+        <h3>Blueberry & Rice Flour Crumble Cheesecake</h3>
+        <span>ブルーベリーと米粉のクランブルチーズケーキ（gf）</span>
       </div>
     ),
-    bg: "/img/menu_image_Brown-Sugar-Brulee-Baked-Cheesecake.jpg",
+    bg: "/img/menu/209.jpg",
   },
   {
     id: 112,
     content: (
       <div>
-        <h4>米粉のジンジャーナッツマフィン</h4>
+        <h3>Brown Sugar Brûlée Baked Cheesecake</h3>
+        <span>黒糖ブリュレベイクドチーズケーキ（gf）</span>
       </div>
     ),
-    bg: "/img/menu_image_Ginger.jpg",
+    bg: "/img/menu/210.jpg",
   },
   {
-    id: 113,
+    id: 121,
     content: (
       <div>
-        <h4>米粉金柑とクリチのマフィン</h4>
+        <h4>Rice Flour Ginger Nut Muffin</h4>
+        <span>米粉のジンジャーナッツマフィン</span>
       </div>
     ),
-    bg: "/img/menu_image_Kinkan.jpg",
+    bg: "/img/menu/221.jpg",
   },
   {
-    id: 115,
+    id: 122,
     content: (
       <div>
-        <h4>チョコバナナマフィン</h4>
+        <h4>Rice Flour Kumquat & Cream Cheese Muffin</h4>
+        <span>米粉金柑とクリチのマフィン</span>
       </div>
     ),
-    bg: "/img/menu_image_Choco-Banana-Muffin.jpg",
+    bg: "/img/menu/222.jpg",
   },
   {
-    id: 116,
+    id: 123,
     content: (
       <div>
-        <h4>ブルーベリーとクリチのマフィン</h4>
+        <h4>Chocolate Banana Muffin</h4>
+        <span>チョコバナナマフィン</span>
       </div>
     ),
-    bg: "/img/menu_image_Blueberry-and-Cream-Cheese-Muffin.jpg",
+    bg: "/img/menu/223.jpg",
   },
   {
-    id: 117,
+    id: 124,
+    bg: "/img/menu/224.jpg",
+  },
+  {
+    id: 125,
     content: (
       <div>
-        <h4>こし餡とクリチの抹茶マフィン</h4>
+        <h4>Blueberry & Cream Cheese Muffin</h4>
+        <span>ブルーベリーとクリチのマフィン</span>
       </div>
     ),
-    bg: "/img/menu_image_Matcha-Muffin.jpg",
+    bg: "/img/menu/225.jpg",
+  },
+  {
+    id: 126,
+    content: (
+      <div>
+        <h4>Matcha Muffin with Sweet Red Bean Paste & Cream Cheese</h4>
+        <span>こし餡とクリチの抹茶マフィン</span>
+      </div>
+    ),
+    bg: "/img/menu/226_1.jpg",
+  },
+  {
+    id: 127,
+
+    bg: "/img/menu/226_2.jpg",
   },
 ];
 
@@ -345,39 +395,39 @@ export default function StoryViewer() {
   };
   // DRINK / SWEET それぞれの目次用リスト（id とタイトルだけ）
   const drinkNav = [
-    { id: 1, title: "コーヒー(ice)" },
-    { id: 2, title: "コーヒー(hot)" },
-    { id: 3, title: "ラテ(hot)" },
-    { id: 4, title: "ラテ(ice)" },
+    { id: 1, title: "アイスコーヒー" },
+    { id: 2, title: "ホットコーヒー" },
+    { id: 3, title: "アイスラテ" },
+    { id: 4, title: "ホットラテ" },
     { id: 5, title: "メープルラテ" },
     { id: 6, title: "エスプレッソトニック" },
-    { id: 7, title: "チャイ(hot)" },
-    { id: 8, title: "チャイ(ice)" },
-    { id: 9, title: "ダークモカ" },
+    { id: 7, title: "チャイ" },
+    { id: 8, title: "ダークモカ" },
     { id: 10, title: "紫蘇ソーダ" },
     { id: 11, title: "コーヒー檸檬ソーダ" },
     { id: 12, title: "抹茶ドリンク" },
-    { id: 13, title: "ほうじ茶ラテ" },
-    { id: 14, title: "桃とジュレジャムのパンナコッタ" },
+    { id: 14, title: "ほうじ茶ラテ" },
+    { id: 15, title: "桃とジュレジャムのパンナコッタ" },
   ];
 
   const sweetNav = [
     { id: 101, title: "バスクチーズケーキ（gf）" },
-    { id: 102, title: "ぜんざいアフォガード（gf）" },
-    { id: 103, title: "チョコムースケーキ（gf）" },
-    { id: 104, title: "焼き芋ブリュレバスク（gf）" },
-    { id: 105, title: "カボチャのバスク（gf）" },
-    { id: 106, title: "檸檬バスク" },
-    { id: 107, title: "檸檬ゼリー" },
-    { id: 108, title: "紅茶のバスク" },
-    { id: 109, title: "ティラミス風バスク" },
-    { id: 110, title: "ブルーベリーと米粉のクランブルチーズケーキ（gf）" },
-    { id: 111, title: "黒糖ブリュレベイクドチーズケーキ（gf）" },
-    { id: 112, title: "米粉のジンジャーナッツマフィン" },
-    { id: 113, title: "米粉金柑とクリチのマフィン" },
-    { id: 115, title: "チョコバナナマフィン" },
-    { id: 116, title: "ブルーベリーとクリチのマフィン" },
-    { id: 117, title: "こし餡とクリチの抹茶マフィン" },
+    { id: 102, title: "チョコバスク" },
+    { id: 103, title: "ぜんざいアフォガード（gf）" },
+    { id: 104, title: "チョコムースケーキ（gf）" },
+    { id: 105, title: "焼き芋ブリュレバスク（gf）" },
+    { id: 106, title: "カボチャのバスク（gf）" },
+    { id: 107, title: "檸檬バスク" },
+    { id: 108, title: "檸檬ゼリー" },
+    { id: 109, title: "紅茶のバスク" },
+    { id: 110, title: "ティラミス風バスク" },
+    { id: 111, title: "ブルーベリーと米粉のクランブルチーズケーキ（gf）" },
+    { id: 112, title: "黒糖ブリュレベイクドチーズケーキ（gf）" },
+    { id: 121, title: "米粉のジンジャーナッツマフィン" },
+    { id: 122, title: "米粉金柑とクリチのマフィン" },
+    { id: 123, title: "チョコバナナマフィン" },
+    { id: 125, title: "ブルーベリーとクリチのマフィン" },
+    { id: 126, title: "こし餡とクリチの抹茶マフィン" },
   ];
   // 該当 id のストーリーにジャンプする関数
   const jumpToStory = (id: number) => {
@@ -397,16 +447,20 @@ export default function StoryViewer() {
   const story = stories[currentIndex];
 
   return (
-    <>
+    <div className="menu-page">
       <div className="fixed-nav">
-        <button onClick={() => openMenu("drink")}>DRINK</button>
-        <button onClick={() => openMenu("sweet")}>SWEET</button>
+        <button onClick={() => openMenu("drink")}>
+          <span>DRINK</span>
+        </button>
+        <button onClick={() => openMenu("sweet")}>
+          <span>SWEET</span>
+        </button>
       </div>
 
       {menuOpen && (
         <div className="menu-overlay" onClick={closeMenu}>
           <div className="menu-panel" onClick={(e) => e.stopPropagation()}>
-            <h3>{menuType === "drink" ? "ドリンク" : "スイーツ"}</h3>
+            <h3>{menuType === "drink" ? "Drink" : "Sweet"}</h3>
             <ul>
               {(menuType === "drink" ? drinkNav : sweetNav).map((item) => (
                 <li key={item.id}>
@@ -437,6 +491,6 @@ export default function StoryViewer() {
         <button className="story-hit-area left" onClick={goPrev} />
         <button className="story-hit-area right" onClick={goNext} />
       </div>
-    </>
+    </div>
   );
 }

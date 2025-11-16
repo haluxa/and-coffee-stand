@@ -663,8 +663,8 @@ small {
   overflow: hidden;
   color: #fff;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: left;
   transition: background-color 0.3s ease;
 }
 
@@ -672,9 +672,19 @@ small {
 .story-content {
   position: relative;
   z-index: 1;
-  padding: 24px;
-  text-align: center;
+  padding: 16px;
+  text-align: left;
   max-width: 600px;
+}
+.story-content h3,
+.story-content h4 {
+  font-size: 32px;
+  font-family: var(--font-dm-serif), serif;
+  letter-spacing: 1px;
+}
+.story-content p {
+  font-size: 10px;
+  line-height: 1.6;
 }
 
 /* タップ領域（透明ボタン） */
@@ -704,23 +714,41 @@ small {
 }
 .fixed-nav {
   position: fixed;
-  top: 80px;
-  right: 20px;
+  top: 40%;
+  right: 12px;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: flex-end; /* 右揃え */
+  gap: 48px;
   z-index: 1000;
+  mix-blend-mode: difference;
 }
 
+/* 各ボタンは同じ幅にして、右端を基準にする */
 .fixed-nav button {
-  background: rgba(255, 255, 255, 0.8);
+  position: relative;
+  width: 80px; /* ★ここがポイント：固定幅 */
+  height: 24px; /* 適度な高さ（好みで調整） */
+  padding: 0;
+  background: transparent;
   border: none;
-  padding: 8px 14px;
+  cursor: pointer;
+  font-family: var(--font-klee);
+}
+
+/* テキストだけ 90 度回転させて、右端にピタッと寄せる */
+.fixed-nav button span {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: 100% 50%; /* 右端を支点に回転 */
+
+  display: inline-block;
   font-size: 14px;
   letter-spacing: 1px;
-  border-radius: 4px;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
+  color: #ededed;
 }
 
 /* オーバーレイ */
