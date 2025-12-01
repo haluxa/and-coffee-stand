@@ -806,3 +806,15 @@ small {
 .menu-page {
   background-color: #000;
 }
+.menu-nav button {
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  font-size: 12px !important;
+  line-height: 2rem;
+}
+.menu-panel h3 {
+  font-family: var(--font-fredericka), serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase; /* Drink → DRINK にしたければ */
+}
