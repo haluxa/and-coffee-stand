@@ -13,18 +13,6 @@
   --bg-fade-px: 48px; /* 重なり部分の上端にかけるフェードの長さ（px） */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /*--background: #0a0a0a;*/
-    --foreground: #ededed;
-    --bg-overlay-opacity: 0.9;
-    --bg-overlay-blur: 0px;
-    --bg-video-opacity: 0.2;
-    --bg-overlap-px: 56px;
-    --bg-fade-px: 56px;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
