@@ -329,16 +329,6 @@ const stories = [
     bg: "/img/menu/205.jpg",
   },
   {
-    id: 108,
-    content: (
-      <div>
-        <h3>Lemon Jelly</h3>
-        <span>檸檬ゼリー</span>
-      </div>
-    ),
-    bg: "/img/menu/206.jpg",
-  },
-  {
     id: 109,
     content: (
       <div>
@@ -401,7 +391,7 @@ const stories = [
         <p>爽やかな檸檬でさっぱりと！</p>
       </div>
     ),
-    bg: "/img/menu/210.jpg",
+    bg: "/img/menu/206.jpg",
   },
 
   {
@@ -417,7 +407,7 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu/210.jpg",
+    bg: "/img/menu/212.jpg",
   },
   {
     id: 116,
@@ -434,7 +424,7 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu/210.jpg",
+    bg: "/img/menu/213.jpg",
   },
 
   {
@@ -450,7 +440,7 @@ const stories = [
         </p>
       </div>
     ),
-    bg: "/img/menu/210.jpg",
+    bg: "/img/menu/214.jpg",
   },
   {
     id: 119,

@@ -422,6 +422,7 @@ footer {
   height: auto;
   display: flex;
   flex-direction: column;
+  font-family: var(--font-hina);
 }
 .footer-image {
   width: 240px;
@@ -448,11 +449,9 @@ small {
   margin-top: 80px;
 }
 .map {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   height: 320px;
-  margin: 24px;
-  border-radius: 32px;
 }
 
 .fade-in {
@@ -822,8 +821,6 @@ small {
 /* ベースレイアウト */
 .menu-page {
   max-width: 960px;
-  margin: 80px auto;
-  padding: 40px 16px 80px;
   line-height: 1.7;
   font-family: var(--font-noto-sans-jp), sans-serif;
 }
@@ -838,6 +835,10 @@ html {
 .menu-page__nav {
   padding: 16px 0;
   margin-bottom: 32px;
+  line-height: 2.2;
+  padding: 12px 0;
+  margin-bottom: 24px;
+  margin: 0px auto 100px 30px;
 }
 
 /* 一番外側（DRINK / SWEET）の並び */
@@ -851,9 +852,12 @@ html {
 
 /* DRINK / SWEET のラベル */
 .menu-page__nav > ul > li {
-  font-size: 0.9rem;
+  margin-top: 80px;
+  font-size: 24px;
   letter-spacing: 0.18em;
-  font-weight: 600;
+  font-weight: 400;
+  font-family: var(--font-fredericka), serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* DRINK / SWEET 直下の第一階層 */
@@ -861,6 +865,7 @@ html {
   margin-top: 8px;
   padding-left: 0;
   list-style: none;
+  line-height: 1.6;
 }
 
 /* 第一階層の各項目 */
@@ -872,7 +877,7 @@ html {
 .menu-page__nav li ul ul {
   margin-top: 4px;
   padding-left: 1.2em; /* インデント */
-  border-left: 1px solid #e0e0e0;
+  border-left: 1px solid var(--foreground);
 }
 
 /* 第二階層以降の li 間の余白 */
@@ -884,11 +889,11 @@ html {
 .menu-page__nav a {
   text-decoration: none;
   font-size: 0.8rem;
-  color: #444;
+  color: var(--foreground);
 }
 
 .menu-page__nav a:hover {
-  color: #111;
+  color: var(--foreground);
   text-decoration: underline;
 }
 
@@ -896,63 +901,62 @@ html {
 
 .menu-page__article {
   padding-top: 16px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 /* DRINK / SWEET の大見出し */
 .menu-page__article > h2 {
   margin: 48px 0 24px;
-  font-size: 1.1rem;
+  font-size: 32px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-weight: 600;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 8px;
+  font-weight: 400;
+  font-family: var(--font-fredericka);
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 40px;
 }
 
 /* 各メニューブロック */
 .menu-page__article > div {
   margin-bottom: 32px;
   padding-bottom: 24px;
-  border-bottom: 1px dashed #e0e0e0;
+  border-bottom: 1px dashed var(--foreground);
 }
 
 /* メニュー名 */
 .menu-page__article > div > h2 {
   margin: 0 0 8px;
-  font-size: 1rem;
+  font-size: 16px;
   letter-spacing: 0.05em;
+  font-weight: 600;
+  font-family: var(--font-noto-sans-jp);
 }
 
 /* 説明文 */
+
 .menu-page__article p {
   margin: 0;
   font-size: 0.85rem;
+  line-height: 2;
+  font-family: serif;
+}
+
+/* 画像（Next/Image）の見た目調整：サイズ・余白・角丸 */
+.menu-page__article img {
+  margin: 32px 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 32px; /* 角を丸く */
 }
 
 /* ---------- スマホ向け調整 ---------- */
 @media (max-width: 768px) {
-  .menu-page {
-    padding: 24px 16px 64px;
-  }
-
-  .menu-page__nav {
-    padding: 12px 0;
-    margin-bottom: 24px;
-  }
-
   .menu-page__nav > ul {
     flex-direction: column;
     gap: 12px;
   }
-
-  .menu-page__nav > ul > li {
-    font-size: 0.85rem;
-  }
-
-  .menu-page__nav a {
-    font-size: 0.8rem;
-  }
-
   .menu-page__article > h2 {
     margin: 32px 0 16px;
   }
