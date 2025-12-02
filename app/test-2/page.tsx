@@ -1,9 +1,9 @@
 "use client";
-
+import Image from "next/image";
 export default function MenuPageTest() {
   return (
-    <main>
-      <nav>
+    <main className="menu-page">
+      <nav className="menu-page__nav">
         <ul>
           {/* DRINK */}
           <li>
@@ -132,7 +132,7 @@ export default function MenuPageTest() {
         </ul>
       </nav>
 
-      <article>
+      <article className="menu-page__article">
         <h2>DRINK</h2>
 
         <div id="1000">
@@ -166,6 +166,12 @@ export default function MenuPageTest() {
             <br />
             ゆったりとした時間をお過ごしくださいませ
           </p>
+          <Image
+            src="/img/menu/1000.jpg"
+            width={800}
+            height={600}
+            alt="コーヒー"
+          />
         </div>
 
         <div id="1010">
@@ -179,6 +185,12 @@ export default function MenuPageTest() {
             <br />
             お砂糖を入れなくても飲みやすく女性に好評です
           </p>
+          <Image
+            src="/img/menu/1010.jpg"
+            alt="ラテ（アイス／ホット）"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1020">
@@ -188,6 +200,12 @@ export default function MenuPageTest() {
             <br />
             甘さ控えめなので最後まで楽しめます
           </p>
+          <Image
+            src="/img/menu/1020.jpg"
+            alt="メープルラテ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1030">
@@ -200,6 +218,12 @@ export default function MenuPageTest() {
             <br />
             柑橘系のグレープフルーツやジントニック系のお酒を思わせるような一杯。
           </p>
+          <Image
+            src="/img/menu/1030.jpg"
+            alt="エスプレッソトニック（春夏限定）"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1040">
@@ -226,6 +250,12 @@ export default function MenuPageTest() {
             <br />
             写真はココアバージョンです
           </p>
+          <Image
+            src="/img/menu/1040.jpg"
+            alt="チャイ（アイス／ホット）"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1050">
@@ -235,6 +265,12 @@ export default function MenuPageTest() {
             <br />
             コーヒーがマッチしたスイーツ系ドリンク
           </p>
+          <Image
+            src="/img/menu/1050.jpg"
+            alt="ダークモカ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1060">
@@ -246,6 +282,12 @@ export default function MenuPageTest() {
             <br />
             その時にしか味わえないもので常連様にも喜んでいただいてます。
           </p>
+          <Image
+            src="/img/menu/1060.jpg"
+            alt="気まぐれドリンク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1070">
@@ -255,6 +297,12 @@ export default function MenuPageTest() {
             <br />
             疲労回復や、夏バテ防止に。
           </p>
+          <Image
+            src="/img/menu/1070.jpg"
+            alt="紫蘇ソーダ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1080">
@@ -266,6 +314,12 @@ export default function MenuPageTest() {
             <br />
             想像できない味をぜひ体感してください
           </p>
+          <Image
+            src="/img/menu/1080.jpg"
+            alt="コーヒー檸檬ソーダ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1090">
@@ -275,11 +329,23 @@ export default function MenuPageTest() {
             <br />
             意外にも爽やかで何度も飲みたくなるような優しい味わいです
           </p>
+          <Image
+            src="/img/menu/1090.jpg"
+            alt="抹茶ドリンク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="1100">
           <h2>ほうじ茶ラテ</h2>
           <p>ほうじ茶の香ばしい香りとまろやかなミルクが相性抜群♪</p>
+          <Image
+            src="/img/menu/1100.jpg"
+            alt="ほうじ茶ラテ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <h2>SWEET</h2>
@@ -301,6 +367,12 @@ export default function MenuPageTest() {
             <br />
             お好みでソルトをつけてお召し上がりくださいませ
           </p>
+          <Image
+            src="/img/menu/2000.jpg"
+            alt="グルテンフリー定番バスクチーズケーキ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2010">
@@ -324,6 +396,12 @@ export default function MenuPageTest() {
             <br />
             手作りさせていただいております。
           </p>
+          <Image
+            src="/img/menu/2010.jpg"
+            alt="気まぐれスイーツ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2020">
@@ -335,6 +413,12 @@ export default function MenuPageTest() {
             <br />
             鏡開きにちなんで始めた気まぐれスイーツ
           </p>
+          <Image
+            src="/img/menu/2020.jpg"
+            alt="ぜんざいアフォガード"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2030">
@@ -344,6 +428,12 @@ export default function MenuPageTest() {
             <br />
             バレンタインの時期に気まぐれで登場
           </p>
+          <Image
+            src="/img/menu/2030.jpg"
+            alt="チョコムースケーキ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2040">
@@ -353,6 +443,12 @@ export default function MenuPageTest() {
             <br />
             チーズの酸味が相性抜群です！
           </p>
+          <Image
+            src="/img/menu/2040.jpg"
+            alt="焼き芋ブリュレバスク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2050">
@@ -364,6 +460,12 @@ export default function MenuPageTest() {
             <br />
             最後の一口までお楽しみいただけます
           </p>
+          <Image
+            src="/img/menu/2050.jpg"
+            alt="チョコバスク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2060">
@@ -373,6 +475,12 @@ export default function MenuPageTest() {
             <br />
             濃厚なカボチャで秋を楽しみましょう
           </p>
+          <Image
+            src="/img/menu/2060.jpg"
+            alt="かぼちゃバスク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2070">
@@ -382,6 +490,12 @@ export default function MenuPageTest() {
             <br />
             珈琲屋のティラミス風バスク
           </p>
+          <Image
+            src="/img/menu/2070.jpg"
+            alt="ティラミス風バスク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2080">
@@ -391,11 +505,23 @@ export default function MenuPageTest() {
             <br />
             濃厚な口溶けのバスクです
           </p>
+          <Image
+            src="/img/menu/2080.jpg"
+            alt="紅茶のバスク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2090">
           <h2>檸檬ゼリーとレアチーズケーキ</h2>
           <p>爽やかな檸檬でさっぱりと！</p>
+          <Image
+            src="/img/menu/2090.jpg"
+            alt="檸檬ゼリーとレアチーズケーキ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2100">
@@ -405,6 +531,12 @@ export default function MenuPageTest() {
             <br />
             浅煎りの珈琲と一緒にぜひ
           </p>
+          <Image
+            src="/img/menu/2100.jpg"
+            alt="檸檬バスク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2110">
@@ -414,6 +546,12 @@ export default function MenuPageTest() {
             <br />
             濃厚なアメリカーノと相性抜群です
           </p>
+          <Image
+            src="/img/menu/2110.jpg"
+            alt="ドライフルーツの米粉オールドファッションチーズケーキ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2120">
@@ -425,6 +563,12 @@ export default function MenuPageTest() {
             <br />
             ブリュレのパリッと食感も美味しさ増します
           </p>
+          <Image
+            src="/img/menu/2120.jpg"
+            alt="バナナブリュレバスク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2130">
@@ -434,6 +578,12 @@ export default function MenuPageTest() {
             <br />
             クランブルも米粉なので嬉しいポイント！
           </p>
+          <Image
+            src="/img/menu/2130.jpg"
+            alt="ブルーベリーと米粉のクランブルチーズケーキ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2140">
@@ -443,6 +593,12 @@ export default function MenuPageTest() {
             <br />
             秋のコーヒーにぴったりです
           </p>
+          <Image
+            src="/img/menu/2140.jpg"
+            alt="りんごと米粉のクランブルチーズケーキ"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2150">
@@ -452,6 +608,12 @@ export default function MenuPageTest() {
             <br />
             ほろ苦いカラメルのような香ばさがラテにぴったりです
           </p>
+          <Image
+            src="/img/menu/2150.jpg"
+            alt="黒糖ブリュレバスク"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2160">
@@ -473,11 +635,23 @@ export default function MenuPageTest() {
             <br />
             気まぐれで登場するので出逢えたらぜひ！
           </p>
+          <Image
+            src="/img/menu/2160.jpg"
+            alt="米粉マフィン"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2170">
           <h2>ジンジャー</h2>
           <p>浅煎りの珈琲との相性抜群なマフィンです</p>
+          <Image
+            src="/img/menu/2170.jpg"
+            alt="ジンジャー"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2180">
@@ -487,6 +661,7 @@ export default function MenuPageTest() {
             <br />
             角切りに入ったクリームチーズと相性ぴったりです！
           </p>
+          <Image src="/img/menu/2180.jpg" alt="金柑" width={800} height={600} />
         </div>
 
         <div id="2190">
@@ -496,6 +671,12 @@ export default function MenuPageTest() {
             <br />
             ラテとの相性抜群です
           </p>
+          <Image
+            src="/img/menu/2190.jpg"
+            alt="チョコバナナマフィン"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2200">
@@ -503,6 +684,12 @@ export default function MenuPageTest() {
           <p>
             しっとりしたマフィンに爽やかなブルーベリーの果実感が味わえる人気マフィン
           </p>
+          <Image
+            src="/img/menu/2200.jpg"
+            alt="ブルーベリーとクリチのマフィン"
+            width={800}
+            height={600}
+          />
         </div>
 
         <div id="2210">
@@ -512,6 +699,12 @@ export default function MenuPageTest() {
             <br />
             ラテとの相性抜群です！
           </p>
+          <Image
+            src="/img/menu/2210.jpg"
+            alt="抹茶マフィン"
+            width={800}
+            height={600}
+          />
         </div>
       </article>
     </main>
