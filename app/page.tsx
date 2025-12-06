@@ -774,9 +774,6 @@ export default function Home() {
               <Link href="/menu">menu</Link>
             </li>
             <li>
-              <Link href="/memory">event memory</Link>
-            </li>
-            <li>
               <Link href="/view">shop view</Link>
             </li>
             <li>

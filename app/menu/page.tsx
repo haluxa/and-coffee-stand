@@ -1,661 +1,745 @@
 "use client";
-
 import Image from "next/image";
-
-export default function MenuPage() {
+import Footer from "@/components/footer";
+export default function MenuPageTest() {
   return (
-    <main className="menu_page">
-      <div className="menu">
-        <h1>Menu</h1>
-        <nav>
-          <h2>Drink</h2>
-          <ul>
-            <li>
-              <a href="#coffee">コーヒー(ice/hot)</a>
-            </li>
-            <li>
-              <a href="#latte">ラテ(ice/hot)</a>
-            </li>
-            <li>
-              <a href="#maple-latte">メープルラテ</a>
-            </li>
-            <li>
-              <a href="#espresso-tonic">エスプレッソトニック</a>
-            </li>
-            <li>
-              <a href="#chai">チャイ(ice/hot)</a>
-            </li>
-            <li>
-              <a href="#dark-mocha">ダークモカ</a>
-            </li>
-            <li>
-              <a href="#special-drink">気まぐれドリンク</a>
-            </li>
-            <ul>
-              <li>
-                <a href="#shiso-soda">紫蘇ソーダ</a>
-              </li>
-              <li>
-                <a href="#coffee-lemon soda">コーヒー檸檬ソーダ</a>
-              </li>
-              <li>
-                <a href="#matcha-drink">抹茶ドリンク</a>
-              </li>
-              <li>
-                <a href="#hojicha-latte">ほうじ茶ラテ</a>
-              </li>
-              <li>
-                <a href="#panna-cotta">桃とジュレジャムのパンナコッタ</a>
-              </li>
-            </ul>
-          </ul>
-          <h2>Sweets</h2>
-          <ul>
-            <li>
-              <a href="#Burnt-Basque-Cheesecake">バスクチーズケーキ（gf）</a>
-            </li>
-            <li>
-              <a href="#Seasonal-Sweets">気まぐれスイーツ</a>
-            </li>
-            <ul>
-              <li>
-                <a href="#Zenzai-Affogato">ぜんざいアフォガード（gf）</a>
-              </li>
-              <li>
-                <a href="#Chocolate-Mousse-Cake">チョコムースケーキ（gf）</a>
-              </li>
-              <li>
-                <a href="#Baked-Sweet-Potato-Brulee-Basque">
-                  焼き芋ブリュレバスク（gf）
-                </a>
-              </li>
-              <li>
-                <a href="#Pumpkin-Basque">カボチャのバスク（gf）</a>
-              </li>
-              <li>
-                <a href="#Lemon-Basque">檸檬バスク</a>
-              </li>
-              <li>
-                <a href="#Lemon-Jelly">檸檬ゼリー</a>
-              </li>
-              <li>
-                <a href="#Tea-Basque">紅茶のバスク</a>
-              </li>
-              <li>
-                <a href="#Tiramisu-style-Basque">ティラミス風バスク</a>
-              </li>
-              <li>
-                <a href="#Blueberry-and-Rice-Flour-Crumble-Cheesecake">
-                  ブルーベリーと米粉のクランブルチーズケーキ（gf）
-                </a>
-              </li>
-              <li>
-                <a href="#Brown-Sugar-Brulee-Baked-Cheesecake">
-                  黒糖ブリュレベイクドチーズケーキ（gf）
-                </a>
-              </li>
-            </ul>
-            <li>
-              <a href="#Rice-Flour-Muffin">米粉マフィン（gf）</a>
-            </li>
-            <ul>
-              <li>
-                <a href="#Ginger">米粉のジンジャーナッツマフィン</a>
-              </li>
-              <li>
-                <a href="#Kinkan">米粉金柑とクリチのマフィン</a>
-              </li>
-              <li>
-                <a href="#Choco-Banana-Muffin">チョコバナナマフィン</a>
-              </li>
-              <li>
-                <a href="#Blueberry-and-Cream-Cheese-Muffin">
-                  ブルーベリーとクリチのマフィン
-                </a>
-              </li>
-              <li>
-                <a href="#Matcha-Muffin">こし餡とクリチの抹茶マフィン</a>
-              </li>
-            </ul>
-          </ul>
-        </nav>
-        <section className="menu-drink">
-          <h2>Drink</h2>
-          <article id="coffee">
-            <div className="coffee_ice_wrap">
-              <svg
-                viewBox="0 0 186 143"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              >
-                <defs>
-                  <clipPath id="coffee_ice_Blob">
-                    <path d="M15.6616 113.915C-0.29516 151.518 53.6089 142.695 74.5654 138.538C93.5124 134.78 133.497 146.135 148.999 121.021C168.376 89.6296 164.07 105.541 180.433 75.4389C196.797 45.3371 170.099 19.5356 148.999 5.34475C127.899 -8.84607 105.938 12.6551 86.5608 12.6551C32.9084 12.6551 7.3319 24.6959 2.74317 38.6604C-10.758 79.7477 42.2076 51.3574 15.6616 113.915Z" />
-                  </clipPath>
-                </defs>
-                <image
-                  href="/img/menu_image_coffee(ice).jpg"
-                  width="186"
-                  height="143"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#coffee_ice_Blob)"
-                />
-              </svg>
-            </div>
-            <h3>コーヒー(ice/hot)</h3>
-            <p>
-              珈琲豆はグレードの最も高いと言われる
-              <br />
-              “スペシャルティーコーヒー”を使用しております。
-            </p>
-          </article>
-          <article id="latte">
-            <div className="latte_hot_wrap">
-              <svg
-                viewBox="0 0 264 185"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              >
-                <defs>
-                  <clipPath id="latte_hot_Blob">
-                    <path d="M106.275 2.62795C47.6276 -4.00376 29.0244 18.4177 27.0537 30.4574C-18.4691 30.4574 5.77029 94.4061 12.2735 134.67C18.7768 174.934 77.3061 185 129.923 185C182.541 185 210.919 154.21 228.063 157.763C245.208 161.315 261.171 117.499 263.536 84.3401C265.901 51.1815 259.989 11.5097 228.063 2.62795C196.138 -6.25377 179.585 10.9176 106.275 2.62795Z" />
-                  </clipPath>
-                </defs>
-                <image
-                  href="/img/menu_image_latte(hot).jpg"
-                  width="264"
-                  height="185"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#latte_hot_Blob)"
-                />
-              </svg>
-            </div>
-            <h3>ラテ(hot)</h3>
-            <p>
-              濃厚なエスプレッソとミルクが溶け合うラテは
-              <br />
-              なめらかな口当たりとアロマのような香り豊かな一杯。
-              <br />
-              当店のラテは苦味の少ない豆を使用してるので
-              お砂糖を入れなくても飲みやすく女性に好評です。
-              <br />
-            </p>
-            <div className="latte_ice_wrap">
-              <Image
-                src="/img/menu_image_latte(ice).jpg"
-                alt="アイスラテの写真"
-                width={6240}
-                height={4160}
-              />
-            </div>
-            <h3 className="h3_right">ラテ(ice)</h3>
-          </article>
-          <article id="maple-latte">
-            <div className="maple-latte_wrap">
-              <svg
-                viewBox="0 0 212 300"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              >
-                <defs>
-                  <clipPath id="maple-latte_Blob">
-                    <path d="M22.1456 65.8761C-45.1962 187.565 68.3999 256.246 7.18038 274.603C77.9231 333.754 228.25 274.374 210.566 249.447C174.514 198.63 199.002 209.643 199.002 159.01C199.002 137.253 156.148 127.096 190.839 104.805C238.454 74.2096 160.229 58.5718 156.148 47.6936C184.037 36.6291 122.137 -25.9208 45.2727 12.1529C18.064 12.1529 -9.82506 47.6936 22.1456 65.8761Z" />
-                  </clipPath>
-                </defs>
-                <image
-                  href="/img/menu_image_maple-latte.jpg"
-                  width="212"
-                  height="300"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#maple-latte_Blob)"
-                />
-              </svg>
-            </div>
-            <h3>メープルラテ</h3>
-            <p>
-              生キャラメルの様なリッチな味わいのメープルラテ
-              <br />
-              甘さ控えめなので最後まで楽しめます
-            </p>
-          </article>
-          <article id="espresso-tonic">
-            <div className="espresso-tonic_wrap">
-              <svg
-                viewBox="0 0 200 140"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              >
-                <defs>
-                  <clipPath id="espresso-tonic_Blob">
-                    <path d="M191.757 106.363C172.633 147.991 95.0741 150.64 57.534 116.203C13.336 140.423 6.53627 114.436 8.66117 98.4158C-6.44928 69.7806 -12.5171 10.2395 84.0954 1.157C204.861 -10.1962 210.881 64.7348 191.757 106.363Z" />
-                  </clipPath>
-                </defs>
-                <image
-                  href="/img/menu_image_espresso-tonic.jpg"
-                  width="200"
-                  height="140"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="url(#espresso-tonic_Blob)"
-                />
-              </svg>
-            </div>
-            <h3>エスプレッソトニック</h3>
-            <span>※春夏限定</span>
-            <p>
-              エスプレッソとトニックウォーターを割った
-              <br />
-              新感覚のアレンジコーヒードリンク
-              <br />
-              柑橘系のグレープフルーツやジントニック系のお酒を思わせるような一杯。
-            </p>
-          </article>
-          <article id="chai">
-            <div className="chai_hot_wrap">
-              <div className="chai_hot_img">
-                <Image
-                  src="/img/menu_image_chai(hot).jpg"
-                  alt="チャイ(hot)の写真"
-                  width={6240}
-                  height={4160}
-                />
-              </div>
-            </div>
-            <h3>チャイ(hot)</h3>
-            <span>カフェインが気になる日の冒険</span>
-            <p>
-              チャイはスパイスを使用したインド式のミルクティー
-              <br />
-              材料は全て天然素材で身体に優しく
-              <br />
-              カルダモン・シナモン・生姜などのスパイスで
-              <br />
-              リラックス効果をもたらす一杯です
-              <br />
-            </p>
-            <div className="chai_ice_wrap">
-              <div className="chai_ice_img">
-                <Image
-                  src="/img/menu_image_chai(ice).jpg"
-                  alt="チャイ(ice)の写真"
-                  width={6240}
-                  height={4160}
-                />
-              </div>
-            </div>
-            <h3>チャイ(ice)</h3>
-            <p>
-              当店のチャイはデカフェなので90%以上カフェインが
-              <br />
-              除去されたものです ノーマルのチャイソイラテに
-              <br />
-              蜂蜜やココアを足したメニューも！ 写真はココアバージョンです
-            </p>
-          </article>
-          <article id="dark-mocha">
-            <div className="dark-mocha_wrap">
-              <div className="dark-mocha_img">
-                <Image
-                  src="/img/menu_image_dark-mocha.jpg"
-                  alt="ダークモカの写真"
-                  width={4000}
-                  height={6016}
-                />
-              </div>
-            </div>
-            <h3>ダークモカ</h3>
-            <p>
-              ダークチョコレートのほろ苦さとミルク、
-              <br />
-              コーヒーがマッチしたスイーツ系ドリンク
-            </p>
-          </article>
-          <article id="special-drink">
-            <h3>気まぐれドリンク</h3>
-            <p>季節ごとに変わるスペシャルドリンク</p>
-            <p>
-              旬なものを使用した様々なドリンクが
-              <br />
-              期間限定で登場することも。
-              <br />
-              その時にしか味わえないもので常連様にも喜んでいただいてます。
-            </p>
-            <article id="shiso-soda">
-              <div className="shiso-soda_wrap">
-                <div className="shiso-soda_img">
-                  <Image
-                    src="/img/menu_image_shiso-soda.jpg"
-                    alt="紫蘇ソーダの写真"
-                    width={4160}
-                    height={6240}
-                  />
-                </div>
-              </div>
-              <h4>紫蘇ソーダ</h4>
-            </article>
-            <article id="coffee-lemon soda">
-              <div className="coffee-lemon-soda_wrap">
-                <div className="coffee-lemon-soda_img">
-                  <Image
-                    src="/img/menu_image_coffee-lemon-soda.jpg"
-                    alt="コーヒー檸檬ソーダの写真"
-                    width={6240}
-                    height={4160}
-                  />
-                </div>
-              </div>
-              <h4>コーヒー檸檬ソーダ</h4>
-            </article>
-            <article id="matcha-drink">
-              <div className="matcha-drink_wrap">
-                <div className="matcha-drink_img">
-                  <Image
-                    src="/img/menu_image_matcha-drink.jpg"
-                    alt="抹茶ドリンクの写真"
-                    width={4160}
-                    height={6240}
-                  />
-                </div>
-              </div>
-              <h4>抹茶ドリンク</h4>
-            </article>
-            <article id="hojicha-latte">
-              <div className="hojicha-latte_wrap">
-                <div className="hojicha-latte_img">
-                  <Image
-                    src="/img/menu_image_hojicha-latte.jpg"
-                    alt="ほうじ茶ラテの写真"
-                    width={4160}
-                    height={6240}
-                  />
-                </div>
-              </div>
-              <h4>ほうじ茶ラテ</h4>
-            </article>
-            <article id="panna-cotta">
-              <div className="panna-cotta_wrap">
-                <div className="panna-cotta_img">
-                  <Image
-                    src="/img/menu_image_panna-cotta.jpg"
-                    alt="桃とジュレジャムのパンナコッタの写真"
-                    width={4160}
-                    height={6240}
-                  />
-                </div>
-              </div>
-              <h4>桃とジュレジャムのパンナコッタ</h4>
-            </article>
-          </article>
-        </section>
-        <section className="menu-sweets">
-          <h2>Sweets</h2>
-          <article id="Burnt-Basque-Cheesecake">
-            <div className="Burnt-Basque-Cheesecake_wrap">
-              <div className="Burnt-Basque-Cheesecake_img">
-                <Image
-                  src="/img/menu_image_Burnt-Basque-Cheesecake.jpg"
-                  alt="バスクチーズケーキ（gf）の写真"
-                  width={6016}
-                  height={4000}
-                />
-              </div>
-            </div>
-            <h3>バスクチーズケーキ（gf）</h3>
-            <p>
-              定番のバスクは何度でも食べたくなる
-              <br />
-              “simple is the best!!”
-              <br />
-              でありながら
-              <br />
-              濃厚で滑らかな口溶けにこだわりました
-              <br />
-              グルテンフリーなのも嬉しいポイント♪
-              <br />
-              迷ったらまずはぜひこちらを！
-              <br />
-              お好みでソルトをつけてお召し上がりくださいませ
-            </p>
-          </article>
-          <article id="Seasonal-Sweets">
-            <h3>気まぐれスイーツ</h3>
-            <p>
-              当店は定番バスクチーズケーキ以外にも
-              <br />
-              何度来ても楽しめる様に
-              <br />
-              季節に合わせたスイーツが登場いたします！
-              <br />
-              “今年も食べれるー！”と
-              <br />
-              毎年の楽しみにしていただいてるスイーツから新作まで。
-              <br />
-              可能な限りグルテンフリーを意識し甘さ控えめに
-              <br />
-              手作りさせていただいております。
-              <br />
-            </p>
-          </article>
-          <article id="Zenzai-Affogato">
-            <div className="Zenzai-Affogato_wrap">
-              <div className="Zenzai-Affogato_img">
-                <Image
-                  src="/img/menu_image_Zenzai-Affogato.jpg"
-                  alt="ぜんざいアフォガード（gf）の写真"
-                  width={770}
-                  height={506}
-                />
-              </div>
-            </div>
-            <h3>ぜんざいアフォガード（gf）</h3>
-          </article>
-          <article id="Chocolate-Mousse-Cake">
-            <div className="Chocolate-Mousse-Cake_wrap">
-              <div className="Chocolate-Mousse-Cake_img">
-                <Image
-                  src="/img/menu_image_Chocolate-Mousse-Cake.jpg"
-                  alt="チョコムースケーキ（gf）の写真"
-                  width={6240}
-                  height={4160}
-                />
-              </div>
-            </div>
-            <h3>チョコムースケーキ（gf）</h3>
-          </article>
-          <article id="Baked-Sweet-Potato-Brulee-Basque">
-            <div className="Baked-Sweet-Potato-Brulee-Basque_wrap">
-              <div className="Baked-Sweet-Potato-Brulee-Basque_img">
-                <Image
-                  src="/img/menu_image_Baked-Sweet-Potato-Brulee-Basque.jpg"
-                  alt="焼き芋ブリュレバスク（gf）の写真"
-                  width={6016}
-                  height={4000}
-                />
-              </div>
-            </div>
-            <h3>焼き芋ブリュレバスク（gf）</h3>
-          </article>
-          <article id="Pumpkin-Basque">
-            <div className="Pumpkin-Basque_wrap">
-              <div className="Pumpkin-Basque_img">
-                <Image
-                  src="/img/menu_image_Pumpkin-Basque.jpg"
-                  alt="カボチャのバスク（gf）の写真"
-                  width={6016}
-                  height={4000}
-                />
-              </div>
-            </div>
-            <h3>カボチャのバスク（gf）</h3>
-          </article>
-          <article id="Lemon-Basque">
-            <div className="Lemon-Basque_wrap">
-              <div className="Lemon-Basque_img">
-                <Image
-                  src="/img/menu_image_Lemon-Basque.jpg"
-                  alt="檸檬バスクの写真"
-                  width={6240}
-                  height={4160}
-                />
-              </div>
-            </div>
-            <h3>檸檬バスク</h3>
-          </article>
-          <article id="Lemon-Jelly">
-            <div className="Lemon-Jelly_wrap">
-              <div className="Lemon-Jelly_img">
-                <Image
-                  src="/img/menu_image_Lemon-Jelly.jpg"
-                  alt="檸檬ゼリーの写真"
-                  width={6240}
-                  height={4160}
-                />
-              </div>
-            </div>
-            <h3>檸檬ゼリー</h3>
-          </article>
-          <article id="Tea-Basque">
-            <div className="Tea-Basque_wrap">
-              <div className="Tea-Basque_img">
-                <Image
-                  src="/img/menu_image_Tea-Basque.jpg"
-                  alt="紅茶のバスクの写真"
-                  width={6240}
-                  height={4160}
-                />
-              </div>
-            </div>
-            <h3>紅茶のバスク</h3>
-          </article>
-          <article id="Tiramisu-style-Basque">
-            <div className="Tiramisu-style-Basque_wrap">
-              <div className="Tiramisu-style-Basque_img">
-                <Image
-                  src="/img/menu_image_Tiramisu-style-Basque.jpg"
-                  alt="ティラミス風バスクの写真"
-                  width={1170}
-                  height={1751}
-                />
-              </div>
-            </div>
-            <h3>ティラミス風バスク</h3>
-          </article>
-          <article id="Blueberry-and-Rice-Flour-Crumble-Cheesecake">
-            <div className="Blueberry-and-Rice-Flour-Crumble-Cheesecake_wrap">
-              <div className="Blueberry-and-Rice-Flour-Crumble-Cheesecake_img">
-                <Image
-                  src="/img/menu_image_Blueberry-and-Rice-Flour-Crumble-Cheesecake.jpg"
-                  alt="ブルーベリーと米粉のクランブルチーズケーキ（gf）の写真"
-                  width={4160}
-                  height={6240}
-                />
-              </div>
-            </div>
-            <h3>ブルーベリーと米粉のクランブルチーズケーキ（gf）</h3>
-          </article>
-          <article id="Brown-Sugar-Brulee-Baked-Cheesecake">
-            <div className="Brown-Sugar-Brulee-Baked-Cheesecake_wrap">
-              <div className="Brown-Sugar-Brulee-Baked-Cheesecake_img">
-                <Image
-                  src="/img/menu_image_Brown-Sugar-Brulee-Baked-Cheesecake.jpg"
-                  alt="黒糖ブリュレベイクドチーズケーキ（gf）の写真"
-                  width={6240}
-                  height={4160}
-                />
-              </div>
-            </div>
-            <h3>黒糖ブリュレベイクドチーズケーキ（gf）</h3>
-          </article>
-          <article id="Rice-Flour-Muffin">
-            <h3>米粉マフィン（gf）</h3>
-            <p>
-              気まぐれで登場するマフィンも、
-              <br />
-              グルテンフリーでおつくりさせていただいております
-              <br />
-              バター不使用なので、ヘルシー
-              <br />
-              そしてふわっと、しっとり。
-              <br />
-              レシピも季節に合わせた果物や
-              <br />
-              紅茶やコーヒーを使用。
-              <br />
-              何度もリピートしていただいてる好評メニューです！
-              <br />
-              気まぐれで登場するので出逢えたらぜひ！
-            </p>
-            <article id="Ginger">
-              <div className="Ginger_wrap">
-                <div className="Ginger_img">
-                  <Image
-                    src="/img/menu_image_Ginger.jpg"
-                    alt="米粉のジンジャーナッツマフィンの写真"
-                    width={4160}
-                    height={6240}
-                  />
-                </div>
-              </div>
-              <h4>米粉のジンジャーナッツマフィン</h4>
-            </article>
-            <article id="Kinkan">
-              <div className="Kinkan_wrap">
-                <div className="Kinkan_img">
-                  <Image
-                    src="/img/menu_image_Kinkan.jpg"
-                    alt="米粉金柑とクリチのマフィンの写真"
-                    width={4160}
-                    height={6240}
-                  />
-                </div>
-              </div>
-              <h4>米粉金柑とクリチのマフィン</h4>
-            </article>
-            <article id="Choco-Banana-Muffin">
-              <div className="Choco-Banana-Muffin_wrap">
-                <div className="Choco-Banana-Muffin_img">
-                  <Image
-                    src="/img/menu_image_Choco-Banana-Muffin.jpg"
-                    alt="チョコバナナマフィンの写真"
-                    width={4160}
-                    height={6240}
-                  />
-                </div>
-              </div>
-              <h4>チョコバナナマフィン</h4>
-            </article>
-            <article id="Blueberry-and-Cream-Cheese-Muffin">
-              <div className="Blueberry-and-Cream-Cheese-Muffin_wrap">
-                <div className="Blueberry-and-Cream-Cheese-Muffin_img">
-                  <Image
-                    src="/img/menu_image_Blueberry-and-Cream-Cheese-Muffin.jpg"
-                    alt="ブルーベリーとクリチのマフィンの写真"
-                    width={6240}
-                    height={4160}
-                  />
-                </div>
-              </div>
-              <h4>ブルーベリーとクリチのマフィン</h4>
-            </article>
-            <article id="Matcha-Muffin">
-              <div className="Matcha-Muffin_wrap">
-                <div className="Matcha-Muffin_img">
-                  <Image
-                    src="/img/menu_image_Matcha-Muffin.jpg"
-                    alt="こし餡とクリチの抹茶マフィンの写真"
-                    width={6240}
-                    height={4160}
-                  />
-                </div>
-              </div>
-              <h4>こし餡とクリチの抹茶マフィン</h4>
-            </article>
-          </article>
-        </section>
+    <main className="menu-page">
+      <div id="bg-video-stack" aria-hidden="true">
+        <div className="bg-video-track">
+          <video id="bg-video-1" autoPlay loop muted playsInline>
+            <source
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+          <video id="bg-video-2" autoPlay loop muted playsInline>
+            <source
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
+              type="video/mp4"
+            />
+          </video>
+          <video id="bg-video-3" autoPlay loop muted playsInline>
+            <source
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
+              type="video/mp4"
+            />
+          </video>
+          <video id="bg-video-4" autoPlay loop muted playsInline>
+            <source
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
+              type="video/mp4"
+            />
+          </video>
+        </div>
       </div>
+
+      <div className="bg-video-overlay" aria-hidden="true" />
+      <nav className="menu-page__nav">
+        <ul>
+          {/* DRINK */}
+          <li>
+            DRINK
+            <ul>
+              <li>
+                <a href="#1000">コーヒー（アイス／ホット）</a>
+              </li>
+              <li>
+                <a href="#1010">ラテ（アイス／ホット）</a>
+              </li>
+              <li>
+                <a href="#1020">メープルラテ</a>
+              </li>
+              <li>
+                <a href="#1030">エスプレッソトニック（春夏限定）</a>
+              </li>
+              <li>
+                <a href="#1040">チャイ（アイス／ホット）</a>
+              </li>
+              <li>
+                <a href="#1050">ダークモカ</a>
+              </li>
+              <li>
+                <a href="#1060">気まぐれドリンク</a>
+                <ul>
+                  <li>
+                    <a href="#1070">紫蘇ソーダ</a>
+                  </li>
+                  <li>
+                    <a href="#1080">コーヒー檸檬ソーダ</a>
+                  </li>
+                  <li>
+                    <a href="#1090">抹茶ドリンク</a>
+                  </li>
+                  <li>
+                    <a href="#1100">ほうじ茶ラテ</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          {/* SWEET */}
+          <li>
+            SWEET
+            <ul>
+              <li>
+                <a href="#2000">グルテンフリー定番バスクチーズケーキ</a>
+              </li>
+
+              <li>
+                <a href="#2010">気まぐれスイーツ</a>
+                <ul>
+                  <li>
+                    <a href="#2020">ぜんざいアフォガード</a>
+                  </li>
+                  <li>
+                    <a href="#2030">チョコムースケーキ</a>
+                  </li>
+                  <li>
+                    <a href="#2040">焼き芋ブリュレバスク</a>
+                  </li>
+                  <li>
+                    <a href="#2050">チョコバスク</a>
+                  </li>
+                  <li>
+                    <a href="#2060">かぼちゃバスク</a>
+                  </li>
+                  <li>
+                    <a href="#2070">ティラミス風バスク</a>
+                  </li>
+                  <li>
+                    <a href="#2080">紅茶のバスク</a>
+                  </li>
+                  <li>
+                    <a href="#2090">檸檬ゼリーとレアチーズケーキ</a>
+                  </li>
+                  <li>
+                    <a href="#2100">檸檬バスク</a>
+                  </li>
+                  <li>
+                    <a href="#2110">
+                      ドライフルーツの米粉オールドファッションチーズケーキ
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#2120">バナナブリュレバスク</a>
+                  </li>
+                  <li>
+                    <a href="#2130">
+                      ブルーベリーと米粉のクランブルチーズケーキ
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#2140">りんごと米粉のクランブルチーズケーキこ</a>
+                  </li>
+                  <li>
+                    <a href="#2150">黒糖ブリュレバスク</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#2160">米粉マフィン</a>
+                <ul>
+                  <li>
+                    <a href="#2170">ジンジャー</a>
+                  </li>
+                  <li>
+                    <a href="#2180">金柑</a>
+                  </li>
+                  <li>
+                    <a href="#2190">チョコバナナマフィン</a>
+                  </li>
+                  <li>
+                    <a href="#2200">ブルーベリーとクリチのマフィン</a>
+                  </li>
+                  <li>
+                    <a href="#2210">抹茶マフィン</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <article className="menu-page__article">
+        <h2>DRINK</h2>
+
+        <div id="1000">
+          <h2>コーヒー（アイス／ホット）</h2>
+          <p>
+            珈琲豆はグレードの最も高いと言われる
+            <br />
+            “スペシャルティーコーヒー”を使用しております
+            <br />
+            それらは生産からカップまでの全工程で品質管理が行われ
+            <br />
+            特定の評価基準をクリアした高品質なコーヒーです
+            <br />
+            それはアロマのように香り高く、
+            <br />
+            珈琲なのに甘味を感じられ
+            <br />
+            雑味はなく透明感があり、冷めても美味しい珈琲と言われています
+            <br />
+            そしてどれを飲んでも全く違う味がすること
+            <br />
+            珈琲はどれも一緒と思っていたわたしですが
+            <br />
+            今は選ぶのが楽しいひと時になってます
+            <br />
+            当店は3種類の珈琲豆からお選びいただけます
+            <br />
+            どっしりとした香ばしいものからまるで紅茶のようにすっきりしたもの
+            <br />
+            ご注文頂いてから一杯、一杯豆から挽いてお淹れ致します
+            <br />
+            ゆったりとした時間をお過ごしくださいませ
+          </p>
+          <Image
+            src="/img/menu/1000.jpg"
+            width={800}
+            height={600}
+            alt="コーヒー"
+          />
+        </div>
+
+        <div id="1010">
+          <h2>ラテ（アイス／ホット）</h2>
+          <p>
+            濃厚なエスプレッソとミルクが溶け合うラテは
+            <br />
+            なめらかな口当たりとアロマのような香り豊かな一杯。
+            <br />
+            当店のラテは苦味の少ない豆を使用してるので
+            <br />
+            お砂糖を入れなくても飲みやすく女性に好評です
+          </p>
+          <Image
+            src="/img/menu/1010.jpg"
+            alt="ラテ（アイス／ホット）"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1020">
+          <h2>メープルラテ</h2>
+          <p>
+            生キャラメルの様なリッチな味わいのメープルラテ
+            <br />
+            甘さ控えめなので最後まで楽しめます
+          </p>
+          <Image
+            src="/img/menu/1020.jpg"
+            alt="メープルラテ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1030">
+          <h2>エスプレッソトニック（春夏限定）</h2>
+          <p>
+            エスプレッソとトニックウォーターを割った
+            <br />
+            新感覚のアレンジコーヒードリンク
+            <br />
+            <br />
+            柑橘系のグレープフルーツやジントニック系のお酒を思わせるような一杯。
+          </p>
+          <Image
+            src="/img/menu/1030.jpg"
+            alt="エスプレッソトニック（春夏限定）"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1040">
+          <h2>チャイ（アイス／ホット）</h2>
+          <p>
+            カフェインが気になる日の冒険&quot;チャイ&quot;
+            <br />
+            チャイはスパイスを使用したインド式のミルクティー
+            <br />
+            材料は全て天然素材で身体に優しく
+            <br />
+            カルダモン・シナモン・生姜などのスパイスで
+            <br />
+            リラックス効果をもたらす一杯です
+            <br />
+            当店のチャイはデカフェなので90％以上カフェインが
+            <br />
+            除去されたものです
+            <br />
+            <br />
+            ノーマルのチャイソイラテに
+            <br />
+            蜂蜜やココアを足したメニューも！
+            <br />
+            写真はココアバージョンです
+          </p>
+          <Image
+            src="/img/menu/1040.jpg"
+            alt="チャイ（アイス／ホット）"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1050">
+          <h2>ダークモカ</h2>
+          <p>
+            ダークチョコレートのほろ苦さとミルク、
+            <br />
+            コーヒーがマッチしたスイーツ系ドリンク
+          </p>
+          <Image
+            src="/img/menu/1050.jpg"
+            alt="ダークモカ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1060">
+          <h2>気まぐれドリンク</h2>
+          <p>
+            旬なものを使用した様々なドリンクが
+            <br />
+            期間限定で登場することも。
+            <br />
+            その時にしか味わえないもので常連様にも喜んでいただいてます。
+          </p>
+          <Image
+            src="/img/menu/1060.jpg"
+            alt="気まぐれドリンク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1070">
+          <h2>紫蘇ソーダ</h2>
+          <p>
+            独特な爽やかな香りと鮮やかな色で見た目も華やかな一杯。
+            <br />
+            疲労回復や、夏バテ防止に。
+          </p>
+          <Image
+            src="/img/menu/1070.jpg"
+            alt="紫蘇ソーダ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1080">
+          <h2>コーヒー檸檬ソーダ</h2>
+          <p>
+            大好きな珈琲屋さんから伝授してもらった
+            <br />
+            店主も大好きな一杯。
+            <br />
+            想像できない味をぜひ体感してください
+          </p>
+          <Image
+            src="/img/menu/1080.jpg"
+            alt="コーヒー檸檬ソーダ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1090">
+          <h2>抹茶ドリンク</h2>
+          <p>
+            コクのある黒糖で仕上げた抹茶ドリンクは
+            <br />
+            意外にも爽やかで何度も飲みたくなるような優しい味わいです
+          </p>
+          <Image
+            src="/img/menu/1090.jpg"
+            alt="抹茶ドリンク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="1100">
+          <h2>ほうじ茶ラテ</h2>
+          <p>ほうじ茶の香ばしい香りとまろやかなミルクが相性抜群♪</p>
+          <Image
+            src="/img/menu/1100.jpg"
+            alt="ほうじ茶ラテ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <h2>SWEET</h2>
+
+        <div id="2000">
+          <h2>グルテンフリー定番バスクチーズケーキ</h2>
+          <p>
+            定番のバスクは何度でも食べたくなる
+            <br />
+            &quot;simple is the best!!&quot;
+            <br />
+            でありながら
+            <br />
+            濃厚で滑らかな口溶けにこだわりました
+            <br />
+            グルテンフリーなのも嬉しいポイント♪
+            <br />
+            迷ったらまずはぜひこちらを！
+            <br />
+            お好みでソルトをつけてお召し上がりくださいませ
+          </p>
+          <Image
+            src="/img/menu/2000.jpg"
+            alt="グルテンフリー定番バスクチーズケーキ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2010">
+          <h2>気まぐれスイーツ</h2>
+          <p>
+            当店は定番バスクチーズケーキ以外にも
+            <br />
+            何度来ても楽しめる様に
+            <br />
+            季節に合わせたスイーツが登場いたします！
+            <br />
+            常連様に今年も食べれるー！と
+            <br />
+            毎年の楽しみにしていただいてるような
+            <br />
+            スイーツから新作まで。
+            <br />
+            可能な限りグルテンフリーを意識し
+            <br />
+            甘さ控えめで最後まで楽しめる。を心がけ
+            <br />
+            手作りさせていただいております。
+          </p>
+          <Image
+            src="/img/menu/2010.jpg"
+            alt="気まぐれスイーツ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2020">
+          <h2>ぜんざいアフォガード</h2>
+          <p>
+            焼きたてのお餅にバニラアイス
+            <br />
+            ぜんざい、エスプレッソをかけた
+            <br />
+            鏡開きにちなんで始めた気まぐれスイーツ
+          </p>
+          <Image
+            src="/img/menu/2020.jpg"
+            alt="ぜんざいアフォガード"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2030">
+          <h2>チョコムースケーキ</h2>
+          <p>
+            濃厚な口溶けのチョコムースは
+            <br />
+            バレンタインの時期に気まぐれで登場
+          </p>
+          <Image
+            src="/img/menu/2030.jpg"
+            alt="チョコムースケーキ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2040">
+          <h2>焼き芋ブリュレバスク</h2>
+          <p>
+            焼き芋ブリュレの香ばしさと
+            <br />
+            チーズの酸味が相性抜群です！
+          </p>
+          <Image
+            src="/img/menu/2040.jpg"
+            alt="焼き芋ブリュレバスク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2050">
+          <h2>チョコバスク</h2>
+          <p>
+            チョコレートとチーズを合わせることで
+            <br />
+            サッパリとしたくどくないチョコバスクで
+            <br />
+            最後の一口までお楽しみいただけます
+          </p>
+          <Image
+            src="/img/menu/2050.jpg"
+            alt="チョコバスク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2060">
+          <h2>かぼちゃバスク</h2>
+          <p>
+            毎年秋に楽しみにしてる方も多いスイーツ
+            <br />
+            濃厚なカボチャで秋を楽しみましょう
+          </p>
+          <Image
+            src="/img/menu/2060.jpg"
+            alt="かぼちゃバスク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2070">
+          <h2>ティラミス風バスク</h2>
+          <p>
+            当店のコーヒー豆を使用した
+            <br />
+            珈琲屋のティラミス風バスク
+          </p>
+          <Image
+            src="/img/menu/2070.jpg"
+            alt="ティラミス風バスク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2080">
+          <h2>紅茶のバスク</h2>
+          <p>
+            アールグレイの優しくも香り高い
+            <br />
+            濃厚な口溶けのバスクです
+          </p>
+          <Image
+            src="/img/menu/2080.jpg"
+            alt="紅茶のバスク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2090">
+          <h2>檸檬ゼリーとレアチーズケーキ</h2>
+          <p>爽やかな檸檬でさっぱりと！</p>
+          <Image
+            src="/img/menu/2090.jpg"
+            alt="檸檬ゼリーとレアチーズケーキ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2100">
+          <h2>檸檬バスク</h2>
+          <p>
+            レモンの酸味とチーズのコクが相性抜群です
+            <br />
+            浅煎りの珈琲と一緒にぜひ
+          </p>
+          <Image
+            src="/img/menu/2100.jpg"
+            alt="檸檬バスク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2110">
+          <h2>ドライフルーツの米粉オールドファッションチーズケーキ</h2>
+          <p>
+            ドライフルーツを使用したケーキは
+            <br />
+            濃厚なアメリカーノと相性抜群です
+          </p>
+          <Image
+            src="/img/menu/2110.jpg"
+            alt="ドライフルーツの米粉オールドファッションチーズケーキ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2120">
+          <h2>バナナブリュレバスク</h2>
+          <p>
+            栽培期間中、無農薬で育てられたバナナを
+            <br />
+            練り込んでつくった贅沢なバスク
+            <br />
+            ブリュレのパリッと食感も美味しさ増します
+          </p>
+          <Image
+            src="/img/menu/2120.jpg"
+            alt="バナナブリュレバスク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2130">
+          <h2>ブルーベリーと米粉のクランブルチーズケーキ</h2>
+          <p>
+            爽やかなブルーベリーがチーズの引き立て役に。
+            <br />
+            クランブルも米粉なので嬉しいポイント！
+          </p>
+          <Image
+            src="/img/menu/2130.jpg"
+            alt="ブルーベリーと米粉のクランブルチーズケーキ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2140">
+          <h2>りんごと米粉のクランブルチーズケーキ</h2>
+          <p>
+            シナモンで香り付けしたりんごが
+            <br />
+            秋のコーヒーにぴったりです
+          </p>
+          <Image
+            src="/img/menu/2140.jpg"
+            alt="りんごと米粉のクランブルチーズケーキ"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2150">
+          <h2>黒糖ブリュレバスク</h2>
+          <p>
+            ヨーグルトを使用し爽やかに仕上げた春夏のスイーツ
+            <br />
+            ほろ苦いカラメルのような香ばさがラテにぴったりです
+          </p>
+          <Image
+            src="/img/menu/2150.jpg"
+            alt="黒糖ブリュレバスク"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2160">
+          <h2>米粉マフィン</h2>
+          <p>
+            気まぐれで登場するマフィンも、
+            <br />
+            グルテンフリーでおつくりさせていただいております
+            <br />
+            バター不使用なので、ヘルシーで
+            <br />
+            そしてふわっと、しっとり。
+            <br />
+            レシピも季節に合わせた果物や
+            <br />
+            紅茶やコーヒーを使用。
+            <br />
+            何度もリピートしていただいてる好評メニューです！
+            <br />
+            気まぐれで登場するので出逢えたらぜひ！
+          </p>
+          <Image
+            src="/img/menu/2160.jpg"
+            alt="米粉マフィン"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2170">
+          <h2>ジンジャー</h2>
+          <p>浅煎りの珈琲との相性抜群なマフィンです</p>
+          <Image
+            src="/img/menu/2170.jpg"
+            alt="ジンジャー"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2180">
+          <h2>金柑</h2>
+          <p>
+            金柑の爽やかな風味と甘酸っぱさが
+            <br />
+            角切りに入ったクリームチーズと相性ぴったりです！
+          </p>
+          <Image src="/img/menu/2180.jpg" alt="金柑" width={800} height={600} />
+        </div>
+
+        <div id="2190">
+          <h2>チョコバナナマフィン</h2>
+          <p>
+            子供から大人まで好評なシリーズ！
+            <br />
+            ラテとの相性抜群です
+          </p>
+          <Image
+            src="/img/menu/2190.jpg"
+            alt="チョコバナナマフィン"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2200">
+          <h2>ブルーベリーとクリチのマフィン</h2>
+          <p>
+            しっとりしたマフィンに爽やかなブルーベリーの果実感が味わえる人気マフィン
+          </p>
+          <Image
+            src="/img/menu/2200.jpg"
+            alt="ブルーベリーとクリチのマフィン"
+            width={800}
+            height={600}
+          />
+        </div>
+
+        <div id="2210">
+          <h2>抹茶マフィン</h2>
+          <p>
+            抹茶のほろ苦さと豊かな香りが楽しめるマフィン
+            <br />
+            ラテとの相性抜群です！
+          </p>
+          <Image
+            src="/img/menu/2210.jpg"
+            alt="抹茶マフィン"
+            width={800}
+            height={600}
+          />
+        </div>
+      </article>
+      <Footer />
     </main>
   );
 }
