@@ -12,29 +12,17 @@ export default function Home() {
         <div id="bg-video-stack" aria-hidden="true">
           <div className="bg-video-track">
             <video id="bg-video-1" autoPlay loop muted playsInline>
-              <source
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
-                type="video/mp4"
-              />
+              <source type="video/mp4" src="/mov/bg-leaves_shadow.mp4" />
               Your browser does not support the video tag.
             </video>
             <video id="bg-video-2" autoPlay loop muted playsInline>
-              <source
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
-                type="video/mp4"
-              />
+              <source src="/mov/bg-leaves_shadow.mp4" type="video/mp4" />
             </video>
             <video id="bg-video-3" autoPlay loop muted playsInline>
-              <source
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
-                type="video/mp4"
-              />
+              <source src="/mov/bg-leaves_shadow.mp4" type="video/mp4" />
             </video>
             <video id="bg-video-4" autoPlay loop muted playsInline>
-              <source
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves-shadow.mp4?alt=media&token=e046ce41-93cd-45a1-ba80-cddad6233f62"
-                type="video/mp4"
-              />
+              <source src="/mov/bg-leaves_shadow.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -45,7 +33,7 @@ export default function Home() {
             <div className="top-movie-wrapper">
               <video
                 className="top-movie"
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/sample1.mp4?alt=media&token=778be982-7114-404b-a809-7bb5e578e27b"
+                src="/mov/first_view.mp4"
                 autoPlay
                 muted
                 loop
