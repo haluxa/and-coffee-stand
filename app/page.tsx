@@ -12,17 +12,29 @@ export default function Home() {
         <div id="bg-video-stack" aria-hidden="true">
           <div className="bg-video-track">
             <video id="bg-video-1" autoPlay loop muted playsInline>
-              <source type="video/mp4" src="/mov/bg-leaves_shadow.mp4" />
+              <source
+                type="video/mp4"
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
+              />
               Your browser does not support the video tag.
             </video>
             <video id="bg-video-2" autoPlay loop muted playsInline>
-              <source src="/mov/bg-leaves_shadow.mp4" type="video/mp4" />
+              <source
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
+                type="video/mp4"
+              />
             </video>
             <video id="bg-video-3" autoPlay loop muted playsInline>
-              <source src="/mov/bg-leaves_shadow.mp4" type="video/mp4" />
+              <source
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
+                type="video/mp4"
+              />
             </video>
             <video id="bg-video-4" autoPlay loop muted playsInline>
-              <source src="/mov/bg-leaves_shadow.mp4" type="video/mp4" />
+              <source
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
+                type="video/mp4"
+              />
             </video>
           </div>
         </div>
@@ -33,7 +45,7 @@ export default function Home() {
             <div className="top-movie-wrapper">
               <video
                 className="top-movie"
-                src="/mov/first_view.mp4"
+                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/first_view.mp4?alt=media&token=38df00fd-9d30-4b4d-93fb-b38d3bc7398b"
                 autoPlay
                 muted
                 loop
@@ -60,11 +72,7 @@ export default function Home() {
               </FadeInEffect>
               <FadeInEffect>
                 <div className="info_link_map">
-                  <a
-                    href="https://maps.app.goo.gl/42qEgAxmi3YHQxnf7"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
+                  <a href="" rel="noopener noreferrer" target="_blank">
                     Google Maps
                   </a>
                 </div>
