@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-
+import Image from "next/image";
+const slideImages = [
+  "/img/slide/1.jpg",
+  "/img/slide/2.jpg",
+  "/img/slide/3.jpg",
+  "/img/slide/4.jpg",
+  "/img/slide/5.jpg",
+];
 export default function Slide() {
   useEffect(() => {
     const slides = Array.from(
@@ -129,14 +136,25 @@ export default function Slide() {
     };
   }, []);
 
+  // ← useEffect の中身はそのまま（スワイプ・ボタン処理）
+
   return (
     <div id="container">
       <ul id="content1">
-        <li className="slider active">1</li>
-        <li className="slider non-active">2</li>
-        <li className="slider non-active">3</li>
-        <li className="slider non-active">4</li>
-        <li className="slider non-active">5</li>
+        {slideImages.map((src, index) => (
+          <li
+            key={index}
+            className={`slider ${index === 0 ? "active" : "non-active"}`}
+          >
+            <Image
+              src={src}
+              alt={`slide-${index + 1}`}
+              width={800}
+              height={600}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </li>
+        ))}
       </ul>
       <div id="prev-btn"></div>
       <div id="next-btn"></div>
