@@ -959,37 +959,16 @@ html {
   list-style: none;
   flex-wrap: nowrap;
 }
-#content1 {
-  width: 100vw;
-  height: 500px;
-  background: orange;
-}
 #content1 li {
   position: absolute;
-  min-width: 100vw;
-  height: 500px;
+  min-width: 100%;
+  height: 100vh;
   display: block;
   align-content: center;
   text-align: center;
   font-size: 2em;
   top: 0;
   left: 0;
-}
-#content1 li:first-child {
-  background: #fff;
-  left: 0;
-}
-#content1 li:nth-child(2) {
-  background: yellow;
-}
-#content1 li:nth-child(3) {
-  background: green;
-}
-#content1 li:nth-child(4) {
-  background: blue;
-}
-#content1 li:nth-child(5) {
-  background: #ddd;
 }
 #content1 li.slider.active {
   z-index: 2;
@@ -998,8 +977,8 @@ html {
   z-index: -2;
 }
 #container {
-  width: 100vw;
-  height: 500px;
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
   position: relative;
 }
@@ -1039,4 +1018,29 @@ html {
   top: 50%;
   left: 45%;
   transform: translate(-50%, -50%) rotate(135deg);
+}
+.slideContainer {
+  position: relative;
+}
+
+.slideOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.slideBadge {
+  padding: 10px 14px;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
