@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 const slideImages = [
   "/img/view/1001_gift.jpg",
@@ -184,167 +184,115 @@ const GROUP_LABEL: Record<SlideGroup, string> = {
 export default function Slide() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const [direction, setDirection] = useState<"next" | "prev" | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+
+  const slideCount = slideImages.length;
+  const prevIndex = (activeIndex - 1 + slideCount) % slideCount;
+  const nextIndex = (activeIndex + 1) % slideCount;
+
+  const goNext = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setDirection("next");
+  }, [isAnimating]);
+
+  const goPrev = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setDirection("prev");
+  }, [isAnimating]);
+
+  const onTransitionEnd = useCallback(() => {
+    if (!direction) return;
+    setActiveIndex((i) => {
+      if (direction === "next") return (i + 1) % slideCount;
+      return (i - 1 + slideCount) % slideCount;
+    });
+    setDirection(null);
+    setIsAnimating(false);
+  }, [direction, slideCount]);
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0]?.pageX ?? null;
+  }, []);
+
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      const startX = touchStartX.current;
+      const endX = e.changedTouches[0]?.pageX ?? null;
+      touchStartX.current = null;
+      if (startX == null || endX == null) return;
+      const diff = endX - startX;
+      if (Math.abs(diff) < 30) return;
+      if (diff > 0) goPrev();
+      else goNext();
+    },
+    [goNext, goPrev]
+  );
+
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
   const activeGroup = slideGroups[activeIndex] ?? "other";
   const activeLabel = GROUP_LABEL[activeGroup];
 
-  useEffect(() => {
-    const slides = Array.from(
-      document.querySelectorAll<HTMLLIElement>("#content1 .slider")
-    );
-    const nextBtn = document.querySelector<HTMLDivElement>("#next-btn");
-    const prevBtn = document.querySelector<HTMLDivElement>("#prev-btn");
-
-    if (!slides.length || !nextBtn || !prevBtn) return;
-
-    const slideCount = slides.length;
-
-    const lowerSlider = () => {
-      for (let i = 0; i < slides.length; i++) {
-        if (slides[i].classList.contains("active")) {
-          const lowerSlideCount = (slideCount + i - 1) % slideCount;
-          setActiveIndex(lowerSlideCount);
-
-          slides[lowerSlideCount].animate(
-            { translate: ["-100vw 0", "0 0"] },
-            { duration: 800, easing: "ease", fill: "forwards" }
-          );
-          slides[i].animate(
-            { translate: ["0 0", "100vw 0"] },
-            { duration: 800, easing: "ease", fill: "forwards" }
-          );
-
-          slides[lowerSlideCount].classList.remove("non-active");
-          slides[lowerSlideCount].style.pointerEvents = "none";
-          nextBtn.style.pointerEvents = "none";
-          prevBtn.style.pointerEvents = "none";
-
-          slides[lowerSlideCount].classList.add("active");
-          slides[i].classList.remove("active");
-          slides[i].style.pointerEvents = "none";
-
-          setTimeout(() => {
-            slides[i].classList.add("non-active");
-            slides[lowerSlideCount].style.pointerEvents = "auto";
-            nextBtn.style.pointerEvents = "auto";
-            prevBtn.style.pointerEvents = "auto";
-          }, 800);
-
-          break;
-        }
-      }
-    };
-
-    const upperSlider = () => {
-      for (let i = 0; i < slides.length; i++) {
-        if (slides[i].classList.contains("active")) {
-          const upperSlideCount = (i + 1) % slideCount;
-          setActiveIndex(upperSlideCount);
-
-          slides[upperSlideCount].animate(
-            { translate: ["100vw 0", "0 0"] },
-            { duration: 800, easing: "ease", fill: "forwards" }
-          );
-          slides[i].animate(
-            { translate: ["0 0", "-100vw 0"] },
-            { duration: 800, easing: "ease", fill: "forwards" }
-          );
-
-          slides[upperSlideCount].classList.remove("non-active");
-          slides[upperSlideCount].style.pointerEvents = "none";
-          nextBtn.style.pointerEvents = "none";
-          prevBtn.style.pointerEvents = "none";
-
-          slides[upperSlideCount].classList.add("active");
-          slides[i].classList.remove("active");
-          slides[i].style.pointerEvents = "none";
-
-          setTimeout(() => {
-            slides[i].classList.add("non-active");
-            slides[upperSlideCount].style.pointerEvents = "auto";
-            nextBtn.style.pointerEvents = "auto";
-            prevBtn.style.pointerEvents = "auto";
-          }, 800);
-
-          break;
-        }
-      }
-    };
-
-    let startX: number | null = null;
-    let endX: number | null = null;
-
-    const logSwipeStart = (event: TouchEvent) => {
-      event.preventDefault();
-      startX = event.touches[0].pageX;
-    };
-
-    const logSwipe = (event: TouchEvent) => {
-      event.preventDefault();
-      endX = event.touches[0].pageX;
-    };
-
-    const logSwipeEnd = (event: TouchEvent) => {
-      event.preventDefault();
-      if (startX == null || endX == null) return;
-      const diff = endX - startX;
-      if (Math.abs(diff) < 30) return;
-      if (diff > 0) {
-        lowerSlider();
-      } else {
-        upperSlider();
-      }
-      startX = null;
-      endX = null;
-    };
-
-    slides.forEach((el) => {
-      el.addEventListener("touchstart", logSwipeStart, { passive: false });
-      el.addEventListener("touchmove", logSwipe, { passive: false });
-      el.addEventListener("touchend", logSwipeEnd, { passive: false });
-    });
-
-    nextBtn.addEventListener("click", upperSlider);
-    prevBtn.addEventListener("click", lowerSlider);
-
-    return () => {
-      slides.forEach((el) => {
-        el.removeEventListener("touchstart", logSwipeStart);
-        el.removeEventListener("touchmove", logSwipe);
-        el.removeEventListener("touchend", logSwipeEnd);
-      });
-      nextBtn.removeEventListener("click", upperSlider);
-      prevBtn.removeEventListener("click", lowerSlider);
-    };
-  }, []);
-
-  // ← useEffect の中身はそのまま（スワイプ・ボタン処理）
-
   return (
-    <div id="container" className="slideContainer">
+    <div
+      id="container"
+      className="slideContainer"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
       {activeLabel ? (
         <div aria-hidden className="slideOverlay">
           <div className="slideBadge">{activeLabel}</div>
         </div>
       ) : null}
-      <ul id="content1">
-        {slideImages.map((src, index) => (
-          <li
-            key={index}
-            className={`slider ${index === 0 ? "active" : "non-active"}`}
-          >
-            <Image
-              src={src}
-              alt={`slide-${index + 1}`}
-              width={800}
-              height={600}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </li>
-        ))}
+      <ul id="content1" style={{ position: "relative", overflow: "hidden" }}>
+        {/* Only render 3 slides (prev / current / next) to avoid mobile memory crashes */}
+        {[
+          { idx: prevIndex, pos: -1 },
+          { idx: activeIndex, pos: 0 },
+          { idx: nextIndex, pos: 1 },
+        ].map(({ idx, pos }) => {
+          // During animation, we move all 3 slides together.
+          const shift =
+            direction === "next" ? -1 : direction === "prev" ? 1 : 0;
+          const x = (pos + shift) * 100;
+
+          return (
+            <li
+              key={`${idx}-${pos}`}
+              className={`slider ${pos === 0 ? "active" : "non-active"}`}
+              style={{
+                position: "absolute",
+                inset: 0,
+                transform: `translateX(${x}vw)`,
+                transition: direction ? "transform 800ms ease" : "none",
+                willChange: "transform",
+              }}
+              onTransitionEnd={pos === 0 ? onTransitionEnd : undefined}
+            >
+              <Image
+                src={slideImages[idx]}
+                alt={`slide-${idx + 1}`}
+                width={800}
+                height={600}
+                priority={pos === 0}
+                loading={pos === 0 ? "eager" : "lazy"}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </li>
+          );
+        })}
       </ul>
-      <div id="prev-btn"></div>
-      <div id="next-btn"></div>
+      <div
+        id="prev-btn"
+        role="button"
+        aria-label="Previous"
+        onClick={goPrev}
+      ></div>
+      <div id="next-btn" role="button" aria-label="Next" onClick={goNext}></div>
     </div>
   );
 }
