@@ -129,7 +129,9 @@ type SlideGroup =
 
 const getGroupFromSrc = (src: string): SlideGroup => {
   const file = src.split("/").pop() ?? "";
-  const m = file.match(/_(gift2|gift|night|view|flower|goods|plant|event|food|drink)\./i);
+  const m = file.match(
+    /_(gift2|gift|night|view|flower|goods|plant|event|food|drink)\./i
+  );
   const key = (m?.[1] ?? "").toLowerCase();
 
   if (!m) {
@@ -179,11 +181,6 @@ export default function Slide() {
   const containerRef = useRef<HTMLUListElement | null>(null);
   const rafRef = useRef<number | null>(null);
 
-  // Optional: keep the swipe strictly horizontal on iOS by preventing vertical scroll
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
-  const isHorizontalSwipe = useRef(false);
-
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
   const activeGroup = slideGroups[activeIndex] ?? "other";
   const activeLabel = GROUP_LABEL[activeGroup];
@@ -201,37 +198,6 @@ export default function Slide() {
     if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(updateActiveIndexFromScroll);
   }, [updateActiveIndexFromScroll]);
-
-  const onTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0]?.pageX ?? null;
-    touchStartY.current = e.touches[0]?.pageY ?? null;
-    isHorizontalSwipe.current = false;
-  }, []);
-
-  const onTouchMove = useCallback((e: React.TouchEvent) => {
-    const startX = touchStartX.current;
-    const startY = touchStartY.current;
-    const curX = e.touches[0]?.pageX ?? null;
-    const curY = e.touches[0]?.pageY ?? null;
-    if (startX == null || startY == null || curX == null || curY == null) return;
-
-    const dx = curX - startX;
-    const dy = curY - startY;
-
-    if (!isHorizontalSwipe.current) {
-      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
-      isHorizontalSwipe.current = Math.abs(dx) > Math.abs(dy);
-    }
-
-    if (isHorizontalSwipe.current) {
-      e.preventDefault();
-    }
-  }, []);
-
-  const onTouchEnd = useCallback(() => {
-    touchStartX.current = null;
-    touchStartY.current = null;
-  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -270,25 +236,24 @@ export default function Slide() {
   }, [activeIndex, scrollToIndex]);
 
   return (
-    <div id="container" className="slideContainer" style={{ touchAction: "pan-y" }}>
+    <div
+      id="container"
+      className="slideContainer"
+      style={{ touchAction: "auto" }}
+    >
       {activeLabel ? (
         <div aria-hidden className="slideOverlay">
           <div className="slideBadge">{activeLabel}</div>
         </div>
       ) : null}
 
-      <ul
-        id="content1"
-        ref={containerRef}
-        onScroll={onScroll}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
+      <ul id="content1" ref={containerRef} onScroll={onScroll}>
         {slideImages.map((src, index) => (
           <li
             key={src}
-            className={`slider ${index === activeIndex ? "active" : "non-active"}`}
+            className={`slider ${
+              index === activeIndex ? "active" : "non-active"
+            }`}
             aria-hidden={index !== activeIndex}
           >
             <Image
@@ -304,7 +269,12 @@ export default function Slide() {
         ))}
       </ul>
 
-      <div id="prev-btn" role="button" aria-label="Previous" onClick={goPrev}></div>
+      <div
+        id="prev-btn"
+        role="button"
+        aria-label="Previous"
+        onClick={goPrev}
+      ></div>
       <div id="next-btn" role="button" aria-label="Next" onClick={goNext}></div>
     </div>
   );
