@@ -183,78 +183,69 @@ const GROUP_LABEL: Record<SlideGroup, string> = {
 
 export default function Slide() {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const [direction, setDirection] = useState<"next" | "prev" | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const touchStartX = useRef<number | null>(null);
-  const preloaded = useRef<Set<number>>(new Set());
-
-  const slideCount = slideImages.length;
-  const prevIndex = (activeIndex - 1 + slideCount) % slideCount;
-  const nextIndex = (activeIndex + 1) % slideCount;
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    [prevIndex, activeIndex, nextIndex].forEach((i) => {
-      if (preloaded.current.has(i)) return;
-      const img = new window.Image();
-      img.decoding = "async";
-      img.src = slideImages[i];
-      preloaded.current.add(i);
-    });
-  }, [activeIndex, prevIndex, nextIndex]);
-
-  const goNext = useCallback(() => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setDirection("next");
-  }, [isAnimating]);
-
-  const goPrev = useCallback(() => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setDirection("prev");
-  }, [isAnimating]);
-
-  const onTransitionEnd = useCallback(() => {
-    if (!direction) return;
-    setActiveIndex((i) => {
-      if (direction === "next") return (i + 1) % slideCount;
-      return (i - 1 + slideCount) % slideCount;
-    });
-    setDirection(null);
-    setIsAnimating(false);
-  }, [direction, slideCount]);
-
-  const onTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0]?.pageX ?? null;
-  }, []);
-
-  const onTouchEnd = useCallback(
-    (e: React.TouchEvent) => {
-      const startX = touchStartX.current;
-      const endX = e.changedTouches[0]?.pageX ?? null;
-      touchStartX.current = null;
-      if (startX == null || endX == null) return;
-      const diff = endX - startX;
-      if (Math.abs(diff) < 30) return;
-      if (diff > 0) goPrev();
-      else goNext();
-    },
-    [goNext, goPrev]
-  );
+  const containerRef = useRef<HTMLUListElement | null>(null);
+  const rafRef = useRef<number | null>(null);
 
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
   const activeGroup = slideGroups[activeIndex] ?? "other";
   const activeLabel = GROUP_LABEL[activeGroup];
 
+  const updateActiveIndexFromScroll = useCallback(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const w = el.clientWidth || 1;
+    const i = Math.round(el.scrollLeft / w);
+    const clamped = Math.max(0, Math.min(slideImages.length - 1, i));
+    setActiveIndex(clamped);
+  }, []);
+
+  const onScroll = useCallback(() => {
+    if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(updateActiveIndexFromScroll);
+  }, [updateActiveIndexFromScroll]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    // Ensure initial index is correct (e.g., after hydration)
+    updateActiveIndexFromScroll();
+
+    const onResize = () => {
+      // Keep the current slide aligned after resize/orientation change
+      const w = el.clientWidth || 1;
+      el.scrollTo({ left: activeIndex * w });
+      updateActiveIndexFromScroll();
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [activeIndex, updateActiveIndexFromScroll]);
+
+  const scrollToIndex = useCallback((index: number) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const w = el.clientWidth || 1;
+    el.scrollTo({ left: index * w, behavior: "smooth" });
+  }, []);
+
+  const goNext = useCallback(() => {
+    const next = (activeIndex + 1) % slideImages.length;
+    scrollToIndex(next);
+  }, [activeIndex, scrollToIndex]);
+
+  const goPrev = useCallback(() => {
+    const prev = (activeIndex - 1 + slideImages.length) % slideImages.length;
+    scrollToIndex(prev);
+  }, [activeIndex, scrollToIndex]);
+
   return (
     <div
       id="container"
       className="slideContainer"
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
       style={{ touchAction: "pan-y" }}
     >
       {activeLabel ? (
@@ -262,57 +253,51 @@ export default function Slide() {
           <div className="slideBadge">{activeLabel}</div>
         </div>
       ) : null}
+
       <ul
         id="content1"
+        ref={containerRef}
+        onScroll={onScroll}
         style={{
-          position: "relative",
-          overflow: "hidden",
+          display: "flex",
           width: "100%",
           height: "100%",
+          overflowX: "auto",
+          overflowY: "hidden",
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          scrollBehavior: "smooth",
+          margin: 0,
+          padding: 0,
+          listStyle: "none",
           backgroundColor: "#000",
         }}
       >
-        {/* Only render 3 slides (prev / current / next) to avoid mobile memory crashes */}
-        {[
-          { idx: prevIndex, pos: -1 },
-          { idx: activeIndex, pos: 0 },
-          { idx: nextIndex, pos: 1 },
-        ].map(({ idx, pos }) => {
-          // During animation, we move all 3 slides together.
-          const shift =
-            direction === "next" ? -1 : direction === "prev" ? 1 : 0;
-          const x = (pos + shift) * 100;
-
-          return (
-            <li
-              key={`${idx}-${pos}`}
-              className={`slider ${pos === 0 ? "active" : "non-active"}`}
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                backgroundColor: "#000",
-                backfaceVisibility: "hidden",
-                transform: `translate3d(${x}%, 0, 0)`,
-                transition: direction ? "transform 800ms ease" : "none",
-                willChange: "transform",
-              }}
-              onTransitionEnd={pos === 0 ? onTransitionEnd : undefined}
-            >
-              <Image
-                src={slideImages[idx]}
-                alt={`slide-${idx + 1}`}
-                fill
-                sizes="100vw"
-                priority={pos === 0}
-                loading="eager"
-                style={{ objectFit: "cover" }}
-              />
-            </li>
-          );
-        })}
+        {slideImages.map((src, index) => (
+          <li
+            key={src}
+            className={`slider ${
+              index === activeIndex ? "active" : "non-active"
+            }`}
+            style={{
+              flex: "0 0 100%",
+              height: "100%",
+              position: "relative",
+              scrollSnapAlign: "start",
+              backgroundColor: "#000",
+            }}
+          >
+            <Image
+              src={src}
+              alt={`slide-${index + 1}`}
+              priority={index === 0}
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </li>
+        ))}
       </ul>
+
       <div
         id="prev-btn"
         role="button"
