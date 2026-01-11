@@ -242,6 +242,7 @@ export default function Slide() {
       className="slideContainer"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
+      style={{ touchAction: "pan-y" }}
     >
       {activeLabel ? (
         <div aria-hidden className="slideOverlay">
@@ -255,6 +256,7 @@ export default function Slide() {
           overflow: "hidden",
           width: "100%",
           height: "100%",
+          backgroundColor: "#000",
         }}
       >
         {/* Only render 3 slides (prev / current / next) to avoid mobile memory crashes */}
@@ -277,7 +279,9 @@ export default function Slide() {
                 inset: 0,
                 width: "100%",
                 height: "100%",
-                transform: `translateX(${x}%)`,
+                backgroundColor: "#000",
+                backfaceVisibility: "hidden",
+                transform: `translate3d(${x}%, 0, 0)`,
                 transition: direction ? "transform 800ms ease" : "none",
                 willChange: "transform",
               }}
