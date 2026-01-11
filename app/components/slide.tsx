@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 const slideImages = [
   "/img/view/1001_gift.jpg",
   "/img/view/1002_gift.jpg",
@@ -61,7 +62,7 @@ const slideImages = [
   "/img/view/7001_plant.jpg",
   "/img/view/7002_plant.jpg",
   "/img/view/7003_plant.jpg",
-  "/img/view/7004_plant.jpg",
+  "/img/view/7004_night.jpg",
   "/img/view/7005_plant.jpg",
   "/img/view/7006_plant.jpg",
   "/img/view/7007_plant.jpg",
@@ -127,25 +128,17 @@ type SlideGroup =
   | "other";
 
 const getGroupFromSrc = (src: string): SlideGroup => {
-  // expected: /img/view/1001_gift.jpg
   const file = src.split("/").pop() ?? "";
-  const m = file.match(
-    /_(gift2|gift|night|view|flower|goods|plant|event|food|drink)\./i
-  );
+  const m = file.match(/_(gift2|gift|night|view|flower|goods|plant|event|food|drink)\./i);
   const key = (m?.[1] ?? "").toLowerCase();
 
   if (!m) {
-    // fallback: parse numeric prefix
     const numMatch = file.match(/^(\d{4})/);
     if (numMatch) {
       const num = parseInt(numMatch[1], 10);
-      if (num >= 8000 && num <= 8999) {
-        return "event";
-      } else if (num >= 9000 && num <= 9999) {
-        return "food";
-      } else {
-        return "other";
-      }
+      if (num >= 8000 && num <= 8999) return "event";
+      if (num >= 9000 && num <= 9999) return "food";
+      return "other";
     }
     return "other";
   }
@@ -161,7 +154,7 @@ const getGroupFromSrc = (src: string): SlideGroup => {
     case "event":
     case "food":
     case "drink":
-      return key;
+      return key as SlideGroup;
     default:
       return "other";
   }
@@ -183,54 +176,31 @@ const GROUP_LABEL: Record<SlideGroup, string> = {
 
 export default function Slide() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef<HTMLUListElement | null>(null);
+  const rafRef = useRef<number | null>(null);
 
-  const [direction, setDirection] = useState<"next" | "prev" | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
+  // Optional: keep the swipe strictly horizontal on iOS by preventing vertical scroll
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
   const isHorizontalSwipe = useRef(false);
 
-  const transitionLock = useRef(false);
+  const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
+  const activeGroup = slideGroups[activeIndex] ?? "other";
+  const activeLabel = GROUP_LABEL[activeGroup];
 
-  const slideCount = slideImages.length;
-  const prevIndex = (activeIndex - 1 + slideCount) % slideCount;
-  const nextIndex = (activeIndex + 1) % slideCount;
+  const updateActiveIndexFromScroll = useCallback(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const w = el.clientWidth || 1;
+    const i = Math.round(el.scrollLeft / w);
+    const clamped = Math.max(0, Math.min(slideImages.length - 1, i));
+    setActiveIndex(clamped);
+  }, []);
 
-  const goNext = useCallback(() => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setDirection("next");
-  }, [isAnimating]);
-
-  const goPrev = useCallback(() => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setDirection("prev");
-  }, [isAnimating]);
-
-  const onTransitionEnd = useCallback(
-    (e: React.TransitionEvent) => {
-      // iOS/Chrome can bubble transitionend from nested elements; ignore those.
-      if (e.target !== e.currentTarget) return;
-      if (e.propertyName !== "transform") return;
-      if (!direction) return;
-      if (transitionLock.current) return;
-      transitionLock.current = true;
-
-      setActiveIndex((i) => {
-        if (direction === "next") return (i + 1) % slideCount;
-        return (i - 1 + slideCount) % slideCount;
-      });
-      setDirection(null);
-      setIsAnimating(false);
-
-      // Release lock on next frame.
-      requestAnimationFrame(() => {
-        transitionLock.current = false;
-      });
-    },
-    [direction, slideCount]
-  );
+  const onScroll = useCallback(() => {
+    if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(updateActiveIndexFromScroll);
+  }, [updateActiveIndexFromScroll]);
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0]?.pageX ?? null;
@@ -243,102 +213,98 @@ export default function Slide() {
     const startY = touchStartY.current;
     const curX = e.touches[0]?.pageX ?? null;
     const curY = e.touches[0]?.pageY ?? null;
-    if (startX == null || startY == null || curX == null || curY == null)
-      return;
+    if (startX == null || startY == null || curX == null || curY == null) return;
 
     const dx = curX - startX;
     const dy = curY - startY;
 
-    // Decide gesture direction once it becomes clear.
     if (!isHorizontalSwipe.current) {
       if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
       isHorizontalSwipe.current = Math.abs(dx) > Math.abs(dy);
     }
 
-    // If it's a horizontal swipe, prevent the page from scrolling vertically.
     if (isHorizontalSwipe.current) {
       e.preventDefault();
-      e.stopPropagation();
     }
   }, []);
 
-  const onTouchEnd = useCallback(
-    (e: React.TouchEvent) => {
-      const startX = touchStartX.current;
-      const endX = e.changedTouches[0]?.pageX ?? null;
-      touchStartX.current = null;
-      touchStartY.current = null;
-      if (startX == null || endX == null) return;
-      const diff = endX - startX;
-      if (Math.abs(diff) < 30) return;
-      if (diff > 0) goPrev();
-      else goNext();
-    },
-    [goNext, goPrev]
-  );
+  const onTouchEnd = useCallback(() => {
+    touchStartX.current = null;
+    touchStartY.current = null;
+  }, []);
 
-  const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
-  const activeGroup = slideGroups[activeIndex] ?? "other";
-  const activeLabel = GROUP_LABEL[activeGroup];
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    updateActiveIndexFromScroll();
+
+    const onResize = () => {
+      const w = el.clientWidth || 1;
+      el.scrollTo({ left: activeIndex * w });
+      updateActiveIndexFromScroll();
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [activeIndex, updateActiveIndexFromScroll]);
+
+  const scrollToIndex = useCallback((index: number) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const w = el.clientWidth || 1;
+    el.scrollTo({ left: index * w, behavior: "smooth" });
+  }, []);
+
+  const goNext = useCallback(() => {
+    const next = (activeIndex + 1) % slideImages.length;
+    scrollToIndex(next);
+  }, [activeIndex, scrollToIndex]);
+
+  const goPrev = useCallback(() => {
+    const prev = (activeIndex - 1 + slideImages.length) % slideImages.length;
+    scrollToIndex(prev);
+  }, [activeIndex, scrollToIndex]);
 
   return (
-    <div
-      id="container"
-      className="slideContainer"
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
-      style={{ touchAction: "pan-y" }}
-    >
+    <div id="container" className="slideContainer" style={{ touchAction: "pan-y" }}>
       {activeLabel ? (
         <div aria-hidden className="slideOverlay">
           <div className="slideBadge">{activeLabel}</div>
         </div>
       ) : null}
-      <ul id="content1" style={{ position: "relative", overflow: "hidden" }}>
-        {/* Only render 3 slides (prev / current / next) to avoid mobile memory crashes */}
-        {[
-          { idx: prevIndex, pos: -1 },
-          { idx: activeIndex, pos: 0 },
-          { idx: nextIndex, pos: 1 },
-        ].map(({ idx, pos }) => {
-          // During animation, we move all 3 slides together.
-          const shift =
-            direction === "next" ? -1 : direction === "prev" ? 1 : 0;
-          const x = (pos + shift) * 100;
 
-          return (
-            <li
-              key={`${idx}-${pos}`}
-              className={`slider ${pos === 0 ? "active" : "non-active"}`}
-              style={{
-                position: "absolute",
-                inset: 0,
-                transform: `translateX(${x}vw)`,
-                transition: direction ? "transform 800ms ease" : "none",
-                willChange: "transform",
-              }}
-              onTransitionEnd={pos === 0 ? onTransitionEnd : undefined}
-            >
-              <Image
-                src={slideImages[idx]}
-                alt={`slide-${idx + 1}`}
-                width={800}
-                height={600}
-                priority={pos === 0}
-                loading={pos === 0 ? "eager" : "lazy"}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </li>
-          );
-        })}
+      <ul
+        id="content1"
+        ref={containerRef}
+        onScroll={onScroll}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {slideImages.map((src, index) => (
+          <li
+            key={src}
+            className={`slider ${index === activeIndex ? "active" : "non-active"}`}
+            aria-hidden={index !== activeIndex}
+          >
+            <Image
+              src={src}
+              alt={`slide-${index + 1}`}
+              priority={index === 0}
+              draggable={false}
+              fill
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
+            />
+          </li>
+        ))}
       </ul>
-      <div
-        id="prev-btn"
-        role="button"
-        aria-label="Previous"
-        onClick={goPrev}
-      ></div>
+
+      <div id="prev-btn" role="button" aria-label="Previous" onClick={goPrev}></div>
       <div id="next-btn" role="button" aria-label="Next" onClick={goNext}></div>
     </div>
   );
