@@ -970,8 +970,6 @@ html {
   -webkit-overflow-scrolling: touch;
 
   /* --- touch/scroll enhancements --- */
-  touch-action: pan-x;
-  overscroll-behavior-x: contain;
   scroll-snap-stop: always;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge legacy */
