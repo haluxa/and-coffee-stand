@@ -181,6 +181,14 @@ export default function Slide() {
   const containerRef = useRef<HTMLUListElement | null>(null);
   const rafRef = useRef<number | null>(null);
 
+  useEffect(() => {
+    document.body.classList.add("view-test_page");
+
+    return () => {
+      document.body.classList.remove("view-test_page");
+    };
+  }, []);
+
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
   const activeGroup = slideGroups[activeIndex] ?? "other";
   const activeLabel = GROUP_LABEL[activeGroup];
