@@ -971,9 +971,7 @@ html {
 
   /* --- touch/scroll enhancements --- */
   touch-action: pan-x;
-  overscroll-behavior: contain;
   overscroll-behavior-x: contain;
-  overscroll-behavior-y: none;
   scroll-snap-stop: always;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge legacy */
