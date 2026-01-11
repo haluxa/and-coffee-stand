@@ -1057,6 +1057,7 @@ html {
 }
 .slideContainer {
   position: relative;
+  background-color: #000;
 }
 
 .slideOverlay {
