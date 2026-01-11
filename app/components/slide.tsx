@@ -248,7 +248,15 @@ export default function Slide() {
           <div className="slideBadge">{activeLabel}</div>
         </div>
       ) : null}
-      <ul id="content1" style={{ position: "relative", overflow: "hidden" }}>
+      <ul
+        id="content1"
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          width: "100%",
+          height: "100%",
+        }}
+      >
         {/* Only render 3 slides (prev / current / next) to avoid mobile memory crashes */}
         {[
           { idx: prevIndex, pos: -1 },
@@ -267,7 +275,9 @@ export default function Slide() {
               style={{
                 position: "absolute",
                 inset: 0,
-                transform: `translateX(${x}vw)`,
+                width: "100%",
+                height: "100%",
+                transform: `translateX(${x}%)`,
                 transition: direction ? "transform 800ms ease" : "none",
                 willChange: "transform",
               }}
@@ -276,11 +286,11 @@ export default function Slide() {
               <Image
                 src={slideImages[idx]}
                 alt={`slide-${idx + 1}`}
-                width={800}
-                height={600}
+                fill
+                sizes="100vw"
                 priority={pos === 0}
                 loading={pos === 0 ? "eager" : "lazy"}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{ objectFit: "cover" }}
               />
             </li>
           );
