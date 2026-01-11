@@ -190,7 +190,6 @@ export default function Slide() {
   const touchStartY = useRef<number | null>(null);
   const isHorizontalSwipe = useRef(false);
 
-  const preloaded = useRef<Set<number>>(new Set());
   const transitionLock = useRef(false);
 
   const slideCount = slideImages.length;
