@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 const slideImages = [
   "/img/view/1001_gift.jpg",
@@ -187,10 +187,23 @@ export default function Slide() {
   const [direction, setDirection] = useState<"next" | "prev" | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const touchStartX = useRef<number | null>(null);
+  const preloaded = useRef<Set<number>>(new Set());
 
   const slideCount = slideImages.length;
   const prevIndex = (activeIndex - 1 + slideCount) % slideCount;
   const nextIndex = (activeIndex + 1) % slideCount;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    [prevIndex, activeIndex, nextIndex].forEach((i) => {
+      if (preloaded.current.has(i)) return;
+      const img = new window.Image();
+      img.decoding = "async";
+      img.src = slideImages[i];
+      preloaded.current.add(i);
+    });
+  }, [activeIndex, prevIndex, nextIndex]);
 
   const goNext = useCallback(() => {
     if (isAnimating) return;
@@ -293,7 +306,7 @@ export default function Slide() {
                 fill
                 sizes="100vw"
                 priority={pos === 0}
-                loading={pos === 0 ? "eager" : "lazy"}
+                loading="eager"
                 style={{ objectFit: "cover" }}
               />
             </li>
