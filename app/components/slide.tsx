@@ -187,6 +187,8 @@ export default function Slide() {
   const [direction, setDirection] = useState<"next" | "prev" | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const isHorizontalSwipe = useRef(false);
 
   const slideCount = slideImages.length;
   const prevIndex = (activeIndex - 1 + slideCount) % slideCount;
@@ -216,6 +218,32 @@ export default function Slide() {
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0]?.pageX ?? null;
+    touchStartY.current = e.touches[0]?.pageY ?? null;
+    isHorizontalSwipe.current = false;
+  }, []);
+
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    const startX = touchStartX.current;
+    const startY = touchStartY.current;
+    const curX = e.touches[0]?.pageX ?? null;
+    const curY = e.touches[0]?.pageY ?? null;
+    if (startX == null || startY == null || curX == null || curY == null)
+      return;
+
+    const dx = curX - startX;
+    const dy = curY - startY;
+
+    // Decide gesture direction once it becomes clear.
+    if (!isHorizontalSwipe.current) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+      isHorizontalSwipe.current = Math.abs(dx) > Math.abs(dy);
+    }
+
+    // If it's a horizontal swipe, prevent the page from scrolling vertically.
+    if (isHorizontalSwipe.current) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
   }, []);
 
   const onTouchEnd = useCallback(
@@ -223,6 +251,7 @@ export default function Slide() {
       const startX = touchStartX.current;
       const endX = e.changedTouches[0]?.pageX ?? null;
       touchStartX.current = null;
+      touchStartY.current = null;
       if (startX == null || endX == null) return;
       const diff = endX - startX;
       if (Math.abs(diff) < 30) return;
@@ -241,7 +270,9 @@ export default function Slide() {
       id="container"
       className="slideContainer"
       onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
+      style={{ touchAction: "pan-y" }}
     >
       {activeLabel ? (
         <div aria-hidden className="slideOverlay">
