@@ -959,22 +959,48 @@ html {
   list-style: none;
   flex-wrap: nowrap;
 }
+/* scroll-snap 方式用：絶対配置をやめる */
+#content1 {
+  display: flex;
+  width: 100%;
+  height: 100vh; /* スライダー全体の高さ */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  /* 背景が見えるのが嫌なら */
+  background: #000;
+}
+
+/* li を横並び1枚=1画面にする */
 #content1 li {
-  position: absolute;
-  min-width: 100%;
-  height: 100vh;
-  display: block;
-  align-content: center;
-  text-align: center;
-  font-size: 2em;
-  top: 0;
-  left: 0;
+  position: relative; /* ← absolute をやめる */
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: start;
+
+  /* 余計な z-index も不要 */
+  z-index: auto;
 }
-#content1 li.slider.active {
-  z-index: 2;
-}
+
+/* 以前の active/non-active 用の z-index 指定は無効化 */
+#content1 li.slider.active,
 #content1 li.slider.non-active {
-  z-index: -2;
+  z-index: auto;
+}
+
+/* 画像を確実に全面に */
+#content1 img,
+#content1 :where(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 #container {
   width: 100%;
