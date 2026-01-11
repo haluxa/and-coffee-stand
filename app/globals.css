@@ -954,7 +954,9 @@ html {
     padding-bottom: 20px;
   }
 }
-
+.view-test_page {
+  background-color: #000;
+}
 .view-test_page ul {
   list-style: none;
   flex-wrap: nowrap;
@@ -1057,7 +1059,6 @@ html {
 }
 .slideContainer {
   position: relative;
-  background-color: #000;
 }
 
 .slideOverlay {
