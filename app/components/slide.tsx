@@ -190,6 +190,7 @@ export default function Slide() {
   const rafRef = useRef<number | null>(null);
 
   const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
+  const pointerLastRef = useRef<{ x: number; y: number } | null>(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isNav, setIsNav] = useState(true);
@@ -198,13 +199,22 @@ export default function Slide() {
     document.body.classList.add("view-test_page");
     return () => {
       document.body.classList.remove("view-test_page");
+      document.body.classList.remove("view-test_viewing");
     };
   }, []);
+
+  useEffect(() => {
+    // When viewing slides (not NAV), lock page scroll like Instagram stories.
+    if (isNav) {
+      document.body.classList.remove("view-test_viewing");
+    } else {
+      document.body.classList.add("view-test_viewing");
+    }
+  }, [isNav]);
 
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
 
   const groupStarts = useMemo(() => {
-    // order by first appearance in slideImages
     const starts: Array<{ group: SlideGroup; index: number }> = [];
     slideGroups.forEach((g, i) => {
       if (!starts.some((s) => s.group === g))
@@ -321,7 +331,7 @@ export default function Slide() {
       id="container"
       ref={rootRef}
       className="slideContainer"
-      style={{ touchAction: "pan-y" }}
+      style={{ touchAction: "none" }}
     >
       {!isNav ? (
         <>
@@ -363,42 +373,63 @@ export default function Slide() {
           <div
             className="storyLayer"
             role="button"
-            aria-label="Tap: prev/next image. Swipe: change group"
+            aria-label="Tap: prev/next image. Swipe: change group. Swipe down: back to NAV"
             onPointerDown={(e) => {
               if (e.button != null && e.button !== 0) return;
+              try {
+                (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+              } catch {}
               pointerStartRef.current = { x: e.clientX, y: e.clientY };
+              pointerLastRef.current = { x: e.clientX, y: e.clientY };
             }}
-            onPointerCancel={() => {
+            onPointerMove={(e) => {
+              if (!pointerStartRef.current) return;
+              pointerLastRef.current = { x: e.clientX, y: e.clientY };
+            }}
+            onPointerCancel={(e) => {
               pointerStartRef.current = null;
+              pointerLastRef.current = null;
+              try {
+                (e.currentTarget as HTMLElement).releasePointerCapture(
+                  e.pointerId
+                );
+              } catch {}
             }}
             onPointerUp={(e) => {
               const start = pointerStartRef.current;
+              const last = pointerLastRef.current;
               pointerStartRef.current = null;
-              if (!start) return;
+              pointerLastRef.current = null;
+              try {
+                (e.currentTarget as HTMLElement).releasePointerCapture(
+                  e.pointerId
+                );
+              } catch {}
+              if (!start || !last) return;
 
-              const dx = e.clientX - start.x;
-              const dy = e.clientY - start.y;
+              const dx = last.x - start.x;
+              const dy = last.y - start.y;
               const absX = Math.abs(dx);
               const absY = Math.abs(dy);
 
-              // swipe: group move
+              // swipe down: back to NAV
+              if (dy >= 90 && absY > absX * 1.2) {
+                openNav();
+                return;
+              }
+
+              // swipe left/right: change group
               if (absX >= 60 && absX > absY * 1.2) {
-                if (dx < 0) {
-                  goNextGroup();
-                } else {
-                  goPrevGroup();
-                }
+                if (dx < 0) goNextGroup();
+                else goPrevGroup();
                 return;
               }
 
               // tap: image move (left half = prev, right half = next)
               const root = rootRef.current;
               const width = root?.clientWidth ?? window.innerWidth;
-              if (e.clientX >= width / 2) {
-                goNext();
-              } else {
-                goPrev();
-              }
+              if (last.x >= width / 2) goNext();
+              else goPrev();
             }}
           />
 
