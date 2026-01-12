@@ -1148,9 +1148,16 @@ html {
   inset: 0;
   z-index: 20;
   background: transparent;
+  touch-action: none;
+  user-select: none;
 }
 
 /* NAVボタンは必ず最前面 */
 .navFab {
   z-index: 60;
+}
+/* While the slideshow viewer is open (not NAV), lock page scroll */
+.view-test_viewing {
+  overflow: hidden;
+  overscroll-behavior: none;
 }
