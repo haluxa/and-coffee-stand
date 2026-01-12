@@ -199,11 +199,17 @@ export default function Slide() {
   const [sheetY, setSheetY] = useState(0);
   const [isSheetDragging, setIsSheetDragging] = useState(false);
   const [isGroupFading, setIsGroupFading] = useState(false);
+  // Story autoplay progress (current segment only)
+  const STORY_DURATION_MS = 4500; // 1枚あたりの表示時間
+  const [storyProgress, setStoryProgress] = useState(0); // 0..1
+  const storyRafRef = useRef<number | null>(null);
+  const storyStartTsRef = useRef<number | null>(null);
+  const isPointerDownRef = useRef(false);
 
-  const getSheetHeight = () => {
+  const getSheetHeight = useCallback(() => {
     const root = rootRef.current;
     return root?.clientHeight ?? window.innerHeight;
-  };
+  }, []);
 
   useEffect(() => {
     document.body.classList.add("view-test_page");
@@ -223,7 +229,7 @@ export default function Slide() {
       setSheetY(0);
     }
     setIsSheetDragging(false);
-  }, [isNav]);
+  }, [isNav, getSheetHeight]);
 
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
 
@@ -262,6 +268,82 @@ export default function Slide() {
     return pos >= 0 ? pos : 0;
   }, [activeGroupIndices, activeIndex]);
 
+  const scrollToIndex = useCallback(
+    (index: number, behavior: ScrollBehavior = "smooth") => {
+      const el = containerRef.current;
+      if (!el) return;
+      const w = el.clientWidth || 1;
+      el.scrollTo({ left: index * w, behavior });
+    },
+    []
+  );
+
+  const goNext = useCallback(() => {
+    setStoryProgress(0);
+    storyStartTsRef.current = null;
+    const next = (activeIndex + 1) % slideImages.length;
+    scrollToIndex(next, "smooth");
+  }, [activeIndex, scrollToIndex]);
+
+  const goPrev = useCallback(() => {
+    setStoryProgress(0);
+    storyStartTsRef.current = null;
+    const prev = (activeIndex - 1 + slideImages.length) % slideImages.length;
+    scrollToIndex(prev, "smooth");
+  }, [activeIndex, scrollToIndex]);
+
+  // Autoplay the active segment like Instagram Stories
+  useEffect(() => {
+    // reset whenever image or group changes
+    setStoryProgress(0);
+    storyStartTsRef.current = null;
+
+    if (storyRafRef.current != null) {
+      cancelAnimationFrame(storyRafRef.current);
+      storyRafRef.current = null;
+    }
+
+    // do not autoplay while NAV is visible
+    if (isNav) return;
+
+    const tick = (ts: number) => {
+      // stop if we returned to NAV
+      if (isNav) return;
+
+      // pause while dragging sheet, fading between groups, or touching the screen
+      if (isSheetDragging || isGroupFading || isPointerDownRef.current) {
+        storyStartTsRef.current = null; // re-sync after pause
+        storyRafRef.current = requestAnimationFrame(tick);
+        return;
+      }
+
+      if (storyStartTsRef.current == null) storyStartTsRef.current = ts;
+      const elapsed = ts - storyStartTsRef.current;
+      const p = Math.min(1, elapsed / STORY_DURATION_MS);
+      setStoryProgress(p);
+
+      if (p >= 1) {
+        // advance and let the next effect run (it will reset progress)
+        storyStartTsRef.current = null;
+        setStoryProgress(0);
+        goNext();
+        return;
+      }
+
+      storyRafRef.current = requestAnimationFrame(tick);
+    };
+
+    storyRafRef.current = requestAnimationFrame(tick);
+
+    return () => {
+      if (storyRafRef.current != null) {
+        cancelAnimationFrame(storyRafRef.current);
+        storyRafRef.current = null;
+      }
+      storyStartTsRef.current = null;
+    };
+  }, [activeIndex, activeGroup, isNav, isSheetDragging, isGroupFading, goNext]);
+
   const updateActiveIndexFromScroll = useCallback(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -295,16 +377,6 @@ export default function Slide() {
     };
   }, [activeIndex, updateActiveIndexFromScroll]);
 
-  const scrollToIndex = useCallback(
-    (index: number, behavior: ScrollBehavior = "smooth") => {
-      const el = containerRef.current;
-      if (!el) return;
-      const w = el.clientWidth || 1;
-      el.scrollTo({ left: index * w, behavior });
-    },
-    []
-  );
-
   const goToIndex = useCallback(
     (index: number, behavior: ScrollBehavior = "smooth") => {
       const clamped = Math.max(0, Math.min(slideImages.length - 1, index));
@@ -320,6 +392,8 @@ export default function Slide() {
     (index: number) => {
       // Fade out quickly, jump instantly, then fade in.
       setIsGroupFading(true);
+      setStoryProgress(0);
+      storyStartTsRef.current = null;
       window.setTimeout(() => {
         goToIndex(index, "auto");
         window.setTimeout(() => setIsGroupFading(false), 140);
@@ -333,6 +407,8 @@ export default function Slide() {
       setIsNav(false);
       setIsSheetDragging(false);
       setSheetY(0);
+      setStoryProgress(0);
+      storyStartTsRef.current = null;
       goToIndex(idx, "auto");
     },
     [goToIndex]
@@ -342,7 +418,9 @@ export default function Slide() {
     setIsNav(true);
     setIsSheetDragging(false);
     setSheetY(getSheetHeight());
-  }, []);
+    setStoryProgress(0);
+    storyStartTsRef.current = null;
+  }, [getSheetHeight]);
 
   const goNextGroup = useCallback(() => {
     if (groupStarts.length === 0) return;
@@ -373,16 +451,6 @@ export default function Slide() {
     jumpGroupToIndex,
     slideGroups,
   ]);
-
-  const goNext = useCallback(() => {
-    const next = (activeIndex + 1) % slideImages.length;
-    scrollToIndex(next, "smooth");
-  }, [activeIndex, scrollToIndex]);
-
-  const goPrev = useCallback(() => {
-    const prev = (activeIndex - 1 + slideImages.length) % slideImages.length;
-    scrollToIndex(prev, "smooth");
-  }, [activeIndex, scrollToIndex]);
 
   return (
     <div
@@ -434,20 +502,29 @@ export default function Slide() {
         {/* Instagram-like progress bar (per group) */}
         {activeGroupIndices.length > 0 ? (
           <div className="storyProgress" aria-hidden>
-            {activeGroupIndices.map((_, i) => (
-              <span
-                key={i}
-                className={`storyProgressSeg ${
-                  i < activeGroupPos
-                    ? "isDone"
-                    : i === activeGroupPos
-                    ? "isActive"
-                    : ""
-                }`}
-              >
-                <span className="storyProgressFill" />
-              </span>
-            ))}
+            {activeGroupIndices.map((_, i) => {
+              const isDone = i < activeGroupPos;
+              const isActive = i === activeGroupPos;
+              const width = isDone
+                ? 100
+                : isActive
+                ? Math.round(storyProgress * 100)
+                : 0;
+
+              return (
+                <span
+                  key={i}
+                  className={`storyProgressSeg ${
+                    isDone ? "isDone" : isActive ? "isActive" : ""
+                  }`}
+                >
+                  <span
+                    className="storyProgressFill"
+                    style={{ width: `${width}%` }}
+                  />
+                </span>
+              );
+            })}
           </div>
         ) : null}
 
@@ -498,6 +575,7 @@ export default function Slide() {
             pointerStartRef.current = { x: e.clientX, y: e.clientY };
             pointerLastRef.current = { x: e.clientX, y: e.clientY };
             setIsSheetDragging(false);
+            isPointerDownRef.current = true;
           }}
           onPointerMove={(e) => {
             const start = pointerStartRef.current;
@@ -518,6 +596,7 @@ export default function Slide() {
             }
           }}
           onPointerCancel={(e) => {
+            isPointerDownRef.current = false;
             pointerStartRef.current = null;
             pointerLastRef.current = null;
             setIsSheetDragging(false);
@@ -528,6 +607,7 @@ export default function Slide() {
             } catch {}
           }}
           onPointerUp={(e) => {
+            isPointerDownRef.current = false;
             const start = pointerStartRef.current;
             const last = pointerLastRef.current;
             pointerStartRef.current = null;
