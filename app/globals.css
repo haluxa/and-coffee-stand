@@ -1143,3 +1143,14 @@ html {
 .navThumb--tight {
   border-radius: 0;
 }
+.storyLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: transparent;
+}
+
+/* NAVボタンは必ず最前面 */
+.navFab {
+  z-index: 60;
+}

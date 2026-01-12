@@ -56,7 +56,7 @@ const slideImages = [
   "/img/view/7001_plant.jpg",
   "/img/view/7002_plant.jpg",
   "/img/view/7003_plant.jpg",
-  "/img/view/7004_night.jpg",
+  "/img/view/7004_plant.jpg",
   "/img/view/7005_plant.jpg",
   "/img/view/7006_plant.jpg",
   "/img/view/7007_plant.jpg",
@@ -185,11 +185,14 @@ const GROUP_DESC: Record<SlideGroup, string> = {
 };
 
 export default function Slide() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isNav, setIsNav] = useState(true);
-
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLUListElement | null>(null);
   const rafRef = useRef<number | null>(null);
+
+  const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isNav, setIsNav] = useState(true);
 
   useEffect(() => {
     document.body.classList.add("view-test_page");
@@ -199,6 +202,22 @@ export default function Slide() {
   }, []);
 
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
+
+  const groupStarts = useMemo(() => {
+    // order by first appearance in slideImages
+    const starts: Array<{ group: SlideGroup; index: number }> = [];
+    slideGroups.forEach((g, i) => {
+      if (!starts.some((s) => s.group === g))
+        starts.push({ group: g, index: i });
+    });
+    return starts;
+  }, [slideGroups]);
+
+  const groupIndexByName = useMemo(() => {
+    const m = new Map<SlideGroup, number>();
+    groupStarts.forEach((s, idx) => m.set(s.group, idx));
+    return m;
+  }, [groupStarts]);
 
   const activeGroup = slideGroups[activeIndex] ?? "other";
   const activeLabel = GROUP_LABEL[activeGroup];
@@ -269,6 +288,24 @@ export default function Slide() {
     setIsNav(true);
   }, []);
 
+  const goNextGroup = useCallback(() => {
+    if (groupStarts.length === 0) return;
+    const cur = slideGroups[activeIndex] ?? "other";
+    const curPos = groupIndexByName.get(cur) ?? 0;
+    const nextPos = (curPos + 1) % groupStarts.length;
+    const nextIndex = groupStarts[nextPos]?.index ?? 0;
+    goToIndex(nextIndex);
+  }, [activeIndex, groupIndexByName, groupStarts, goToIndex, slideGroups]);
+
+  const goPrevGroup = useCallback(() => {
+    if (groupStarts.length === 0) return;
+    const cur = slideGroups[activeIndex] ?? "other";
+    const curPos = groupIndexByName.get(cur) ?? 0;
+    const prevPos = (curPos - 1 + groupStarts.length) % groupStarts.length;
+    const prevIndex = groupStarts[prevPos]?.index ?? 0;
+    goToIndex(prevIndex);
+  }, [activeIndex, groupIndexByName, groupStarts, goToIndex, slideGroups]);
+
   const goNext = useCallback(() => {
     const next = (activeIndex + 1) % slideImages.length;
     scrollToIndex(next);
@@ -282,8 +319,9 @@ export default function Slide() {
   return (
     <div
       id="container"
+      ref={rootRef}
       className="slideContainer"
-      style={{ touchAction: "auto" }}
+      style={{ touchAction: "pan-y" }}
     >
       {!isNav ? (
         <>
@@ -322,17 +360,46 @@ export default function Slide() {
             ))}
           </ul>
 
-          <button
-            type="button"
-            className="story-hit-area left slide-hit-area"
-            aria-label="Previous"
-            onClick={goPrev}
-          />
-          <button
-            type="button"
-            className="story-hit-area right slide-hit-area"
-            aria-label="Next"
-            onClick={goNext}
+          <div
+            className="storyLayer"
+            role="button"
+            aria-label="Tap: prev/next image. Swipe: change group"
+            onPointerDown={(e) => {
+              if (e.button != null && e.button !== 0) return;
+              pointerStartRef.current = { x: e.clientX, y: e.clientY };
+            }}
+            onPointerCancel={() => {
+              pointerStartRef.current = null;
+            }}
+            onPointerUp={(e) => {
+              const start = pointerStartRef.current;
+              pointerStartRef.current = null;
+              if (!start) return;
+
+              const dx = e.clientX - start.x;
+              const dy = e.clientY - start.y;
+              const absX = Math.abs(dx);
+              const absY = Math.abs(dy);
+
+              // swipe: group move
+              if (absX >= 60 && absX > absY * 1.2) {
+                if (dx < 0) {
+                  goNextGroup();
+                } else {
+                  goPrevGroup();
+                }
+                return;
+              }
+
+              // tap: image move (left half = prev, right half = next)
+              const root = rootRef.current;
+              const width = root?.clientWidth ?? window.innerWidth;
+              if (e.clientX >= width / 2) {
+                goNext();
+              } else {
+                goPrev();
+              }
+            }}
           />
 
           <button
