@@ -1161,3 +1161,52 @@ html {
   overflow: hidden;
   overscroll-behavior: none;
 }
+/* Instagram-like segmented progress (per group) */
+.storyProgress {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 55;
+  display: flex;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.storyProgressSeg {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.storyProgressFill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 999px;
+}
+
+.storyProgressSeg.isDone .storyProgressFill {
+  width: 100%;
+}
+
+.storyProgressSeg.isActive .storyProgressFill {
+  width: 100%;
+}
+
+/* Optional: while pulling down, slightly soften the viewer */
+.viewerSheet.isDragging {
+  transition: none;
+}
+
+.viewerSheet {
+  will-change: transform;
+}
+
+.viewerSheet.isGroupFading {
+  opacity: 0.15;
+  transition: opacity 120ms ease;
+}

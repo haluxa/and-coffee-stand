@@ -248,6 +248,20 @@ export default function Slide() {
   const activeSrc = slideImages[activeIndex] ?? "";
   const activeFileName = activeSrc.split("/").pop() ?? "";
 
+  // Story progress (per group)
+  const activeGroupIndices = useMemo(() => {
+    const indices: number[] = [];
+    for (let i = 0; i < slideGroups.length; i++) {
+      if (slideGroups[i] === activeGroup) indices.push(i);
+    }
+    return indices;
+  }, [activeGroup, slideGroups]);
+
+  const activeGroupPos = useMemo(() => {
+    const pos = activeGroupIndices.indexOf(activeIndex);
+    return pos >= 0 ? pos : 0;
+  }, [activeGroupIndices, activeIndex]);
+
   const updateActiveIndexFromScroll = useCallback(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -417,6 +431,26 @@ export default function Slide() {
         }}
         aria-hidden={isNav}
       >
+        {/* Instagram-like progress bar (per group) */}
+        {activeGroupIndices.length > 0 ? (
+          <div className="storyProgress" aria-hidden>
+            {activeGroupIndices.map((_, i) => (
+              <span
+                key={i}
+                className={`storyProgressSeg ${
+                  i < activeGroupPos
+                    ? "isDone"
+                    : i === activeGroupPos
+                    ? "isActive"
+                    : ""
+                }`}
+              >
+                <span className="storyProgressFill" />
+              </span>
+            ))}
+          </div>
+        ) : null}
+
         {activeLabel ? (
           <div aria-hidden className="slideOverlay">
             <div className="slideBadge">
