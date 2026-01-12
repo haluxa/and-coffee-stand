@@ -18,17 +18,12 @@ const slideImages = [
   "/img/view/2005_night.jpg",
   "/img/view/2006_night.jpg",
   "/img/view/2007_night.jpg",
-  "/img/view/2008_night.jpg",
-  "/img/view/2009_night.jpg",
   "/img/view/3001_view.jpg",
   "/img/view/3002_view.jpg",
   "/img/view/3003_view.jpg",
   "/img/view/3004_view.jpg",
   "/img/view/3005_view.jpg",
   "/img/view/3006_view.jpg",
-  "/img/view/3007_view.jpg",
-  "/img/view/3008_view.jpg",
-  "/img/view/3009_view.jpg",
   "/img/view/4001_flower.jpg",
   "/img/view/4002_flower.jpg",
   "/img/view/4003_flower.jpg",
@@ -56,7 +51,6 @@ const slideImages = [
   "/img/view/6007_goods.jpg",
   "/img/view/6008_goods.jpg",
   "/img/view/6009_goods.jpg",
-  "/img/view/6010_goods.jpg",
   "/img/view/6011_goods.jpg",
   "/img/view/6012_goods.jpg",
   "/img/view/7001_plant.jpg",
@@ -176,22 +170,41 @@ const GROUP_LABEL: Record<SlideGroup, string> = {
   other: "",
 };
 
+const GROUP_DESC: Record<SlideGroup, string> = {
+  gift: "ギフトの雰囲気を切り取ったスナップ。",
+  night: "夜の光と空気感を集めた一枚。",
+  view: "景色や外の気配が感じられるカット。",
+  flower: "花の色と質感を主役にした写真。",
+  gift2: "別のギフトシーンのまとめ。",
+  goods: "店内の雑貨・小物の記録。",
+  plant: "植物のディテールや緑のある瞬間。",
+  event: "イベントや特別な日の記録。",
+  food: "フードとドリンクの写真。",
+  drink: "ドリンク中心の写真。",
+  other: "",
+};
+
 export default function Slide() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isNav, setIsNav] = useState(true);
+
   const containerRef = useRef<HTMLUListElement | null>(null);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     document.body.classList.add("view-test_page");
-
     return () => {
       document.body.classList.remove("view-test_page");
     };
   }, []);
 
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
+
   const activeGroup = slideGroups[activeIndex] ?? "other";
   const activeLabel = GROUP_LABEL[activeGroup];
+  const activeDesc = GROUP_DESC[activeGroup];
+  const activeSrc = slideImages[activeIndex] ?? "";
+  const activeFileName = activeSrc.split("/").pop() ?? "";
 
   const updateActiveIndexFromScroll = useCallback(() => {
     const el = containerRef.current;
@@ -233,6 +246,29 @@ export default function Slide() {
     el.scrollTo({ left: index * w, behavior: "smooth" });
   }, []);
 
+  const goToIndex = useCallback(
+    (index: number) => {
+      const clamped = Math.max(0, Math.min(slideImages.length - 1, index));
+      setActiveIndex(clamped);
+      requestAnimationFrame(() => {
+        scrollToIndex(clamped);
+      });
+    },
+    [scrollToIndex]
+  );
+
+  const openIndex = useCallback(
+    (idx: number) => {
+      setIsNav(false);
+      goToIndex(idx);
+    },
+    [goToIndex]
+  );
+
+  const openNav = useCallback(() => {
+    setIsNav(true);
+  }, []);
+
   const goNext = useCallback(() => {
     const next = (activeIndex + 1) % slideImages.length;
     scrollToIndex(next);
@@ -249,41 +285,97 @@ export default function Slide() {
       className="slideContainer"
       style={{ touchAction: "auto" }}
     >
-      {activeLabel ? (
-        <div aria-hidden className="slideOverlay">
-          <div className="slideBadge">{activeLabel}</div>
-        </div>
+      {!isNav ? (
+        <>
+          {activeLabel ? (
+            <div aria-hidden className="slideOverlay">
+              <div className="slideBadge">
+                <h2 className="slideTitle">{activeLabel}</h2>
+                {activeDesc ? <p className="slideDesc">{activeDesc}</p> : null}
+              </div>
+            </div>
+          ) : null}
+
+          <p className="slideFile" aria-hidden>
+            {activeFileName}
+          </p>
+
+          <ul id="content1" ref={containerRef} onScroll={onScroll}>
+            {slideImages.map((src, index) => (
+              <li
+                key={src}
+                className={`slider ${
+                  index === activeIndex ? "active" : "non-active"
+                }`}
+                aria-hidden={index !== activeIndex}
+              >
+                <Image
+                  src={src}
+                  alt={`slide-${index + 1}`}
+                  priority={index === 0}
+                  draggable={false}
+                  fill
+                  sizes="100vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </li>
+            ))}
+          </ul>
+
+          <button
+            type="button"
+            className="story-hit-area left slide-hit-area"
+            aria-label="Previous"
+            onClick={goPrev}
+          />
+          <button
+            type="button"
+            className="story-hit-area right slide-hit-area"
+            aria-label="Next"
+            onClick={goNext}
+          />
+
+          <button
+            type="button"
+            className="navFab"
+            aria-label="Open navigation"
+            onClick={openNav}
+          >
+            NAV
+          </button>
+        </>
       ) : null}
 
-      <ul id="content1" ref={containerRef} onScroll={onScroll}>
-        {slideImages.map((src, index) => (
-          <li
-            key={src}
-            className={`slider ${
-              index === activeIndex ? "active" : "non-active"
-            }`}
-            aria-hidden={index !== activeIndex}
-          >
-            <Image
-              src={src}
-              alt={`slide-${index + 1}`}
-              priority={index === 0}
-              draggable={false}
-              fill
-              sizes="100vw"
-              style={{ objectFit: "cover" }}
-            />
-          </li>
-        ))}
-      </ul>
-
-      <div
-        id="prev-btn"
-        role="button"
-        aria-label="Previous"
-        onClick={goPrev}
-      ></div>
-      <div id="next-btn" role="button" aria-label="Next" onClick={goNext}></div>
+      {isNav ? (
+        <div
+          className="slideNav"
+          role="navigation"
+          aria-label="Gallery navigation"
+        >
+          <div className="navGrid navGrid--all">
+            {slideImages.map((src, idx) => (
+              <button
+                key={src}
+                type="button"
+                className="navItem navItem--thumb"
+                onClick={() => openIndex(idx)}
+                aria-label={`Open image ${idx + 1}`}
+              >
+                <span className="navThumb navThumb--tight">
+                  <Image
+                    src={src}
+                    alt={`thumb-${idx + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 20vw, 120px"
+                    style={{ objectFit: "cover" }}
+                    priority={false}
+                  />
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

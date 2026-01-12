@@ -1020,43 +1020,6 @@ html {
   overflow: hidden;
   position: relative;
 }
-#prev-btn,
-#next-btn {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  background: rgba(255, 255, 255, 0.5);
-  z-index: 3;
-  cursor: pointer;
-  transform: translateY(-50%);
-}
-#prev-btn {
-  top: 50%;
-  left: 0;
-}
-#prev-btn::before,
-#next-btn::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-top: solid 1px #000;
-  border-left: solid 1px #000;
-  position: absolute;
-}
-#next-btn {
-  top: 50%;
-  right: 0;
-}
-#prev-btn::before {
-  top: 50%;
-  left: 55%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-#next-btn::before {
-  top: 50%;
-  left: 45%;
-  transform: translate(-50%, -50%) rotate(135deg);
-}
 .slideContainer {
   position: relative;
 }
@@ -1065,20 +1028,118 @@ html {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* 縦位置は中央 */
+  justify-content: flex-end; /* 右寄せ */
+  padding-right: 18px; /* 右端からの余白 */
   pointer-events: none;
   z-index: 10;
 }
 
 .slideBadge {
-  padding: 10px 14px;
-  font-size: 18px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  padding: 14px 10px;
   color: #fff;
-  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: row-reverse; /* 右端にタイトル */
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.slideTitle {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+}
+
+.slideDesc {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  max-height: min(70vh, 520px);
+}
+/* ファイル名：横書きで画面下中央 */
+.slideFile {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  pointer-events: none;
+  z-index: 12;
+}
+/* --- Slide NAV (gallery) --- */
+.slideNav {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  padding: 0;
+  background: #000;
+}
+
+.navGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.navItem {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  display: block; /* 余計な隙間防止 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navThumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* fixed: どこからでもNAVに戻る */
+.navFab {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 50;
+  border: 0;
+  padding: 10px 12px;
   border-radius: 999px;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.navFab:active {
+  background: rgba(0, 0, 0, 0.7);
+}
+/* 5列・隙間なし */
+.navGrid--all {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+}
+
+/* サムネは角丸なし（必要なら） */
+.navThumb--tight {
+  border-radius: 0;
 }
