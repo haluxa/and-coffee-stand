@@ -195,6 +195,16 @@ export default function Slide() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isNav, setIsNav] = useState(true);
 
+  // Viewer sheet drag/fade (Instagram-like)
+  const [sheetY, setSheetY] = useState(0);
+  const [isSheetDragging, setIsSheetDragging] = useState(false);
+  const [isGroupFading, setIsGroupFading] = useState(false);
+
+  const getSheetHeight = () => {
+    const root = rootRef.current;
+    return root?.clientHeight ?? window.innerHeight;
+  };
+
   useEffect(() => {
     document.body.classList.add("view-test_page");
     return () => {
@@ -207,9 +217,12 @@ export default function Slide() {
     // When viewing slides (not NAV), lock page scroll like Instagram stories.
     if (isNav) {
       document.body.classList.remove("view-test_viewing");
+      setSheetY(getSheetHeight());
     } else {
       document.body.classList.add("view-test_viewing");
+      setSheetY(0);
     }
+    setIsSheetDragging(false);
   }, [isNav]);
 
   const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
@@ -268,34 +281,53 @@ export default function Slide() {
     };
   }, [activeIndex, updateActiveIndexFromScroll]);
 
-  const scrollToIndex = useCallback((index: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    const w = el.clientWidth || 1;
-    el.scrollTo({ left: index * w, behavior: "smooth" });
-  }, []);
+  const scrollToIndex = useCallback(
+    (index: number, behavior: ScrollBehavior = "smooth") => {
+      const el = containerRef.current;
+      if (!el) return;
+      const w = el.clientWidth || 1;
+      el.scrollTo({ left: index * w, behavior });
+    },
+    []
+  );
 
   const goToIndex = useCallback(
-    (index: number) => {
+    (index: number, behavior: ScrollBehavior = "smooth") => {
       const clamped = Math.max(0, Math.min(slideImages.length - 1, index));
       setActiveIndex(clamped);
       requestAnimationFrame(() => {
-        scrollToIndex(clamped);
+        scrollToIndex(clamped, behavior);
       });
     },
     [scrollToIndex]
   );
 
+  const jumpGroupToIndex = useCallback(
+    (index: number) => {
+      // Fade out quickly, jump instantly, then fade in.
+      setIsGroupFading(true);
+      window.setTimeout(() => {
+        goToIndex(index, "auto");
+        window.setTimeout(() => setIsGroupFading(false), 140);
+      }, 80);
+    },
+    [goToIndex]
+  );
+
   const openIndex = useCallback(
     (idx: number) => {
       setIsNav(false);
-      goToIndex(idx);
+      setIsSheetDragging(false);
+      setSheetY(0);
+      goToIndex(idx, "auto");
     },
     [goToIndex]
   );
 
   const openNav = useCallback(() => {
     setIsNav(true);
+    setIsSheetDragging(false);
+    setSheetY(getSheetHeight());
   }, []);
 
   const goNextGroup = useCallback(() => {
@@ -304,8 +336,14 @@ export default function Slide() {
     const curPos = groupIndexByName.get(cur) ?? 0;
     const nextPos = (curPos + 1) % groupStarts.length;
     const nextIndex = groupStarts[nextPos]?.index ?? 0;
-    goToIndex(nextIndex);
-  }, [activeIndex, groupIndexByName, groupStarts, goToIndex, slideGroups]);
+    jumpGroupToIndex(nextIndex);
+  }, [
+    activeIndex,
+    groupIndexByName,
+    groupStarts,
+    jumpGroupToIndex,
+    slideGroups,
+  ]);
 
   const goPrevGroup = useCallback(() => {
     if (groupStarts.length === 0) return;
@@ -313,17 +351,23 @@ export default function Slide() {
     const curPos = groupIndexByName.get(cur) ?? 0;
     const prevPos = (curPos - 1 + groupStarts.length) % groupStarts.length;
     const prevIndex = groupStarts[prevPos]?.index ?? 0;
-    goToIndex(prevIndex);
-  }, [activeIndex, groupIndexByName, groupStarts, goToIndex, slideGroups]);
+    jumpGroupToIndex(prevIndex);
+  }, [
+    activeIndex,
+    groupIndexByName,
+    groupStarts,
+    jumpGroupToIndex,
+    slideGroups,
+  ]);
 
   const goNext = useCallback(() => {
     const next = (activeIndex + 1) % slideImages.length;
-    scrollToIndex(next);
+    scrollToIndex(next, "smooth");
   }, [activeIndex, scrollToIndex]);
 
   const goPrev = useCallback(() => {
     const prev = (activeIndex - 1 + slideImages.length) % slideImages.length;
-    scrollToIndex(prev);
+    scrollToIndex(prev, "smooth");
   }, [activeIndex, scrollToIndex]);
 
   return (
@@ -333,147 +377,175 @@ export default function Slide() {
       className="slideContainer"
       style={{ touchAction: "none" }}
     >
-      {!isNav ? (
-        <>
-          {activeLabel ? (
-            <div aria-hidden className="slideOverlay">
-              <div className="slideBadge">
-                <h2 className="slideTitle">{activeLabel}</h2>
-                {activeDesc ? <p className="slideDesc">{activeDesc}</p> : null}
-              </div>
-            </div>
-          ) : null}
-
-          <p className="slideFile" aria-hidden>
-            {activeFileName}
-          </p>
-
-          <ul id="content1" ref={containerRef} onScroll={onScroll}>
-            {slideImages.map((src, index) => (
-              <li
-                key={src}
-                className={`slider ${
-                  index === activeIndex ? "active" : "non-active"
-                }`}
-                aria-hidden={index !== activeIndex}
-              >
+      {/* NAV stays underneath */}
+      <div
+        className="slideNav"
+        role="navigation"
+        aria-label="Gallery navigation"
+      >
+        <div className="navGrid navGrid--all">
+          {slideImages.map((src, idx) => (
+            <button
+              key={src}
+              type="button"
+              className="navItem navItem--thumb"
+              onClick={() => openIndex(idx)}
+              aria-label={`Open image ${idx + 1}`}
+            >
+              <span className="navThumb navThumb--tight">
                 <Image
                   src={src}
-                  alt={`slide-${index + 1}`}
-                  priority={index === 0}
-                  draggable={false}
+                  alt={`thumb-${idx + 1}`}
                   fill
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 20vw, 120px"
                   style={{ objectFit: "cover" }}
+                  priority={false}
                 />
-              </li>
-            ))}
-          </ul>
-
-          <div
-            className="storyLayer"
-            role="button"
-            aria-label="Tap: prev/next image. Swipe: change group. Swipe down: back to NAV"
-            onPointerDown={(e) => {
-              if (e.button != null && e.button !== 0) return;
-              try {
-                (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-              } catch {}
-              pointerStartRef.current = { x: e.clientX, y: e.clientY };
-              pointerLastRef.current = { x: e.clientX, y: e.clientY };
-            }}
-            onPointerMove={(e) => {
-              if (!pointerStartRef.current) return;
-              pointerLastRef.current = { x: e.clientX, y: e.clientY };
-            }}
-            onPointerCancel={(e) => {
-              pointerStartRef.current = null;
-              pointerLastRef.current = null;
-              try {
-                (e.currentTarget as HTMLElement).releasePointerCapture(
-                  e.pointerId
-                );
-              } catch {}
-            }}
-            onPointerUp={(e) => {
-              const start = pointerStartRef.current;
-              const last = pointerLastRef.current;
-              pointerStartRef.current = null;
-              pointerLastRef.current = null;
-              try {
-                (e.currentTarget as HTMLElement).releasePointerCapture(
-                  e.pointerId
-                );
-              } catch {}
-              if (!start || !last) return;
-
-              const dx = last.x - start.x;
-              const dy = last.y - start.y;
-              const absX = Math.abs(dx);
-              const absY = Math.abs(dy);
-
-              // swipe down: back to NAV
-              if (dy >= 90 && absY > absX * 1.2) {
-                openNav();
-                return;
-              }
-
-              // swipe left/right: change group
-              if (absX >= 60 && absX > absY * 1.2) {
-                if (dx < 0) goNextGroup();
-                else goPrevGroup();
-                return;
-              }
-
-              // tap: image move (left half = prev, right half = next)
-              const root = rootRef.current;
-              const width = root?.clientWidth ?? window.innerWidth;
-              if (last.x >= width / 2) goNext();
-              else goPrev();
-            }}
-          />
-
-          <button
-            type="button"
-            className="navFab"
-            aria-label="Open navigation"
-            onClick={openNav}
-          >
-            NAV
-          </button>
-        </>
-      ) : null}
-
-      {isNav ? (
-        <div
-          className="slideNav"
-          role="navigation"
-          aria-label="Gallery navigation"
-        >
-          <div className="navGrid navGrid--all">
-            {slideImages.map((src, idx) => (
-              <button
-                key={src}
-                type="button"
-                className="navItem navItem--thumb"
-                onClick={() => openIndex(idx)}
-                aria-label={`Open image ${idx + 1}`}
-              >
-                <span className="navThumb navThumb--tight">
-                  <Image
-                    src={src}
-                    alt={`thumb-${idx + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 20vw, 120px"
-                    style={{ objectFit: "cover" }}
-                    priority={false}
-                  />
-                </span>
-              </button>
-            ))}
-          </div>
+              </span>
+            </button>
+          ))}
         </div>
-      ) : null}
+      </div>
+
+      {/* Viewer sheet (slides) */}
+      <div
+        className={`viewerSheet ${isSheetDragging ? "isDragging" : ""} ${
+          isGroupFading ? "isGroupFading" : ""
+        }`}
+        style={{
+          transform: `translate3d(0, ${isNav ? "100%" : `${sheetY}px`}, 0)`,
+        }}
+        aria-hidden={isNav}
+      >
+        {activeLabel ? (
+          <div aria-hidden className="slideOverlay">
+            <div className="slideBadge">
+              <h2 className="slideTitle">{activeLabel}</h2>
+              {activeDesc ? <p className="slideDesc">{activeDesc}</p> : null}
+            </div>
+          </div>
+        ) : null}
+
+        <p className="slideFile" aria-hidden>
+          {activeFileName}
+        </p>
+
+        <ul id="content1" ref={containerRef} onScroll={onScroll}>
+          {slideImages.map((src, index) => (
+            <li
+              key={src}
+              className={`slider ${
+                index === activeIndex ? "active" : "non-active"
+              }`}
+              aria-hidden={index !== activeIndex}
+            >
+              <Image
+                src={src}
+                alt={`slide-${index + 1}`}
+                priority={index === 0}
+                draggable={false}
+                fill
+                sizes="100vw"
+                style={{ objectFit: "cover" }}
+              />
+            </li>
+          ))}
+        </ul>
+
+        <div
+          className="storyLayer"
+          role="button"
+          aria-label="Tap: prev/next image. Swipe: change group. Pull down: back to NAV"
+          onPointerDown={(e) => {
+            if (e.button != null && e.button !== 0) return;
+            try {
+              (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+            } catch {}
+            pointerStartRef.current = { x: e.clientX, y: e.clientY };
+            pointerLastRef.current = { x: e.clientX, y: e.clientY };
+            setIsSheetDragging(false);
+          }}
+          onPointerMove={(e) => {
+            const start = pointerStartRef.current;
+            if (!start) return;
+            pointerLastRef.current = { x: e.clientX, y: e.clientY };
+
+            const dx = e.clientX - start.x;
+            const dy = e.clientY - start.y;
+            const absX = Math.abs(dx);
+            const absY = Math.abs(dy);
+
+            // Pull down gesture: move the sheet to reveal NAV underneath.
+            if (dy > 0 && absY > absX * 1.1) {
+              setIsSheetDragging(true);
+              const h = getSheetHeight();
+              const clamped = Math.max(0, Math.min(h, dy));
+              setSheetY(clamped);
+            }
+          }}
+          onPointerCancel={(e) => {
+            pointerStartRef.current = null;
+            pointerLastRef.current = null;
+            setIsSheetDragging(false);
+            try {
+              (e.currentTarget as HTMLElement).releasePointerCapture(
+                e.pointerId
+              );
+            } catch {}
+          }}
+          onPointerUp={(e) => {
+            const start = pointerStartRef.current;
+            const last = pointerLastRef.current;
+            pointerStartRef.current = null;
+            pointerLastRef.current = null;
+            try {
+              (e.currentTarget as HTMLElement).releasePointerCapture(
+                e.pointerId
+              );
+            } catch {}
+            if (!start || !last) return;
+
+            const dx = last.x - start.x;
+            const dy = last.y - start.y;
+            const absX = Math.abs(dx);
+            const absY = Math.abs(dy);
+
+            // If we were pulling down, decide whether to go to NAV.
+            if (isSheetDragging) {
+              const h = getSheetHeight();
+              if (sheetY >= Math.min(160, h * 0.22)) {
+                openNav();
+              } else {
+                setSheetY(0);
+              }
+              setIsSheetDragging(false);
+              return;
+            }
+
+            // swipe left/right: change group (no intermediate scroll)
+            if (absX >= 60 && absX > absY * 1.2) {
+              if (dx < 0) goNextGroup();
+              else goPrevGroup();
+              return;
+            }
+
+            // tap: image move (left half = prev, right half = next)
+            const root = rootRef.current;
+            const width = root?.clientWidth ?? window.innerWidth;
+            if (last.x >= width / 2) goNext();
+            else goPrev();
+          }}
+        />
+
+        <button
+          type="button"
+          className="navFab"
+          aria-label="Open navigation"
+          onClick={openNav}
+        >
+          NAV
+        </button>
+      </div>
     </div>
   );
 }
