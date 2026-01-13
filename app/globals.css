@@ -1210,3 +1210,13 @@ html {
   opacity: 0.15;
   transition: opacity 120ms ease;
 }
+@media (hover: hover) and (pointer: fine) {
+  .slideNav .navThumb img {
+    filter: grayscale(1);
+    transition: filter 180ms ease;
+  }
+  .slideNav .navItem:hover .navThumb img,
+  .slideNav .navItem:focus-visible .navThumb img {
+    filter: grayscale(0);
+  }
+}
