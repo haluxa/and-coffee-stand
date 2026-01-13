@@ -4,183 +4,372 @@ import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const slideImages = [
-  "/img/view/1001_gift.jpg",
-  "/img/view/1002_gift.jpg",
-  "/img/view/1003_gift.jpg",
-  "/img/view/1004_gift.jpg",
-  "/img/view/1005_gift.jpg",
-  "/img/view/1006_gift.jpg",
-  "/img/view/1007_gift.jpg",
-  "/img/view/2001_night.jpg",
-  "/img/view/2002_night.jpg",
-  "/img/view/2003_night.jpg",
-  "/img/view/2004_night.jpg",
-  "/img/view/2005_night.jpg",
-  "/img/view/2006_night.jpg",
-  "/img/view/2007_night.jpg",
-  "/img/view/3001_view.jpg",
-  "/img/view/3002_view.jpg",
-  "/img/view/3003_view.jpg",
-  "/img/view/3004_view.jpg",
-  "/img/view/3005_view.jpg",
-  "/img/view/3006_view.jpg",
-  "/img/view/4001_flower.jpg",
-  "/img/view/4002_flower.jpg",
-  "/img/view/4003_flower.jpg",
-  "/img/view/4004_flower.jpg",
-  "/img/view/4005_flower.jpg",
-  "/img/view/4006_flower.jpg",
-  "/img/view/4007_flower.jpg",
-  "/img/view/4008_flower.jpg",
-  "/img/view/4009_flower.jpg",
-  "/img/view/4010_flower.jpg",
-  "/img/view/5001_gift2.jpg",
-  "/img/view/5002_gift2.jpg",
-  "/img/view/5003_gift2.jpg",
-  "/img/view/5004_gift2.jpg",
-  "/img/view/5005_gift2.jpg",
-  "/img/view/5006_gift2.jpg",
-  "/img/view/5007_gift2.jpg",
-  "/img/view/5008_gift2.jpg",
-  "/img/view/6001_goods.jpg",
-  "/img/view/6002_goods.jpg",
-  "/img/view/6003_goods.jpg",
-  "/img/view/6004_goods.jpg",
-  "/img/view/6005_goods.jpg",
-  "/img/view/6006_goods.jpg",
-  "/img/view/6007_goods.jpg",
-  "/img/view/6008_goods.jpg",
-  "/img/view/6009_goods.jpg",
-  "/img/view/6011_goods.jpg",
-  "/img/view/6012_goods.jpg",
-  "/img/view/7001_plant.jpg",
-  "/img/view/7002_plant.jpg",
-  "/img/view/7003_plant.jpg",
-  "/img/view/7004_plant.jpg",
-  "/img/view/7005_plant.jpg",
-  "/img/view/7006_plant.jpg",
-  "/img/view/7007_plant.jpg",
-  "/img/view/7008_plant.jpg",
-  "/img/view/7009_plant.jpg",
-  "/img/view/7010_plant.jpg",
-  "/img/view/7011_plant.jpg",
-  "/img/view/7012_plant.jpg",
-  "/img/view/7013_plant.jpg",
-  "/img/view/7014_plant.jpg",
-  "/img/view/7015_plant.jpg",
-  "/img/view/7016_plant.jpg",
-  "/img/view/7017_plant.jpg",
-  "/img/view/7018_plant.jpg",
-  "/img/view/8001.jpg",
-  "/img/view/8002.jpg",
-  "/img/view/8003.jpg",
-  "/img/view/8004.jpg",
-  "/img/view/8005.jpg",
-  "/img/view/8006.jpg",
-  "/img/view/8007.jpg",
-  "/img/view/8008.jpg",
-  "/img/view/8009.jpg",
-  "/img/view/8010.jpg",
-  "/img/view/8011.jpg",
-  "/img/view/8101.jpg",
-  "/img/view/8102.jpg",
-  "/img/view/8201.jpg",
-  "/img/view/8202.jpg",
-  "/img/view/8203.jpg",
-  "/img/view/8204.jpg",
-  "/img/view/8401.jpg",
-  "/img/view/8402.jpg",
-  "/img/view/8501.jpg",
-  "/img/view/8502.jpg",
-  "/img/view/8503.jpg",
-  "/img/view/8504.jpg",
-  "/img/view/8505.jpg",
-  "/img/view/8506.jpg",
-  "/img/view/8601.jpg",
-  "/img/view/8602.jpg",
-  "/img/view/8701.jpg",
-  "/img/view/8702.jpg",
-  "/img/view/9001.jpg",
-  "/img/view/9002.jpg",
-  "/img/view/9003.jpg",
-  "/img/view/9004.jpg",
-  "/img/view/9005.jpg",
-  "/img/view/9006.jpg",
+  // 01 オリジナルグッズ
+  "/img/gallery/01_01_01.jpg",
+  "/img/gallery/01_02_01.jpg",
+  "/img/gallery/01_03_01.jpg",
+  "/img/gallery/01_03_02.jpg",
+  "/img/gallery/01_04_01.jpg",
+  "/img/gallery/01_04_02.jpg",
+  "/img/gallery/01_04_03.jpg",
+  "/img/gallery/01_06_01.jpg",
+  "/img/gallery/01_06_02.jpg",
+  "/img/gallery/01_06_03.jpg",
+  "/img/gallery/01_06_04.jpg",
+  "/img/gallery/01_07_01.jpg",
+
+  // 02 イベント
+  "/img/gallery/02_01_01.jpg",
+  "/img/gallery/02_01_02.jpg",
+  "/img/gallery/02_02_01.jpg",
+  "/img/gallery/02_02_02.jpg",
+  "/img/gallery/02_02_03.jpg",
+  "/img/gallery/02_03_01.jpg",
+  "/img/gallery/02_03_02.jpg",
+  "/img/gallery/02_04_01.jpg",
+  "/img/gallery/02_04_02.jpg",
+  "/img/gallery/02_04_03.jpg",
+  "/img/gallery/02_04_04.jpg",
+  "/img/gallery/02_04_05.jpg",
+  "/img/gallery/02_04_06.jpg",
+  "/img/gallery/02_05_01.jpg",
+  "/img/gallery/02_05_02.jpg",
+  "/img/gallery/02_05_03.jpg",
+  "/img/gallery/02_06_01.jpg",
+  "/img/gallery/02_07_01.jpg",
+  "/img/gallery/02_07_02.jpg",
+  "/img/gallery/02_08_01.jpg",
+  "/img/gallery/02_09_01.jpg",
+  "/img/gallery/02_09_02.jpg",
+  "/img/gallery/02_10_01.jpg",
+  "/img/gallery/02_10_02.jpg",
+
+  // 03 店内
+  "/img/gallery/03_01_01.jpg",
+  "/img/gallery/03_02_01.jpg",
+  "/img/gallery/03_03_01.jpg",
+  "/img/gallery/03_04_01.jpg",
+  "/img/gallery/03_05_01.jpg",
+
+  // 04 植物
+  "/img/gallery/04_01_01.jpg",
+  "/img/gallery/04_01_02.jpg",
+  "/img/gallery/04_01_03.jpg",
+  "/img/gallery/04_02_01.jpg",
+  "/img/gallery/04_02_02.jpg",
+  "/img/gallery/04_02_03.jpg",
+  "/img/gallery/04_02_04.jpg",
+  "/img/gallery/04_02_05.jpg",
+  "/img/gallery/04_02_06.jpg",
+  "/img/gallery/04_02_07.jpg",
+  "/img/gallery/04_02_08.jpg",
+  "/img/gallery/04_03_01.jpg",
+  "/img/gallery/04_04_01.jpg",
+
+  // 05 ドリップバック
+  "/img/gallery/05_01_01.jpg",
+  "/img/gallery/05_01_02.jpg",
+  "/img/gallery/05_02_01.jpg",
+  "/img/gallery/05_03_01.jpg",
+  "/img/gallery/05_04_01.jpg",
+
+  // 06 周年お祝い
+  "/img/gallery/06_01_01.jpg",
+  "/img/gallery/06_02_01.jpg",
+  "/img/gallery/06_03_01.jpg",
+  "/img/gallery/06_04_01.jpg",
+  "/img/gallery/06_05_01.jpg",
+  "/img/gallery/06_06_01.jpg",
+  "/img/gallery/06_07_01.jpg",
+  "/img/gallery/06_08_01.jpg",
+  "/img/gallery/06_09_01.jpg",
+  "/img/gallery/06_10_01.jpg",
+
+  // 07 物販
+  "/img/gallery/07_01_01.jpg",
+  "/img/gallery/07_02_01.jpg",
+  "/img/gallery/07_03_01.jpg",
+  "/img/gallery/07_03_02.jpg",
+  "/img/gallery/07_03_03.jpg",
+  "/img/gallery/07_03_04.jpg",
+  "/img/gallery/07_04_01.jpg",
+  "/img/gallery/07_05_01.jpg",
+
+  // 10 フード＆ドリンク
+  "/img/gallery/10_01_01.jpg",
+  "/img/gallery/10_01_02.jpg",
+  "/img/gallery/10_01_04.jpg",
+  "/img/gallery/10_01_05.jpg",
 ];
 
-type SlideGroup =
-  | "gift"
-  | "night"
-  | "view"
-  | "flower"
-  | "gift2"
-  | "goods"
-  | "plant"
-  | "event"
-  | "food"
-  | "drink"
+type MajorGroup =
+  | "01"
+  | "02"
+  | "03"
+  | "04"
+  | "05"
+  | "06"
+  | "07"
+  | "10"
   | "other";
 
-const getGroupFromSrc = (src: string): SlideGroup => {
+type SubGroup =
+  | "01_01"
+  | "01_02"
+  | "01_03"
+  | "01_04"
+  | "01_05"
+  | "01_06"
+  | "01_07"
+  | "02_01"
+  | "02_02"
+  | "02_03"
+  | "02_04"
+  | "02_05"
+  | "02_06"
+  | "02_07"
+  | "02_08"
+  | "02_09"
+  | "02_10"
+  | "03_01"
+  | "03_02"
+  | "03_03"
+  | "03_04"
+  | "03_05"
+  | "04_01"
+  | "04_02"
+  | "04_03"
+  | "04_04"
+  | "05_01"
+  | "05_02"
+  | "05_03"
+  | "05_04"
+  | "06_01"
+  | "06_02"
+  | "06_03"
+  | "06_04"
+  | "06_05"
+  | "06_06"
+  | "06_07"
+  | "06_08"
+  | "06_09"
+  | "06_10"
+  | "07_01"
+  | "07_02"
+  | "07_03"
+  | "07_04"
+  | "07_05"
+  | "10_01"
+  | "other";
+
+const getMajorFromSrc = (src: string): MajorGroup => {
   const file = src.split("/").pop() ?? "";
-  const m = file.match(
-    /_(gift2|gift|night|view|flower|goods|plant|event|food|drink)\./i
-  );
-  const key = (m?.[1] ?? "").toLowerCase();
-
-  if (!m) {
-    const numMatch = file.match(/^(\d{4})/);
-    if (numMatch) {
-      const num = parseInt(numMatch[1], 10);
-      if (num >= 8000 && num <= 8999) return "event";
-      if (num >= 9000 && num <= 9999) return "food";
-      return "other";
-    }
-    return "other";
+  const m = file.match(/^(\d{2})_(\d{2})_(\d{2})\./);
+  const major = m?.[1] ?? "";
+  if (
+    major === "01" ||
+    major === "02" ||
+    major === "03" ||
+    major === "04" ||
+    major === "05" ||
+    major === "06" ||
+    major === "07" ||
+    major === "10"
+  ) {
+    return major as MajorGroup;
   }
+  return "other";
+};
 
+const getSubFromSrc = (src: string): SubGroup => {
+  const file = src.split("/").pop() ?? "";
+  const m = file.match(/^(\d{2})_(\d{2})_(\d{2})\./);
+  if (!m) return "other";
+  const key = `${m[1]}_${m[2]}`;
   switch (key) {
-    case "gift":
-    case "night":
-    case "view":
-    case "flower":
-    case "gift2":
-    case "goods":
-    case "plant":
-    case "event":
-    case "food":
-    case "drink":
-      return key as SlideGroup;
+    case "01_01":
+    case "01_02":
+    case "01_03":
+    case "01_04":
+    case "01_05":
+    case "01_06":
+    case "01_07":
+    case "02_01":
+    case "02_02":
+    case "02_03":
+    case "02_04":
+    case "02_05":
+    case "02_06":
+    case "02_07":
+    case "02_08":
+    case "02_09":
+    case "02_10":
+    case "03_01":
+    case "03_02":
+    case "03_03":
+    case "03_04":
+    case "03_05":
+    case "04_01":
+    case "04_02":
+    case "04_03":
+    case "04_04":
+    case "05_01":
+    case "05_02":
+    case "05_03":
+    case "05_04":
+    case "06_01":
+    case "06_02":
+    case "06_03":
+    case "06_04":
+    case "06_05":
+    case "06_06":
+    case "06_07":
+    case "06_08":
+    case "06_09":
+    case "06_10":
+    case "07_01":
+    case "07_02":
+    case "07_03":
+    case "07_04":
+    case "07_05":
+    case "10_01":
+      return key as SubGroup;
     default:
       return "other";
   }
 };
 
-const GROUP_LABEL: Record<SlideGroup, string> = {
-  gift: "GIFT",
-  night: "NIGHT",
-  view: "VIEW",
-  flower: "FLOWER",
-  gift2: "GIFT",
-  goods: "GOODS",
-  plant: "PLANT",
-  event: "EVENT",
-  food: "FOOD / DRINK",
-  drink: "FOOD / DRINK",
+const MAJOR_LABEL: Record<MajorGroup, string> = {
+  "01": "オリジナルグッズ",
+  "02": "イベント",
+  "03": "店内",
+  "04": "植物",
+  "05": "ドリップバック",
+  "06": "周年お祝い",
+  "07": "物販",
+  "10": "フード＆ドリンク",
   other: "",
 };
 
-const GROUP_DESC: Record<SlideGroup, string> = {
-  gift: "ギフトの雰囲気を切り取ったスナップ。",
-  night: "夜の光と空気感を集めた一枚。",
-  view: "景色や外の気配が感じられるカット。",
-  flower: "花の色と質感を主役にした写真。",
-  gift2: "別のギフトシーンのまとめ。",
-  goods: "店内の雑貨・小物の記録。",
-  plant: "植物のディテールや緑のある瞬間。",
-  event: "イベントや特別な日の記録。",
-  food: "フードとドリンクの写真。",
-  drink: "ドリンク中心の写真。",
+const SUB_TITLE: Record<SubGroup, string> = {
+  "01_01": "オリジナルTシャツ",
+  "01_02": "オリジナルキャップ",
+  "01_03": "オリジナルマグカップ",
+  "01_04": "オリジナルロンT",
+  "01_05": "オリジナルグッズ（保留）",
+  "01_06": "オリジナルキーホルダー",
+  "01_07": "オリジナルステッカー",
+
+  "02_01": "カボス詰め放題",
+  "02_02": "キヨタキストア",
+  "02_03": "しぶ個展",
+  "02_04": "夜カフェ",
+  "02_05": "植物展示会",
+  "02_06": "靴磨き職人",
+  "02_07": "ヘラクレスの会",
+  "02_08": "子供店長の日",
+  "02_09": "アンカー",
+  "02_10": "リビルダー",
+
+  "03_01": "店内席の写真",
+  "03_02": "店内席の写真",
+  "03_03": "店内席の写真",
+  "03_04": "店内席の写真",
+  "03_05": "店内席の写真",
+
+  "04_01": "植物",
+  "04_02": "植物",
+  "04_03": "植物",
+  "04_04": "植物",
+
+  "05_01": "ドリップバック",
+  "05_02": "ドリップバック（クリスマス）",
+  "05_03": "ドリップバック（ハロウィン）",
+  "05_04": "ドリップバック（母の日）",
+
+  "06_01": "周年お祝い",
+  "06_02": "周年お祝い",
+  "06_03": "周年お祝い",
+  "06_04": "周年お祝い",
+  "06_05": "周年お祝い",
+  "06_06": "周年お祝い",
+  "06_07": "周年お祝い",
+  "06_08": "周年お祝い",
+  "06_09": "周年お祝い",
+  "06_10": "周年お祝い",
+
+  "07_01": "米粉シフォン",
+  "07_02": "水出しコーヒー",
+  "07_03": "チャイ＆ボンソイ",
+  "07_04": "チョコ",
+  "07_05": "ヘアオイル",
+
+  "10_01": "フード / ドリンク",
+
+  other: "",
+};
+
+const SUB_DESC: Record<SubGroup, string> = {
+  "01_01":
+    "オリジナルデザインのTシャツはたくさんのご予約ありがとうございました",
+  "01_02": "４色どれも可愛かったオリジナルキャップ",
+  "01_03": "お家でのコーヒータイムに",
+  "01_04": "全て手書きのオリジナルデザイン",
+  "01_05": "。",
+  "01_06": "細部・金具・存在感を見せるための写真。",
+  "01_07": "お持ちの方限定で何かしらの特典が受けられるステッカー♪",
+
+  "02_01": "農薬・化学肥料不使用で今後もゲリラ開催予定♪",
+  "02_02": "珈琲飲みながら可愛い雑貨をーー 古道具屋さんとのコラボイベント",
+  "02_03": "初の個展開催 オリジナルロンTもたくさんご予約頂きました",
+  "02_04":
+    "不定期で開催する夜カフェ。夜ならお仕事終わりでもゆっくり楽しんでいただけます。いつもと違った雰囲気をぜひお楽しみください",
+  "02_05":
+    "植物屋さんをお招きしてコラボイベントし、珍しいものをたくさん持ってきていただきました",
+  "02_06": "靴磨き職人をお招きしてコラボイベント",
+  "02_07":
+    "昆虫好きの息子によるイベント♪子供達同士でもコミュニティができたら嬉しいです",
+  "02_08": "お金を稼ぐことの大変さを学んだ日でした",
+  "02_09": "。",
+  "02_10": "。",
+
+  "03_01": "壁面のローテーブルで読書タイムもぜひ",
+  "03_02": "壁面のローテーブルは1人から3人までがオススメ",
+  "03_03":
+    "座り心地の良いハイチェアは作業もはかどるので珈琲と一緒に作業時間にも",
+  "03_04": "当店はほとんどの席が2人掛けなので少人数にオススメのお店です",
+  "03_05": "窓側のテーブル席のみ、3、4人でお座りいただけます",
+
+  "04_01": "趣味である植物もどんどん増えてきました",
+  "04_02": "お気に入りのビカクシダは板付からセルフで",
+  "04_03": "オープンからずっと元気なサンスベリア",
+  "04_04": "シェルフも手作り",
+
+  "05_01":
+    "手軽にお家でも珈琲が楽しめる。ドリップバッグは3種の飲み比べセットがオススメ",
+  "05_02": "。",
+  "05_03": "プチギフトにオススメ",
+  "05_04": "プチギフトにオススメ",
+
+  "06_01": "周年お祝いの記録",
+  "06_02": "いつも遠くからありがとう",
+  "06_03": "手紙付きでお祝いをありがとう",
+  "06_04": "何度も足を運んでくださるお客様から",
+  "06_05": "字が少し書けるようになった息子から",
+  "06_06": "",
+  "06_07": "お客様から特別な存在に",
+  "06_08": "",
+  "06_09": "いつも応援してくださってありがとうございます",
+  "06_10": "",
+
+  "07_01": "。",
+  "07_02": "。",
+  "07_03": "。",
+  "07_04": "。",
+  "07_05": "。",
+
+  "10_01": "。",
+
   other: "",
 };
 
@@ -231,37 +420,40 @@ export default function Slide() {
     setIsSheetDragging(false);
   }, [isNav, getSheetHeight]);
 
-  const slideGroups = useMemo(() => slideImages.map(getGroupFromSrc), []);
+  const majorGroups = useMemo(() => slideImages.map(getMajorFromSrc), []);
+  const subGroups = useMemo(() => slideImages.map(getSubFromSrc), []);
 
   const groupStarts = useMemo(() => {
-    const starts: Array<{ group: SlideGroup; index: number }> = [];
-    slideGroups.forEach((g, i) => {
+    const starts: Array<{ group: MajorGroup; index: number }> = [];
+    majorGroups.forEach((g, i) => {
       if (!starts.some((s) => s.group === g))
         starts.push({ group: g, index: i });
     });
     return starts;
-  }, [slideGroups]);
+  }, [majorGroups]);
 
   const groupIndexByName = useMemo(() => {
-    const m = new Map<SlideGroup, number>();
+    const m = new Map<MajorGroup, number>();
     groupStarts.forEach((s, idx) => m.set(s.group, idx));
     return m;
   }, [groupStarts]);
 
-  const activeGroup = slideGroups[activeIndex] ?? "other";
-  const activeLabel = GROUP_LABEL[activeGroup];
-  const activeDesc = GROUP_DESC[activeGroup];
+  const activeMajor = majorGroups[activeIndex] ?? "other";
+  const activeSub = subGroups[activeIndex] ?? "other";
+
+  const activeLabel = SUB_TITLE[activeSub] || MAJOR_LABEL[activeMajor];
+  const activeDesc = SUB_DESC[activeSub];
   const activeSrc = slideImages[activeIndex] ?? "";
   const activeFileName = activeSrc.split("/").pop() ?? "";
 
-  // Story progress (per group)
+  // Story progress (per major group)
   const activeGroupIndices = useMemo(() => {
     const indices: number[] = [];
-    for (let i = 0; i < slideGroups.length; i++) {
-      if (slideGroups[i] === activeGroup) indices.push(i);
+    for (let i = 0; i < majorGroups.length; i++) {
+      if (majorGroups[i] === activeMajor) indices.push(i);
     }
     return indices;
-  }, [activeGroup, slideGroups]);
+  }, [activeMajor, majorGroups]);
 
   const activeGroupPos = useMemo(() => {
     const pos = activeGroupIndices.indexOf(activeIndex);
@@ -342,7 +534,7 @@ export default function Slide() {
       }
       storyStartTsRef.current = null;
     };
-  }, [activeIndex, activeGroup, isNav, isSheetDragging, isGroupFading, goNext]);
+  }, [activeIndex, activeMajor, isNav, isSheetDragging, isGroupFading, goNext]);
 
   const updateActiveIndexFromScroll = useCallback(() => {
     const el = containerRef.current;
@@ -424,7 +616,7 @@ export default function Slide() {
 
   const goNextGroup = useCallback(() => {
     if (groupStarts.length === 0) return;
-    const cur = slideGroups[activeIndex] ?? "other";
+    const cur = majorGroups[activeIndex] ?? "other";
     const curPos = groupIndexByName.get(cur) ?? 0;
     const nextPos = (curPos + 1) % groupStarts.length;
     const nextIndex = groupStarts[nextPos]?.index ?? 0;
@@ -434,12 +626,12 @@ export default function Slide() {
     groupIndexByName,
     groupStarts,
     jumpGroupToIndex,
-    slideGroups,
+    majorGroups,
   ]);
 
   const goPrevGroup = useCallback(() => {
     if (groupStarts.length === 0) return;
-    const cur = slideGroups[activeIndex] ?? "other";
+    const cur = majorGroups[activeIndex] ?? "other";
     const curPos = groupIndexByName.get(cur) ?? 0;
     const prevPos = (curPos - 1 + groupStarts.length) % groupStarts.length;
     const prevIndex = groupStarts[prevPos]?.index ?? 0;
@@ -449,7 +641,7 @@ export default function Slide() {
     groupIndexByName,
     groupStarts,
     jumpGroupToIndex,
-    slideGroups,
+    majorGroups,
   ]);
 
   return (
