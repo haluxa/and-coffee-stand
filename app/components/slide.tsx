@@ -6,6 +6,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 const slideImages = [
   // 01 オリジナルグッズ
   "/img/gallery/01_01_01.jpg",
+  "/img/gallery/01_01_02.jpg",
+  "/img/gallery/01_01_03.jpg",
   "/img/gallery/01_02_01.jpg",
   "/img/gallery/01_03_01.jpg",
   "/img/gallery/01_03_02.jpg",
@@ -14,8 +16,6 @@ const slideImages = [
   "/img/gallery/01_04_03.jpg",
   "/img/gallery/01_06_01.jpg",
   "/img/gallery/01_06_02.jpg",
-  "/img/gallery/01_06_03.jpg",
-  "/img/gallery/01_06_04.jpg",
   "/img/gallery/01_07_01.jpg",
 
   // 02 イベント
@@ -39,10 +39,18 @@ const slideImages = [
   "/img/gallery/02_07_01.jpg",
   "/img/gallery/02_07_02.jpg",
   "/img/gallery/02_08_01.jpg",
+  "/img/gallery/02_08_02.jpg",
   "/img/gallery/02_09_01.jpg",
   "/img/gallery/02_09_02.jpg",
   "/img/gallery/02_10_01.jpg",
   "/img/gallery/02_10_02.jpg",
+  "/img/gallery/02_10_03.jpg",
+  "/img/gallery/02_10_04.jpg",
+  "/img/gallery/02_10_05.jpg",
+  "/img/gallery/02_10_06.jpg",
+  "/img/gallery/02_11_01.jpg",
+  "/img/gallery/02_12_01.jpg",
+  "/img/gallery/02_12_02.jpg",
 
   // 03 店内
   "/img/gallery/03_01_01.jpg",
@@ -68,50 +76,33 @@ const slideImages = [
 
   // 05 ドリップバック
   "/img/gallery/05_01_01.jpg",
-  "/img/gallery/05_01_02.jpg",
   "/img/gallery/05_02_01.jpg",
   "/img/gallery/05_03_01.jpg",
   "/img/gallery/05_04_01.jpg",
+  "/img/gallery/05_05_01.jpg",
 
   // 06 周年お祝い
   "/img/gallery/06_01_01.jpg",
   "/img/gallery/06_02_01.jpg",
   "/img/gallery/06_03_01.jpg",
+  "/img/gallery/06_03_02.jpg",
   "/img/gallery/06_04_01.jpg",
   "/img/gallery/06_05_01.jpg",
-  "/img/gallery/06_06_01.jpg",
   "/img/gallery/06_07_01.jpg",
-  "/img/gallery/06_08_01.jpg",
   "/img/gallery/06_09_01.jpg",
-  "/img/gallery/06_10_01.jpg",
 
   // 07 物販
   "/img/gallery/07_01_01.jpg",
   "/img/gallery/07_02_01.jpg",
   "/img/gallery/07_03_01.jpg",
   "/img/gallery/07_03_02.jpg",
-  "/img/gallery/07_03_03.jpg",
   "/img/gallery/07_03_04.jpg",
   "/img/gallery/07_04_01.jpg",
   "/img/gallery/07_05_01.jpg",
-
-  // 10 フード＆ドリンク
-  "/img/gallery/10_01_01.jpg",
-  "/img/gallery/10_01_02.jpg",
-  "/img/gallery/10_01_04.jpg",
-  "/img/gallery/10_01_05.jpg",
+  "/img/gallery/07_06_01.jpg",
 ];
 
-type MajorGroup =
-  | "01"
-  | "02"
-  | "03"
-  | "04"
-  | "05"
-  | "06"
-  | "07"
-  | "10"
-  | "other";
+type MajorGroup = "01" | "02" | "03" | "04" | "05" | "06" | "07" | "other";
 
 type SubGroup =
   | "01_01"
@@ -131,6 +122,8 @@ type SubGroup =
   | "02_08"
   | "02_09"
   | "02_10"
+  | "02_11"
+  | "02_12"
   | "03_01"
   | "03_02"
   | "03_03"
@@ -144,6 +137,7 @@ type SubGroup =
   | "05_02"
   | "05_03"
   | "05_04"
+  | "05_05"
   | "06_01"
   | "06_02"
   | "06_03"
@@ -159,7 +153,7 @@ type SubGroup =
   | "07_03"
   | "07_04"
   | "07_05"
-  | "10_01"
+  | "07_06"
   | "other";
 
 const getMajorFromSrc = (src: string): MajorGroup => {
@@ -173,8 +167,7 @@ const getMajorFromSrc = (src: string): MajorGroup => {
     major === "04" ||
     major === "05" ||
     major === "06" ||
-    major === "07" ||
-    major === "10"
+    major === "07"
   ) {
     return major as MajorGroup;
   }
@@ -204,6 +197,8 @@ const getSubFromSrc = (src: string): SubGroup => {
     case "02_08":
     case "02_09":
     case "02_10":
+    case "02_11":
+    case "02_12":
     case "03_01":
     case "03_02":
     case "03_03":
@@ -217,6 +212,7 @@ const getSubFromSrc = (src: string): SubGroup => {
     case "05_02":
     case "05_03":
     case "05_04":
+    case "05_05":
     case "06_01":
     case "06_02":
     case "06_03":
@@ -232,7 +228,7 @@ const getSubFromSrc = (src: string): SubGroup => {
     case "07_03":
     case "07_04":
     case "07_05":
-    case "10_01":
+    case "07_06":
       return key as SubGroup;
     default:
       return "other";
@@ -247,7 +243,6 @@ const MAJOR_LABEL: Record<MajorGroup, string> = {
   "05": "ドリップバック",
   "06": "周年お祝い",
   "07": "物販",
-  "10": "フード＆ドリンク",
   other: "",
 };
 
@@ -270,6 +265,8 @@ const SUB_TITLE: Record<SubGroup, string> = {
   "02_08": "子供店長の日",
   "02_09": "アンカー",
   "02_10": "リビルダー",
+  "02_11": "母の日",
+  "02_12": "担々麺",
 
   "03_01": "店内席の写真",
   "03_02": "店内席の写真",
@@ -286,6 +283,7 @@ const SUB_TITLE: Record<SubGroup, string> = {
   "05_02": "ドリップバック（クリスマス）",
   "05_03": "ドリップバック（ハロウィン）",
   "05_04": "ドリップバック（母の日）",
+  "05_05": "ドリップバック",
 
   "06_01": "周年お祝い",
   "06_02": "周年お祝い",
@@ -303,9 +301,7 @@ const SUB_TITLE: Record<SubGroup, string> = {
   "07_03": "チャイ＆ボンソイ",
   "07_04": "チョコ",
   "07_05": "ヘアオイル",
-
-  "10_01": "フード / ドリンク",
-
+  "07_06": "豆乳",
   other: "",
 };
 
@@ -316,7 +312,7 @@ const SUB_DESC: Record<SubGroup, string> = {
   "01_03": "お家でのコーヒータイムに",
   "01_04": "全て手書きのオリジナルデザイン",
   "01_05": "。",
-  "01_06": "細部・金具・存在感を見せるための写真。",
+  "01_06": "気まぐれでデザインするオリジナルグッズ",
   "01_07": "お持ちの方限定で何かしらの特典が受けられるステッカー♪",
 
   "02_01": "農薬・化学肥料不使用で今後もゲリラ開催予定♪",
@@ -330,8 +326,10 @@ const SUB_DESC: Record<SubGroup, string> = {
   "02_07":
     "昆虫好きの息子によるイベント♪子供達同士でもコミュニティができたら嬉しいです",
   "02_08": "お金を稼ぐことの大変さを学んだ日でした",
-  "02_09": "。",
-  "02_10": "。",
+  "02_09": "パラコードのワークショップ",
+  "02_10": "当店が古着屋さんに。ロゴデザインもカラーもオリジナルで！",
+  "02_11": "豚汁屋さんの味噌玉とお花屋さんとの母の日コラボ",
+  "02_12": "まさかの担々麺屋さんが当店に！この日だけのスペシャルコース",
 
   "03_01": "壁面のローテーブルで読書タイムもぜひ",
   "03_02": "壁面のローテーブルは1人から3人までがオススメ",
@@ -347,11 +345,12 @@ const SUB_DESC: Record<SubGroup, string> = {
 
   "05_01":
     "手軽にお家でも珈琲が楽しめる。ドリップバッグは3種の飲み比べセットがオススメ",
-  "05_02": "。",
+  "05_02": "クリスマスバージョンデザインのドリップバッグ",
   "05_03": "プチギフトにオススメ",
   "05_04": "プチギフトにオススメ",
+  "05_05": "ノベルティーでお渡していた限定ドリップバック",
 
-  "06_01": "周年お祝いの記録",
+  "06_01": "いつも応援してくださってありがとうございます",
   "06_02": "いつも遠くからありがとう",
   "06_03": "手紙付きでお祝いをありがとう",
   "06_04": "何度も足を運んでくださるお客様から",
@@ -362,13 +361,12 @@ const SUB_DESC: Record<SubGroup, string> = {
   "06_09": "いつも応援してくださってありがとうございます",
   "06_10": "",
 
-  "07_01": "。",
-  "07_02": "。",
-  "07_03": "。",
-  "07_04": "。",
-  "07_05": "。",
-
-  "10_01": "。",
+  "07_01": "気まぐれで登場する米粉のシフォンはふわもちで好評♪",
+  "07_02": "お家で簡単にアイスコーヒーが楽しめる水出し珈琲は夏季限定！",
+  "07_03": "デカフェのチャイと相性抜群の豆乳ボンソイは女性に人気です",
+  "07_04": "※文章が入ります。※",
+  "07_05": "※文章が入ります。※",
+  "07_06": "ラテもプラス料金で豆乳に変更できます",
 
   other: "",
 };
