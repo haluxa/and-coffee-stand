@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Footer from "@/components/footer";
-export default function MenuPageTest() {
+export default function MenuPage() {
   return (
     <main className="menu-page">
       <div id="bg-video-stack" aria-hidden="true">
