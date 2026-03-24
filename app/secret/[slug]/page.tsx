@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import type {
   Asset,
@@ -7,6 +6,8 @@ import type {
   UnresolvedLink,
 } from "contentful";
 import { contentfulClient } from "@/lib/contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { notFound } from "next/navigation";
 
 type PostSkeleton = EntrySkeletonType<
   {
@@ -24,38 +25,40 @@ function getImageUrl(asset?: Asset | UnresolvedLink<"Asset">) {
   return `https:${asset.fields.file.url}`;
 }
 
-export default async function SecretPage() {
+export default async function SecretDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const res = await contentfulClient.getEntries<PostSkeleton>({
     content_type: "andCoffeeStand",
+    "fields.slug": params.slug,
+    limit: 1,
     include: 2,
   });
 
-  const posts = res.items;
+  const post = res.items[0];
+
+  if (!post) {
+    notFound();
+  }
+
+  const imageUrl = getImageUrl(post.fields.cover_image);
 
   return (
-    <main className="secret_page">
-      <h1>Secret</h1>
+    <main className="secret_detail_page">
+      <h1>{post.fields.title}</h1>
 
-      {posts.map((post) => {
-        const imageUrl = getImageUrl(post.fields.cover_image);
+      {imageUrl && (
+        <Image
+          src={imageUrl}
+          alt={post.fields.title}
+          width={800}
+          height={500}
+        />
+      )}
 
-        return (
-          <article key={post.sys.id}>
-            <Link href={`/secret/${post.fields.slug}`}>
-              <h2>{post.fields.title}</h2>
-            </Link>
-
-            {imageUrl && (
-              <Image
-                src={imageUrl}
-                alt={post.fields.title}
-                width={600}
-                height={400}
-              />
-            )}
-          </article>
-        );
-      })}
+      <div>{documentToReactComponents(post.fields.body)}</div>
     </main>
   );
 }
