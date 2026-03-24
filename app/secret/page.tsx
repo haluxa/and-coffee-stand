@@ -13,7 +13,7 @@ type PostSkeleton = EntrySkeletonType<
     title: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
     body: EntryFieldTypes.RichText;
-    cover_image: EntryFieldTypes.AssetLink;
+    coverImage: EntryFieldTypes.AssetLink;
     published_at: EntryFieldTypes.Date;
   },
   "andCoffeeStand"
@@ -37,8 +37,7 @@ export default async function SecretPage() {
       <h1>Secret</h1>
 
       {posts.map((post) => {
-        const imageUrl = getImageUrl(post.fields.cover_image);
-
+        const imageUrl = getImageUrl(post.fields.coverImage);
         return (
           <article key={post.sys.id}>
             <Link href={`/secret/${post.fields.slug}`}>

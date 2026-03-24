@@ -14,7 +14,7 @@ type PostSkeleton = EntrySkeletonType<
     title: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
     body: EntryFieldTypes.RichText;
-    cover_image: EntryFieldTypes.AssetLink;
+    coverImage: EntryFieldTypes.AssetLink;
     published_at: EntryFieldTypes.Date;
   },
   "andCoffeeStand"
@@ -43,7 +43,7 @@ export default async function SecretDetailPage({
     notFound();
   }
 
-  const imageUrl = getImageUrl(post.fields.cover_image);
+  const imageUrl = getImageUrl(post.fields.coverImage);
 
   return (
     <main className="secret_detail_page">
