@@ -82,9 +82,6 @@ export default function RootLayout({
                   <li className="nav_item">
                     <a href="/secret">secret</a>
                   </li>
-                  <li className="nav_item">
-                    <a href="/view-test">view-test</a>
-                  </li>
                 </ul>
               </nav>
             </div>
