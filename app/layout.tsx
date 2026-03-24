@@ -9,6 +9,7 @@ import {
 import { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const hina = Hina_Mincho({
   weight: "400",
@@ -74,13 +75,13 @@ export default function RootLayout({
               <nav className="nav_content">
                 <ul className="nav_list">
                   <li className="nav_item">
-                    <a href="/menu">menu</a>
+                    <Link href="/menu">menu</Link>
                   </li>
                   <li className="nav_item">
-                    <a href="/view">shop view</a>
+                    <Link href="/view">shop view</Link>
                   </li>
                   <li className="nav_item">
-                    <a href="/secret">secret</a>
+                    <Link href="/secret">secret</Link>
                   </li>
                 </ul>
               </nav>
@@ -88,14 +89,14 @@ export default function RootLayout({
           </header>
 
           <div className="header_logo">
-            <a href="../">
+            <Link href="/">
               <Image
                 src="/img/header_logo.png"
                 alt="and coffee stand ロゴ"
                 width={1134}
                 height={482}
               />
-            </a>
+            </Link>
           </div>
 
           {/* ここに各ページの中身がそのまま入る */}
