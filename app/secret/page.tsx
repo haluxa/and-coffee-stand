@@ -34,27 +34,31 @@ export default async function SecretPage() {
 
   return (
     <main className="secret_page">
-      <h1>Secret</h1>
+      <h1 className="secret_title">Secret</h1>
 
-      {posts.map((post) => {
-        const imageUrl = getImageUrl(post.fields.coverImage);
-        return (
-          <article key={post.sys.id}>
-            <Link href={`/secret/${post.fields.slug}`}>
-              <h2>{post.fields.title}</h2>
-            </Link>
+      <div className="post_list">
+        {posts.map((post) => {
+          const imageUrl = getImageUrl(post.fields.coverImage);
 
-            {imageUrl && (
-              <Image
-                src={imageUrl}
-                alt={post.fields.title}
-                width={600}
-                height={400}
-              />
-            )}
-          </article>
-        );
-      })}
+          return (
+            <article key={post.sys.id} className="post_card">
+              <Link href={`/secret/${post.fields.slug}`}>
+                <h2 className="post_title">{post.fields.title}</h2>
+              </Link>
+
+              {imageUrl && (
+                <Image
+                  src={imageUrl}
+                  alt={post.fields.title}
+                  className="post_image"
+                  width={600}
+                  height={400}
+                />
+              )}
+            </article>
+          );
+        })}
+      </div>
     </main>
   );
 }

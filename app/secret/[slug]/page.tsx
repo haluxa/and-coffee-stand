@@ -46,19 +46,22 @@ export default async function SecretDetailPage({
   const imageUrl = getImageUrl(post.fields.coverImage);
 
   return (
-    <main className="secret_detail_page">
-      <h1>{post.fields.title}</h1>
+    <main className="post_detail">
+      <h1 className="post_detail_title">{post.fields.title}</h1>
 
       {imageUrl && (
         <Image
           src={imageUrl}
           alt={post.fields.title}
-          width={800}
-          height={500}
+          className="post_detail_image"
+          width={600}
+          height={400}
         />
       )}
 
-      <div>{documentToReactComponents(post.fields.body)}</div>
+      <div className="post_body">
+        {documentToReactComponents(post.fields.body)}
+      </div>
     </main>
   );
 }
