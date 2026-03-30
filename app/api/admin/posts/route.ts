@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getContentfulPlainClient } from "@/lib/contentful-management";
 
+type CreatePostRequest = {
+  title?: string;
+  slug?: string;
+  content?: string;
+};
+
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { title, slug, content } = body;
+    const body = (await req.json()) as CreatePostRequest;
+    const title = body.title?.trim();
+    const slug = body.slug?.trim();
+    const content = body.content?.trim();
 
     if (!title || !slug || !content) {
       return NextResponse.json(
@@ -13,12 +21,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!/^[a-z0-9-]+$/.test(slug)) {
+      return NextResponse.json(
+        { error: "slug は半角英数字とハイフンのみ使えます" },
+        { status: 400 },
+      );
+    }
+
     const client = getContentfulPlainClient();
-    console.log("creating entry with:", {
-      title,
-      slug,
-      content,
-    });
     const entry = await client.entry.create(
       {
         contentTypeId: "andCoffeeStand",
