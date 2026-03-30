@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
         fields: {
           title: { "en-US": title },
           slug: { "en-US": slug },
-          bodyText: {
+          body: {
             "en-US": {
               nodeType: "document",
               data: {},
