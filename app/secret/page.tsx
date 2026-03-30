@@ -34,6 +34,35 @@ export default async function SecretPage() {
 
   return (
     <main className="secret_page">
+      <div id="bg-video-stack" aria-hidden="true">
+        <div className="bg-video-track">
+          <video id="bg-video-1" autoPlay loop muted playsInline>
+            <source
+              type="video/mp4"
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
+            />
+            Your browser does not support the video tag.
+          </video>
+          <video id="bg-video-2" autoPlay loop muted playsInline>
+            <source
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
+              type="video/mp4"
+            />
+          </video>
+          <video id="bg-video-3" autoPlay loop muted playsInline>
+            <source
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
+              type="video/mp4"
+            />
+          </video>
+          <video id="bg-video-4" autoPlay loop muted playsInline>
+            <source
+              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
       <h1 className="secret_title">Secret</h1>
 
       <div className="post_list">
