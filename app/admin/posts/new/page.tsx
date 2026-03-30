@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -28,10 +27,18 @@ export default function AdminNewPostPage() {
         }),
       });
 
-      const data = await res.json();
+      const text = await res.text();
+      let data: { detail?: string; error?: string } | null = null;
+
+      try {
+        data = JSON.parse(text) as { detail?: string; error?: string };
+      } catch {
+        data = { error: text };
+      }
 
       if (!res.ok) {
-        alert(data.error || "保存に失敗しました");
+        console.error("API error response:", data);
+        alert(data?.detail || data?.error || "保存に失敗しました");
         return;
       }
 

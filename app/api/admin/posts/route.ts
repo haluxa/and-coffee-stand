@@ -14,16 +14,39 @@ export async function POST(req: NextRequest) {
     }
 
     const client = getContentfulPlainClient();
-
+    console.log("creating entry with:", {
+      title,
+      slug,
+      content,
+    });
     const entry = await client.entry.create(
       {
-        contentTypeId: "andCoffeeStand", // ←ここ自分のIDに合わせる
+        contentTypeId: "andCoffeeStand",
       },
       {
         fields: {
-          title: { "ja-JP": title },
-          slug: { "ja-JP": slug },
-          body: { "ja-JP": content },
+          title: { "en-US": title },
+          slug: { "en-US": slug },
+          bodyText: {
+            "en-US": {
+              nodeType: "document",
+              data: {},
+              content: [
+                {
+                  nodeType: "paragraph",
+                  data: {},
+                  content: [
+                    {
+                      nodeType: "text",
+                      value: content,
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         },
       },
     );
@@ -33,8 +56,14 @@ export async function POST(req: NextRequest) {
       id: entry.sys.id,
     });
   } catch (error) {
-    console.error(error);
+    console.error("POST /api/admin/posts error:", error);
 
-    return NextResponse.json({ error: "作成失敗" }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: "作成失敗",
+        detail: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 },
+    );
   }
 }
