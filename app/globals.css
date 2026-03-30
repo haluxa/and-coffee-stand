@@ -208,17 +208,17 @@ button {
 }
 
 /* アイコンがクリックされたら真ん中の線を透明にする */
-#drawer_input:checked ~ .drawer_open span {
+.nav > input:checked ~ .drawer_open span {
   background: rgba(255, 255, 255, 0);
 }
 
 /* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
-#drawer_input:checked ~ .drawer_open span::before {
+.nav > input:checked ~ .drawer_open span::before {
   bottom: 0;
   transform: rotate(45deg);
 }
 
-#drawer_input:checked ~ .drawer_open span::after {
+.nav > input:checked ~ .drawer_open span::after {
   top: 0;
   transform: rotate(-45deg);
 }
@@ -245,7 +245,7 @@ button {
 }
 
 /* アイコンがクリックされたらメニューを表示 */
-#drawer_input:checked ~ .nav_content {
+.nav > input:checked ~ .nav_content {
   left: 0; /* メニューを画面に入れる */
 }
 

@@ -10,6 +10,7 @@ import { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
+import HeaderNav from "./components/HeaderNav";
 
 const hina = Hina_Mincho({
   weight: "400",
@@ -63,29 +64,7 @@ export default function RootLayout({
       >
         <div className="site-shell">
           <header>
-            <div className="nav">
-              <input
-                id="drawer_input"
-                className="drawer_hidden"
-                type="checkbox"
-              />
-              <label htmlFor="drawer_input" className="drawer_open">
-                <span />
-              </label>
-              <nav className="nav_content">
-                <ul className="nav_list">
-                  <li className="nav_item">
-                    <Link href="/menu">menu</Link>
-                  </li>
-                  <li className="nav_item">
-                    <Link href="/view">shop view</Link>
-                  </li>
-                  <li className="nav_item">
-                    <Link href="/secret">secret</Link>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            <HeaderNav />
           </header>
 
           <div className="header_logo">
