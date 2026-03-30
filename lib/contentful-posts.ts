@@ -5,7 +5,7 @@ export async function getPosts() {
 
   const res = await client.entry.getMany({
     query: {
-      content_type: "blogPost", // ←ここ合わせる
+      content_type: "andCoffeeStand", // ←ここ合わせる
       order: "-sys.createdAt",
     },
   });

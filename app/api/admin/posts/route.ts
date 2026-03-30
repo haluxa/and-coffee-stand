@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
     const entry = await client.entry.create(
       {
-        contentTypeId: "blogPost", // ←ここ自分のIDに合わせる
+        contentTypeId: "andCoffeeStand", // ←ここ自分のIDに合わせる
       },
       {
         fields: {
