@@ -155,7 +155,7 @@ export default function AdminNewPostPage() {
         </div>
 
         <div>
-          <label htmlFor="coverImageId">cover_image の Asset ID</label>
+          <label htmlFor="coverImageId">coverImage の Asset ID</label>
           <br />
           <input
             id="coverImageId"

@@ -47,14 +47,14 @@ export async function POST(req: NextRequest) {
       title: { "en-US": title },
       slug: { "en-US": slug },
       bodyText: { "en-US": content },
-      published_at: {
+      publishedAt: {
         "en-US": publishedAt || new Date().toISOString(),
       },
       tags: { "en-US": tags },
     };
 
     if (coverImageId) {
-      fields.cover_image = {
+      fields.coverImage = {
         "en-US": {
           sys: {
             type: "Link",

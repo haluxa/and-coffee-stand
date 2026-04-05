@@ -13,8 +13,8 @@ type PostSkeleton = EntrySkeletonType<
     title: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
     bodyText: EntryFieldTypes.Text;
-    cover_image: EntryFieldTypes.AssetLink;
-    published_at: EntryFieldTypes.Date;
+    coverImage: EntryFieldTypes.AssetLink;
+    publishedAt: EntryFieldTypes.Date;
     tags: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
   },
   "andCoffeeStand"
@@ -68,7 +68,7 @@ export default async function SecretPage() {
 
       <div className="post_list">
         {posts.map((post) => {
-          const imageUrl = getImageUrl(post.fields.cover_image);
+          const imageUrl = getImageUrl(post.fields.coverImage);
 
           return (
             <article key={post.sys.id} className="post_card">
