@@ -15,6 +15,7 @@ export default function AdminNewPostPage() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState("");
+  const [coverImageUrl, setCoverImageUrl] = useState("");
   const [coverImageId, setCoverImageId] = useState("");
   const [publishedAt, setPublishedAt] = useState("");
   const [tags, setTags] = useState("");
@@ -35,6 +36,7 @@ export default function AdminNewPostPage() {
     const normalizedTitle = title.trim();
     const normalizedSlug = slug.trim().toLowerCase();
     const normalizedContent = content.trim();
+    const normalizedCoverImageUrl = coverImageUrl.trim();
     const normalizedCoverImageId = coverImageId.trim();
     const normalizedPublishedAt = publishedAt.trim();
     const normalizedTags = tags
@@ -59,6 +61,7 @@ export default function AdminNewPostPage() {
           title: normalizedTitle,
           slug: normalizedSlug,
           content: normalizedContent,
+          coverImageUrl: normalizedCoverImageUrl || undefined,
           coverImageId: normalizedCoverImageId || undefined,
           publishedAt: normalizedPublishedAt || undefined,
           tags: normalizedTags,
@@ -155,6 +158,19 @@ export default function AdminNewPostPage() {
         </div>
 
         <div>
+          <label htmlFor="coverImageUrl">coverImage の画像 URL</label>
+          <br />
+          <input
+            id="coverImageUrl"
+            type="url"
+            value={coverImageUrl}
+            onChange={(e) => setCoverImageUrl(e.target.value)}
+            placeholder="https://example.com/cover.jpg"
+            style={{ width: "100%", padding: "8px" }}
+          />
+        </div>
+
+        <div>
           <label htmlFor="coverImageId">coverImage の Asset ID</label>
           <br />
           <input
@@ -162,7 +178,7 @@ export default function AdminNewPostPage() {
             type="text"
             value={coverImageId}
             onChange={(e) => setCoverImageId(e.target.value)}
-            placeholder="Contentful asset id"
+            placeholder="既存 Asset を使う場合のみ入力"
             style={{ width: "100%", padding: "8px" }}
           />
         </div>

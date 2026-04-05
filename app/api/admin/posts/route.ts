@@ -5,10 +5,112 @@ type CreatePostRequest = {
   title?: string;
   slug?: string;
   content?: string;
+  coverImageUrl?: string;
   coverImageId?: string;
   publishedAt?: string;
   tags?: string[];
 };
+
+function parseImageUrl(value?: string) {
+  if (!value) return null;
+
+  try {
+    const url = new URL(value);
+
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      return null;
+    }
+
+    return url;
+  } catch {
+    return null;
+  }
+}
+
+function getFileNameFromUrl(url: URL) {
+  const raw = url.pathname.split("/").pop() || "cover-image";
+
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
+function inferContentType(fileName: string, fallback?: string | null) {
+  if (fallback?.startsWith("image/")) {
+    return fallback;
+  }
+
+  const ext = fileName.split(".").pop()?.toLowerCase();
+
+  switch (ext) {
+    case "jpg":
+    case "jpeg":
+      return "image/jpeg";
+    case "png":
+      return "image/png";
+    case "webp":
+      return "image/webp";
+    case "gif":
+      return "image/gif";
+    case "avif":
+      return "image/avif";
+    case "svg":
+      return "image/svg+xml";
+    default:
+      return "image/jpeg";
+  }
+}
+
+async function createCoverImageAsset(imageUrl: URL, title: string) {
+  const client = getContentfulPlainClient();
+  const fileName = getFileNameFromUrl(imageUrl);
+
+  let detectedContentType: string | null = null;
+
+  try {
+    const response = await fetch(imageUrl, {
+      method: "HEAD",
+      cache: "no-store",
+    });
+
+    detectedContentType = response.headers.get("content-type");
+  } catch (error) {
+    console.warn("coverImage HEAD request failed:", error);
+  }
+
+  const asset = await client.asset.create(
+    {},
+    {
+      fields: {
+        title: { "en-US": title },
+        description: { "en-US": `Cover image for ${title}` },
+        file: {
+          "en-US": {
+            fileName,
+            contentType: inferContentType(fileName, detectedContentType),
+            upload: imageUrl.toString(),
+          },
+        },
+      },
+    },
+  );
+
+  const processedAsset = await client.asset.processForAllLocales({}, asset, {
+    processingCheckRetries: 10,
+    processingCheckWait: 1000,
+  });
+
+  const publishedAsset = await client.asset.publish(
+    {
+      assetId: processedAsset.sys.id,
+    },
+    processedAsset,
+  );
+
+  return publishedAsset.sys.id;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,11 +118,13 @@ export async function POST(req: NextRequest) {
     const title = body.title?.trim();
     const slug = body.slug?.trim();
     const content = body.content?.trim();
+    const coverImageUrlValue = body.coverImageUrl?.trim();
     const coverImageId = body.coverImageId?.trim();
     const publishedAt = body.publishedAt?.trim();
     const tags = Array.isArray(body.tags)
       ? body.tags.map((tag) => tag.trim()).filter(Boolean)
       : [];
+    const coverImageUrl = parseImageUrl(coverImageUrlValue);
 
     if (!title || !slug || !content) {
       return NextResponse.json(
@@ -43,6 +147,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (coverImageUrlValue && !coverImageUrl) {
+      return NextResponse.json(
+        { error: "coverImage の URL は http または https で入力してください" },
+        { status: 400 },
+      );
+    }
+
+    const resolvedCoverImageId =
+      coverImageUrl && !coverImageId
+        ? await createCoverImageAsset(coverImageUrl, title)
+        : coverImageId;
+
     const fields: Record<string, unknown> = {
       title: { "en-US": title },
       slug: { "en-US": slug },
@@ -53,13 +169,13 @@ export async function POST(req: NextRequest) {
       tags: { "en-US": tags },
     };
 
-    if (coverImageId) {
+    if (resolvedCoverImageId) {
       fields.coverImage = {
         "en-US": {
           sys: {
             type: "Link",
             linkType: "Asset",
-            id: coverImageId,
+            id: resolvedCoverImageId,
           },
         },
       };
