@@ -11,32 +11,6 @@ function getFile(formData: FormData, key: string) {
   return value instanceof File && value.size > 0 ? value : null;
 }
 
-function parseImageUrl(value?: string) {
-  if (!value) return null;
-
-  try {
-    const url = new URL(value);
-
-    if (url.protocol !== "http:" && url.protocol !== "https:") {
-      return null;
-    }
-
-    return url;
-  } catch {
-    return null;
-  }
-}
-
-function getFileNameFromUrl(url: URL) {
-  const raw = url.pathname.split("/").pop() || "cover-image";
-
-  try {
-    return decodeURIComponent(raw);
-  } catch {
-    return raw;
-  }
-}
-
 function normalizeFileName(fileName: string) {
   return fileName.replace(/[^\w.\-]+/g, "-") || "cover-image";
 }
@@ -109,70 +83,18 @@ async function createCoverImageAssetFromFile(file: File, title: string) {
   return publishedAsset.sys.id;
 }
 
-async function createCoverImageAssetFromUrl(imageUrl: URL, title: string) {
-  const client = getContentfulPlainClient();
-  const fileName = normalizeFileName(getFileNameFromUrl(imageUrl));
-
-  let detectedContentType: string | null = null;
-
-  try {
-    const response = await fetch(imageUrl, {
-      method: "HEAD",
-      cache: "no-store",
-    });
-
-    detectedContentType = response.headers.get("content-type");
-  } catch (error) {
-    console.warn("coverImage HEAD request failed:", error);
-  }
-
-  const asset = await client.asset.create(
-    {},
-    {
-      fields: {
-        title: { "en-US": title },
-        description: { "en-US": `Cover image for ${title}` },
-        file: {
-          "en-US": {
-            fileName,
-            contentType: inferContentType(fileName, detectedContentType),
-            upload: imageUrl.toString(),
-          },
-        },
-      },
-    },
-  );
-
-  const processedAsset = await client.asset.processForAllLocales({}, asset, {
-    processingCheckRetries: 10,
-    processingCheckWait: 1000,
-  });
-
-  const publishedAsset = await client.asset.publish(
-    {
-      assetId: processedAsset.sys.id,
-    },
-    processedAsset,
-  );
-
-  return publishedAsset.sys.id;
-}
-
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const title = getString(formData, "title");
     const slug = getString(formData, "slug");
     const content = getString(formData, "content");
-    const coverImageUrlValue = getString(formData, "coverImageUrl");
-    const coverImageId = getString(formData, "coverImageId");
     const coverImageFile = getFile(formData, "coverImageFile");
     const publishedAt = getString(formData, "publishedAt");
     const tags = getString(formData, "tags")
       .split(",")
       .map((tag) => tag.trim())
       .filter(Boolean);
-    const coverImageUrl = parseImageUrl(coverImageUrlValue);
 
     if (!title || !slug || !content) {
       return NextResponse.json(
@@ -194,31 +116,9 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       );
     }
-
-    if (coverImageUrlValue && !coverImageUrl) {
-      return NextResponse.json(
-        { error: "coverImage の URL は http または https で入力してください" },
-        { status: 400 },
-      );
-    }
-
-    const coverImageInputCount =
-      Number(Boolean(coverImageFile)) +
-      Number(Boolean(coverImageUrlValue)) +
-      Number(Boolean(coverImageId));
-
-    if (coverImageInputCount > 1) {
-      return NextResponse.json(
-        { error: "coverImage はファイル・URL・Asset ID のいずれか1つだけ指定してください" },
-        { status: 400 },
-      );
-    }
-
     const resolvedCoverImageId = coverImageFile
       ? await createCoverImageAssetFromFile(coverImageFile, title)
-      : coverImageUrl
-        ? await createCoverImageAssetFromUrl(coverImageUrl, title)
-        : coverImageId || undefined;
+      : undefined;
 
     const fields: Record<string, unknown> = {
       title: { "en-US": title },

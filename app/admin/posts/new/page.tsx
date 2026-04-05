@@ -16,8 +16,6 @@ export default function AdminNewPostPage() {
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState("");
   const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
-  const [coverImageUrl, setCoverImageUrl] = useState("");
-  const [coverImageId, setCoverImageId] = useState("");
   const [publishedAt, setPublishedAt] = useState("");
   const [tags, setTags] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,8 +35,6 @@ export default function AdminNewPostPage() {
     const normalizedTitle = title.trim();
     const normalizedSlug = slug.trim().toLowerCase();
     const normalizedContent = content.trim();
-    const normalizedCoverImageUrl = coverImageUrl.trim();
-    const normalizedCoverImageId = coverImageId.trim();
     const normalizedPublishedAt = publishedAt.trim();
     const normalizedTags = tags
       .split(",")
@@ -47,16 +43,6 @@ export default function AdminNewPostPage() {
 
     if (!normalizedTitle || !normalizedSlug || !normalizedContent) {
       alert("タイトル・slug・本文を入力してください");
-      return;
-    }
-
-    if (
-      Number(Boolean(coverImageFile)) +
-        Number(Boolean(normalizedCoverImageUrl)) +
-        Number(Boolean(normalizedCoverImageId)) >
-      1
-    ) {
-      alert("coverImage はファイル・URL・Asset ID のいずれか1つだけ入力してください");
       return;
     }
 
@@ -70,14 +56,6 @@ export default function AdminNewPostPage() {
 
       if (coverImageFile) {
         formData.set("coverImageFile", coverImageFile);
-      }
-
-      if (normalizedCoverImageUrl) {
-        formData.set("coverImageUrl", normalizedCoverImageUrl);
-      }
-
-      if (normalizedCoverImageId) {
-        formData.set("coverImageId", normalizedCoverImageId);
       }
 
       if (normalizedPublishedAt) {
@@ -190,32 +168,6 @@ export default function AdminNewPostPage() {
             type="file"
             accept="image/*"
             onChange={(e) => setCoverImageFile(e.target.files?.[0] ?? null)}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="coverImageUrl">coverImage の画像 URL</label>
-          <br />
-          <input
-            id="coverImageUrl"
-            type="url"
-            value={coverImageUrl}
-            onChange={(e) => setCoverImageUrl(e.target.value)}
-            placeholder="https://example.com/cover.jpg"
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="coverImageId">coverImage の Asset ID</label>
-          <br />
-          <input
-            id="coverImageId"
-            type="text"
-            value={coverImageId}
-            onChange={(e) => setCoverImageId(e.target.value)}
-            placeholder="既存 Asset を使う場合のみ入力"
             style={{ width: "100%", padding: "8px" }}
           />
         </div>
