@@ -6,14 +6,13 @@ import type {
   UnresolvedLink,
 } from "contentful";
 import { contentfulClient } from "@/lib/contentful";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { notFound } from "next/navigation";
 
 type PostSkeleton = EntrySkeletonType<
   {
     title: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
-    body: EntryFieldTypes.RichText;
+    bodyText: EntryFieldTypes.Text;
     coverImage: EntryFieldTypes.AssetLink;
     published_at: EntryFieldTypes.Date;
   },
@@ -59,9 +58,7 @@ export default async function SecretDetailPage({
         />
       )}
 
-      <div className="post_body">
-        {documentToReactComponents(post.fields.body)}
-      </div>
+      <div className="post_body">{post.fields.bodyText}</div>
     </main>
   );
 }

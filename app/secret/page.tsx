@@ -12,7 +12,7 @@ type PostSkeleton = EntrySkeletonType<
   {
     title: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
-    body: EntryFieldTypes.RichText;
+    bodyText: EntryFieldTypes.Text;
     coverImage: EntryFieldTypes.AssetLink;
     published_at: EntryFieldTypes.Date;
   },
