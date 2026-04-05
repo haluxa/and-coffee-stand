@@ -34,6 +34,22 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
 # and-coffee-stand
+
 # and-coffee-stand
+
 # and-coffee-stand
+
+## Admin authentication
+
+The `/admin` pages and `/api/admin/*` endpoints require a password-based session.
+
+Set these environment variables before starting the app:
+
+```bash
+ADMIN_PASSWORD=haluxa7321
+ADMIN_SESSION_SECRET=long-random-string
+```
+
+`ADMIN_SESSION_SECRET` should be a long random value different from the password.

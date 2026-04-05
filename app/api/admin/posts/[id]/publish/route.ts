@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requireAdminApiAuth } from "@/lib/admin-auth";
 import { getContentfulPlainClient } from "@/lib/contentful-management";
 
 export async function POST(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorizedResponse = requireAdminApiAuth(req);
+
+  if (unauthorizedResponse) {
+    return unauthorizedResponse;
+  }
+
   try {
     const { id } = await params;
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requireAdminApiAuth } from "@/lib/admin-auth";
 import { getContentfulPlainClient } from "@/lib/contentful-management";
 
 function getString(formData: FormData, key: string) {
@@ -84,6 +85,12 @@ async function createCoverImageAssetFromFile(file: File, title: string) {
 }
 
 export async function POST(req: NextRequest) {
+  const unauthorizedResponse = requireAdminApiAuth(req);
+
+  if (unauthorizedResponse) {
+    return unauthorizedResponse;
+  }
+
   try {
     const formData = await req.formData();
     const title = getString(formData, "title");
