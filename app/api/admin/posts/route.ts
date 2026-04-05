@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import sharp from "sharp";
 import { getContentfulPlainClient } from "@/lib/contentful-management";
 
 function getString(formData: FormData, key: string) {
@@ -42,11 +41,6 @@ function normalizeFileName(fileName: string) {
   return fileName.replace(/[^\w.\-]+/g, "-") || "cover-image";
 }
 
-function replaceExtension(fileName: string, ext: string) {
-  const baseName = fileName.replace(/\.[^.]+$/, "");
-  return `${baseName || "cover-image"}.${ext}`;
-}
-
 function inferContentType(fileName: string, fallback?: string | null) {
   if (fallback?.startsWith("image/")) {
     return fallback;
@@ -73,54 +67,15 @@ function inferContentType(fileName: string, fallback?: string | null) {
   }
 }
 
-async function optimizeImageFile(file: File) {
+async function createCoverImageAssetFromFile(file: File, title: string) {
   if (!file.type.startsWith("image/")) {
     throw new Error("画像ファイルのみアップロードできます");
   }
 
-  const originalBuffer = Buffer.from(await file.arrayBuffer());
-  const originalFileName = normalizeFileName(file.name || "cover-image");
-
-  if (file.type === "image/gif" || file.type === "image/svg+xml") {
-    return {
-      buffer: originalBuffer,
-      contentType: file.type,
-      fileName: originalFileName,
-    };
-  }
-
-  const optimizedBuffer = await sharp(originalBuffer)
-    .rotate()
-    .resize({
-      width: 1600,
-      height: 1600,
-      fit: "inside",
-      withoutEnlargement: true,
-    })
-    .webp({
-      quality: 82,
-      effort: 4,
-    })
-    .toBuffer();
-
-  if (optimizedBuffer.length >= originalBuffer.length) {
-    return {
-      buffer: originalBuffer,
-      contentType: file.type || inferContentType(originalFileName),
-      fileName: originalFileName,
-    };
-  }
-
-  return {
-    buffer: optimizedBuffer,
-    contentType: "image/webp",
-    fileName: replaceExtension(originalFileName, "webp"),
-  };
-}
-
-async function createCoverImageAssetFromFile(file: File, title: string) {
   const client = getContentfulPlainClient();
-  const optimized = await optimizeImageFile(file);
+  const fileName = normalizeFileName(file.name || "cover-image");
+  const fileContentType = file.type || inferContentType(fileName);
+  const fileBuffer = await file.arrayBuffer();
 
   const asset = await client.asset.createFromFiles(
     {},
@@ -130,9 +85,9 @@ async function createCoverImageAssetFromFile(file: File, title: string) {
         description: { "en-US": `Cover image for ${title}` },
         file: {
           "en-US": {
-            file: optimized.buffer,
-            fileName: optimized.fileName,
-            contentType: optimized.contentType,
+            file: fileBuffer,
+            fileName,
+            contentType: fileContentType,
           },
         },
       },
