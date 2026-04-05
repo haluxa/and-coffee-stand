@@ -12,7 +12,7 @@ type PostSkeleton = EntrySkeletonType<
   {
     title: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
-    body_text: EntryFieldTypes.Text;
+    bodyText: EntryFieldTypes.Text;
     cover_image: EntryFieldTypes.AssetLink;
     published_at: EntryFieldTypes.Date;
     tags: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
@@ -65,7 +65,7 @@ export default async function SecretDetailPage({
         />
       )}
 
-      <div className="post_body">{post.fields.body_text}</div>
+      <div className="post_body">{post.fields.bodyText}</div>
     </main>
   );
 }

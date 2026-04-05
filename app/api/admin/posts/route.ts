@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     const fields: Record<string, unknown> = {
       title: { "en-US": title },
       slug: { "en-US": slug },
-      body_text: { "en-US": content },
+      bodyText: { "en-US": content },
       published_at: {
         "en-US": publishedAt || new Date().toISOString(),
       },
