@@ -5,6 +5,9 @@ type CreatePostRequest = {
   title?: string;
   slug?: string;
   content?: string;
+  coverImageId?: string;
+  publishedAt?: string;
+  tags?: string[];
 };
 
 export async function POST(req: NextRequest) {
@@ -13,6 +16,11 @@ export async function POST(req: NextRequest) {
     const title = body.title?.trim();
     const slug = body.slug?.trim();
     const content = body.content?.trim();
+    const coverImageId = body.coverImageId?.trim();
+    const publishedAt = body.publishedAt?.trim();
+    const tags = Array.isArray(body.tags)
+      ? body.tags.map((tag) => tag.trim()).filter(Boolean)
+      : [];
 
     if (!title || !slug || !content) {
       return NextResponse.json(
@@ -28,17 +36,42 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (publishedAt && Number.isNaN(Date.parse(publishedAt))) {
+      return NextResponse.json(
+        { error: "公開日時の形式が不正です" },
+        { status: 400 },
+      );
+    }
+
+    const fields: Record<string, unknown> = {
+      title: { "en-US": title },
+      slug: { "en-US": slug },
+      body_text: { "en-US": content },
+      published_at: {
+        "en-US": publishedAt || new Date().toISOString(),
+      },
+      tags: { "en-US": tags },
+    };
+
+    if (coverImageId) {
+      fields.cover_image = {
+        "en-US": {
+          sys: {
+            type: "Link",
+            linkType: "Asset",
+            id: coverImageId,
+          },
+        },
+      };
+    }
+
     const client = getContentfulPlainClient();
     const entry = await client.entry.create(
       {
         contentTypeId: "andCoffeeStand",
       },
       {
-        fields: {
-          title: { "en-US": title },
-          slug: { "en-US": slug },
-          bodyText: { "en-US": content },
-        },
+        fields,
       },
     );
 

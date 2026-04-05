@@ -15,6 +15,9 @@ export default function AdminNewPostPage() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState("");
+  const [coverImageId, setCoverImageId] = useState("");
+  const [publishedAt, setPublishedAt] = useState("");
+  const [tags, setTags] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function parseResponse(res: Response): Promise<ApiResponse> {
@@ -32,6 +35,12 @@ export default function AdminNewPostPage() {
     const normalizedTitle = title.trim();
     const normalizedSlug = slug.trim().toLowerCase();
     const normalizedContent = content.trim();
+    const normalizedCoverImageId = coverImageId.trim();
+    const normalizedPublishedAt = publishedAt.trim();
+    const normalizedTags = tags
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
 
     if (!normalizedTitle || !normalizedSlug || !normalizedContent) {
       alert("タイトル・slug・本文を入力してください");
@@ -50,6 +59,9 @@ export default function AdminNewPostPage() {
           title: normalizedTitle,
           slug: normalizedSlug,
           content: normalizedContent,
+          coverImageId: normalizedCoverImageId || undefined,
+          publishedAt: normalizedPublishedAt || undefined,
+          tags: normalizedTags,
         }),
       });
 
@@ -138,6 +150,44 @@ export default function AdminNewPostPage() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
+            style={{ width: "100%", padding: "8px" }}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="coverImageId">cover_image の Asset ID</label>
+          <br />
+          <input
+            id="coverImageId"
+            type="text"
+            value={coverImageId}
+            onChange={(e) => setCoverImageId(e.target.value)}
+            placeholder="Contentful asset id"
+            style={{ width: "100%", padding: "8px" }}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="publishedAt">公開日時</label>
+          <br />
+          <input
+            id="publishedAt"
+            type="datetime-local"
+            value={publishedAt}
+            onChange={(e) => setPublishedAt(e.target.value)}
+            style={{ width: "100%", padding: "8px" }}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="tags">タグ</label>
+          <br />
+          <input
+            id="tags"
+            type="text"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            placeholder="coffee, stand, diary"
             style={{ width: "100%", padding: "8px" }}
           />
         </div>

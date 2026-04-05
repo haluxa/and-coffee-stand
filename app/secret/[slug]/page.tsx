@@ -12,9 +12,10 @@ type PostSkeleton = EntrySkeletonType<
   {
     title: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
-    bodyText: EntryFieldTypes.Text;
-    coverImage: EntryFieldTypes.AssetLink;
+    body_text: EntryFieldTypes.Text;
+    cover_image: EntryFieldTypes.AssetLink;
     published_at: EntryFieldTypes.Date;
+    tags: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
   },
   "andCoffeeStand"
 >;
@@ -42,11 +43,17 @@ export default async function SecretDetailPage({
     notFound();
   }
 
-  const imageUrl = getImageUrl(post.fields.coverImage);
+  const imageUrl = getImageUrl(post.fields.cover_image);
 
   return (
     <main className="post_detail">
       <h1 className="post_detail_title">{post.fields.title}</h1>
+
+      {post.fields.published_at && (
+        <p>{new Date(post.fields.published_at).toLocaleDateString("ja-JP")}</p>
+      )}
+
+      {post.fields.tags?.length ? <p>{post.fields.tags.join(" / ")}</p> : null}
 
       {imageUrl && (
         <Image
@@ -58,7 +65,7 @@ export default async function SecretDetailPage({
         />
       )}
 
-      <div className="post_body">{post.fields.bodyText}</div>
+      <div className="post_body">{post.fields.body_text}</div>
     </main>
   );
 }
