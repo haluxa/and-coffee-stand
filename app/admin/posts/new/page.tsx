@@ -15,6 +15,7 @@ export default function AdminNewPostPage() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState("");
+  const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const [coverImageUrl, setCoverImageUrl] = useState("");
   const [coverImageId, setCoverImageId] = useState("");
   const [publishedAt, setPublishedAt] = useState("");
@@ -49,23 +50,47 @@ export default function AdminNewPostPage() {
       return;
     }
 
+    if (
+      Number(Boolean(coverImageFile)) +
+        Number(Boolean(normalizedCoverImageUrl)) +
+        Number(Boolean(normalizedCoverImageId)) >
+      1
+    ) {
+      alert("coverImage はファイル・URL・Asset ID のいずれか1つだけ入力してください");
+      return;
+    }
+
     setLoading(true);
 
     try {
+      const formData = new FormData();
+      formData.set("title", normalizedTitle);
+      formData.set("slug", normalizedSlug);
+      formData.set("content", normalizedContent);
+
+      if (coverImageFile) {
+        formData.set("coverImageFile", coverImageFile);
+      }
+
+      if (normalizedCoverImageUrl) {
+        formData.set("coverImageUrl", normalizedCoverImageUrl);
+      }
+
+      if (normalizedCoverImageId) {
+        formData.set("coverImageId", normalizedCoverImageId);
+      }
+
+      if (normalizedPublishedAt) {
+        formData.set("publishedAt", normalizedPublishedAt);
+      }
+
+      if (normalizedTags.length) {
+        formData.set("tags", normalizedTags.join(","));
+      }
+
       const res = await fetch("/api/admin/posts", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: normalizedTitle,
-          slug: normalizedSlug,
-          content: normalizedContent,
-          coverImageUrl: normalizedCoverImageUrl || undefined,
-          coverImageId: normalizedCoverImageId || undefined,
-          publishedAt: normalizedPublishedAt || undefined,
-          tags: normalizedTags,
-        }),
+        body: formData,
       });
 
       const data = await parseResponse(res);
@@ -153,6 +178,18 @@ export default function AdminNewPostPage() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
+            style={{ width: "100%", padding: "8px" }}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="coverImageFile">coverImage の画像ファイル</label>
+          <br />
+          <input
+            id="coverImageFile"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setCoverImageFile(e.target.files?.[0] ?? null)}
             style={{ width: "100%", padding: "8px" }}
           />
         </div>
