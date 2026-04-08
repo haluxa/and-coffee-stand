@@ -1233,21 +1233,60 @@ html {
 .secret_title {
   font-size: 32px;
   margin-bottom: 40px;
+  text-align: center;
+  font-family: var(--font-fredericka), serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .post_list {
   display: grid;
-  gap: 30px;
+  gap: 40px;
 }
 
 .post_card {
-  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px dashed var(--foreground);
   padding-bottom: 20px;
+}
+
+.post_content {
+  flex: 1;
+}
+
+.post_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.post_tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, var(--foreground) 50%, transparent);
+  border-radius: 999px;
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  font-size: 10px;
+  line-height: 1.2;
+  color: color-mix(in srgb, var(--foreground) 68%, transparent);
+  background-color: color-mix(in srgb, var(--foreground) 8%, transparent);
 }
 
 .post_title {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  font-weight: 700;
+}
+
+.post_date {
+  margin-top: 6px;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--foreground) 72%, transparent);
 }
 
 .post_title:hover {
@@ -1255,9 +1294,10 @@ html {
 }
 
 .post_image {
-  width: 100%;
+  width: 120px;
   height: auto;
-  border-radius: 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 .post_detail {
   max-width: 800px;

@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { isAdminAuthConfigured, isAdminAuthenticated } from "@/lib/admin-auth";
+import {
+  isAdminAuthConfigured,
+  isAdminAuthenticated,
+} from "@/lib/admin-auth";
 import { logoutAction } from "./actions";
 import { AdminLoginForm } from "./AdminLoginForm";
 
@@ -34,8 +37,8 @@ export default async function AdminLayout({
         >
           <h1 style={{ marginTop: 0 }}>管理画面の設定が未完了です</h1>
           <p style={{ marginBottom: 0, lineHeight: 1.6 }}>
-            <code>ADMIN_PASSWORD</code> と{" "}
-            <code>ADMIN_SESSION_SECRET</code> を環境変数に設定してください。
+            <code>ADMIN_PASSWORD</code> と <code>ADMIN_SESSION_SECRET</code>{" "}
+            を環境変数に設定してください。
           </p>
         </section>
       </div>

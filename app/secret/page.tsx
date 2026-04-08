@@ -7,6 +7,7 @@ import type {
   UnresolvedLink,
 } from "contentful";
 import { contentfulClient } from "@/lib/contentful";
+import Footer from "@/components/footer";
 
 type PostSkeleton = EntrySkeletonType<
   {
@@ -69,12 +70,28 @@ export default async function SecretPage() {
       <div className="post_list">
         {posts.map((post) => {
           const imageUrl = getImageUrl(post.fields.coverImage);
+          const tags = post.fields.tags ?? [];
+          const publishedAt = post.fields.publishedAt
+            ? new Date(post.fields.publishedAt).toLocaleDateString("ja-JP")
+            : null;
 
           return (
             <article key={post.sys.id} className="post_card">
-              <Link href={`/secret/${post.fields.slug}`}>
-                <h2 className="post_title">{post.fields.title}</h2>
-              </Link>
+              <div className="post_content">
+                {tags.length > 0 && (
+                  <div className="post_tags">
+                    {tags.map((tag) => (
+                      <span key={tag} className="post_tag">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <Link href={`/secret/${post.fields.slug}`}>
+                  <h2 className="post_title">{post.fields.title}</h2>
+                </Link>
+                {publishedAt && <p className="post_date">{publishedAt}</p>}
+              </div>
 
               {imageUrl && (
                 <Image
@@ -89,6 +106,10 @@ export default async function SecretPage() {
           );
         })}
       </div>
+      <div>
+        <Link href="/admin">管理画面</Link>
+      </div>
+      <Footer />
     </main>
   );
 }
