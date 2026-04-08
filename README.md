@@ -1,55 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# and-coffee-stand
 
-## Getting Started
+## 概要
 
-First, run the development server:
+福岡県北九州市のカフェ「and coffee stand」の公式サイトです。  
+ブランドの空気感をそのまま伝えることを重視し、動画背景・写真・余白を活かした構成で、
+店舗情報、メニュー、店内ビュー、投稿コンテンツを閲覧できるようにしています。
+
+## 主な特徴
+
+- トップページで動画と写真を組み合わせ、店舗の世界観を視覚的に表現
+- `/menu` でドリンク・スイーツをカテゴリ別に掲載
+- `/view` で店内やイベント写真をスライド表示
+- `/secret` でContentfulの投稿一覧・詳細を公開
+- `/admin` からパスワード認証付きで投稿を作成・公開
+- Google Maps APIを使ってフッターに店舗地図を表示
+
+## 担当
+
+- フロントエンド実装
+- 管理画面の設計・実装
+- 投稿APIの設計・実装
+- CMS連携の実装
+
+## 技術スタック
+
+- Next.js 15 (App Router)
+- React 19
+- TypeScript
+- Contentful
+- Google Maps JavaScript API
+- Firebase Storage
+
+## 工夫した点
+
+- カフェの雰囲気が伝わるよう、ファーストビューや背景に動画を使用
+- メニューやギャラリーを静的に見やすく整理し、店舗情報へ迷わず辿れる構成に調整
+- 管理画面は店舗運用を想定し、パスワード認証と最小限の投稿フローに絞って実装
+- 投稿作成時に画像アップロード、タグ設定、公開日時設定、公開処理までを一連で完結できるように構成
+
+## 公開側の主なページ
+
+- `/` : トップページ
+- `/menu` : メニュー一覧
+- `/view` : 店内・イベント写真のスライドビュー
+- `/secret` : 投稿一覧
+- `/secret/[slug]` : 投稿詳細
+
+## 管理画面
+
+`/admin` 以下では、パスワードベースのセッション認証を通した上で投稿管理を行います。
+
+- `/admin/posts` : 投稿一覧
+- `/admin/posts/new` : 新規投稿
+- `/api/admin/posts` : 投稿作成API
+- `/api/admin/posts/[id]/publish` : 投稿公開API
+
+## セットアップ
+
+### 開発サーバー起動
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`http://localhost:3000` で確認できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 必要な環境変数
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# and-coffee-stand
-
-# and-coffee-stand
-
-# and-coffee-stand
-
-## Admin authentication
-
-The `/admin` pages and `/api/admin/*` endpoints require a password-based session.
-
-Set these environment variables before starting the app:
+`.env.local` などに以下を設定してください。
 
 ```bash
-ADMIN_PASSWORD=haluxa7321
+CONTENTFUL_SPACE_ID=your_space_id
+CONTENTFUL_ACCESS_TOKEN=your_content_delivery_api_token
+CONTENTFUL_MANAGEMENT_TOKEN=your_content_management_api_token
+CONTENTFUL_ENVIRONMENT=master
+
+ADMIN_PASSWORD=your_admin_password
 ADMIN_SESSION_SECRET=long-random-string
+
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 ```
 
-`ADMIN_SESSION_SECRET` should be a long random value different from the password.
+補足:
+
+- `CONTENTFUL_ACCESS_TOKEN` は公開側の `/secret` で使用します
+- `CONTENTFUL_MANAGEMENT_TOKEN` は管理画面からの投稿作成・公開で使用します
+- `ADMIN_SESSION_SECRET` は十分に長いランダム文字列を設定してください
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` はフッターの地図表示に必要です
+
+## 補足
+
+本プロジェクトはクライアントの許可を得て、ポートフォリオおよび制作過程を公開しています。
