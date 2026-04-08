@@ -106,8 +106,8 @@ export default async function SecretPage() {
           );
         })}
       </div>
-      <div>
-        <Link href="/admin">管理画面</Link>
+      <div className="admin_link">
+        <Link href="/admin">管理者画面</Link>
       </div>
       <Footer />
     </main>

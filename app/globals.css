@@ -1237,6 +1237,16 @@ html {
   font-family: var(--font-fredericka), serif;
   -webkit-font-smoothing: antialiased;
 }
+.admin_link {
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: var(--font-fredericka), serif;
+  margin: 80px 0;
+}
+.admin_link:hover {
+  text-decoration: underline;
+}
 
 .post_list {
   display: grid;
