@@ -22,8 +22,7 @@
     "paths": {
       "@/components/*": ["./app/components/*"],
       "@/lib/*": ["app/lib/*"]
-    },
-    "ignoreDeprecations": "6.0"
+    }
   },
   "include": [
     "next-env.d.ts",

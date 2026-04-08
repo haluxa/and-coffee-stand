@@ -8,6 +8,8 @@ import type {
 import { contentfulClient } from "@/lib/contentful";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 type PostSkeleton = EntrySkeletonType<
   {
     title: EntryFieldTypes.Text;
@@ -28,11 +30,13 @@ function getImageUrl(asset?: Asset | UnresolvedLink<"Asset">) {
 export default async function SecretDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
+
   const res = await contentfulClient.getEntries<PostSkeleton>({
     content_type: "andCoffeeStand",
-    "fields.slug": params.slug,
+    "fields.slug": slug,
     limit: 1,
     include: 2,
   });

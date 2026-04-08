@@ -9,6 +9,8 @@ import type {
 import { contentfulClient } from "@/lib/contentful";
 import Footer from "@/components/footer";
 
+export const dynamic = "force-dynamic";
+
 type PostSkeleton = EntrySkeletonType<
   {
     title: EntryFieldTypes.Text;
