@@ -8,6 +8,60 @@ type Props = {
   height?: number;
 };
 
+declare global {
+  interface Window {
+    __initGoogleMaps?: () => void;
+  }
+}
+
+let googleMapsPromise: Promise<void> | null = null;
+
+function loadGoogleMaps(): Promise<void> {
+  if (typeof window === "undefined") {
+    return Promise.reject(new Error("Google Maps can only load in the browser"));
+  }
+
+  if (window.google?.maps) {
+    return Promise.resolve();
+  }
+
+  if (googleMapsPromise) {
+    return googleMapsPromise;
+  }
+
+  googleMapsPromise = new Promise<void>((resolve, reject) => {
+    const existingScript = document.getElementById(
+      "gmaps",
+    ) as HTMLScriptElement | null;
+
+    const handleResolve = () => resolve();
+    const handleReject = () => {
+      googleMapsPromise = null;
+      reject(new Error("Failed to load Google Maps JavaScript API"));
+    };
+
+    if (existingScript) {
+      existingScript.addEventListener("load", handleResolve, { once: true });
+      existingScript.addEventListener("error", handleReject, { once: true });
+      return;
+    }
+
+    window.__initGoogleMaps = handleResolve;
+
+    const script = document.createElement("script");
+    script.id = "gmaps";
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&callback=__initGoogleMaps`;
+    script.async = true;
+    script.defer = true;
+    script.onerror = handleReject;
+    document.head.appendChild(script);
+  }).finally(() => {
+    delete window.__initGoogleMaps;
+  });
+
+  return googleMapsPromise;
+}
+
 export default function Map({ height = 400 }: Props) {
   const mapRef = useRef<HTMLDivElement | null>(null);
 
@@ -175,9 +229,13 @@ export default function Map({ height = 400 }: Props) {
   const center = { lat: 33.8727700236595, lng: 130.85770975415534 };
 
   useEffect(() => {
-    // 明示的に型を付けた上でコールバックを設定
-    (window as Window & { initMap?: () => void }).initMap = () => {
-      if (!mapRef.current) return;
+    let cancelled = false;
+
+    const initMap = async () => {
+      await loadGoogleMaps();
+
+      if (cancelled || !mapRef.current) return;
+
       const map = new google.maps.Map(mapRef.current, {
         center,
         zoom: 15,
@@ -191,18 +249,10 @@ export default function Map({ height = 400 }: Props) {
       });
     };
 
-    const script = document.createElement("script");
-    script.id = "gmaps";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&callback=initMap`;
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
+    void initMap();
 
     return () => {
-      // 後片付け：initMap を削除して、スクリプト要素も消す
-      delete (window as Window & { initMap?: () => void }).initMap;
-      const el = document.getElementById("gmaps");
-      if (el) el.remove();
+      cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
