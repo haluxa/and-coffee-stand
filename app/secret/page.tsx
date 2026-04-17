@@ -8,6 +8,7 @@ import type {
 } from "contentful";
 import { contentfulClient } from "@/lib/contentful";
 import Footer from "@/components/footer";
+import { formatJapaneseDate } from "@/lib/format-date";
 
 export const dynamic = "force-dynamic";
 
@@ -74,7 +75,7 @@ export default async function SecretPage() {
           const imageUrl = getImageUrl(post.fields.coverImage);
           const tags = post.fields.tags ?? [];
           const publishedAt = post.fields.publishedAt
-            ? new Date(post.fields.publishedAt).toLocaleDateString("ja-JP")
+            ? formatJapaneseDate(post.fields.publishedAt)
             : null;
 
           return (
