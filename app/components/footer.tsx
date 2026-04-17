@@ -6,15 +6,6 @@ export default function Footer() {
     <footer>
       <h2 className="sr-only">Access</h2>
       <Map />
-      <Image
-        src="/img/shop-exterior.jpg"
-        className="footer-image"
-        alt=""
-        width={2048}
-        height={1367}
-        quality={70}
-        sizes=""
-      />
       <div>
         <p>住所：福岡県北九州市小倉北区清水4-3-30</p>
         <a

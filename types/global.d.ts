@@ -5,5 +5,10 @@ declare global {
   }
 }
 
+declare module "*.css" {
+  const css: string;
+  export default css;
+}
+
 // ファイルがモジュールとして扱われないよう export を入れておく
 export {};
