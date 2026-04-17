@@ -1,6 +1,5 @@
 // components/Footer.tsx
 import Map from "@/components/map";
-import Image from "next/image";
 export default function Footer() {
   return (
     <footer>
