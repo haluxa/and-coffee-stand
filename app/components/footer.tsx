@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer>
       <h2 className="sr-only">Access</h2>
-      <Map height={320} />
+      <Map />
       <Image
         src="/img/shop-exterior.jpg"
         className="footer-image"

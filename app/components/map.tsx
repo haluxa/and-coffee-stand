@@ -3,11 +3,6 @@
 
 import React, { useEffect, useRef } from "react";
 
-type Props = {
-  /** 高さ(px)。未指定なら 400 */
-  height?: number;
-};
-
 declare global {
   interface Window {
     __initGoogleMaps?: () => void;
@@ -62,7 +57,7 @@ function loadGoogleMaps(): Promise<void> {
   return googleMapsPromise;
 }
 
-export default function Map({ height = 400 }: Props) {
+export default function Map() {
   const mapRef = useRef<HTMLDivElement | null>(null);
 
   // 白黒スタイル
@@ -257,5 +252,5 @@ export default function Map({ height = 400 }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div ref={mapRef} className="map" style={{ height }} />;
+  return <div ref={mapRef} className="map" />;
 }
