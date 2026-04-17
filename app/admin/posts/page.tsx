@@ -1,8 +1,9 @@
 import { getPosts } from "@/lib/contentful-posts";
 import Link from "next/link";
+import { DeletePostButton } from "./DeletePostButton";
 
 type Post = {
-  sys: { id: string };
+  sys: { id: string; publishedVersion?: number };
   fields: {
     title?: { "en-US"?: string };
     slug?: { "en-US"?: string };
@@ -29,19 +30,27 @@ export default async function AdminPostsPage() {
 
       {posts.length ? (
         <ul className="admin-post-list">
-          {posts.map((post) => (
-            <li key={post.sys.id} className="admin-post-item">
-              <div>
-                <strong className="admin-post-title">
-                  {post.fields.title?.["en-US"] || "無題"}
-                </strong>
-                <div className="admin-post-slug">
-                  {post.fields.slug?.["en-US"] || "slug 未設定"}
+          {posts.map((post) => {
+            const title = post.fields.title?.["en-US"] || "無題";
+            const isPublished = Boolean(post.sys.publishedVersion);
+
+            return (
+              <li key={post.sys.id} className="admin-post-item">
+                <div>
+                  <strong className="admin-post-title">{title}</strong>
+                  <div className="admin-post-slug">
+                    {post.fields.slug?.["en-US"] || "slug 未設定"}
+                  </div>
                 </div>
-              </div>
-              <span className="admin-post-badge">Contentful</span>
-            </li>
-          ))}
+                <div className="admin-post-actions">
+                  <span className="admin-post-badge">
+                    {isPublished ? "Published" : "Draft"}
+                  </span>
+                  <DeletePostButton postId={post.sys.id} postTitle={title} />
+                </div>
+              </li>
+            );
+          })}
         </ul>
       ) : (
         <div className="admin-empty-state">

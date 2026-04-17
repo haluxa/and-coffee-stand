@@ -54,10 +54,6 @@ export default async function SecretDetailPage({
     ? formatJapaneseDate(post.fields.publishedAt)
     : null;
   const tags = post.fields.tags ?? [];
-  const bodyParagraphs = post.fields.bodyText
-    .split(/\n{2,}/)
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean);
 
   return (
     <main className="post_detail">
@@ -125,11 +121,7 @@ export default async function SecretDetailPage({
           </div>
         )}
 
-        <div className="post_body">
-          {bodyParagraphs.map((paragraph, index) => (
-            <p key={`${post.sys.id}-paragraph-${index}`}>{paragraph}</p>
-          ))}
-        </div>
+        <div className="post_body">{post.fields.bodyText}</div>
       </article>
     </main>
   );
