@@ -110,29 +110,34 @@ export default function AdminNewPostPage() {
   }
 
   return (
-    <section>
-      <h1>新規投稿</h1>
+    <section className="admin-panel">
+      <div className="admin-section-heading">
+        <p className="admin-eyebrow">Create Post</p>
+        <h2 className="admin-section-title">新規投稿</h2>
+        <p className="admin-section-text">
+          必須項目を入力すると、記事を作成してそのまま公開します。
+        </p>
+      </div>
 
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: "grid", gap: "16px", marginTop: "24px" }}
-      >
-        <div>
-          <label htmlFor="title">タイトル</label>
-          <br />
+      <form onSubmit={handleSubmit} className="admin-form admin-post-form">
+        <div className="admin-field">
+          <label htmlFor="title" className="admin-label">
+            タイトル
+          </label>
           <input
             id="title"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            style={{ width: "100%", padding: "8px" }}
+            className="admin-input"
           />
         </div>
 
-        <div>
-          <label htmlFor="slug">slug</label>
-          <br />
+        <div className="admin-field">
+          <label htmlFor="slug" className="admin-label">
+            slug
+          </label>
           <input
             id="slug"
             type="text"
@@ -143,64 +148,68 @@ export default function AdminNewPostPage() {
             autoCorrect="off"
             spellCheck={false}
             placeholder="example-post"
-            style={{ width: "100%", padding: "8px" }}
+            className="admin-input"
           />
         </div>
 
-        <div>
-          <label htmlFor="content">本文</label>
-          <br />
+        <div className="admin-field">
+          <label htmlFor="content" className="admin-label">
+            本文
+          </label>
           <textarea
             id="content"
             rows={12}
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
-            style={{ width: "100%", padding: "8px" }}
+            className="admin-textarea"
           />
         </div>
 
-        <div>
-          <label htmlFor="coverImageFile">coverImage の画像ファイル</label>
-          <br />
+        <div className="admin-field">
+          <label htmlFor="coverImageFile" className="admin-label">
+            coverImage の画像ファイル
+          </label>
           <input
             id="coverImageFile"
             type="file"
             accept="image/*"
             onChange={(e) => setCoverImageFile(e.target.files?.[0] ?? null)}
-            style={{ width: "100%", padding: "8px" }}
+            className="admin-input admin-file-input"
           />
         </div>
 
-        <div>
-          <label htmlFor="publishedAt">公開日時</label>
-          <br />
+        <div className="admin-field">
+          <label htmlFor="publishedAt" className="admin-label">
+            公開日時
+          </label>
           <input
             id="publishedAt"
             type="datetime-local"
             value={publishedAt}
             onChange={(e) => setPublishedAt(e.target.value)}
-            style={{ width: "100%", padding: "8px" }}
+            className="admin-input"
           />
         </div>
 
-        <div>
-          <label htmlFor="tags">タグ</label>
-          <br />
+        <div className="admin-field">
+          <label htmlFor="tags" className="admin-label">
+            タグ
+          </label>
           <input
             id="tags"
             type="text"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
             placeholder="coffee, stand, diary"
-            style={{ width: "100%", padding: "8px" }}
+            className="admin-input"
           />
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          style={{ width: "fit-content", padding: "10px 16px" }}
+          className="admin-primary-button"
         >
           {loading ? "保存中..." : "保存"}
         </button>
