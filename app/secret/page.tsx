@@ -6,9 +6,9 @@ import type {
   EntrySkeletonType,
   UnresolvedLink,
 } from "contentful";
-import { contentfulClient } from "@/lib/contentful";
-import Footer from "@/components/footer";
-import { formatJapaneseDate } from "@/lib/format-date";
+import { contentfulClient } from "@/_lib/contentful";
+import Footer from "@/_components/footer";
+import { formatJapaneseDate } from "@/_lib/format-date";
 
 export const dynamic = "force-dynamic";
 

@@ -5,7 +5,7 @@ import {
   clearAdminSession,
   createAdminSession,
   verifyAdminPassword,
-} from "@/lib/admin-auth";
+} from "@/_lib/admin-auth";
 
 type LoginState = {
   error: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import Slide from "@/components/slide";
+import Slide from "@/_components/slide";
 
 export default function ViewTestPage() {
   return (

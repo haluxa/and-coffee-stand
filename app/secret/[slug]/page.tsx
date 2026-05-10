@@ -6,8 +6,8 @@ import type {
   EntrySkeletonType,
   UnresolvedLink,
 } from "contentful";
-import { contentfulClient } from "@/lib/contentful";
-import { formatJapaneseDate } from "@/lib/format-date";
+import { contentfulClient } from "@/_lib/contentful";
+import { formatJapaneseDate } from "@/_lib/format-date";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";

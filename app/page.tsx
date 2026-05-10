@@ -1,10 +1,10 @@
 // app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
-import BeansIcon from "@/components/ui/BeansIcon";
-import FadeInEffect from "@/components/fadein";
-import ScrollIndicator from "@/components/ScrollIndicator";
-import Footer from "@/components/footer";
+import BeansIcon from "@/_components/ui/BeansIcon";
+import FadeInEffect from "@/_components/fadein";
+import ScrollIndicator from "@/_components/ScrollIndicator";
+import Footer from "@/_components/footer";
 export default function Home() {
   return (
     <>

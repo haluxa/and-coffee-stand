@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import {
   isAdminAuthConfigured,
   isAdminAuthenticated,
-} from "@/lib/admin-auth";
+} from "@/_lib/admin-auth";
 import { logoutAction } from "./actions";
 import { AdminLoginForm } from "./AdminLoginForm";
 

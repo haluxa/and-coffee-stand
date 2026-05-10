@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAdminApiAuth } from "@/lib/admin-auth";
-import { getContentfulPlainClient } from "@/lib/contentful-management";
+import { requireAdminApiAuth } from "@/_lib/admin-auth";
+import { getContentfulPlainClient } from "@/_lib/contentful-management";
 
 export async function POST(
   req: NextRequest,

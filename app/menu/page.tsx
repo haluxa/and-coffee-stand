@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Footer from "@/components/footer";
+import Footer from "@/_components/footer";
 export default function MenuPage() {
   return (
     <main className="menu-page">

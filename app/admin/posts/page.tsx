@@ -1,4 +1,4 @@
-import { getPosts } from "@/lib/contentful-posts";
+import { getPosts } from "@/_lib/contentful-posts";
 import Link from "next/link";
 import { DeletePostButton } from "./DeletePostButton";
 

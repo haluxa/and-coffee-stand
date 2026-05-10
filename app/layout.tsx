@@ -10,7 +10,7 @@ import { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
-import HeaderNav from "./components/HeaderNav";
+import HeaderNav from "./_components/HeaderNav";
 
 const hina = Hina_Mincho({
   weight: "400",

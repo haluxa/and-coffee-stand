@@ -1,5 +1,5 @@
 // components/Footer.tsx
-import Map from "@/components/map";
+import Map from "@/_components/map";
 export default function Footer() {
   return (
     <footer>
