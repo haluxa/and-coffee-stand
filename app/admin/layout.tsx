@@ -1,12 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import {
-  isAdminAuthConfigured,
-  isAdminAuthenticated,
-} from "@/_lib/admin-auth";
+import { isAdminAuthConfigured, isAdminAuthenticated } from "@/_lib/admin-auth";
 import { logoutAction } from "./actions";
 import { AdminLoginForm } from "./AdminLoginForm";
-
+import Style from "./layout.module.css";
 export default async function AdminLayout({
   children,
 }: {
@@ -16,10 +13,10 @@ export default async function AdminLayout({
 
   if (!isAdminAuthConfigured()) {
     return (
-      <div className="admin-auth-shell">
-        <section className="admin-card">
-          <h1 className="admin-card-title">管理画面の設定が未完了です</h1>
-          <p className="admin-card-text">
+      <div className={Style.adminAuthShell}>
+        <section className={Style.adminCard}>
+          <h1 className={Style.adminCardTitle}>管理画面の設定が未完了です</h1>
+          <p className={Style.adminCardText}>
             <code>ADMIN_PASSWORD</code> と <code>ADMIN_SESSION_SECRET</code>{" "}
             を環境変数に設定してください。
           </p>
@@ -30,36 +27,40 @@ export default async function AdminLayout({
 
   if (!authenticated) {
     return (
-      <div className="admin-auth-shell">
-        <AdminLoginForm />
+      <div className={Style.adminAuthShell}>
+        <section className={Style.adminCard}>
+          <AdminLoginForm />
+        </section>
       </div>
     );
   }
 
   return (
-    <div className="admin-layout">
-      <header className="admin-header">
-        <div className="admin-header-inner">
-          <div className="admin-header-copy">
-            <p className="admin-eyebrow">Admin Dashboard</p>
-            <h1 className="admin-header-title">and coffee stand 管理画面</h1>
+    <div className={Style.adminLayout}>
+      <header className={Style.adminHeader}>
+        <div className={Style.adminHeaderInner}>
+          <div className={Style.adminHeaderCopy}>
+            <p className={Style.adminEyebrow}>Admin Dashboard</p>
+            <h1 className={Style.adminHeaderTitle}>
+              and coffee stand 管理画面
+            </h1>
           </div>
 
-          <nav className="admin-nav">
+          <nav className={Style.adminNav} aria-label="管理画面のナビゲーション">
             <Link href="/admin">管理トップ</Link>
             <Link href="/admin/posts">記事一覧</Link>
             <Link href="/admin/posts/new">新規投稿</Link>
           </nav>
 
-          <form action={logoutAction} className="admin-logout-form">
-            <button type="submit" className="admin-logout-button">
+          <form action={logoutAction} className={Style.adminLogoutForm}>
+            <button type="submit" className={Style.adminLogoutButton}>
               ログアウト
             </button>
           </form>
         </div>
       </header>
 
-      <main className="admin-main">{children}</main>
+      <main className={Style.adminMain}>{children}</main>
     </div>
   );
 }
