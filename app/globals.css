@@ -59,7 +59,11 @@ body {
 .admin-layout {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(179, 128, 80, 0.14), transparent 28%),
+    radial-gradient(
+      circle at top left,
+      rgba(179, 128, 80, 0.14),
+      transparent 28%
+    ),
     linear-gradient(180deg, #f8f2ea 0%, #efe6da 100%);
   font-family: var(--font-noto-sans-jp), sans-serif;
 }
@@ -207,8 +211,11 @@ body {
   border-radius: 24px;
   text-decoration: none;
   color: #3f3022;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(244, 233, 220, 0.9));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.76),
+    rgba(244, 233, 220, 0.9)
+  );
   border: 1px solid rgba(97, 67, 42, 0.1);
   transition:
     transform 0.2s ease,
@@ -831,13 +838,8 @@ main .top-movie-wrapper {
 }
 
 footer {
-  padding-top: 20px;
-  height: auto;
   display: flex;
   flex-direction: column;
-  font-family: var(--font-hina);
-  background-color: #d9bd2e;
-  border-radius: 40px 40px 0 0;
 }
 
 footer a,
@@ -849,11 +851,10 @@ footer .info_link_map {
   color: var(--foreground);
 }
 small {
-  margin-top: 24px;
-  padding: 14px 0 12px 0; /* 一番下へ押し下げ */
+  padding: 8px 0; /* 一番下へ押し下げ */
   text-align: center;
   background-color: var(--foreground);
-  color: #d9bd2e;
+  color: var(--background);
 }
 
 .about-3 h2 {
@@ -864,9 +865,7 @@ small {
 }
 .map {
   width: auto;
-  margin: 0 16px 40px 16px;
   height: 160px;
-  border-radius: 24px;
 }
 
 .fade-in {
