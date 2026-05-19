@@ -7,7 +7,7 @@ import type {
   UnresolvedLink,
 } from "contentful";
 import { contentfulClient } from "@/_lib/contentful";
-import Footer from "@/_components/footer";
+import Footer from "@/_components/Footer/page";
 import { formatJapaneseDate } from "@/_lib/format-date";
 
 export const dynamic = "force-dynamic";

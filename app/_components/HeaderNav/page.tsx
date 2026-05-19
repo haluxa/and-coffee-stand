@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
+import Style from "./page.module.css";
 
 export default function HeaderNav() {
   const pathname = usePathname();
@@ -14,30 +15,34 @@ export default function HeaderNav() {
   }, [pathname]);
 
   return (
-    <div className="nav">
+    <div className={Style.nav}>
       <input
         id={drawerId}
-        className="drawer_hidden"
+        className={Style.drawerHidden}
         type="checkbox"
         checked={isOpen}
         onChange={(event) => setIsOpen(event.target.checked)}
       />
-      <label htmlFor={drawerId} className="drawer_open" aria-label="Toggle navigation">
+      <label
+        htmlFor={drawerId}
+        className={Style.drawerOpen}
+        aria-label="Toggle navigation"
+      >
         <span />
       </label>
-      <nav className="nav_content">
-        <ul className="nav_list">
-          <li className="nav_item">
+      <nav className={Style.navContent}>
+        <ul className={Style.navList}>
+          <li className={Style.navItem}>
             <Link href="/menu" onClick={() => setIsOpen(false)}>
               menu
             </Link>
           </li>
-          <li className="nav_item">
+          <li className={Style.navItem}>
             <Link href="/view" onClick={() => setIsOpen(false)}>
               shop view
             </Link>
           </li>
-          <li className="nav_item">
+          <li className={Style.navItem}>
             <Link href="/secret" onClick={() => setIsOpen(false)}>
               secret
             </Link>

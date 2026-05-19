@@ -1,0 +1,86 @@
+.drawerHidden {
+  display: none;
+}
+
+/* ハンバーガーアイコンの設置スペース */
+.drawerOpen {
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  z-index: 100;
+  cursor: pointer;
+  /* アイコンのサイズを調整 */
+  display: inline-flex; /* or block */
+  width: 60px; /* お好みの幅 */
+  height: 60px; /* お好みの高さ */
+  align-items: center; /* span を中央寄せ */
+  justify-content: center;
+  mix-blend-mode: difference;
+}
+
+/* ハンバーガーメニューのアイコン */
+.drawerOpen span,
+.drawerOpen span:before,
+.drawerOpen span:after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 25px;
+  border-radius: 3px;
+  background: #b3b9bf;
+
+  transition: 0.5s;
+  position: absolute;
+}
+
+/* 三本線の一番上の棒の位置調整 */
+.drawerOpen span:before {
+  bottom: 8px;
+}
+
+/* 三本線の一番下の棒の位置調整 */
+.drawerOpen span:after {
+  top: 8px;
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+.nav > input:checked ~ .drawerOpen span {
+  background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+.nav > input:checked ~ .drawerOpen span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+.nav > input:checked ~ .drawerOpen span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* メニューのデザイン*/
+.navContent {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 100%; /* メニューを画面の外に飛ばす */
+  z-index: 99;
+  background: #fff;
+  transition: 0.5s;
+  padding-left: 48px;
+  padding-top: 80px;
+}
+
+/* メニュー黒ポチを消す */
+.navList {
+  list-style: none;
+  font-size: 32px;
+  line-height: 2;
+}
+
+/* アイコンがクリックされたらメニューを表示 */
+.nav > input:checked ~ .navContent {
+  left: 0; /* メニューを画面に入れる */
+}

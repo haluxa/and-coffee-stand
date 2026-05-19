@@ -10,7 +10,8 @@ import { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
-import HeaderNav from "./_components/HeaderNav";
+import HeaderNav from "./_components/HeaderNav/page";
+import Style from "./layout.module.css";
 
 const hina = Hina_Mincho({
   weight: "400",
@@ -62,12 +63,12 @@ export default function RootLayout({
           ${dmSerif.variable}   // ★ 追加
         `}
       >
-        <div className="site-shell">
+        <div>
           <header>
             <HeaderNav />
           </header>
 
-          <div className="header_logo">
+          <div className={Style.headerLogo}>
             <Link href="/">
               <Image
                 src="/img/header_logo.png"

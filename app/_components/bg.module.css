@@ -1,0 +1,82 @@
+#bgVideoStack {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* はみ出しを隠す */
+  z-index: -1; /* すべてのコンテンツの背面 */
+  pointer-events: none; /* クリックを邪魔しない */
+}
+.bgVideoTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+/* ===== 動画の継ぎ目を柔らかく隠すための薄いグラデーション（※現在はオフ） ===== */
+#bgVideoStack::after {
+  display: none; /* 現在は「重なり＋エッジのフェード」で対応するため、この白グラデは無効化 */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 10%,
+    rgba(255, 255, 255, 0.9) 40%,
+    rgba(255, 255, 255, 0.9) 60%,
+    rgba(255, 255, 255, 0) 90%
+  );
+  opacity: 0.08; /* 自然に馴染むよう控えめに適用（必要に応じて数値調整） */
+}
+
+#bgVideoStack video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 auto;
+  opacity: var(--bg-video-opacity);
+  filter: contrast(1.08) brightness(1.07);
+}
+
+#bgVideoStack video + video {
+  margin-top: calc(var(--bg-overlap-px) * -1);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 1) var(--bg-fade-px),
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 1) var(--bg-fade-px),
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* ===== 背景動画の上に重ねる薄い幕（色味＋ぼかし） ===== */
+.bgVideoOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* DOM上では動画の後に描画されるため同じ層（-1）。前景コンテンツより背面に固定 */
+  pointer-events: none;
+  /* 半透明の色幕。ライト時は白ベースで文字の可読性を確保 */
+  background: rgba(
+    255,
+    252,
+    248,
+    var(--bg-overlay-opacity)
+  ); /* #FFFCF8 の色味を反映 */
+  /* 幕の“背後”（=動画）をぼかす。半透明の背景指定が必要 */
+  -webkit-backdrop-filter: blur(var(--bg-overlay-blur));
+  backdrop-filter: blur(var(--bg-overlay-blur));
+}
