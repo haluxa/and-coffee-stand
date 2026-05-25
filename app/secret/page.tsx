@@ -9,6 +9,7 @@ import type {
 import { contentfulClient } from "@/_lib/contentful";
 import Footer from "@/_components/Footer/page";
 import { formatJapaneseDate } from "@/_lib/format-date";
+import bgStyle from "@/_components/bg.module.css";
 
 export const dynamic = "force-dynamic";
 
@@ -39,8 +40,8 @@ export default async function SecretPage() {
 
   return (
     <main className="secret_page">
-      <div id="bg-video-stack" aria-hidden="true">
-        <div className="bg-video-track">
+      <div id={bgStyle.bgVideoStack} aria-hidden="true">
+        <div className={bgStyle.bgVideoTrack}>
           <video id="bg-video-1" autoPlay loop muted playsInline>
             <source
               type="video/mp4"

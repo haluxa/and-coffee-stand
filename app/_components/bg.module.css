@@ -62,21 +62,3 @@
     rgba(0, 0, 0, 1) 100%
   );
 }
-
-/* ===== 背景動画の上に重ねる薄い幕（色味＋ぼかし） ===== */
-.bgVideoOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: -1; /* DOM上では動画の後に描画されるため同じ層（-1）。前景コンテンツより背面に固定 */
-  pointer-events: none;
-  /* 半透明の色幕。ライト時は白ベースで文字の可読性を確保 */
-  background: rgba(
-    255,
-    252,
-    248,
-    var(--bg-overlay-opacity)
-  ); /* #FFFCF8 の色味を反映 */
-  /* 幕の“背後”（=動画）をぼかす。半透明の背景指定が必要 */
-  -webkit-backdrop-filter: blur(var(--bg-overlay-blur));
-  backdrop-filter: blur(var(--bg-overlay-blur));
-}
