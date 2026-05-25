@@ -15,7 +15,6 @@ export default function TopVideo() {
       className="top-movie"
       src={firstViewVideoSrc}
       autoPlay
-      defaultMuted
       muted
       loop
       playsInline

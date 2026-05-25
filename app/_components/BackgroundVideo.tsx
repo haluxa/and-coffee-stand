@@ -28,7 +28,6 @@ export default function BackgroundVideo() {
             }}
             autoPlay
             loop
-            defaultMuted
             muted
             playsInline
             preload="metadata"
