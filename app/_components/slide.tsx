@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const slideImages = [
@@ -371,6 +372,27 @@ const SUB_DESC: Record<SubGroup, string> = {
   other: "",
 };
 
+type SlideOverlayConfig = {
+  descStyle?: CSSProperties;
+};
+
+const DEFAULT_DESC_STYLE: CSSProperties = {
+  top: "50%",
+  left: "20px",
+  transform: "translateY(-50%)",
+};
+
+const SUB_OVERLAY_CONFIG: Partial<Record<SubGroup, SlideOverlayConfig>> = {
+  "02_04": {
+    descStyle: {
+      top: "48%",
+      left: "20px",
+      transform: "translateY(-50%)",
+      maxWidth: "42vw",
+    },
+  },
+};
+
 export default function Slide() {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLUListElement | null>(null);
@@ -443,6 +465,13 @@ export default function Slide() {
   const activeDesc = SUB_DESC[activeSub];
   const activeSrc = slideImages[activeIndex] ?? "";
   const activeFileName = activeSrc.split("/").pop() ?? "";
+  const activeOverlayConfig = SUB_OVERLAY_CONFIG[activeSub];
+  const activeDescStyle = activeDesc
+    ? {
+        ...DEFAULT_DESC_STYLE,
+        ...activeOverlayConfig?.descStyle,
+      }
+    : undefined;
 
   // Story progress (per major group)
   const activeGroupIndices = useMemo(() => {
@@ -720,10 +749,16 @@ export default function Slide() {
 
         {activeLabel ? (
           <div aria-hidden className="slideOverlay">
-            <div className="slideBadge">
-              <h2 className="slideTitle">{activeLabel}</h2>
-              {activeDesc ? <p className="slideDesc">{activeDesc}</p> : null}
+            <div className="slideTitleBadge">
+              <div className="slideTitleFrame">
+                <h2 className="slideTitle">{activeLabel}</h2>
+              </div>
             </div>
+            {activeDesc ? (
+              <p className="slideDesc" style={activeDescStyle}>
+                {activeDesc}
+              </p>
+            ) : null}
           </div>
         ) : null}
 
@@ -847,7 +882,12 @@ export default function Slide() {
           aria-label="Open navigation"
           onClick={openNav}
         >
-          NAV
+          <span aria-hidden className="navFabIcon">
+            <span className="navFabCell" />
+            <span className="navFabCell" />
+            <span className="navFabCell" />
+            <span className="navFabCell" />
+          </span>
         </button>
       </div>
     </div>
