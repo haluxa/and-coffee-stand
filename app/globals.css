@@ -5,7 +5,7 @@
   --background: #e9dece;
   --foreground: #453d34;
   --footer-background: rgba(28, 16, 1, 0.6);
-  --color-background: var(--background);
+  --color-background: #fff;
   --color-foreground: var(--foreground);
   --bg-overlay-opacity: 0.3; /* オーバーレイ（薄い幕）の濃さ（0〜1） */
   --bg-overlay-blur: 0px; /* ぼかしの強さ（px） */
