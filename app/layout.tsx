@@ -15,20 +15,26 @@ import Style from "./layout.module.css";
 
 const hina = Hina_Mincho({
   weight: "400",
-  subsets: ["latin"],
   variable: "--font-hina",
+  display: "swap",
+  preload: false,
+  fallback: ["Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", "serif"],
 });
 
 const klee = Klee_One({
   weight: ["400", "600"],
-  subsets: ["latin"],
   variable: "--font-klee",
+  display: "swap",
+  preload: false,
+  fallback: ["Hiragino Sans", "Yu Gothic", "Meiryo", "sans-serif"],
 });
 
 const notoSansJP = Noto_Sans_JP({
   weight: ["400", "700"],
-  subsets: ["latin"],
   variable: "--font-noto-sans-jp",
+  display: "swap",
+  preload: false,
+  fallback: ["Hiragino Sans", "Yu Gothic", "Meiryo", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -60,7 +66,7 @@ export default function RootLayout({
           ${klee.variable}
           ${notoSansJP.variable}
           ${fredericka.variable}
-          ${dmSerif.variable}   // ★ 追加
+          ${dmSerif.variable}  
         `}
       >
         <div>
