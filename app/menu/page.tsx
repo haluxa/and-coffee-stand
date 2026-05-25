@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import Footer from "@/_components/Footer/page";
+import bgStyle from "@/_components/bg.module.css";
 export default function MenuPage() {
   return (
     <main className="menu-page">
-      <div id="bg-video-stack" aria-hidden="true">
-        <div className="bg-video-track">
+      <div id={bgStyle.bgVideoStack} aria-hidden="true">
+        <div className={bgStyle.bgVideoTrack}>
           <video id="bg-video-1" autoPlay loop muted playsInline>
             <source
               type="video/mp4"
