@@ -813,9 +813,8 @@ html {
 
 .slideTitleBadge {
   position: absolute;
-  top: 50%;
-  right: 32px;
-  transform: translateY(-50%);
+  top: 72px;
+  right: 48px;
 }
 
 .slideTitleFrame {
