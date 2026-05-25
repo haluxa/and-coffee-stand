@@ -7,8 +7,8 @@
   --footer-background: rgba(28, 16, 1, 0.6);
   --color-background: #fff;
   --color-foreground: var(--foreground);
-  --bg-overlay-opacity: 0.3; /* オーバーレイ（薄い幕）の濃さ（0〜1） */
-  --bg-overlay-blur: 0px; /* ぼかしの強さ（px） */
+  --bg-overlay-opacity: 0.12; /* オーバーレイ（薄い幕）の濃さ（0〜1） */
+  --bg-overlay-blur: 1.9px; /* ぼかしの強さ（px） */
   --bg-video-opacity: 0.92; /* 1で完全不透明。数値を下げるほど背景色が透ける */
   --bg-overlap: 2%; /* 次の動画をどれだけ上側に重ねるか（1〜3%推奨） */
   --bg-overlap-px: 48px; /* 連続する動画同士の縦方向の重なり量（px） */
