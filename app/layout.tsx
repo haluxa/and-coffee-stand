@@ -11,7 +11,7 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import HeaderNav from "./_components/HeaderNav/page";
-import BackgroundVideo from "./_components/BackgroundVideo";
+import BackgroundVideo from "./_components/BackgroundVideo/page";
 import Style from "./layout.module.css";
 
 const hina = Hina_Mincho({

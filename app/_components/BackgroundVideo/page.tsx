@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
-import styles from "./bg.module.css";
+import styles from "./page.module.css";
 import bgVideoSrc from "@/_assets/video/bg-leaves_shadow.mp4";
 import { useVideoAutoplay } from "./useVideoAutoplay";
 

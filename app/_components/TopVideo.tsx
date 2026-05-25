@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import firstViewVideoSrc from "@/_assets/video/first_view.mp4";
-import { useVideoAutoplay } from "./useVideoAutoplay";
+import { useVideoAutoplay } from "./BackgroundVideo/useVideoAutoplay";
 
 export default function TopVideo() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
