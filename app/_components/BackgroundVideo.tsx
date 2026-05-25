@@ -2,8 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import styles from "./bg.module.css";
-
-const BG_VIDEO_SRC = "/mov/bg-leaves_shadow.mp4";
+import bgVideoSrc from "@/_assets/video/bg-leaves_shadow.mp4";
 
 export default function BackgroundVideo() {
   const pathname = usePathname();
@@ -23,8 +22,8 @@ export default function BackgroundVideo() {
             muted
             playsInline
             preload="metadata"
+            src={bgVideoSrc}
           >
-            <source src={BG_VIDEO_SRC} type="video/mp4" />
           </video>
         ))}
       </div>

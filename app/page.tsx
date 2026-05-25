@@ -5,6 +5,7 @@ import BeansIcon from "@/_components/ui/BeansIcon";
 import FadeInEffect from "@/_components/fadein";
 import ScrollIndicator from "@/_components/ScrollIndicator";
 import Footer from "@/_components/Footer/page";
+import firstViewVideoSrc from "@/_assets/video/first_view.mp4";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
             <div className="top-movie-wrapper">
               <video
                 className="top-movie"
-                src="/mov/first_view.mp4"
+                src={firstViewVideoSrc}
                 autoPlay
                 muted
                 loop
