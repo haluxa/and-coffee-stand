@@ -5,43 +5,11 @@ import BeansIcon from "@/_components/ui/BeansIcon";
 import FadeInEffect from "@/_components/fadein";
 import ScrollIndicator from "@/_components/ScrollIndicator";
 import Footer from "@/_components/Footer/page";
-import Style from "@/_components/bg.module.css";
 
 export default function Home() {
   return (
     <>
       <main>
-        <div id={Style.bgVideoStack} aria-hidden="true">
-          <div className={Style.bgVideoTrack}>
-            <video id={Style.bgVideo1} autoPlay loop muted playsInline>
-              <source
-                type="video/mp4"
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
-              />
-              Your browser does not support the video tag.
-            </video>
-            <video id={Style.bgVideo2} autoPlay loop muted playsInline>
-              <source
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
-                type="video/mp4"
-              />
-            </video>
-            <video id={Style.bgVideo3} autoPlay loop muted playsInline>
-              <source
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
-                type="video/mp4"
-              />
-            </video>
-            <video id={Style.bgVideo4} autoPlay loop muted playsInline>
-              <source
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-        </div>
-
-        <div className="bg-video-overlay" aria-hidden="true" />
         <section>
           <FadeInEffect>
             <div className="top-movie-wrapper">

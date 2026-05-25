@@ -9,7 +9,6 @@ import type {
 import { contentfulClient } from "@/_lib/contentful";
 import { formatJapaneseDate } from "@/_lib/format-date";
 import { notFound } from "next/navigation";
-import bgStyle from "@/_components/bg.module.css";
 
 export const dynamic = "force-dynamic";
 
@@ -58,35 +57,6 @@ export default async function SecretDetailPage({
 
   return (
     <main className="post_detail">
-      <div id={bgStyle.bgVideoStack} aria-hidden="true">
-        <div className={bgStyle.bgVideoTrack}>
-          <video id="bg-video-1" autoPlay loop muted playsInline>
-            <source
-              type="video/mp4"
-              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
-            />
-            Your browser does not support the video tag.
-          </video>
-          <video id="bg-video-2" autoPlay loop muted playsInline>
-            <source
-              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
-              type="video/mp4"
-            />
-          </video>
-          <video id="bg-video-3" autoPlay loop muted playsInline>
-            <source
-              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
-              type="video/mp4"
-            />
-          </video>
-          <video id="bg-video-4" autoPlay loop muted playsInline>
-            <source
-              src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/bg-leaves_shadow.mp4?alt=media&token=76c09836-89e8-43fc-8cf8-f93c729f9413"
-              type="video/mp4"
-            />
-          </video>
-        </div>
-      </div>
       <article className="post_detail_article">
         <Link href="/secret" className="post_detail_back">
           Secret Index
