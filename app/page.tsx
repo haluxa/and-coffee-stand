@@ -15,7 +15,7 @@ export default function Home() {
             <div className="top-movie-wrapper">
               <video
                 className="top-movie"
-                src="https://firebasestorage.googleapis.com/v0/b/and-coffee-stand.firebasestorage.app/o/first_view.mp4?alt=media&token=38df00fd-9d30-4b4d-93fb-b38d3bc7398b"
+                src="/mov/first_view.mp4"
                 autoPlay
                 muted
                 loop
