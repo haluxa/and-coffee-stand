@@ -884,20 +884,21 @@ export default function Slide() {
           }}
         />
 
-        <button
-          type="button"
-          className="navFab"
-          aria-label="Open navigation"
-          onClick={openNav}
-        >
-          <span aria-hidden className="navFabIcon">
-            <span className="navFabCell" />
-            <span className="navFabCell" />
-            <span className="navFabCell" />
-            <span className="navFabCell" />
-          </span>
-        </button>
       </div>
+
+      <button
+        type="button"
+        className="navFab"
+        aria-label="Open navigation"
+        onClick={openNav}
+      >
+        <span aria-hidden className="navFabIcon">
+          <span className="navFabCell" />
+          <span className="navFabCell" />
+          <span className="navFabCell" />
+          <span className="navFabCell" />
+        </span>
+      </button>
     </div>
   );
 }
