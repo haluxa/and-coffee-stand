@@ -383,12 +383,20 @@ const DEFAULT_DESC_STYLE: CSSProperties = {
 };
 
 const SUB_OVERLAY_CONFIG: Partial<Record<SubGroup, SlideOverlayConfig>> = {
+  //個別に位置を調節
   "02_04": {
     descStyle: {
       top: "48%",
       left: "20px",
       transform: "translateY(-50%)",
       maxWidth: "42vw",
+    },
+  },
+  "03_02": {
+    descStyle: {
+      top: "58%",
+      left: "20px",
+      transform: "translateY(-50%)",
     },
   },
 };
@@ -494,7 +502,7 @@ export default function Slide() {
       const w = el.clientWidth || 1;
       el.scrollTo({ left: index * w, behavior });
     },
-    []
+    [],
   );
 
   const goNext = useCallback(() => {
@@ -604,7 +612,7 @@ export default function Slide() {
         scrollToIndex(clamped, behavior);
       });
     },
-    [scrollToIndex]
+    [scrollToIndex],
   );
 
   const jumpGroupToIndex = useCallback(
@@ -618,7 +626,7 @@ export default function Slide() {
         window.setTimeout(() => setIsGroupFading(false), 140);
       }, 80);
     },
-    [goToIndex]
+    [goToIndex],
   );
 
   const openIndex = useCallback(
@@ -630,7 +638,7 @@ export default function Slide() {
       storyStartTsRef.current = null;
       goToIndex(idx, "auto");
     },
-    [goToIndex]
+    [goToIndex],
   );
 
   const openNav = useCallback(() => {
@@ -727,8 +735,8 @@ export default function Slide() {
               const width = isDone
                 ? 100
                 : isActive
-                ? Math.round(storyProgress * 100)
-                : 0;
+                  ? Math.round(storyProgress * 100)
+                  : 0;
 
               return (
                 <span
@@ -827,7 +835,7 @@ export default function Slide() {
             setIsSheetDragging(false);
             try {
               (e.currentTarget as HTMLElement).releasePointerCapture(
-                e.pointerId
+                e.pointerId,
               );
             } catch {}
           }}
@@ -839,7 +847,7 @@ export default function Slide() {
             pointerLastRef.current = null;
             try {
               (e.currentTarget as HTMLElement).releasePointerCapture(
-                e.pointerId
+                e.pointerId,
               );
             } catch {}
             if (!start || !last) return;
