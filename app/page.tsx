@@ -72,7 +72,7 @@ export default function Home() {
           <div className="about-wrapper about-1">
             <FadeInEffect>
               <Image
-                src="/img/home_image_main_1.png"
+                src="/img/home_image_main_1.jpg"
                 alt=""
                 width={3000}
                 height={2400}
@@ -231,7 +231,7 @@ export default function Home() {
           <div className="about-wrapper about-5">
             <FadeInEffect>
               <Image
-                src="/img/home_image_main_5.png"
+                src="/img/home_image_main_5.jpg"
                 alt=""
                 width={3000}
                 height={2400}
