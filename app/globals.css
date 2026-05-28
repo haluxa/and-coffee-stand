@@ -75,6 +75,20 @@ main .top-movie-wrapper {
   margin: 80px 0;
 }
 
+.about-image-stack {
+  position: relative;
+}
+
+.about-image-stack__overlay {
+  position: absolute;
+  left: 3%;
+  bottom: calc(-1.8%);
+  width: clamp(288px, 67vw, 768px);
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .about-wrapper h2 {
   font-family: var(--font-noto-sans-jp), sans-serif;
   font-size: 20px;
@@ -192,7 +206,8 @@ footer {
   flex-direction: column;
 }
 
-.info_link_map {
+.info_link_map,
+x .info_link_insta {
   text-decoration: underline;
   text-decoration-color: var(--foreground);
 }
@@ -750,8 +765,8 @@ html {
 
 .secret_title {
   font-size: 32px;
-  margin: 80px 0 60px 0;
-  text-align: center;
+  margin: 96px 0 60px 28px;
+  text-align: left;
   font-family: var(--font-fredericka), serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -807,7 +822,7 @@ html {
 }
 
 .post_title {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 0;
   font-family: var(--font-noto-sans-jp), sans-serif;
   font-weight: 700;

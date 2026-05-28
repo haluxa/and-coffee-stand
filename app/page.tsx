@@ -5,6 +5,7 @@ import FadeInEffect from "@/_components/fadein";
 import ScrollIndicator from "@/_components/ScrollIndicator";
 import Footer from "@/_components/Footer/page";
 import TopVideo from "@/_components/TopVideo";
+import ControlledGif from "@/_components/ControlledGif";
 
 export default function Home() {
   return (
@@ -70,14 +71,26 @@ export default function Home() {
         <section>
           <div className="about-wrapper about-1">
             <FadeInEffect>
-              <Image
-                src="/img/home_image_main_1.png"
-                alt=""
-                width={3000}
-                height={2400}
-                quality={80}
-                sizes="100vw"
-              />
+              <div className="about-image-stack">
+                <Image
+                  src="/img/home_image_1.png"
+                  alt=""
+                  width={3000}
+                  height={2400}
+                  quality={80}
+                  sizes="100vw"
+                />
+                <ControlledGif
+                  className="about-image-stack__overlay"
+                  gifSrc="/img/1-1.gif"
+                  firstFrameSrc="/img/1-1-first.png"
+                  lastFrameSrc="/img/1-1-last.png"
+                  alt=""
+                  width={900}
+                  height={900}
+                  durationMs={7040}
+                />
+              </div>
             </FadeInEffect>
             <FadeInEffect>
               <h2>スペシャルなひと時を</h2>
