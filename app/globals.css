@@ -41,12 +41,13 @@ main {
 main .top-movie-wrapper {
   display: flex;
   justify-content: flex-end;
-  margin-top: 80px;
+  margin-top: 96px;
 }
 
 .top-movie-wrapper video {
   width: 80%;
   height: auto;
+  border-radius: 4px 0 0 4px;
 }
 .shop-info {
   margin: 44px 40px;
@@ -100,17 +101,13 @@ main .top-movie-wrapper {
   width: 13px; /* 明示サイズ（必要に応じて変更） */
   height: 12px;
 }
-.about-wrapper .icon-button {
-  margin: 10px 48px;
-  padding: 8px 24px;
-  background: var(--foreground);
-  font-size: 16px;
-  border-radius: 32px;
-  cursor: pointer;
-  font-family: var(--font-fredericka), serif;
-  color: var(--background);
-  -webkit-font-smoothing: antialiased; /* 細く見えやすい */
+
+.icon-button--bare {
+  font-family: var(--font-hina), serif;
+  color: var(--foreground);
+  text-transform: none;
 }
+
 .marquee {
   overflow: hidden;
 }
@@ -171,8 +168,23 @@ main .top-movie-wrapper {
 
 .footer-link {
   margin: 80px 48px;
-  font-size: 16px;
-  line-height: 2;
+  font-size: 18px;
+}
+
+.footer-link ul {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-link .icon-button {
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.footer-link .icon-button span {
+  display: inline-block;
+  transform: translateY(-2px);
 }
 
 footer {
@@ -524,7 +536,8 @@ html {
 
 .slideTitleBadge {
   position: absolute;
-  top: 72px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 32px;
 }
 
@@ -612,8 +625,8 @@ html {
 /* fixed: どこからでもNAVに戻る */
 .navFab {
   position: fixed;
-  right: 24px;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  right: 32px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 32px);
   z-index: 50;
   border: 0;
   padding: 0;

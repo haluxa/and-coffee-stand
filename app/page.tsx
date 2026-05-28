@@ -1,6 +1,5 @@
 // app/page.tsx
 import Image from "next/image";
-import Link from "next/link";
 import BeansIcon from "@/_components/ui/BeansIcon";
 import FadeInEffect from "@/_components/fadein";
 import ScrollIndicator from "@/_components/ScrollIndicator";
@@ -103,9 +102,6 @@ export default function Home() {
                 目指しています。
               </p>
             </FadeInEffect>
-            <FadeInEffect>
-              <BeansIcon label="menu" href="/menu" />
-            </FadeInEffect>
           </div>
           <div className="about-wrapper about-2">
             <FadeInEffect>
@@ -142,9 +138,6 @@ export default function Home() {
                 ありたいと思っています。
               </p>
             </FadeInEffect>
-            <FadeInEffect>
-              <BeansIcon label="shop view" href="/view" />
-            </FadeInEffect>
           </div>
           <div className="about-wrapper about-3">
             <FadeInEffect>
@@ -180,9 +173,6 @@ export default function Home() {
                 <br />
                 ぜひご賞味ください。
               </p>
-            </FadeInEffect>
-            <FadeInEffect>
-              <BeansIcon label="event memory" href="/memory" />
             </FadeInEffect>
           </div>
           <div className="about-wrapper about-4">
@@ -224,9 +214,6 @@ export default function Home() {
                 一杯、一杯丁寧に豆から挽きお淹れします。
               </p>
             </FadeInEffect>
-            <FadeInEffect>
-              <BeansIcon label="secret" href="/secret" />
-            </FadeInEffect>
           </div>
           <div className="about-wrapper about-5">
             <FadeInEffect>
@@ -257,9 +244,6 @@ export default function Home() {
                 <br />
                 多くの女性の方に喜んでいただいてます。
               </p>
-            </FadeInEffect>
-            <FadeInEffect>
-              <BeansIcon label="goods" href="/goods" />
             </FadeInEffect>
           </div>
         </section>
@@ -731,13 +715,13 @@ export default function Home() {
         <section className="footer-link">
           <ul>
             <li>
-              <Link href="/menu">menu</Link>
+              <BeansIcon href="/menu" label="menu" bare />
             </li>
             <li>
-              <Link href="/view">shop view</Link>
+              <BeansIcon href="/view" label="shop view" bare />
             </li>
             <li>
-              <Link href="/secret">secret</Link>
+              <BeansIcon href="/secret" label="secret" bare />
             </li>
           </ul>
         </section>
