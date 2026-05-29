@@ -81,7 +81,7 @@ export default function Home() {
                   sizes="100vw"
                 />
                 <ControlledGif
-                  className="about-image-stack__overlay"
+                  className="about-image-stack__overlay about-image-stack__overlay--about-1"
                   gifSrc="/img/1-1.gif"
                   firstFrameSrc="/img/1-1-first.png"
                   lastFrameSrc="/img/1-1-last.png"
@@ -118,14 +118,26 @@ export default function Home() {
           </div>
           <div className="about-wrapper about-2">
             <FadeInEffect>
-              <Image
-                src="/img/home_image_main_2.png"
-                alt=""
-                width={2400}
-                height={3400}
-                quality={80}
-                sizes="100vw"
-              />
+              <div className="about-image-stack">
+                <Image
+                  src="/img/home_image_2.png"
+                  alt=""
+                  width={2400}
+                  height={3400}
+                  quality={80}
+                  sizes="100vw"
+                />
+                <ControlledGif
+                  className="about-image-stack__overlay about-image-stack__overlay--about-2"
+                  gifSrc="/img/1-2.gif"
+                  firstFrameSrc="/img/1-2-first.png"
+                  lastFrameSrc="/img/1-2-last.png"
+                  alt=""
+                  width={900}
+                  height={900}
+                  durationMs={10000}
+                />
+              </div>
             </FadeInEffect>
             <FadeInEffect>
               <h2>誰かのパワースポットに</h2>
@@ -154,14 +166,26 @@ export default function Home() {
           </div>
           <div className="about-wrapper about-3">
             <FadeInEffect>
-              <Image
-                src="/img/home_image_main_3.png"
-                alt=""
-                width={3200}
-                height={2400}
-                quality={80}
-                sizes="100vw"
-              />
+              <div className="about-image-stack">
+                <Image
+                  src="/img/home_image_3.png"
+                  alt=""
+                  width={3200}
+                  height={2400}
+                  quality={80}
+                  sizes="100vw"
+                />
+                <ControlledGif
+                  className="about-image-stack__overlay about-image-stack__overlay--about-3"
+                  gifSrc="/img/1-3.gif"
+                  firstFrameSrc="/img/1-3-first.png"
+                  lastFrameSrc="/img/1-3-last.png"
+                  alt=""
+                  width={900}
+                  height={900}
+                  durationMs={4000}
+                />
+              </div>
             </FadeInEffect>
             <FadeInEffect>
               <h2>身体が喜ぶもの</h2>

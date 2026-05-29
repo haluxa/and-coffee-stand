@@ -81,12 +81,27 @@ main .top-movie-wrapper {
 
 .about-image-stack__overlay {
   position: absolute;
-  left: 3%;
-  bottom: calc(-1.8%);
-  width: clamp(288px, 67vw, 768px);
   height: auto;
   z-index: 1;
   pointer-events: none;
+}
+
+.about-image-stack__overlay--about-1 {
+  left: 3%;
+  bottom: calc(-1.8%);
+  width: clamp(288px, 67vw, 768px);
+}
+
+.about-image-stack__overlay--about-2 {
+  left: 3%;
+  bottom: calc(-1.8%);
+  width: clamp(288px, 67vw, 768px);
+}
+
+.about-image-stack__overlay--about-3 {
+  left: 3%;
+  bottom: calc(-1.8%);
+  width: clamp(288px, 67vw, 768px);
 }
 
 .about-wrapper h2 {
