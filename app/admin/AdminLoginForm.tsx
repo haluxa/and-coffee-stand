@@ -10,11 +10,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="admin-primary-button"
-    >
+    <button type="submit" disabled={pending} className="admin-primary-button">
       {pending ? "確認中..." : "ログイン"}
     </button>
   );
@@ -24,9 +20,11 @@ export function AdminLoginForm() {
   const [state, formAction] = useActionState(loginAction, initialState);
 
   return (
-    <form action={formAction} className="admin-card admin-form admin-login-form">
+    <form
+      action={formAction}
+      className="admin-card admin-form admin-login-form"
+    >
       <div>
-        <p className="admin-eyebrow">Protected Area</p>
         <h1 className="admin-card-title">管理画面ログイン</h1>
         <p className="admin-card-text">
           パスワードを入力すると管理ページへ入れます。

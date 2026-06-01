@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { isAdminAuthConfigured, isAdminAuthenticated } from "@/_lib/admin-auth";
 import { logoutAction } from "./actions";
 import { AdminLoginForm } from "./AdminLoginForm";
+import { AdminNav } from "./AdminNav";
 import Style from "./layout.module.css";
 
 export default async function AdminLayout({
@@ -41,17 +42,12 @@ export default async function AdminLayout({
       <header className={Style.adminHeader}>
         <div className={Style.adminHeaderInner}>
           <div className={Style.adminHeaderCopy}>
-            <p className={Style.adminEyebrow}>Admin Dashboard</p>
-            <h1 className={Style.adminHeaderTitle}>
-              and coffee stand 管理画面
-            </h1>
+            <Link href="/admin" className={Style.adminHeaderTitleLink}>
+              <h1 className={Style.adminHeaderTitle}>管理画面</h1>
+            </Link>
           </div>
 
-          <nav className={Style.adminNav} aria-label="管理画面のナビゲーション">
-            <Link href="/admin">管理トップ</Link>
-            <Link href="/admin/posts">記事一覧</Link>
-            <Link href="/admin/posts/new">新規投稿</Link>
-          </nav>
+          <AdminNav />
 
           <form action={logoutAction} className={Style.adminLogoutForm}>
             <button type="submit" className={Style.adminLogoutButton}>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -62,8 +63,16 @@ export function DeletePostButton({ postId, postTitle }: DeletePostButtonProps) {
       onClick={handleDelete}
       disabled={loading}
       className="admin-danger-button"
+      aria-label={loading ? "記事を削除中" : `「${postTitle || "無題"}」を削除`}
+      title={loading ? "削除中" : "削除"}
     >
-      {loading ? "削除中..." : "削除"}
+      <Image
+        src="/icons/trash.svg"
+        alt=""
+        width={18}
+        height={18}
+        aria-hidden="true"
+      />
     </button>
   );
 }

@@ -3,6 +3,7 @@
   display: grid;
   place-items: center;
   padding: 32px 20px;
+  font-family: var(--font-dm-serif), serif;
 }
 .adminCard {
   width: 100%;
@@ -31,7 +32,7 @@
 
 .adminLayout {
   min-height: 100vh;
-  font-family: var(--font-noto-sans-jp), sans-serif;
+  font-family: var(--font-dm-serif), serif;
   position: relative;
   isolation: isolate;
 }
@@ -55,7 +56,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 20px;
   align-items: center;
 }
@@ -65,13 +66,9 @@
   gap: 8px;
 }
 
-.adminEyebrow {
-  margin: 0;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #555;
+.adminHeaderTitleLink {
+  width: fit-content;
+  text-decoration: none;
 }
 
 .adminHeaderTitle {
@@ -83,52 +80,67 @@
 
 .adminNav {
   display: flex;
-  gap: 12px;
+  gap: 24px;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-.adminNav a {
+.adminNavLink,
+.adminNavLinkActive {
   font-weight: 700;
   font-size: 0.94rem;
   text-decoration: none;
   color: #222;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(17, 17, 17, 0.06);
+  padding: 6px 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
   transition:
-    background-color 0.2s ease,
     color 0.2s ease,
-    transform 0.2s ease;
+    border-color 0.2s ease;
 }
 
-.adminNav a:hover {
-  background: rgba(17, 17, 17, 0.12);
+.adminNavLink:hover,
+.adminNavLink:focus-visible {
   color: #111;
-  transform: translateY(-1px);
+  border-color: rgba(17, 17, 17, 0.4);
+  outline: none;
+}
+
+.adminNavLinkActive {
+  color: #111;
+  border-color: #111;
 }
 
 .adminLogoutForm {
+  display: flex;
   justify-self: end;
 }
 
 .adminLogoutButton {
+  font-family: inherit;
   border: 1px solid rgba(17, 17, 17, 0.16);
   background: rgba(255, 255, 255, 0.72);
-  border-radius: 999px;
-  padding: 10px 16px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 12px;
   cursor: pointer;
   font-weight: 700;
   color: #222;
   transition:
     background-color 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.adminLogoutButton:hover {
+.adminLogoutButton:hover,
+.adminLogoutButton:focus-visible {
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(17, 17, 17, 0.24);
+  color: #111;
+  outline: none;
 }
 
 .adminMain {
@@ -151,10 +163,25 @@
   }
 
   .adminHeaderInner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title logout"
+      "nav nav";
+    align-items: center;
+  }
+
+  .adminHeaderCopy {
+    grid-area: title;
+  }
+
+  .adminNav {
+    grid-area: nav;
+    justify-content: flex-start;
+    gap: 18px;
   }
 
   .adminLogoutForm {
-    justify-self: start;
+    grid-area: logout;
+    justify-self: end;
   }
 }

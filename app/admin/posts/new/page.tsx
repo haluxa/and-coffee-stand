@@ -112,11 +112,7 @@ export default function AdminNewPostPage() {
   return (
     <section className="admin-panel">
       <div className="admin-section-heading">
-        <p className="admin-eyebrow">Create Post</p>
         <h2 className="admin-section-title">新規投稿</h2>
-        <p className="admin-section-text">
-          必須項目を入力すると、記事を作成してそのまま公開します。
-        </p>
       </div>
 
       <form onSubmit={handleSubmit} className="admin-form admin-post-form">
