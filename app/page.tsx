@@ -71,7 +71,7 @@ export default function Home() {
         <section>
           <div className="about-wrapper about-1">
             <FadeInEffect>
-              <div className="about-image-stack">
+              <div className="about-image-stack about-image-stack--about-1">
                 <Image
                   src="/img/home_image_1.png"
                   alt=""
@@ -118,7 +118,7 @@ export default function Home() {
           </div>
           <div className="about-wrapper about-2">
             <FadeInEffect>
-              <div className="about-image-stack">
+              <div className="about-image-stack about-image-stack--about-2">
                 <Image
                   src="/img/home_image_2.png"
                   alt=""
@@ -166,7 +166,7 @@ export default function Home() {
           </div>
           <div className="about-wrapper about-3">
             <FadeInEffect>
-              <div className="about-image-stack">
+              <div className="about-image-stack about-image-stack--about-3">
                 <Image
                   src="/img/home_image_3.png"
                   alt=""
@@ -214,14 +214,26 @@ export default function Home() {
           </div>
           <div className="about-wrapper about-4">
             <FadeInEffect>
-              <Image
-                src="/img/home_image_main_4.png"
-                alt=""
-                width={3000}
-                height={2400}
-                quality={80}
-                sizes="100vw"
-              />
+              <div className="about-image-stack about-image-stack--about-4">
+                <Image
+                  src="/img/home_image_4.png"
+                  alt=""
+                  width={3000}
+                  height={2400}
+                  quality={80}
+                  sizes="100vw"
+                />
+                <ControlledGif
+                  className="about-image-stack__overlay about-image-stack__overlay--about-4"
+                  gifSrc="/img/1-4.gif"
+                  firstFrameSrc="/img/1-4-first.png"
+                  lastFrameSrc="/img/1-4-last.png"
+                  alt=""
+                  width={900}
+                  height={900}
+                  durationMs={4000}
+                />
+              </div>
             </FadeInEffect>
             <FadeInEffect>
               <h2>まるで紅茶な珈琲豆</h2>
@@ -254,14 +266,26 @@ export default function Home() {
           </div>
           <div className="about-wrapper about-5">
             <FadeInEffect>
-              <Image
-                src="/img/home_image_main_5.png"
-                alt=""
-                width={3000}
-                height={2400}
-                quality={80}
-                sizes="100vw"
-              />
+              <div className="about-image-stack about-image-stack--about-5">
+                <Image
+                  src="/img/home_image_5.png"
+                  alt=""
+                  width={3000}
+                  height={2400}
+                  quality={80}
+                  sizes="100vw"
+                />
+                <ControlledGif
+                  className="about-image-stack__overlay about-image-stack__overlay--about-5"
+                  gifSrc="/img/1-5.gif"
+                  firstFrameSrc="/img/1-5-first.png"
+                  lastFrameSrc="/img/1-5-last.png"
+                  alt=""
+                  width={900}
+                  height={900}
+                  durationMs={4000}
+                />
+              </div>
             </FadeInEffect>
             <FadeInEffect>
               <h2>こだわりのセレクト</h2>
