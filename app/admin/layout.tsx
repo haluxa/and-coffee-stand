@@ -4,6 +4,7 @@ import { isAdminAuthConfigured, isAdminAuthenticated } from "@/_lib/admin-auth";
 import { logoutAction } from "./actions";
 import { AdminLoginForm } from "./AdminLoginForm";
 import Style from "./layout.module.css";
+
 export default async function AdminLayout({
   children,
 }: {
