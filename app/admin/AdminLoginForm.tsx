@@ -24,13 +24,6 @@ export function AdminLoginForm() {
       action={formAction}
       className="admin-card admin-form admin-login-form"
     >
-      <div>
-        <h1 className="admin-card-title">管理画面ログイン</h1>
-        <p className="admin-card-text">
-          パスワードを入力すると管理ページへ入れます。
-        </p>
-      </div>
-
       <div className="admin-field">
         <label htmlFor="admin-password" className="admin-label">
           パスワード

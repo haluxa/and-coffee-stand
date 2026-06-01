@@ -334,7 +334,7 @@ small {
 .admin-card-title {
   margin: 0;
   color: #111;
-  font-family: var(--font-dm-serif), serif;
+  font-family: var(--font-klee), serif;
   font-size: clamp(1.9rem, 3vw, 2.7rem);
   line-height: 1.08;
 }
@@ -895,7 +895,8 @@ html {
 }
 
 /* DRINK / SWEET の大見出し */
-.menu-page__article > h2 {
+.menu-page__article > h2,
+.menu-page__article > .fade-in > h2 {
   margin: 48px 0 24px;
   font-size: 32px;
   letter-spacing: 0.2em;
@@ -907,19 +908,19 @@ html {
 }
 
 /* 各メニューブロック */
-.menu-page__article > div {
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px dashed var(--foreground);
-}
 
 /* メニュー名 */
-.menu-page__article > div > h2 {
+.menu-page__article > div > h2,
+.menu-page__article > div > .fade-in > h2 {
   margin: 0 0 8px;
   font-size: 16px;
   letter-spacing: 0.05em;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-noto-sans-jp);
+}
+
+.menu-page h3 {
+  font-weight: 700;
 }
 
 /* 説明文 */
@@ -933,11 +934,11 @@ html {
 
 /* 画像（Next/Image）の見た目調整：サイズ・余白・角丸 */
 .menu-page__article img {
-  margin: 32px 0;
+  margin: 24px 0 54px 0;
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 32px; /* 角を丸く */
+  border-radius: 24px; /* 角を丸く */
 }
 
 /* ---------- スマホ向け調整 ---------- */
@@ -946,13 +947,9 @@ html {
     flex-direction: column;
     gap: 12px;
   }
-  .menu-page__article > h2 {
+  .menu-page__article > h2,
+  .menu-page__article > .fade-in > h2 {
     margin: 32px 0 16px;
-  }
-
-  .menu-page__article > div {
-    margin-bottom: 24px;
-    padding-bottom: 20px;
   }
 }
 .view-test_page {
@@ -1069,8 +1066,9 @@ html {
   line-height: 1.9;
   letter-spacing: 0.06em;
   color: #fff;
-  width: min(56vw, 220px);
+  width: auto;
   max-height: min(70vh, 520px);
+  white-space: pre-wrap;
 }
 /* ファイル名：横書きで画面下中央 */
 .slideFile {
