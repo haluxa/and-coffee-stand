@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import type { CSSProperties } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const slideImages = [
@@ -300,9 +299,9 @@ const SUB_TITLE: Record<SubGroup, string> = {
 
 const SUB_DESC: Record<SubGroup, string> = {
   "01_01":
-    "オリジナルデザインのTシャツは\nたくさんのご予約ありがとうございました",
-  "01_02": "４色どれも可愛かったオリジナルキャップ",
-  "01_03": "お家でのコーヒータイムに",
+    "オリジナルデザインのTシャツ──。\nたくさんのご予約ありがとうございました。",
+  "01_02": "４色どれも可愛かった\nオリジナルキャップ。",
+  "01_03": "お家でのコーヒータイムに──",
   "01_04": "全て手書きのオリジナルデザイン",
   "01_05": "。",
   "01_06": "気まぐれでデザインするオリジナルグッズ",
@@ -361,34 +360,6 @@ const SUB_DESC: Record<SubGroup, string> = {
   "07_06": "ラテもプラス料金で豆乳に変更できます",
 
   other: "",
-};
-
-type SlideOverlayConfig = {
-  descStyle?: CSSProperties;
-};
-
-const DEFAULT_DESC_STYLE: CSSProperties = {
-  top: "50%",
-  left: "20px",
-  transform: "translateY(-50%)",
-};
-
-const SUB_OVERLAY_CONFIG: Partial<Record<SubGroup, SlideOverlayConfig>> = {
-  //個別に位置を調節
-  "02_04": {
-    descStyle: {
-      top: "48%",
-      left: "20px",
-      transform: "translateY(-50%)",
-    },
-  },
-  "03_02": {
-    descStyle: {
-      top: "58%",
-      left: "20px",
-      transform: "translateY(-50%)",
-    },
-  },
 };
 
 export default function Slide() {
@@ -463,13 +434,6 @@ export default function Slide() {
   const activeDesc = SUB_DESC[activeSub];
   const activeSrc = slideImages[activeIndex] ?? "";
   const activeFileName = activeSrc.split("/").pop() ?? "";
-  const activeOverlayConfig = SUB_OVERLAY_CONFIG[activeSub];
-  const activeDescStyle = activeDesc
-    ? {
-        ...DEFAULT_DESC_STYLE,
-        ...activeOverlayConfig?.descStyle,
-      }
-    : undefined;
 
   // Story progress (per major group)
   const activeGroupIndices = useMemo(() => {
@@ -745,18 +709,14 @@ export default function Slide() {
           </div>
         ) : null}
 
-        {activeLabel ? (
+        {activeLabel || activeDesc ? (
           <div aria-hidden className="slideOverlay">
-            <div className="slideTitleBadge">
-              <div className="slideTitleFrame">
+            <div className="slideTextBlock">
+              {activeLabel ? (
                 <h2 className="slideTitle">{activeLabel}</h2>
-              </div>
+              ) : null}
+              {activeDesc ? <p className="slideDesc">{activeDesc}</p> : null}
             </div>
-            {activeDesc ? (
-              <p className="slideDesc" style={activeDescStyle}>
-                {activeDesc}
-              </p>
-            ) : null}
           </div>
         ) : null}
 

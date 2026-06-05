@@ -1029,43 +1029,40 @@ html {
   z-index: 10;
 }
 
-.slideTitleBadge {
+.slideTextBlock {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 32px;
-}
-
-.slideTitleFrame {
-  width: 32px;
-  height: min(64vh, 480px);
-  padding: 24px 0;
-  background-color: #fff;
-  border-radius: 0.8px;
+  left: 20px;
+  bottom: 48px;
+  right: 20px;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  box-sizing: border-box;
+  gap: 10px;
 }
 
 .slideTitle {
   margin: 0;
-  font-size: 18px;
-  letter-spacing: 0.12em;
-  line-height: 1;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  white-space: nowrap;
-  color: #453d34;
+  font-family: var(--font-klee);
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  white-space: pre-wrap;
+  color: #fff;
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(0, 0, 0, 0.28);
 }
 
 .slideDesc {
+  font-family: var(--font-klee);
   margin: 0;
-  position: absolute;
   font-size: 11px;
   line-height: 1.9;
   letter-spacing: 0.06em;
   color: #fff;
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(0, 0, 0, 0.28);
   width: auto;
   max-height: min(70vh, 520px);
   white-space: pre-wrap;
@@ -1073,13 +1070,20 @@ html {
 /* ファイル名：横書きで画面下中央 */
 .slideFile {
   position: absolute;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
-  color: #fff;
+  bottom: 48px;
+  right: 24px;
+  transform: translateY(-50%);
+  color: #b3b9bf;
+  mix-blend-mode: difference;
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(0, 0, 0, 0.28);
   font-size: 12px;
   letter-spacing: 0.06em;
-  text-align: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-align: right;
+  white-space: nowrap;
   pointer-events: none;
   z-index: 12;
 }
