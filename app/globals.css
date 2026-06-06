@@ -253,13 +253,14 @@ small {
   text-align: center;
   background-color: var(--foreground);
   color: var(--background);
+  font-family: var(--font-hina), serif;
 }
 
 .about-3 h2 {
-  margin-top: 80px;
+  margin-top: 64px;
 }
 .about-5 h2 {
-  margin-top: 80px;
+  margin-top: 56px;
 }
 .map {
   width: auto;
@@ -822,18 +823,23 @@ html {
 /* ---------- nav 部分 ---------- */
 
 .menu-page__nav {
-  padding: 16px 0;
-  margin-bottom: 32px;
+  position: relative;
+  width: min(100%, 820px);
+  padding: 64px 28px 32px;
+  margin: 32px auto 100px;
   line-height: 2.2;
-  padding: 12px 0;
-  margin-bottom: 24px;
-  margin: 0px auto 100px 30px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 28px;
+  background: transparent;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* 一番外側（DRINK / SWEET）の並び */
 .menu-page__nav > ul {
   display: flex;
-  gap: 40px;
+  gap: 48px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -841,7 +847,9 @@ html {
 
 /* DRINK / SWEET のラベル */
 .menu-page__nav > ul > li {
-  margin-top: 80px;
+  flex: 1 1 0;
+  margin-top: 0;
+  padding-top: 18px;
   font-size: 24px;
   letter-spacing: 0.18em;
   font-weight: 400;
@@ -851,10 +859,27 @@ html {
 
 /* DRINK / SWEET 直下の第一階層 */
 .menu-page__nav > ul > li > ul {
-  margin-top: 8px;
+  margin-bottom: 80px;
   padding-left: 0;
   list-style: none;
   line-height: 1.6;
+}
+
+.menu-page__nav > ul > li:last-child > ul {
+  margin-bottom: 0;
+}
+
+.menu-page__nav li li > a {
+  display: inline-flex;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.menu-page__nav li li > a::before {
+  content: "▪";
+  flex: 0 0 auto;
+  margin-right: 0.45em;
+  line-height: inherit;
 }
 
 /* 第一階層の各項目 */
@@ -865,7 +890,8 @@ html {
 /* 第二階層以降（気まぐれドリンク配下など） */
 .menu-page__nav li ul ul {
   margin-top: 4px;
-  padding-left: 1.2em; /* インデント */
+  margin-left: 1.05em;
+  padding: 0 0 0 1em;
   border-left: 1px solid var(--foreground);
 }
 
@@ -879,18 +905,22 @@ html {
   text-decoration: none;
   font-size: 0.8rem;
   color: var(--foreground);
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .menu-page__nav a:hover {
   color: var(--foreground);
   text-decoration: underline;
+  transform: translateX(2px);
 }
 
 /* ---------- コンテンツ部分 (article) ---------- */
 
 .menu-page__article {
   padding-top: 16px;
-  width: 90%;
+  width: 84%;
   margin: 0 auto;
 }
 
@@ -913,10 +943,17 @@ html {
 .menu-page__article > div > h2,
 .menu-page__article > div > .fade-in > h2 {
   margin: 0 0 8px;
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 0.05em;
   font-weight: 700;
   font-family: var(--font-noto-sans-jp);
+}
+
+.menu-page__article > div > h2 > span,
+.menu-page__article > div > .fade-in > h2 > span {
+  font-size: 0.6em;
+  font-weight: 400;
+  vertical-align: -1px;
 }
 
 .menu-page h3 {
@@ -927,7 +964,7 @@ html {
 
 .menu-page__article p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 2;
   font-family: var(--font-klee), serif;
 }
@@ -939,13 +976,22 @@ html {
   width: 100%;
   height: auto;
   border-radius: 24px; /* 角を丸く */
+  box-shadow: 0 18px 22px rgba(0, 0, 0, 0.12);
 }
 
 /* ---------- スマホ向け調整 ---------- */
 @media (max-width: 768px) {
+  .menu-page__nav {
+    width: calc(100% - 48px);
+    padding: 8px 20px 24px;
+    margin: 88px auto 72px;
+  }
   .menu-page__nav > ul {
     flex-direction: column;
     gap: 12px;
+  }
+  .menu-page__nav > ul > li {
+    padding-top: 14px;
   }
   .menu-page__article > h2,
   .menu-page__article > .fade-in > h2 {

@@ -143,37 +143,27 @@ export default function MenuPage() {
 
         <div id="1000">
           <FadeInEffect>
-            <h2>コーヒー（アイス／ホット）</h2>
+            <h2>
+              コーヒー
+              <span>&nbsp;（アイス／ホット）</span>
+            </h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              珈琲豆はグレードの最も高いと言われる
+              &emsp;珈琲豆はグレードの最も高いと言われる
+              “スペシャルティーコーヒー”を使用しております。
+              生産からカップまでの全工程で品質管理が行われ、
+              特定の評価基準をクリアした高品質なコーヒーです。
+              アロマのように香り高く、 珈琲なのに甘味を感じられ、
+              雑味はなく透明感があり、冷めても美味しい珈琲です。
+              どれを飲んでも全く違う味がする──。
+              珈琲はどれも一緒と思っていたわたしですが、
+              今は選ぶのが楽しいひと時になってます。
               <br />
-              “スペシャルティーコーヒー”を使用しております
-              <br />
-              それらは生産からカップまでの全工程で品質管理が行われ
-              <br />
-              特定の評価基準をクリアした高品質なコーヒーです
-              <br />
-              それはアロマのように香り高く、
-              <br />
-              珈琲なのに甘味を感じられ
-              <br />
-              雑味はなく透明感があり、冷めても美味しい珈琲と言われています
-              <br />
-              そしてどれを飲んでも全く違う味がすること
-              <br />
-              珈琲はどれも一緒と思っていたわたしですが
-              <br />
-              今は選ぶのが楽しいひと時になってます
-              <br />
-              当店は3種類の珈琲豆からお選びいただけます
-              <br />
-              どっしりとした香ばしいものからまるで紅茶のようにすっきりしたもの
-              <br />
-              ご注文頂いてから一杯、一杯豆から挽いてお淹れ致します
-              <br />
-              ゆったりとした時間をお過ごしくださいませ
+              &emsp;当店は3種類の珈琲豆からお選びいただけます。
+              どっしりとした香ばしいものからまるで紅茶のようにすっきりしたものまで。
+              ご注文頂いてから一杯、一杯豆から挽いてお淹れ致しますので、
+              ゆったりとした時間をお過ごしくださいませ。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -188,17 +178,16 @@ export default function MenuPage() {
 
         <div id="1010">
           <FadeInEffect>
-            <h2>ラテ（アイス／ホット）</h2>
+            <h2>
+              ラテ<span>&nbsp;（アイス／ホット）</span>
+            </h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              濃厚なエスプレッソとミルクが溶け合うラテは
-              <br />
-              なめらかな口当たりとアロマのような香り豊かな一杯。
-              <br />
-              当店のラテは苦味の少ない豆を使用してるので
-              <br />
-              お砂糖を入れなくても飲みやすく女性に好評です
+              &emsp;濃厚なエスプレッソとミルクが溶け合うラテは、
+              なめらかな口当たりとアロマのような豊かな香りがする一杯です。
+              当店のラテは苦味の少ない豆を使用してるので、
+              お砂糖を入れなくても飲みやすく女性に好評です。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -217,9 +206,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              生キャラメルの様なリッチな味わいのメープルラテ
-              <br />
-              甘さ控えめなので最後まで楽しめます
+              &emsp;生キャラメルの様なリッチな味わいのメープルラテ──。
+              甘さ控えめなので最後まで楽しめます。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -234,16 +222,14 @@ export default function MenuPage() {
 
         <div id="1030">
           <FadeInEffect>
-            <h2>エスプレッソトニック（春夏限定）</h2>
+            <h2>
+              エスプレッソトニック<span>&nbsp;（春夏限定）</span>
+            </h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              エスプレッソとトニックウォーターを割った
-              <br />
-              新感覚のアレンジコーヒードリンク
-              <br />
-              <br />
-              柑橘系のグレープフルーツやジントニック系のお酒を思わせるような一杯。
+              &emsp;エスプレッソとトニックウォーターを割った新感覚のアレンジコーヒードリンク。
+              柑橘系のグレープフルーツやジントニック系のお酒を思わせるような一杯です。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -258,30 +244,17 @@ export default function MenuPage() {
 
         <div id="1040">
           <FadeInEffect>
-            <h2>チャイ（アイス／ホット）</h2>
+            <h2>
+              チャイ<span>&nbsp;（アイス／ホット）</span>
+            </h2>
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              カフェインが気になる日の冒険&quot;チャイ&quot;
-              <br />
-              チャイはスパイスを使用したインド式のミルクティー
-              <br />
-              材料は全て天然素材で身体に優しく
-              <br />
-              カルダモン・シナモン・生姜などのスパイスで
-              <br />
-              リラックス効果をもたらす一杯です
-              <br />
-              当店のチャイはデカフェなので90％以上カフェインが
-              <br />
-              除去されたものです
-              <br />
-              <br />
-              ノーマルのチャイソイラテに
-              <br />
-              蜂蜜やココアを足したメニューも！
-              <br />
-              写真はココアバージョンです
+              &emsp;カフェインが気になる日の冒険&nbsp;&quot;チャイ&quot;。
+              チャイはスパイスを使用したインド式のミルクティーです。
+              材料は全て天然素材で身体に優しく、カルダモン・シナモン・生姜などのスパイスでリラックス効果をもたらします。
+              また、当店のチャイはデカフェなので90％以上カフェインが除去されたものを使用しております。
+              ノーマルのチャイソイラテに蜂蜜やココアを足したメニューも！（写真はココアバージョンです。）
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -300,9 +273,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              ダークチョコレートのほろ苦さとミルク、
-              <br />
-              コーヒーがマッチしたスイーツ系ドリンク
+              &emsp;ダークチョコレートのほろ苦さとミルク、
+              コーヒーがマッチしたスイーツ系ドリンク。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -321,11 +293,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              旬なものを使用した様々なドリンクが
-              <br />
-              期間限定で登場することも。
-              <br />
-              その時にしか味わえないもので常連様にも喜んでいただいてます。
+              &emsp;旬なものを使用した様々なドリンクが期間限定で登場することも!?
+              その時にしか味わえないもので常連のお客様に喜んでいただいております。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -344,8 +313,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              独特な爽やかな香りと鮮やかな色で見た目も華やかな一杯。
-              <br />
+              &emsp;独特な爽やかな香りと鮮やかな色で見た目も華やかな一杯です。
               疲労回復や、夏バテ防止に。
             </p>
           </FadeInEffect>
@@ -365,11 +333,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              大好きな珈琲屋さんから伝授してもらった
-              <br />
-              店主も大好きな一杯。
-              <br />
-              想像できない味をぜひ体感してください
+              &emsp;大好きな珈琲屋さんから伝授してもらった店主も大好きな一杯。
+              想像できない味をぜひ体感してください。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -388,9 +353,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              コクのある黒糖で仕上げた抹茶ドリンクは
-              <br />
-              意外にも爽やかで何度も飲みたくなるような優しい味わいです
+              &emsp;コクのある黒糖で仕上げた抹茶ドリンク。
+              意外と爽やかで何度も飲みたくなるような優しい味わいです。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -408,7 +372,7 @@ export default function MenuPage() {
             <h2>ほうじ茶ラテ</h2>
           </FadeInEffect>
           <FadeInEffect>
-            <p>ほうじ茶の香ばしい香りとまろやかなミルクが相性抜群♪</p>
+            <p>&emsp;ほうじ茶の香ばしい香りとまろやかなミルクが相性抜群♪</p>
           </FadeInEffect>
           <FadeInEffect>
             <Image
@@ -430,19 +394,11 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              定番のバスクは何度でも食べたくなる
+              &emsp;定番のバスクは何度でも食べたくなる..! &quot;simple is the
+              best!!&quot;でありながら濃厚で滑らかな口溶けにこだわりました。
               <br />
-              &quot;simple is the best!!&quot;
-              <br />
-              でありながら
-              <br />
-              濃厚で滑らかな口溶けにこだわりました
-              <br />
-              グルテンフリーなのも嬉しいポイント♪
-              <br />
-              迷ったらまずはぜひこちらを！
-              <br />
-              お好みでソルトをつけてお召し上がりくださいませ
+              グルテンフリーなのも嬉しいポイント♪迷ったらまずはこれ！
+              お好みでソルトをつけてお召し上がりくださいませ。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -461,23 +417,11 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              当店は定番バスクチーズケーキ以外にも
+              &emsp;当店は定番バスクチーズケーキ以外にも季節に合わせたスイーツをご用意しております。
+              常連のお客様に「今年も食べれるー！」と毎年楽しみにしていただいております。
               <br />
-              何度来ても楽しめる様に
-              <br />
-              季節に合わせたスイーツが登場いたします！
-              <br />
-              常連様に今年も食べれるー！と
-              <br />
-              毎年の楽しみにしていただいてるような
-              <br />
-              スイーツから新作まで。
-              <br />
-              可能な限りグルテンフリーを意識し
-              <br />
-              甘さ控えめで最後まで楽しめる。を心がけ
-              <br />
-              手作りさせていただいております。
+              &emsp;スイーツから新作まで。
+              可能な限りグルテンフリーを意識し、「甘さ控えめで最後まで楽しめる。」を心がけ手作りさせていただいております。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -496,11 +440,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              焼きたてのお餅にバニラアイス
-              <br />
-              ぜんざい、エスプレッソをかけた
-              <br />
-              鏡開きにちなんで始めた気まぐれスイーツ
+              &emsp;焼きたてのお餅にバニラアイス、ぜんざい、エスプレッソをかけた鏡開きにちなんで始めた気まぐれスイーツ。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -519,9 +459,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              濃厚な口溶けのチョコムースは
-              <br />
-              バレンタインの時期に気まぐれで登場
+              &emsp;濃厚な口溶けのチョコムースはバレンタインの時期に気まぐれで登場。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -539,11 +477,7 @@ export default function MenuPage() {
             <h2>焼き芋ブリュレバスク</h2>
           </FadeInEffect>
           <FadeInEffect>
-            <p>
-              焼き芋ブリュレの香ばしさと
-              <br />
-              チーズの酸味が相性抜群です！
-            </p>
+            <p>&emsp;焼き芋ブリュレの香ばしさとチーズの酸味が相性抜群です！</p>
           </FadeInEffect>
           <FadeInEffect>
             <Image
@@ -561,11 +495,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              チョコレートとチーズを合わせることで
-              <br />
-              サッパリとしたくどくないチョコバスクで
-              <br />
-              最後の一口までお楽しみいただけます
+              &emsp;チョコレートとチーズを合わせることで、サッパリとしたくどくないチョコバスクです。
+              最後の一口までお楽しみいただけます。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -584,9 +515,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              毎年秋に楽しみにしてる方も多いスイーツ
-              <br />
-              濃厚なカボチャで秋を楽しみましょう
+              &emsp;毎年秋に楽しみにしてる方も多いスイーツ。濃厚なカボチャで秋を楽しみましょう。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -604,11 +533,7 @@ export default function MenuPage() {
             <h2>ティラミス風バスク</h2>
           </FadeInEffect>
           <FadeInEffect>
-            <p>
-              当店のコーヒー豆を使用した
-              <br />
-              珈琲屋のティラミス風バスク
-            </p>
+            <p>&emsp;当店のコーヒー豆を使用した珈琲屋のティラミス風バスク。</p>
           </FadeInEffect>
           <FadeInEffect>
             <Image
@@ -626,9 +551,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              アールグレイの優しくも香り高い
-              <br />
-              濃厚な口溶けのバスクです
+              &emsp;アールグレイの優しくも香り高い濃厚な口溶けのバスクです。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -646,7 +569,7 @@ export default function MenuPage() {
             <h2>檸檬ゼリーとレアチーズケーキ</h2>
           </FadeInEffect>
           <FadeInEffect>
-            <p>爽やかな檸檬でさっぱりと！</p>
+            <p>&emsp;爽やかな檸檬でさっぱりと！</p>
           </FadeInEffect>
           <FadeInEffect>
             <Image
@@ -664,9 +587,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              レモンの酸味とチーズのコクが相性抜群です
-              <br />
-              浅煎りの珈琲と一緒にぜひ
+              &emsp;レモンの酸味とチーズのコクが相性抜群です！浅煎りの珈琲と一緒にぜひ。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -685,9 +606,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              ドライフルーツを使用したケーキは
-              <br />
-              濃厚なアメリカーノと相性抜群です
+              &emsp;ドライフルーツを使用したケーキは濃厚なアメリカーノと相性抜群です！
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -706,11 +625,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              栽培期間中、無農薬で育てられたバナナを
-              <br />
-              練り込んでつくった贅沢なバスク
-              <br />
-              ブリュレのパリッと食感も美味しさ増します
+              &emsp;栽培期間中、無農薬で育てられたバナナを練り込んでつくった贅沢なバスク。
+              ブリュレのパリッと食感が美味しさを引き立ててくれます。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -729,9 +645,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              爽やかなブルーベリーがチーズの引き立て役に。
-              <br />
-              クランブルも米粉なので嬉しいポイント！
+              &emsp;爽やかなブルーベリーがチーズの引き立て役に。クランブルも米粉を使用し、グルテンフリーで作らせていただいております。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -750,9 +664,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              シナモンで香り付けしたりんごが
-              <br />
-              秋のコーヒーにぴったりです
+              &emsp;シナモンで香り付けしたりんごがアクセントのクランブルチーズケーキ。
+              秋のコーヒーにぴったりです！
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -771,9 +684,8 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              ヨーグルトを使用し爽やかに仕上げた春夏のスイーツ
-              <br />
-              ほろ苦いカラメルのような香ばさがラテにぴったりです
+              &emsp;ヨーグルトを使用し爽やかに仕上げた春夏のスイーツ。
+              ほろ苦いカラメルのような香ばさがラテにぴったりです！
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -792,20 +704,9 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              気まぐれで登場するマフィンも、
+              &emsp;気まぐれで登場するマフィンも、グルテンフリーでおつくりさせていただいております。バター不使用なので、ヘルシーで軽い口当たり。ふわっと、しっとりとした食感が特徴です。レシピも季節に合わせた果物や紅茶、コーヒーを使用しております。
               <br />
-              グルテンフリーでおつくりさせていただいております
-              <br />
-              バター不使用なので、ヘルシーで
-              <br />
-              そしてふわっと、しっとり。
-              <br />
-              レシピも季節に合わせた果物や
-              <br />
-              紅茶やコーヒーを使用。
-              <br />
-              何度もリピートしていただいてる好評メニューです！
-              <br />
+              &emsp;何度もリピートしていただいてる好評メニューです。
               気まぐれで登場するので出逢えたらぜひ！
             </p>
           </FadeInEffect>
@@ -824,7 +725,7 @@ export default function MenuPage() {
             <h2>ジンジャー</h2>
           </FadeInEffect>
           <FadeInEffect>
-            <p>浅煎りの珈琲との相性抜群なマフィンです</p>
+            <p>&emsp;浅煎りの珈琲との相性抜群なマフィンです。</p>
           </FadeInEffect>
           <FadeInEffect>
             <Image
@@ -842,13 +743,16 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              金柑の爽やかな風味と甘酸っぱさが
-              <br />
-              角切りに入ったクリームチーズと相性ぴったりです！
+              &emsp;金柑の爽やかな風味と甘酸っぱさが角切りに入ったクリームチーズと相性ぴったりです！
             </p>
           </FadeInEffect>
           <FadeInEffect>
-            <Image src="/img/menu/2180.jpg" alt="金柑" width={800} height={600} />
+            <Image
+              src="/img/menu/2180.jpg"
+              alt="金柑"
+              width={800}
+              height={600}
+            />
           </FadeInEffect>
         </div>
 
@@ -857,11 +761,7 @@ export default function MenuPage() {
             <h2>チョコバナナマフィン</h2>
           </FadeInEffect>
           <FadeInEffect>
-            <p>
-              子供から大人まで好評なシリーズ！
-              <br />
-              ラテとの相性抜群です
-            </p>
+            <p>&emsp;子供から大人まで好評なシリーズ！ラテとの相性抜群です！</p>
           </FadeInEffect>
           <FadeInEffect>
             <Image
@@ -879,7 +779,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              しっとりしたマフィンに爽やかなブルーベリーの果実感が味わえる人気マフィン
+              &emsp;しっとりしたマフィンに爽やかなブルーベリーの果実感を味わえる人気マフィン。
             </p>
           </FadeInEffect>
           <FadeInEffect>
@@ -898,8 +798,7 @@ export default function MenuPage() {
           </FadeInEffect>
           <FadeInEffect>
             <p>
-              抹茶のほろ苦さと豊かな香りが楽しめるマフィン
-              <br />
+              &emsp;抹茶のほろ苦さと豊かな香りが楽しめるマフィン──。
               ラテとの相性抜群です！
             </p>
           </FadeInEffect>
