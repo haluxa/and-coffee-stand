@@ -1,7 +1,7 @@
 #bgVideoStack {
   position: fixed;
   inset: 0;
-  width: 100vw;
+  width: var(--app-width);
   height: 100vh;
   overflow: hidden; /* はみ出しを隠す */
   z-index: -1; /* すべてのコンテンツの背面 */

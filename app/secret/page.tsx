@@ -7,7 +7,6 @@ import type {
   UnresolvedLink,
 } from "contentful";
 import { contentfulClient } from "@/_lib/contentful";
-import Footer from "@/_components/Footer/page";
 import { formatJapaneseDate } from "@/_lib/format-date";
 
 export const dynamic = "force-dynamic";
@@ -39,8 +38,6 @@ export default async function SecretPage() {
 
   return (
     <main className="secret_page">
-      <h1 className="secret_title">Secret</h1>
-
       <div className="post_list">
         {posts.map((post) => {
           const imageUrl = getImageUrl(post.fields.coverImage);
@@ -83,7 +80,6 @@ export default async function SecretPage() {
       <div className="admin_link">
         <Link href="/admin">管理者画面</Link>
       </div>
-      <Footer />
     </main>
   );
 }

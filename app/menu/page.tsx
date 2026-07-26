@@ -1,140 +1,181 @@
 "use client";
 import Image from "next/image";
+import { useState } from "react";
+import OverlayVideo from "@/_components/BackgroundVideo/OverlayVideo";
 import FadeInEffect from "@/_components/fadein";
-import Footer from "@/_components/Footer/page";
+
+type MenuNavItem = {
+  href: string;
+  label: string;
+  children?: MenuNavItem[];
+};
+
+type MenuNavSection = {
+  id: "drink" | "sweet";
+  label: string;
+  items: MenuNavItem[];
+};
+
+const MENU_NAV_SECTIONS: MenuNavSection[] = [
+  {
+    id: "drink",
+    label: "DRINK",
+    items: [
+      { href: "#1000", label: "コーヒー（アイス／ホット）" },
+      { href: "#1010", label: "ラテ（アイス／ホット）" },
+      { href: "#1020", label: "メープルラテ" },
+      { href: "#1030", label: "エスプレッソトニック（春夏限定）" },
+      { href: "#1040", label: "チャイ（アイス／ホット）" },
+      { href: "#1050", label: "ダークモカ" },
+      {
+        href: "#1060",
+        label: "気まぐれドリンク",
+        children: [
+          { href: "#1070", label: "紫蘇ソーダ" },
+          { href: "#1080", label: "コーヒー檸檬ソーダ" },
+          { href: "#1090", label: "抹茶ドリンク" },
+          { href: "#1100", label: "ほうじ茶ラテ" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "sweet",
+    label: "SWEET",
+    items: [
+      { href: "#2000", label: "グルテンフリー定番バスクチーズケーキ" },
+      {
+        href: "#2010",
+        label: "気まぐれスイーツ",
+        children: [
+          { href: "#2020", label: "ぜんざいアフォガード" },
+          { href: "#2030", label: "チョコムースケーキ" },
+          { href: "#2040", label: "焼き芋ブリュレバスク" },
+          { href: "#2050", label: "チョコバスク" },
+          { href: "#2060", label: "かぼちゃバスク" },
+          { href: "#2070", label: "ティラミス風バスク" },
+          { href: "#2080", label: "紅茶のバスク" },
+          { href: "#2090", label: "檸檬ゼリーとレアチーズケーキ" },
+          { href: "#2100", label: "檸檬バスク" },
+          {
+            href: "#2110",
+            label: "ドライフルーツの米粉オールドファッションチーズケーキ",
+          },
+          { href: "#2120", label: "バナナブリュレバスク" },
+          {
+            href: "#2130",
+            label: "ブルーベリーと米粉のクランブルチーズケーキ",
+          },
+          { href: "#2140", label: "りんごと米粉のクランブルチーズケーキこ" },
+          { href: "#2150", label: "黒糖ブリュレバスク" },
+        ],
+      },
+      {
+        href: "#2160",
+        label: "米粉マフィン",
+        children: [
+          { href: "#2170", label: "ジンジャー" },
+          { href: "#2180", label: "金柑" },
+          { href: "#2190", label: "チョコバナナマフィン" },
+          { href: "#2200", label: "ブルーベリーとクリチのマフィン" },
+          { href: "#2210", label: "抹茶マフィン" },
+        ],
+      },
+    ],
+  },
+];
+
+function MenuFixedNavList({ items }: { items: MenuNavItem[] }) {
+  return (
+    <ul className="menu-page__fixed-list">
+      {items.map((item) => (
+        <li key={item.href}>
+          <a href={item.href}>{item.label}</a>
+          {item.children ? <MenuFixedNavList items={item.children} /> : null}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function MenuPageNavList({ items }: { items: MenuNavItem[] }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.href}>
+          <a href={item.href}>{item.label}</a>
+          {item.children ? <MenuPageNavList items={item.children} /> : null}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function MenuPage() {
+  const [activeSection, setActiveSection] =
+    useState<MenuNavSection["id"]>("drink");
+  const [isFixedNavOpen, setIsFixedNavOpen] = useState(false);
+  const activeNavSection =
+    MENU_NAV_SECTIONS.find((section) => section.id === activeSection) ??
+    MENU_NAV_SECTIONS[0];
+  const handleFixedTabClick = (sectionId: MenuNavSection["id"]) => {
+    setActiveSection(sectionId);
+    setIsFixedNavOpen(true);
+  };
+
   return (
     <main className="menu-page">
       <FadeInEffect>
         <nav className="menu-page__nav">
           <ul>
-            {/* DRINK */}
-            <li>
-              DRINK
-              <ul>
-                <li>
-                  <a href="#1000">コーヒー（アイス／ホット）</a>
-                </li>
-                <li>
-                  <a href="#1010">ラテ（アイス／ホット）</a>
-                </li>
-                <li>
-                  <a href="#1020">メープルラテ</a>
-                </li>
-                <li>
-                  <a href="#1030">エスプレッソトニック（春夏限定）</a>
-                </li>
-                <li>
-                  <a href="#1040">チャイ（アイス／ホット）</a>
-                </li>
-                <li>
-                  <a href="#1050">ダークモカ</a>
-                </li>
-                <li>
-                  <a href="#1060">気まぐれドリンク</a>
-                  <ul>
-                    <li>
-                      <a href="#1070">紫蘇ソーダ</a>
-                    </li>
-                    <li>
-                      <a href="#1080">コーヒー檸檬ソーダ</a>
-                    </li>
-                    <li>
-                      <a href="#1090">抹茶ドリンク</a>
-                    </li>
-                    <li>
-                      <a href="#1100">ほうじ茶ラテ</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-
-            {/* SWEET */}
-            <li>
-              SWEET
-              <ul>
-                <li>
-                  <a href="#2000">グルテンフリー定番バスクチーズケーキ</a>
-                </li>
-
-                <li>
-                  <a href="#2010">気まぐれスイーツ</a>
-                  <ul>
-                    <li>
-                      <a href="#2020">ぜんざいアフォガード</a>
-                    </li>
-                    <li>
-                      <a href="#2030">チョコムースケーキ</a>
-                    </li>
-                    <li>
-                      <a href="#2040">焼き芋ブリュレバスク</a>
-                    </li>
-                    <li>
-                      <a href="#2050">チョコバスク</a>
-                    </li>
-                    <li>
-                      <a href="#2060">かぼちゃバスク</a>
-                    </li>
-                    <li>
-                      <a href="#2070">ティラミス風バスク</a>
-                    </li>
-                    <li>
-                      <a href="#2080">紅茶のバスク</a>
-                    </li>
-                    <li>
-                      <a href="#2090">檸檬ゼリーとレアチーズケーキ</a>
-                    </li>
-                    <li>
-                      <a href="#2100">檸檬バスク</a>
-                    </li>
-                    <li>
-                      <a href="#2110">
-                        ドライフルーツの米粉オールドファッションチーズケーキ
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#2120">バナナブリュレバスク</a>
-                    </li>
-                    <li>
-                      <a href="#2130">
-                        ブルーベリーと米粉のクランブルチーズケーキ
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#2140">りんごと米粉のクランブルチーズケーキこ</a>
-                    </li>
-                    <li>
-                      <a href="#2150">黒糖ブリュレバスク</a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li>
-                  <a href="#2160">米粉マフィン</a>
-                  <ul>
-                    <li>
-                      <a href="#2170">ジンジャー</a>
-                    </li>
-                    <li>
-                      <a href="#2180">金柑</a>
-                    </li>
-                    <li>
-                      <a href="#2190">チョコバナナマフィン</a>
-                    </li>
-                    <li>
-                      <a href="#2200">ブルーベリーとクリチのマフィン</a>
-                    </li>
-                    <li>
-                      <a href="#2210">抹茶マフィン</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
+            {MENU_NAV_SECTIONS.map((section) => (
+              <li key={section.id}>
+                {section.label}
+                <MenuPageNavList items={section.items} />
+              </li>
+            ))}
           </ul>
         </nav>
       </FadeInEffect>
+
+      <nav
+        className="menu-page__fixed-nav"
+        aria-label="メニュー内ナビゲーション"
+      >
+        <div
+          className={`menu-page__fixed-panel${
+            isFixedNavOpen ? " is-open" : ""
+          }`}
+        >
+          <OverlayVideo />
+          <div className="menu-page__fixed-panelInner">
+            <button
+              type="button"
+              className="menu-page__fixed-close"
+              aria-label="固定ナビを閉じる"
+              onClick={() => setIsFixedNavOpen(false)}
+            >
+              ×
+            </button>
+            <p className="menu-page__fixed-title">{activeNavSection.label}</p>
+            <MenuFixedNavList items={activeNavSection.items} />
+          </div>
+        </div>
+        <div className="menu-page__fixed-tabs">
+          {MENU_NAV_SECTIONS.map((section) => (
+            <button
+              key={section.id}
+              type="button"
+              className={`menu-page__fixed-tab${
+                activeSection === section.id ? " is-active" : ""
+              }`}
+              onClick={() => handleFixedTabClick(section.id)}
+            >
+              {section.label}
+            </button>
+          ))}
+        </div>
+      </nav>
 
       <article className="menu-page__article">
         <FadeInEffect>
@@ -812,7 +853,6 @@ export default function MenuPage() {
           </FadeInEffect>
         </div>
       </article>
-      <Footer />
     </main>
   );
 }

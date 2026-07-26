@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
+import OverlayVideo from "@/_components/BackgroundVideo/OverlayVideo";
 import Style from "./page.module.css";
 
 export default function HeaderNav() {
@@ -13,6 +14,14 @@ export default function HeaderNav() {
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    document.body.classList.toggle("has-global-nav-open", isOpen);
+
+    return () => {
+      document.body.classList.remove("has-global-nav-open");
+    };
+  }, [isOpen]);
 
   return (
     <div className={Style.nav}>
@@ -31,23 +40,26 @@ export default function HeaderNav() {
         <span />
       </label>
       <nav className={Style.navContent}>
-        <ul className={Style.navList}>
-          <li className={Style.navItem}>
-            <Link href="/menu" onClick={() => setIsOpen(false)}>
-              menu
-            </Link>
-          </li>
-          <li className={Style.navItem}>
-            <Link href="/view" onClick={() => setIsOpen(false)}>
-              shop view
-            </Link>
-          </li>
-          <li className={Style.navItem}>
-            <Link href="/secret" onClick={() => setIsOpen(false)}>
-              secret
-            </Link>
-          </li>
-        </ul>
+        <OverlayVideo />
+        <div className={Style.navContentInner}>
+          <ul className={Style.navList}>
+            <li className={Style.navItem}>
+              <Link href="/menu" onClick={() => setIsOpen(false)}>
+                menu
+              </Link>
+            </li>
+            <li className={Style.navItem}>
+              <Link href="/view" onClick={() => setIsOpen(false)}>
+                shop view
+              </Link>
+            </li>
+            <li className={Style.navItem}>
+              <Link href="/secret" onClick={() => setIsOpen(false)}>
+                secret
+              </Link>
+            </li>
+          </ul>
+        </div>
       </nav>
     </div>
   );

@@ -1,0 +1,20 @@
+.overlayVideo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.overlayVideo video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: none;
+}
+
+.overlayTint {
+  position: absolute;
+  inset: 0;
+  background: rgb(252, 250, 246);
+}

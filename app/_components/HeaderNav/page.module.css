@@ -5,7 +5,7 @@
 /* ハンバーガーアイコンの設置スペース */
 .drawerOpen {
   position: fixed;
-  right: 16px;
+  left: calc(var(--app-width) - 76px);
   top: 16px;
   z-index: 100;
   cursor: pointer;
@@ -61,14 +61,22 @@
 
 /* メニューのデザイン*/
 .navContent {
-  width: 100%;
-  height: 100%;
+  width: var(--app-width);
+  height: 100vh;
   position: fixed;
   top: 0;
-  left: 100%; /* メニューを画面の外に飛ばす */
+  left: 0;
   z-index: 99;
-  background: #fff;
-  transition: 0.5s;
+  background: rgb(252, 250, 246);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.navContentInner {
+  position: relative;
+  z-index: 1;
   padding-left: 48px;
   padding-top: 80px;
 }
@@ -82,5 +90,7 @@
 
 /* アイコンがクリックされたらメニューを表示 */
 .nav > input:checked ~ .navContent {
-  left: 0; /* メニューを画面に入れる */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
