@@ -32,6 +32,12 @@ body {
   overflow-x: hidden;
 }
 
+body.has-global-nav-open {
+  height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 /* ===== 背景動画：固定配置 ===== */
 
 /* ここから下がハンバーガーメニューに関するCSS */
@@ -72,13 +78,12 @@ main .top-movie-wrapper {
 }
 
 .asterisk {
-  font-family: var(--font-noto-sans-jp), sans-serif;
   font-size: 12px;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .about-wrapper {
-  margin: 80px 0;
+  margin: 90px 0;
 }
 
 .about-image-stack {
@@ -141,7 +146,7 @@ main .top-movie-wrapper {
 .about-wrapper p {
   font-size: 14px;
   margin: 16px 48px;
-  line-height: 1.6;
+  line-height: 2;
   font-family: var(--font-klee), serif;
 }
 .icon-button {
@@ -266,7 +271,7 @@ small {
   margin-top: 64px;
 }
 .about-5 h2 {
-  margin-top: 56px;
+  margin-top: 60px;
 }
 .map {
   width: auto;
@@ -834,7 +839,6 @@ html {
 .menu-page__nav {
   position: relative;
   width: calc(100% - 48px);
-  padding: 8px 20px 24px;
   margin: 88px auto 72px;
   line-height: 2.2;
 }
@@ -842,25 +846,36 @@ html {
 .menu-page__nav > ul {
   display: flex;
   flex-direction: column;
-  gap: 12px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .menu-page__nav > ul > li {
-  flex: 1 1 0;
+  flex: 0 0 auto;
   margin-top: 0;
-  padding-top: 14px;
-  font-size: 24px;
+  padding-top: 24px;
+  font-size: 20px;
   letter-spacing: 0.18em;
   font-weight: 400;
   font-family: var(--font-fredericka), serif;
   -webkit-font-smoothing: antialiased;
 }
 
+.menu-page__section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-page__section-icon {
+  width: 18px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
 .menu-page__nav > ul > li > ul {
-  margin-bottom: 80px;
+  margin-bottom: 24px;
   padding-left: 0;
   list-style: none;
   line-height: 1.6;
@@ -920,6 +935,19 @@ html {
   bottom: 0;
   z-index: 120;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease,
+    visibility 260ms ease;
+}
+
+.menu-page__fixed-nav.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 body.has-global-nav-open .menu-page__fixed-nav {
@@ -990,6 +1018,9 @@ body.has-global-nav-open .menu-page__fixed-nav {
   font-family: var(--font-fredericka), serif;
   -webkit-font-smoothing: antialiased;
   color: #665d4f;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .menu-page__fixed-list {
@@ -1068,6 +1099,12 @@ body.has-global-nav-open .menu-page__fixed-nav {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   cursor: pointer;
+  pointer-events: auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   transition:
     background-color 180ms ease,
     color 180ms ease,
@@ -1094,14 +1131,21 @@ body.has-global-nav-open .menu-page__fixed-nav {
 /* DRINK / SWEET の大見出し */
 .menu-page__article > h2,
 .menu-page__article > .fade-in > h2 {
-  margin: 32px 0 16px;
-  font-size: 32px;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 48px;
+  font-size: 24px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 400;
   font-family: var(--font-fredericka);
   -webkit-font-smoothing: antialiased;
-  padding-bottom: 40px;
+  text-align: center;
+  padding: 12px 16px;
+  border-top: 1px dashed var(--foreground);
+  border-bottom: 1px dashed var(--foreground);
 }
 
 /* 各メニューブロック */

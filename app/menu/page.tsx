@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OverlayVideo from "@/_components/BackgroundVideo/OverlayVideo";
 import FadeInEffect from "@/_components/fadein";
 
@@ -13,6 +13,8 @@ type MenuNavItem = {
 type MenuNavSection = {
   id: "drink" | "sweet";
   label: string;
+  iconSrc: string;
+  iconAlt: string;
   items: MenuNavItem[];
 };
 
@@ -20,6 +22,8 @@ const MENU_NAV_SECTIONS: MenuNavSection[] = [
   {
     id: "drink",
     label: "DRINK",
+    iconSrc: "/icons/drink.svg",
+    iconAlt: "drink icon",
     items: [
       { href: "#1000", label: "コーヒー（アイス／ホット）" },
       { href: "#1010", label: "ラテ（アイス／ホット）" },
@@ -42,6 +46,8 @@ const MENU_NAV_SECTIONS: MenuNavSection[] = [
   {
     id: "sweet",
     label: "SWEET",
+    iconSrc: "/icons/sweet.svg",
+    iconAlt: "sweet icon",
     items: [
       { href: "#2000", label: "グルテンフリー定番バスクチーズケーキ" },
       {
@@ -115,6 +121,8 @@ export default function MenuPage() {
   const [activeSection, setActiveSection] =
     useState<MenuNavSection["id"]>("drink");
   const [isFixedNavOpen, setIsFixedNavOpen] = useState(false);
+  const [isFixedNavVisible, setIsFixedNavVisible] = useState(false);
+  const drinkHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const activeNavSection =
     MENU_NAV_SECTIONS.find((section) => section.id === activeSection) ??
     MENU_NAV_SECTIONS[0];
@@ -123,6 +131,26 @@ export default function MenuPage() {
     setIsFixedNavOpen(true);
   };
 
+  useEffect(() => {
+    const updateFixedNavVisibility = () => {
+      const heading = drinkHeadingRef.current;
+      if (!heading) return;
+
+      const headingTop = heading.getBoundingClientRect().top;
+      setIsFixedNavVisible(headingTop <= 120);
+    };
+
+    updateFixedNavVisibility();
+
+    window.addEventListener("scroll", updateFixedNavVisibility, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", updateFixedNavVisibility);
+    };
+  }, []);
+
   return (
     <main className="menu-page">
       <FadeInEffect>
@@ -130,7 +158,16 @@ export default function MenuPage() {
           <ul>
             {MENU_NAV_SECTIONS.map((section) => (
               <li key={section.id}>
-                {section.label}
+                <span className="menu-page__section-label">
+                  <Image
+                    src={section.iconSrc}
+                    alt={section.iconAlt}
+                    width={20}
+                    height={20}
+                    className="menu-page__section-icon"
+                  />
+                  <span>{section.label}</span>
+                </span>
                 <MenuPageNavList items={section.items} />
               </li>
             ))}
@@ -139,28 +176,11 @@ export default function MenuPage() {
       </FadeInEffect>
 
       <nav
-        className="menu-page__fixed-nav"
+        className={`menu-page__fixed-nav${
+          isFixedNavVisible ? " is-visible" : ""
+        }`}
         aria-label="メニュー内ナビゲーション"
       >
-        <div
-          className={`menu-page__fixed-panel${
-            isFixedNavOpen ? " is-open" : ""
-          }`}
-        >
-          <OverlayVideo />
-          <div className="menu-page__fixed-panelInner">
-            <button
-              type="button"
-              className="menu-page__fixed-close"
-              aria-label="固定ナビを閉じる"
-              onClick={() => setIsFixedNavOpen(false)}
-            >
-              ×
-            </button>
-            <p className="menu-page__fixed-title">{activeNavSection.label}</p>
-            <MenuFixedNavList items={activeNavSection.items} />
-          </div>
-        </div>
         <div className="menu-page__fixed-tabs">
           {MENU_NAV_SECTIONS.map((section) => (
             <button
@@ -177,9 +197,38 @@ export default function MenuPage() {
         </div>
       </nav>
 
+      <div
+        className={`menu-page__fixed-panel${
+          isFixedNavOpen ? " is-open" : ""
+        }`}
+      >
+        <OverlayVideo />
+        <div className="menu-page__fixed-panelInner">
+          <button
+            type="button"
+            className="menu-page__fixed-close"
+            aria-label="固定ナビを閉じる"
+            onClick={() => setIsFixedNavOpen(false)}
+          >
+            ×
+          </button>
+          <p className="menu-page__fixed-title">
+            <Image
+              src={activeNavSection.iconSrc}
+              alt={activeNavSection.iconAlt}
+              width={22}
+              height={22}
+              className="menu-page__section-icon"
+            />
+            <span>{activeNavSection.label}</span>
+          </p>
+          <MenuFixedNavList items={activeNavSection.items} />
+        </div>
+      </div>
+
       <article className="menu-page__article">
         <FadeInEffect>
-          <h2>DRINK</h2>
+          <h2 ref={drinkHeadingRef}>DRINK</h2>
         </FadeInEffect>
 
         <div id="1000">

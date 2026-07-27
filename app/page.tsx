@@ -42,14 +42,29 @@ export default function Home() {
                 </div>
               </FadeInEffect>
               <FadeInEffect>
+                <div>-------------------------</div>
+              </FadeInEffect>
+              <FadeInEffect>
                 <div>
-                  open 11:00
+                  [平日（水・木・金）]
                   <br />
-                  last order 16:00
+                  open 11:00 last order 16:00/close 16:30
+                </div>
+                <div></div>
+              </FadeInEffect>
+              <FadeInEffect>
+                <div>[土曜日]　open 11:00 last order & close 17:00</div>
+              </FadeInEffect>
+              <FadeInEffect>
+                <div>[定休日]　月・火・日・祝 </div>
+              </FadeInEffect>
+              <FadeInEffect>
+                <div className="asterisk">
+                  ※不定休あります・ストーリーの確認お願いします
                 </div>
               </FadeInEffect>
               <FadeInEffect>
-                <div>日・月・火・祝 定休日</div>
+                <div>-------------------------</div>
               </FadeInEffect>
               <div>
                 <FadeInEffect>
@@ -57,11 +72,6 @@ export default function Home() {
                     insta{" "}
                     <span className="info_link_insta">@and_coffee_stand</span>
                   </a>
-                </FadeInEffect>
-                <FadeInEffect>
-                  <div className="asterisk">
-                    ※不定休あります・ストーリーの確認お願いします
-                  </div>
                 </FadeInEffect>
               </div>
             </div>
