@@ -14,6 +14,16 @@ import HeaderNav from "./_components/HeaderNav/page";
 import BackgroundVideo from "./_components/BackgroundVideo/page";
 import Style from "./layout.module.css";
 
+function getSiteUrl() {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ??
+    process.env.VERCEL_URL;
+
+  if (!siteUrl) return "http://localhost:3000";
+  return siteUrl.startsWith("http") ? siteUrl : `https://${siteUrl}`;
+}
+
 const hina = Hina_Mincho({
   weight: "400",
   variable: "--font-hina",
@@ -38,7 +48,10 @@ const notoSansJP = Noto_Sans_JP({
   fallback: ["Hiragino Sans", "Yu Gothic", "Meiryo", "sans-serif"],
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "And Coffee Stand",
   description: "女性が一人でも入りやすいお店──",
   icons: {
@@ -52,7 +65,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/ogp.jpg",
+        url: new URL("/ogp.jpg", siteUrl).toString(),
         width: 1200,
         height: 630,
         alt: "And Coffee Stand",
@@ -63,7 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "And Coffee Stand",
     description: "女性が一人でも入りやすいお店──",
-    images: ["/ogp.jpg"],
+    images: [new URL("/ogp.jpg", siteUrl).toString()],
   },
 };
 

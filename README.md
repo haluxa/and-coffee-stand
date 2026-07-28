@@ -82,6 +82,7 @@ ADMIN_PASSWORD=your_admin_password
 ADMIN_SESSION_SECRET=long-random-string
 
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+NEXT_PUBLIC_SITE_URL=https://example.com
 ```
 
 補足:
@@ -90,6 +91,7 @@ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 - `CONTENTFUL_MANAGEMENT_TOKEN` は管理画面からの投稿作成・公開で使用します
 - `ADMIN_SESSION_SECRET` は十分に長いランダム文字列を設定してください
 - `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` はフッターの地図表示に必要です
+- `NEXT_PUBLIC_SITE_URL` は OGP / canonical などの絶対URL生成に使います
 
 ## 補足
 
