@@ -51,11 +51,14 @@ export const metadata: Metadata = {
     siteName: "And Coffee Stand",
     locale: "ja_JP",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "And Coffee Stand",
-    description: "女性が一人でも入りやすいお店──",
+    images: [
+      {
+        url: "/ogp.jpg",
+        width: 1200,
+        height: 630,
+        alt: "And Coffee Stand",
+      },
+    ],
   },
   robots: {
     index: true,
