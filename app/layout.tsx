@@ -39,6 +39,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://and-coffee-stand.vercel.app"),
   title: "And Coffee Stand",
   description: "女性が一人でも入りやすいお店──",
   icons: {
