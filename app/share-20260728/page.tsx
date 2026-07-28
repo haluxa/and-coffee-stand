@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://and-coffee-stand.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://and-coffee-stand.vercel.app"
-  ),
+  metadataBase: new URL(siteUrl),
   title: "And Coffee Stand",
   description: "女性が一人でも入りやすいお店──",
   openGraph: {
@@ -18,9 +19,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "And Coffee Stand",
     description: "女性が一人でも入りやすいお店──",
-  },
-  alternates: {
-    canonical: "/",
   },
   robots: {
     index: false,
