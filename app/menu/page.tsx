@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import OverlayVideo from "@/_components/BackgroundVideo/OverlayVideo";
 import FadeInEffect from "@/_components/fadein";
 
@@ -91,13 +91,26 @@ const MENU_NAV_SECTIONS: MenuNavSection[] = [
   },
 ];
 
-function MenuFixedNavList({ items }: { items: MenuNavItem[] }) {
+function MenuFixedNavList({
+  items,
+  onLinkClick,
+}: {
+  items: MenuNavItem[];
+  onLinkClick: (href: string, event: MouseEvent<HTMLAnchorElement>) => void;
+}) {
   return (
     <ul className="menu-page__fixed-list">
       {items.map((item) => (
         <li key={item.href}>
-          <a href={item.href}>{item.label}</a>
-          {item.children ? <MenuFixedNavList items={item.children} /> : null}
+          <a
+            href={item.href}
+            onClick={(event) => onLinkClick(item.href, event)}
+          >
+            {item.label}
+          </a>
+          {item.children ? (
+            <MenuFixedNavList items={item.children} onLinkClick={onLinkClick} />
+          ) : null}
         </li>
       ))}
     </ul>
@@ -129,6 +142,22 @@ export default function MenuPage() {
   const handleFixedTabClick = (sectionId: MenuNavSection["id"]) => {
     setActiveSection(sectionId);
     setIsFixedNavOpen(true);
+  };
+  const handleFixedNavLinkClick = (
+    href: string,
+    event: MouseEvent<HTMLAnchorElement>,
+  ) => {
+    event.preventDefault();
+    setIsFixedNavOpen(false);
+
+    const targetId = href.startsWith("#") ? href.slice(1) : href;
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", href);
+    });
   };
 
   useEffect(() => {
@@ -198,9 +227,7 @@ export default function MenuPage() {
       </nav>
 
       <div
-        className={`menu-page__fixed-panel${
-          isFixedNavOpen ? " is-open" : ""
-        }`}
+        className={`menu-page__fixed-panel${isFixedNavOpen ? " is-open" : ""}`}
       >
         <OverlayVideo />
         <div className="menu-page__fixed-panelInner">
@@ -222,7 +249,10 @@ export default function MenuPage() {
             />
             <span>{activeNavSection.label}</span>
           </p>
-          <MenuFixedNavList items={activeNavSection.items} />
+          <MenuFixedNavList
+            items={activeNavSection.items}
+            onLinkClick={handleFixedNavLinkClick}
+          />
         </div>
       </div>
 
