@@ -40,7 +40,31 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: "And Coffee Stand",
-  description: "カフェの公式サイト",
+  description: "女性が一人でも入りやすいお店──",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "And Coffee Stand",
+    description: "女性が一人でも入りやすいお店──",
+    siteName: "And Coffee Stand",
+    locale: "ja_JP",
+    type: "website",
+    images: [
+      {
+        url: "/ogp.jpg",
+        width: 1200,
+        height: 630,
+        alt: "And Coffee Stand",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "And Coffee Stand",
+    description: "女性が一人でも入りやすいお店──",
+    images: ["/ogp.jpg"],
+  },
 };
 
 const fredericka = Fredericka_the_Great({
