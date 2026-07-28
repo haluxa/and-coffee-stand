@@ -7,34 +7,12 @@ import {
   DM_Serif_Display,
 } from "next/font/google";
 import { Metadata } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import HeaderNav from "./_components/HeaderNav/page";
 import BackgroundVideo from "./_components/BackgroundVideo/page";
 import Style from "./layout.module.css";
-
-function getFallbackSiteUrl() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.VERCEL_URL;
-
-  if (!siteUrl) return "http://localhost:3000";
-  return siteUrl.startsWith("http") ? siteUrl : `https://${siteUrl}`;
-}
-
-async function getSiteUrl() {
-  const headerList = await headers();
-  const forwardedProto = headerList.get("x-forwarded-proto");
-  const forwardedHost = headerList.get("x-forwarded-host");
-  const host = forwardedHost ?? headerList.get("host");
-
-  if (!host) return getFallbackSiteUrl();
-
-  const protocol =
-    forwardedProto ?? (host.includes("localhost") ? "http" : "https");
-
-  return `${protocol}://${host}`;
-}
 
 const hina = Hina_Mincho({
   weight: "400",
@@ -60,40 +38,37 @@ const notoSansJP = Noto_Sans_JP({
   fallback: ["Hiragino Sans", "Yu Gothic", "Meiryo", "sans-serif"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const siteUrl = await getSiteUrl();
-  const ogImageUrl = new URL("/ogp.jpg", siteUrl).toString();
-
-  return {
-    metadataBase: new URL(siteUrl),
+export const metadata: Metadata = {
+  title: "And Coffee Stand",
+  description: "女性が一人でも入りやすいお店──",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  openGraph: {
     title: "And Coffee Stand",
     description: "女性が一人でも入りやすいお店──",
-    icons: {
-      icon: "/favicon.ico",
+    siteName: "And Coffee Stand",
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "And Coffee Stand",
+    description: "女性が一人でも入りやすいお店──",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
-    openGraph: {
-      title: "And Coffee Stand",
-      description: "女性が一人でも入りやすいお店──",
-      siteName: "And Coffee Stand",
-      locale: "ja_JP",
-      type: "website",
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: "And Coffee Stand",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "And Coffee Stand",
-      description: "女性が一人でも入りやすいお店──",
-      images: [ogImageUrl],
-    },
-  };
-}
+  },
+};
 
 const fredericka = Fredericka_the_Great({
   weight: "400",
