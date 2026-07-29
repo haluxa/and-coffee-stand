@@ -932,7 +932,7 @@ html {
   position: fixed;
   left: 0;
   width: var(--app-width);
-  bottom: 0;
+  bottom: 16px;
   z-index: 120;
   pointer-events: none;
   opacity: 0;
@@ -1079,7 +1079,7 @@ body.has-global-nav-open .menu-page__fixed-nav {
 .menu-page__fixed-tabs {
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: 16px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -1105,19 +1105,21 @@ body.has-global-nav-open .menu-page__fixed-nav {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
 }
 
 .menu-page__fixed-tab.is-active {
+  background: #5e5648;
+  color: #faf7f1;
+}
+
+.menu-page__fixed-tab:nth-child(2) {
   background: #f7f4ef;
   color: #111;
 }
 
-.menu-page__fixed-tab:hover {
-  transform: translateX(2px);
+.menu-page__fixed-tab:nth-child(2).is-active {
+  background: #f7f4ef;
+  color: #111;
 }
 
 /* ---------- コンテンツ部分 (article) ---------- */
