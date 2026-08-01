@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type ControlledGifProps = {
+type ControlledAnimationProps = {
   className?: string;
-  gifSrc: string;
+  animationSrc: string;
   firstFrameSrc: string;
   lastFrameSrc: string;
   alt: string;
@@ -14,9 +14,9 @@ type ControlledGifProps = {
   threshold?: number;
 };
 
-export default function ControlledGif({
+export default function ControlledAnimation({
   className,
-  gifSrc,
+  animationSrc,
   firstFrameSrc,
   lastFrameSrc,
   alt,
@@ -24,7 +24,7 @@ export default function ControlledGif({
   height,
   durationMs,
   threshold = 0.2,
-}: ControlledGifProps) {
+}: ControlledAnimationProps) {
   const containerRef = useRef<HTMLImageElement | null>(null);
   const timerRef = useRef<number | null>(null);
   const hasStartedRef = useRef(false);
@@ -40,7 +40,7 @@ export default function ControlledGif({
         if (!entry?.isIntersecting || hasStartedRef.current) return;
 
         hasStartedRef.current = true;
-        setSrc(`${gifSrc}?play=${Date.now()}`);
+        setSrc(`${animationSrc}?play=${Date.now()}`);
 
         timerRef.current = window.setTimeout(() => {
           setSrc(lastFrameSrc);
@@ -59,9 +59,10 @@ export default function ControlledGif({
         window.clearTimeout(timerRef.current);
       }
     };
-  }, [durationMs, firstFrameSrc, gifSrc, lastFrameSrc, threshold]);
+  }, [animationSrc, durationMs, firstFrameSrc, lastFrameSrc, threshold]);
 
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       ref={containerRef}
       className={className}

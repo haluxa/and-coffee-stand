@@ -5,7 +5,7 @@ import FadeInEffect from "@/_components/fadein";
 import ScrollIndicator from "@/_components/ScrollIndicator";
 import Footer from "@/_components/Footer/page";
 import TopVideo from "@/_components/TopVideo";
-import ControlledGif from "@/_components/ControlledGif";
+import ControlledAnimation from "@/_components/ControlledAnimation";
 
 export default function Home() {
   return (
@@ -90,9 +90,9 @@ export default function Home() {
                   quality={80}
                   sizes="100vw"
                 />
-                <ControlledGif
+                <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-1"
-                  gifSrc="/img/1-1.gif"
+                  animationSrc="/img/1-1.webp"
                   firstFrameSrc="/img/1-1-first.png"
                   lastFrameSrc="/img/1-1-last.png"
                   alt=""
@@ -137,9 +137,9 @@ export default function Home() {
                   quality={80}
                   sizes="100vw"
                 />
-                <ControlledGif
+                <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-2"
-                  gifSrc="/img/1-2.gif"
+                  animationSrc="/img/1-2.webp"
                   firstFrameSrc="/img/1-2-first.png"
                   lastFrameSrc="/img/1-2-last.png"
                   alt=""
@@ -185,9 +185,9 @@ export default function Home() {
                   quality={80}
                   sizes="100vw"
                 />
-                <ControlledGif
+                <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-3"
-                  gifSrc="/img/1-3.gif"
+                  animationSrc="/img/1-3.webp"
                   firstFrameSrc="/img/1-3-first.png"
                   lastFrameSrc="/img/1-3-last.png"
                   alt=""
@@ -233,9 +233,9 @@ export default function Home() {
                   quality={80}
                   sizes="100vw"
                 />
-                <ControlledGif
+                <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-4"
-                  gifSrc="/img/1-4.gif"
+                  animationSrc="/img/1-4.webp"
                   firstFrameSrc="/img/1-4-first.png"
                   lastFrameSrc="/img/1-4-last.png"
                   alt=""
@@ -285,9 +285,9 @@ export default function Home() {
                   quality={80}
                   sizes="100vw"
                 />
-                <ControlledGif
+                <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-5"
-                  gifSrc="/img/1-5.gif"
+                  animationSrc="/img/1-5.webp"
                   firstFrameSrc="/img/1-5-first.png"
                   lastFrameSrc="/img/1-5-last.png"
                   alt=""
