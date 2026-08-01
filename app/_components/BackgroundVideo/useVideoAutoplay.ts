@@ -3,6 +3,9 @@
 import { useEffect } from "react";
 
 type VideoTarget = HTMLVideoElement | null;
+type UseVideoAutoplayOptions = {
+  onAutoplayBlocked?: () => void;
+};
 
 function prepareVideo(video: HTMLVideoElement) {
   video.muted = true;
@@ -16,11 +19,27 @@ function prepareVideo(video: HTMLVideoElement) {
   video.setAttribute("autoplay", "");
 }
 
-export function useVideoAutoplay(getVideos: () => VideoTarget[]) {
+export function useVideoAutoplay(
+  getVideos: () => VideoTarget[],
+  options: UseVideoAutoplayOptions = {}
+) {
   useEffect(() => {
+    let playbackCheckTimer: number | null = null;
+    let hasReportedBlocked = false;
+
+    const reportAutoplayBlocked = () => {
+      if (hasReportedBlocked) return;
+      hasReportedBlocked = true;
+      options.onAutoplayBlocked?.();
+    };
+
     const playVideos = () => {
       if (document.visibilityState === "hidden") {
         return;
+      }
+
+      if (playbackCheckTimer !== null) {
+        window.clearTimeout(playbackCheckTimer);
       }
 
       getVideos().forEach((video) => {
@@ -32,9 +51,22 @@ export function useVideoAutoplay(getVideos: () => VideoTarget[]) {
         if (playPromise) {
           playPromise.catch(() => {
             // Mobile Safari can reject early; retry on the next lifecycle event.
+            reportAutoplayBlocked();
           });
         }
       });
+
+      playbackCheckTimer = window.setTimeout(() => {
+        const autoplayBlocked = getVideos().some((video) => (
+          video &&
+          video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA &&
+          video.paused
+        ));
+
+        if (autoplayBlocked) {
+          reportAutoplayBlocked();
+        }
+      }, 700);
     };
 
     const videos = getVideos();
@@ -60,6 +92,10 @@ export function useVideoAutoplay(getVideos: () => VideoTarget[]) {
 
       document.removeEventListener("visibilitychange", playVideos);
       window.removeEventListener("pageshow", playVideos);
+
+      if (playbackCheckTimer !== null) {
+        window.clearTimeout(playbackCheckTimer);
+      }
     };
-  }, [getVideos]);
+  }, [getVideos, options]);
 }

@@ -34,7 +34,7 @@
   -webkit-backdrop-filter: blur(var(--bg-overlay-blur));
 }
 
-#bgVideoStack video {
+#bgVideoStack :is(video, img) {
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -44,7 +44,7 @@
   filter: contrast(var(--bg-video-contrast)) brightness(var(--bg-video-brightness));
 }
 
-#bgVideoStack video + video {
+#bgVideoStack :is(video, img) + :is(video, img) {
   margin-top: calc(var(--bg-overlap-px) * -1);
   -webkit-mask-image: linear-gradient(
     to bottom,

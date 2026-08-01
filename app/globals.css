@@ -56,7 +56,7 @@ main .top-movie-wrapper {
   margin-top: 96px;
 }
 
-.top-movie-wrapper video {
+.top-movie-wrapper :is(video, img) {
   width: 80%;
   height: auto;
   border-radius: 4px 0 0 4px;
