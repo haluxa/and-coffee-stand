@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useMediaPowerSavingFallback } from "./BackgroundVideo/useMediaPowerSavingFallback";
+import { usePowerSavingPreference } from "./BackgroundVideo/useMediaPowerSavingFallback";
 
 type ControlledAnimationProps = {
   className?: string;
@@ -32,7 +32,7 @@ export default function ControlledAnimation({
   const timerRef = useRef<number | null>(null);
   const hasStartedRef = useRef(false);
   const [src, setSrc] = useState(firstFrameSrc);
-  const { shouldUseImage: shouldUseLowPowerAsset } = useMediaPowerSavingFallback();
+  const shouldUseLowPowerAsset = usePowerSavingPreference();
   const activeAnimationSrc = shouldUseLowPowerAsset && lowPowerAnimationSrc
     ? lowPowerAnimationSrc
     : animationSrc;
