@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useMediaPowerSavingFallback } from "./BackgroundVideo/useMediaPowerSavingFallback";
 
 type ControlledAnimationProps = {
   className?: string;
   animationSrc: string;
+  lowPowerAnimationSrc?: string;
   firstFrameSrc: string;
   lastFrameSrc: string;
   alt: string;
@@ -17,6 +19,7 @@ type ControlledAnimationProps = {
 export default function ControlledAnimation({
   className,
   animationSrc,
+  lowPowerAnimationSrc,
   firstFrameSrc,
   lastFrameSrc,
   alt,
@@ -29,6 +32,10 @@ export default function ControlledAnimation({
   const timerRef = useRef<number | null>(null);
   const hasStartedRef = useRef(false);
   const [src, setSrc] = useState(firstFrameSrc);
+  const { shouldUseImage: shouldUseLowPowerAsset } = useMediaPowerSavingFallback();
+  const activeAnimationSrc = shouldUseLowPowerAsset && lowPowerAnimationSrc
+    ? lowPowerAnimationSrc
+    : animationSrc;
 
   useEffect(() => {
     const element = containerRef.current;
@@ -40,7 +47,7 @@ export default function ControlledAnimation({
         if (!entry?.isIntersecting || hasStartedRef.current) return;
 
         hasStartedRef.current = true;
-        setSrc(`${animationSrc}?play=${Date.now()}`);
+        setSrc(`${activeAnimationSrc}?play=${Date.now()}`);
 
         timerRef.current = window.setTimeout(() => {
           setSrc(lastFrameSrc);
@@ -59,7 +66,7 @@ export default function ControlledAnimation({
         window.clearTimeout(timerRef.current);
       }
     };
-  }, [animationSrc, durationMs, firstFrameSrc, lastFrameSrc, threshold]);
+  }, [activeAnimationSrc, durationMs, firstFrameSrc, lastFrameSrc, threshold]);
 
   return (
     // eslint-disable-next-line @next/next/no-img-element

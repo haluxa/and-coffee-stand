@@ -93,6 +93,7 @@ export default function Home() {
                 <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-1"
                   animationSrc="/img/1-1.webp"
+                  lowPowerAnimationSrc="/img/1-1-lowpower.webp"
                   firstFrameSrc="/img/1-1-first.png"
                   lastFrameSrc="/img/1-1-last.png"
                   alt=""
@@ -140,6 +141,7 @@ export default function Home() {
                 <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-2"
                   animationSrc="/img/1-2.webp"
+                  lowPowerAnimationSrc="/img/1-2-lowpower.webp"
                   firstFrameSrc="/img/1-2-first.png"
                   lastFrameSrc="/img/1-2-last.png"
                   alt=""
@@ -188,6 +190,7 @@ export default function Home() {
                 <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-3"
                   animationSrc="/img/1-3.webp"
+                  lowPowerAnimationSrc="/img/1-3-lowpower.webp"
                   firstFrameSrc="/img/1-3-first.png"
                   lastFrameSrc="/img/1-3-last.png"
                   alt=""
@@ -236,6 +239,7 @@ export default function Home() {
                 <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-4"
                   animationSrc="/img/1-4.webp"
+                  lowPowerAnimationSrc="/img/1-4-lowpower.webp"
                   firstFrameSrc="/img/1-4-first.png"
                   lastFrameSrc="/img/1-4-last.png"
                   alt=""
@@ -288,6 +292,7 @@ export default function Home() {
                 <ControlledAnimation
                   className="about-image-stack__overlay about-image-stack__overlay--about-5"
                   animationSrc="/img/1-5.webp"
+                  lowPowerAnimationSrc="/img/1-5-lowpower.webp"
                   firstFrameSrc="/img/1-5-first.png"
                   lastFrameSrc="/img/1-5-last.png"
                   alt=""
